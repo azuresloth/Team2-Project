@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/template/css/menu.css?ver=2">
+<link rel="stylesheet" href="/resources/template/css/menu.css?ver=6">
 </head>
 <body>
 	<div class="row">
