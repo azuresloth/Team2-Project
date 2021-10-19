@@ -29,6 +29,7 @@
 				<li>회원가입</li>
 				<li>로그인</li> 
 				<li>장바구니</li>
+				<li><a href="/admin/adminMenu">관리자 메뉴</a></li>
 			</ul>
 		</div>
 	</div>
