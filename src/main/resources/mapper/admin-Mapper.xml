@@ -17,7 +17,17 @@
 			, #{cateName}
 		)
 	</insert> 
-
+	<select id="selectCategoryList" resultMap="category">
+		SELECT CATE_CODE
+		, CATE_NAME
+		FROM CATEGORY
+		ORDER BY CATE_CODE
+	</select>
+	
+	<delete id="deleteCategory">
+		DELETE CATEGORY
+		WHERE CATE_CODE = #{cateCode}
+	</delete>
 
 </mapper>
 

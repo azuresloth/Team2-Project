@@ -20,11 +20,31 @@ public class AdminController {
 	@GetMapping("/adminMenu")
 	public String goAdminMenu(Model model) {
 		model.addAttribute("side", "admin_side");
+		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/reg_category";
 	}
+	
 	@PostMapping("/regCategory")
-	public String insertCategory(CategoryVO categoryVO) {
+	public String insertCategory(CategoryVO categoryVO, Model model) {
 		adminService.insertCategory(categoryVO);
 		return "redirect:/admin/adminMenu";
 	}
+	
+	@PostMapping("/deleteCategory")
+	public String deleteCategory(String cateCode) {
+		adminService.deleteCategory(cateCode);
+		return "redirect:/admin/adminMenu";
+	}
+	
+	@GetMapping("/salesManage")
+	public String gosalesManage() {
+		
+		return "admin/sales_manage";
+	}
+	
+	
+	
+	
+	
+	
 }

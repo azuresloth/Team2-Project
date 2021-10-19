@@ -7,12 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table>
-	<tr>
-		<td>
-			메뉴 1
-		</td>
-	</tr>
-</table>
+<div class="list-group row-2">
+  <a href="/admin/adminMenu" class="list-group-item list-group-item-action active col-1" aria-current="true">
+  	카테고리 관리
+  </a>
+  <a href="#" class="list-group-item list-group-item-action">상품등록</a>
+  <a href="#" class="list-group-item list-group-item-action">상품관리</a>
+  <a href="/admin/salesManage" class="list-group-item list-group-item-action">매출관리</a>
+</div>
 </body>
 </html>
