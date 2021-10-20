@@ -11,7 +11,7 @@
 		<result column="GENDER"	property="gender"/>
 		<result column="EMAIL"	property="email"/>
 		<result column="BIRTHDAY"	property="birthday"/>
-		<result column="IS_ADMIN"	property="isadmin"/>
+		<result column="IS_ADMIN"	property="isAdmin"/>
 		<result column="JOIN_DATE"	property="joinDate"/>
 	</resultMap>
 	
