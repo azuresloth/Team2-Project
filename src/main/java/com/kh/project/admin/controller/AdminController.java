@@ -1,5 +1,10 @@
 package com.kh.project.admin.controller;
 
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -7,9 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.item.vo.ImgVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -40,11 +48,48 @@ public class AdminController {
 	public String gosalesManage(Model model) {
 		model.addAttribute("sidePage", "salesManage");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
+		model.addAttribute("salesList", adminService.selectSales());
 		return "admin/sales_manage";
 	}
 	
+	@GetMapping("/insertItem")
+	public String goInsertItem(Model model) {
+		model.addAttribute("sidePage", "insertItem");
+		model.addAttribute("categoryList", adminService.selectCategoryList());
+		return "admin/insert_item_form";
+	}
 	
-	
+	@PostMapping("/insertItem")
+	public String insertItem(MultipartHttpServletRequest multi) {
+		//첨부파일 업로드
+		//파일이 첨부되는 input태그의 name속성값
+		Iterator<String> inputNames = multi.getFileNames();
+		
+		//첨부될 폴더 지정
+		String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		
+		//모든 첨부파일 정보가 들어갈 변수
+		List<ImgVO> imgList = new ArrayList<>();
+		//다음에 들어갈 itemCode의 숫자를 조회
+		int nextImgCode = adminService.selectNextNumber();
+		//다음에 들어갈 itemCode값 조회
+		String itemCode = adminService.selectNextItemCode();
+		
+		while (inputNames.hasNext()) {
+			String inputName = inputNames.next();
+			
+			//실제 첨부기능
+			try {
+				
+			} catch (IllegalStateException e) {
+				// TODO: handle exception
+			}
+			
+			
+		}
+		
+		return "";
+	}
 	
 	
 	

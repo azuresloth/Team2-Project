@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.admin.vo.SalesManageVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -26,6 +27,21 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void deleteCategory(String cateCode) {
 		sqlSession.delete("adminMapper.deleteCategory", cateCode);
+	}
+
+	@Override
+	public List<SalesManageVO> selectSales() {
+		return sqlSession.selectList("adminMapper.selectSalesList");
+	}
+
+	@Override
+	public int selectNextNumber() {
+		return sqlSession.selectOne("adminMapper.selectNextNumber");
+	}
+
+	@Override
+	public String selectNextItemCode() {
+		return "adminMapper.selectNextItemCode";
 	}
 	
 	
