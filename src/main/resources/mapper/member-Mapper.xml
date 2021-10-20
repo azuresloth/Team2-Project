@@ -15,7 +15,7 @@
 		<result column="JOIN_DATE"	property="joinDate"/>
 	</resultMap>
 	
-	<insert id="Join">
+	<insert id="memberJoin">
 		INSERT INTO MEMBER(
 			ID
 			, PW
@@ -25,8 +25,6 @@
 			, GENDER
 			, EMAIL
 			, BIRTHDAY
-			, IS_ADMIN
-			, JOIN_DATE
 		) VALUES(
 			#{id}
 			, #{pw}
@@ -36,8 +34,6 @@
 			, #{gender}
 			, #{email}
 			, #{birthday}
-			, #{isAdmin}
-			, #{joinDate}
 		)
 	</insert>
 	

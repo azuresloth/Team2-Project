@@ -26,6 +26,14 @@
 			    </li>
 				<li>마이페이지</li>
 				<li>주문조회</li>
+				<c:choose>
+					<c:when test="">
+					
+					</c:when>
+					<c:otherwise>
+					
+					</c:otherwise>
+				</c:choose>
 				<li><a href="/member/goJoin">회원가입</a></li>
 				<li><a href="/member/goLogin">로그인</a></li> 
 				<li>장바구니</li>

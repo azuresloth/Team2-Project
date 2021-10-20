@@ -1,9 +1,14 @@
 package com.kh.project.member.controller;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 
 
 
@@ -20,12 +25,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/member")
 public class MemberController {
-	
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
 	//회원가입 창으로이동
 	@GetMapping("/goJoin")
 	public String goJoin() {
 		return "member/join";
+	}
+	
+	//회원가입
+	@PostMapping("/join")
+	public String memberJoin(MemberVO memberVO) {
+		memberService.memberJoin(memberVO);
+		return "redirect:/item/itemList";
 	}
 
 	//로그인 창으로 이동

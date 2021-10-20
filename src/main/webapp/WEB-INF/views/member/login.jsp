@@ -11,7 +11,7 @@
 		<div>
 			<form action="/member/login" method="post">
 				<div>
-					<span>악세사리 샾</span>
+					<span>로그인</span>
 				</div>
 				<div>
 					<div>
