@@ -19,7 +19,7 @@ public class AdminController {
 	
 	@GetMapping("/adminMenu")
 	public String goAdminMenu(Model model) {
-		model.addAttribute("side", "admin_side");
+		model.addAttribute("sidePage", "categoryManage");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/reg_category";
 	}
@@ -37,8 +37,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/salesManage")
-	public String gosalesManage() {
-		
+	public String gosalesManage(Model model) {
+		model.addAttribute("sidePage", "salesManage");
+		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/sales_manage";
 	}
 	
