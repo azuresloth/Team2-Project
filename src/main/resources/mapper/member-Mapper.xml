@@ -2,7 +2,57 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="memberMapper">
-
+	<resultMap type="com.kh.project.member.vo.MemberVO" id="member">
+		<id column="ID"	property="id"/>
+		<result column="PW"	property="pw"/>
+		<result column="NAME"	property="name"/>
+		<result column="TELL"	property="tell"/>
+		<result column="ADDR"	property="addr"/>
+		<result column="GENDER"	property="gender"/>
+		<result column="EMAIL"	property="email"/>
+		<result column="BIRTHDAY"	property="birthday"/>
+		<result column="IS_ADMIN"	property="isadmin"/>
+		<result column="JOIN_DATE"	property="joinDate"/>
+	</resultMap>
+	
+	<insert id="Join">
+		INSERT INTO MEMBER(
+			ID
+			, PW
+			, NAME
+			, TELL
+			, ADDR
+			, GENDER
+			, EMAIL
+			, BIRTHDAY
+			, IS_ADMIN
+			, JOIN_DATE
+		) VALUES(
+			#{id}
+			, #{pw}
+			, #{name}
+			, #{tell}
+			, #{addr}
+			, #{gender}
+			, #{email}
+			, #{birthday}
+			, #{isAdmin}
+			, #{joinDate}
+		)
+	</insert>
+	
+	<select id="login" resultMap="member">
+			SELECT ID
+			, NAME
+			, IS_ADMIN
+			FROM MEMBER
+			WHERE ID = #{id}
+			AND PW = #{pw}
+	</select>
+	
+	<delete id="deleteMember"></delete>
+	
+	
 </mapper>
 
 

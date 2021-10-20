@@ -26,8 +26,8 @@
 			    </li>
 				<li>마이페이지</li>
 				<li>주문조회</li>
-				<li>회원가입</li>
-				<li>로그인</li> 
+				<li><a href="/member/goJoin">회원가입</a></li>
+				<li><a href="/member/goLogin">로그인</a></li> 
 				<li>장바구니</li>
 				<li><a href="/admin/adminMenu">관리자 메뉴</a></li>
 			</ul>
