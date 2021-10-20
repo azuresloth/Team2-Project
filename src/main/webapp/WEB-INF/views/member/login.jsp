@@ -7,23 +7,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<div>
+	<div class="row justify-content-center" >
+		<div class="col-5">
 			<form action="/member/login" method="post">
 				<div>
 					<span>로그인</span>
 				</div>
 				<div>
 					<div>
-						아이디 : <input type="text">
+						아이디   : <input type="text" name="id">
 					</div>
 					<div>
-						비밀번호 : <input type="password">
+						비밀번호 : <input type="password" name="pw">
 					</div>
 				</div>
 
 				<div>
-					<input type="submit" value="login"> 로그인
+					<input type="submit" value="login">
 				</div>
 			</form>
 		</div>

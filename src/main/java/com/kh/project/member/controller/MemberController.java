@@ -1,6 +1,7 @@
 package com.kh.project.member.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,6 +46,16 @@ public class MemberController {
 	@GetMapping("/goLogin")
 	public String goLogin() {
 		return "member/login";
+	}
+	//로그인
+	@PostMapping("/login")
+	public String login(MemberVO memberVO, HttpSession session) {
+		MemberVO loginInfo = memberService.login(memberVO);
+			if(loginInfo != null) {
+				session.setAttribute("loginInfo", loginInfo);
+			}
+		
+		return"redirect:/item/itemList";
 	}
 
 	//회원탈퇴 

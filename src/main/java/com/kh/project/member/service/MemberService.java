@@ -8,5 +8,5 @@ public interface MemberService {
 	public void memberJoin(MemberVO memberVO);
 	
 	//로그인
-	public String login(MemberVO memberVO);
+	 MemberVO login(MemberVO memberVO);
 }
