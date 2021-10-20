@@ -11,19 +11,6 @@ table { text-align: center; }
 tr { border-bottom: 1px solid black;}
 td { padding: 30px; }
 </style>
-<script type="text/javascript">
-//화면 로딩 후 바로 실행
-$(document).ready(function(){
-	
-});
-
-//함수 선언 영역
-(function($){
-	//aaa = function(){
-	//};
-})(jQuery);
-
-</script>
 </head>
 <body>
 	<h1>게시글 보기</h1>
@@ -55,8 +42,10 @@ $(document).ready(function(){
 			<td>${boardVO.content }</td>
 		</tr>
 	</table>
-	<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}" class="btn btn-primary">수정</a>
+	<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}
+		&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">수정</a>
 	<a href="/board/delete?boardNum=${boardVO.boardNum }" class="btn btn-primary">삭제</a>
-	<a href="/board/boardList?page=${param.page }&perPageRowNum=${param.perPageRowNum}" class="btn btn-primary">뒤로가기</a>
+	<a href="/board/boardList?page=${param.page }&perPageRowNum=${param.perPageRowNum}
+		&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">뒤로가기</a>
 </body>
 </html>

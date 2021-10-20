@@ -20,11 +20,11 @@ td { padding: 30px; }
 		<form action="/board/boardList" method="post">
 			<div class="input-group mb-3">
 				<select name="searchColunm">
-					<option value="t">글제목</option>
-					<option value="w">작성자</option>
-					<option value="tw">글제목 + 작성자</option>
+					<option value="t" <c:if test="${pageVO.searchColunm eq 't' }">selected</c:if> >글제목</option>
+					<option value="w" <c:if test="${pageVO.searchColunm eq 'w' }">selected</c:if>>작성자</option>
+					<option value="tw" <c:if test="${pageVO.searchColunm eq 'tw' }">selected</c:if>>글제목 + 작성자</option>
 				</select>
-				<input type="text" class="form-control" placeholder="Search" name="searchWord" required="required">
+				<input type="text" class="form-control" placeholder="Search" value="${pageVO.searchWord }" name="searchWord" required="required">
 				<div class="input-group-append">
 					<input class="btn btn-success" type="submit" value="검색">
 				</div>
@@ -47,7 +47,8 @@ td { padding: 30px; }
 					<tr>
 						<td>${pageVO.rowNum - status.index }</td>
 						<td>
-							<a href="/board/view?boardNum=${boardVO.boardNum }&numForReadCnt=1&page=${pageVO.page}&perPageRowNum=${pageVO.perPageRowNum}">
+							<a href="/board/view?boardNum=${boardVO.boardNum }&numForReadCnt=1&page=${pageVO.page}&perPageRowNum=${pageVO.perPageRowNum}
+							&searchColunm=${pageVO.searchColunm }&searchWord=${pageVO.searchWord}">
 								${boardVO.title }
 							</a>
 						</td>

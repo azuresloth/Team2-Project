@@ -12,6 +12,8 @@
 		<input type="hidden" value="${param.page }" name="page">
 		<input type="hidden" value="${param.perPageRowNum }" name="perPageRowNum">
 		<input type="hidden" value="${boardVO.boardNum }" name="boardNum"> <!-- 전달하는 데이터 -->
+		<input type="hidden" value="${param.searchColunm }" name="searchColunm"> <!-- 전달하는 데이터 -->
+		<input type="hidden" value="${param.searchWord }" name="searchWord"> <!-- 전달하는 데이터 -->
 		<div>
 			작성자 : <input type="text" value="${boardVO.writer }" readonly name="writer">
 		</div>

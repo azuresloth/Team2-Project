@@ -1,6 +1,9 @@
 package com.kh.project.board.controller;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.project.board.service.BoardService;
 import com.kh.project.board.vo.BoardVO;
 import com.kh.project.board.vo.PageVO;
+import com.kh.project.board.vo.SearchVO;
 
 @Controller
 @RequestMapping("/board")
@@ -59,22 +63,28 @@ public class BoardController {
 	
 	// 글 수정 폼으로 이동
 	@GetMapping("/updateForm")
-	public String updateForm(Model model, String boardNum) {
+	public String updateForm(Model model, String boardNum, SearchVO searchVO) {
 		System.out.println("updateForm().boardNum : " + boardNum);
+		System.out.println("updateForm().searchVO : " + searchVO);
+		
 		model.addAttribute("boardVO", boardService.view(boardNum, 0)); 
 		return "board/updateForm";
 	}
 	
 	// 글 수정 처리
 	@PostMapping("/update")
-	public String update(BoardVO boardVO, int page, int perPageRowNum) {
+	public String update(BoardVO boardVO, int page, int perPageRowNum, String searchColunm, String searchWord) throws UnsupportedEncodingException {
+		boardService.update(boardVO);
+		
 		System.out.println("update().boardVO : " + boardVO);
 		System.out.println("update().page : " + page);
 		System.out.println("update().perPageRowNum : " + perPageRowNum);
+		System.out.println("update().searchColunm : " + searchColunm);
+		System.out.println("update().searchWord : " + searchWord);
 		
 		
-		boardService.update(boardVO);
-		return "redirect:/board/view?boardNum="+ boardVO.getBoardNum() + "&numForReadCnt=0" +"&page=" + page + "&perPageRowNum=" + perPageRowNum;
+		return "redirect:/board/view?boardNum="+ boardVO.getBoardNum() + "&numForReadCnt=0" +"&page=" + page + "&perPageRowNum=" + perPageRowNum
+				+ "&searchColunm=" + searchColunm + "&searchWord=" + URLEncoder.encode(searchWord, "utf-8");
 	}
 	
 	// 글 삭제
