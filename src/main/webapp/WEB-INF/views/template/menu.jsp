@@ -12,7 +12,7 @@
 	<div class="row">
 		<div class="col text-end firstMenuDiv">
 			<ul class="firstMenuUl text-end">
-				<li>고객센터</li>
+				<li><a href="/board/boardList">고객센터</a></li>
 				<li class="nav-item dropdown">
 			          <a class=" dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            마이페이지

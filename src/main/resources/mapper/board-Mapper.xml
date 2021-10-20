@@ -2,7 +2,79 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="boardMapper">
-
+	<resultMap type="com.kh.project.board.vo.BoardVO" id="board">
+		<id column="BOARD_NUM"			 property="boardNum"/>
+		<result column="WRITER"			 property="writer"/>
+		<result column="CREATE_DATE"	 property="createDate"/>
+		<result column="CONTENT"		 property="content"/>
+		<result column="READ_CNT" 		 property="readCnt"/>
+		<result column="TITLE"			 property="title"/>
+	</resultMap>
+	<!-- 글목록 -->
+	<select id="boardList" resultMap="board">
+		SELECT RNUM, BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
+		FROM(
+			SELECT ROWNUM RNUM, BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
+			FROM(
+				SELECT BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
+				FROM SHOP_BOARD
+				<if test="searchWord != null and !searchWord.equals('')">
+					<if test="searchColunm == 't'.toString()">
+					WHERE TITLE LIKE '%'||#{searchWord}||'%'
+					</if>
+				</if>
+				ORDER BY CREATE_DATE DESC
+				)
+			)
+		WHERE RNUM BETWEEN #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getTotalRow" resultType="int">
+		SELECT COUNT(BOARD_NUM) FROM SHOP_BOARD
+		<if test="searchWord != null and !searchWord.equals('')">
+			<if test="searchColunm == 't'.toString()">
+				WHERE TITLE LIKE '%'||#{searchWord}||'%'
+			</if>
+		</if>
+	</select>
+	
+	<!-- 글등록 -->
+	<insert id="write">
+		INSERT INTO SHOP_BOARD(BOARD_NUM, WRITER, CONTENT, TITLE) 
+		VALUES(
+			(SELECT 'BOARD_'||LPAD(NVL(MAX(SUBSTR(BOARD_NUM,7,3)),0)+1,3,0) FROM SHOP_BOARD)
+			,#{writer}
+			,#{content}
+			,#{title}
+		)
+	</insert>
+	
+	<!-- 글 보기 -->
+	<select id="view" resultMap="board">
+		SELECT BOARD_NUM, WRITER, CREATE_DATE, CONTENT, READ_CNT, TITLE
+		FROM SHOP_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
+	
+	<!-- 조회수 1 증가 -->
+	<update id="plusReadCnt">
+		UPDATE SHOP_BOARD
+		SET READ_CNT = READ_CNT + 1
+		WHERE BOARD_NUM = #{boardNum}
+	</update>
+	
+	<!-- 글 수정 처리 -->
+	<update id="update">
+		UPDATE SHOP_BOARD
+		SET TITLE = #{title}, CONTENT = #{content}
+		WHERE BOARD_NUM = #{boardNum}
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="delete">
+		DELETE SHOP_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</delete>
 </mapper>
 
 
