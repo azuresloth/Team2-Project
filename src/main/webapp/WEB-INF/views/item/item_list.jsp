@@ -35,6 +35,37 @@
 			
 		</div>
 	</div>
+
+	<div class="container overflow-hidden">
+		<div class="row gy-5">
+			<div class="col-2">
+				<div class="p-3 border">
+					<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 150px;"></img></a>
+				</div>
+			</div>
+			<div class="col-2">
+				<div class="p-3 border">
+					<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 150px;"></img></a>
+				</div>
+			</div>
+			<div class="col-2">
+				<div class="p-3 border">
+					<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 150px;"></img></a>
+				</div>
+			</div>
+			<div class="col-2">
+				<div class="p-3 border bg-light">
+					Custom column padding
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-12" style="height: 3rem;">
+			
+		</div>
+	</div>
 	
 	<div class="row">
 		<div class="col-12">
@@ -42,13 +73,40 @@
 			<div class="itemBannerTitle">
 				BEST ITEM
 			</div>
-			<div class="swiper bestItemSwiper">
+			<div class="swiper itemSwiper">
 				<div class="swiper-wrapper">
 					<c:forEach items="${bestItemList}" var="bestItemInfo">
 						<div class="swiper-slide">
 							<a><img src="/resources/images/item/sample/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
 							<a>${bestItemInfo.itemName}</a>
 							<div>${bestItemInfo.itemPrice}</div>
+						</div>
+					</c:forEach>
+				</div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-12" style="height: 3rem;">
+			
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-12">
+			<!-- Swiper -->
+			<div class="itemBannerTitle">
+				NEW ITEM
+			</div>
+			<div class="swiper itemSwiper">
+				<div class="swiper-wrapper">
+					<c:forEach items="${recentItemList}" var="recentItemInfo">
+						<div class="swiper-slide">
+							<a><img src="/resources/images/item/sample/${recentItemInfo.imgList[0].attachedImgName}"></img></a>
+							<a>${recentItemInfo.itemName}</a>
+							<div>${recentItemInfo.itemPrice}</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -63,12 +121,12 @@
 	var swiper = new Swiper(".mainBannerSwiper", {
 		slidesPerView : 1,
 		spaceBetween : 30,
-		loop : true,
 		centeredSlides : true,
 		autoplay : {
 			delay : 2500,
 			disableOnInteraction : false,
 		},
+		loop : true,
 		pagination : {
 			el : ".swiper-pagination",
 			clickable : true,
@@ -79,14 +137,15 @@
 		},
 	});
 
-	var swiper = new Swiper(".bestItemSwiper", {
+	var swiper = new Swiper(".itemSwiper", {
 		slidesPerView : 1,
 		spaceBetween : 10,
-		loop : true,
 		autoplay : {
-			delay : 2500,
-			disableOnInteraction : false,
+			delay : 2000,
+			disableOnInteraction : true,
+			loop : true,
 		},
+			loop : true,
 		pagination : {
 			el : ".swiper-pagination",
 			clickable : true,
