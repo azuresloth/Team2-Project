@@ -73,13 +73,13 @@ td { padding: 30px; }
 					<!-- page 1보다 크면은 -->
 					<c:if test="${pageVO.page > 1 }">
 						<a class="page-link" href="${url }?page=1&perPageRowNum=${pageVO.perPageRowNum}">
-							<i class='fas fa-angle-double-left'></i>
+							<i class="fa fa-angle-double-left"></i>
 						</a>
 					</c:if>
 					<!-- page 1 이면 -->
 					<c:if test="${pageVO.page == 1 }">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class='fas fa-angle-double-left' style="color: ${noLinkColor};"></i>
+							<i class="fa fa-angle-double-left" style="color: ${noLinkColor};"></i>
 						</a>
 					</c:if>
 				</li>
@@ -87,12 +87,12 @@ td { padding: 30px; }
 				<li class="page-item">
 					<c:if test="${pageVO.startPage > 1}">
 						<a class="page-link" href="${url }?${pageVO.startPage -1}&perPageRow=${pageVO.perPageRowNum}">
-							<i class='fas fa-angle-left'></i>
+							<i class="fa fa-angle-left"></i>
 						</a>
 					</c:if>
 					<c:if test="${pageVO.startPage == 1 }">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class='fas fa-angle-left' style="color: ${noLinkColor};"></i>
+							<i class="fa fa-angle-left" style="color: ${noLinkColor};"></i>
 						</a>
 					</c:if>
 				</li>
@@ -113,14 +113,14 @@ td { padding: 30px; }
 				<c:if test="${pageVO.endPage < pageVO.totalPage }">
 					<li class="page-item">
 						<a class="page-link" href="${url }?page=${pageVO.endPage +1}&perPageRowNum=${pageVO.perPageRowNum}">
-							<i class='fa fa-angle-right'></i>
+							<i class="fa fa-angle-right"></i>
 						</a>
 					</li>
 				</c:if>
 				<c:if test="${pageVO.endPage == pageVO.totalPage }">
 					<li class="page-item">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class='fa fa-angle-right' style="color: ${noLinkColor};"></i>
+							<i class="fa fa-angle-right" style="color: ${noLinkColor};"></i>
 						</a>
 					</li>
 				</c:if>
@@ -128,14 +128,14 @@ td { padding: 30px; }
 				<c:if test="${pageVO.page < pageVO.totalPage }">
 					<li class="page-item">
 					<a class="page-link" href="${url }?page=${pageVO.totalPage}&perPageRowNum=${pageVO.perPageRowNum}">
-						<i class='fa fa-angle-double-right'></i>
+						<i class="fa fa-angle-double-right"></i>
 					</a>
 				</li>
 				</c:if>
 				<c:if test="${pageVO.page == pageVO.totalPage }">
 					<li class="page-item">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class='fa fa-angle-double-right' style="color: ${noLinkColor};"></i>
+							<i class="fa fa-angle-double-right" style="color: ${noLinkColor};"></i>
 						</a>
 					</li>
 				</c:if>
