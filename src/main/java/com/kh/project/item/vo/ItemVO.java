@@ -10,7 +10,7 @@ public class ItemVO {
 	private int itemStock;
 	private int itemStatus;
 	private String cateCode;
-	private List<ImageVO> imgList;
+	private List<ImgVO> imgList;
 	
 	public String getItemCode() {
 		return itemCode;
@@ -54,10 +54,10 @@ public class ItemVO {
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
 	}
-	public List<ImageVO> getImgList() {
+	public List<ImgVO> getImgList() {
 		return imgList;
 	}
-	public void setImgList(List<ImageVO> imgList) {
+	public void setImgList(List<ImgVO> imgList) {
 		this.imgList = imgList;
 	}
 	

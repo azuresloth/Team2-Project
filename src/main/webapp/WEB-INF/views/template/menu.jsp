@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/template/css/menu.css?ver=6">
+<link rel="stylesheet" href="/resources/template/css/menu.css?ver=2">
+<script type="text/javascript" src="/resources/template/js/menu.js?ver=2"></script>
 </head>
 <body>
 	<div class="row">
@@ -26,36 +27,43 @@
 			    </li>
 				<li>마이페이지</li>
 				<li>주문조회</li>
+				<li>장바구니</li>
 				<c:choose>
-					<c:when test="">
-					
+					<c:when test="${not empty sessionScope.loginInfo}">
+						<li>로그아웃</li>
+						<li>${sessionScope.loginInfo.name}님</li>
 					</c:when>
 					<c:otherwise>
-					
+						<li><a href="/member/goJoin">회원가입</a></li>
+						<li><a href="/member/goLogin">로그인</a></li> 
 					</c:otherwise>
 				</c:choose>
-				<li><a href="/member/goJoin">회원가입</a></li>
-				<li><a href="/member/goLogin">로그인</a></li> 
-				<li>장바구니</li>
-				<li><a href="/admin/adminMenu">관리자 메뉴</a></li>
+				<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
+					<li><a href="/admin/adminMenu">관리자 메뉴</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col text-center">
-			<a class="titleA"><span class="titleSpan">쇼핑몰</span> 타이틀</a>
+			<button class="titleButton" onclick="location.href='/item/itemList'">T2 SHOP</button>
+			<!-- <img alt="" src="/resources/images/common/titleLogo.png" width="180px"> -->
+			<!-- <a class="titleA" href="/item/itemList"><span class="titleSpan">쇼핑몰</span> 타이틀</a> -->
 		</div>
 	</div>
 	<div class="row">
 		<div class="col secondMenuDiv">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 2rem;">
 			  <div class="container-fluid bg-light">
-			    <a class="navbar" href="#">신상품</a>
+			    <a class="navbar" href="/item/newItemList">NEW ITEM</a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			    <div class="collapse navbar-collapse" id="navbarScroll">
 			      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+			        <c:forEach items="" var="">
+			        
+			        </c:forEach>
 			        <li class="nav-item">
 			          <a class="nav-link active" aria-current="page" href="#"> 목걸이</a>
 			        </li>

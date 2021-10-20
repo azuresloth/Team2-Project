@@ -11,17 +11,57 @@
 		<result column="ITEM_STATUS"	property="itemStatus"/>
 		<result column="CATE_CODE"		property="cateCode"/>
 		<collection property="imgList"	resultMap="img"></collection>
-		
 	</resultMap>
 	
-	<resultMap type="com.kh.project.item.vo.ImageVO" id="img">
+	<resultMap type="com.kh.project.item.vo.CategoryVO" id="category">
+		<id column="CATE_CODE"		property="cateCode"/>
+		<result column="CATE_NAME"	property="cateName"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.project.item.vo.ImgVO" id="img">
 		<id column="IMG_CODE"				property="imgCode"/>
 		<result column="ORIGIN_IMG_NAME"	property="originImgName"/>
 		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
 		<result column="ITEM_CODE"			property="itemCode"/>
 		<result column="IS_MAIN"			property="isMain"/>
 	</resultMap>
-  
+ 
+ 	<select id="selectItemList" resultMap="item">
+ 		SELECT ITEM.ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ATTACHED_IMG_NAME
+ 			, CATE_CODE
+ 			, ROWNUM
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND IS_MAIN = 'Y'
+ 		AND ITEM_STATUS = 2
+ 		ORDER BY ITEM_CODE DESC
+ 	</select>
+ 	
+ 	<!-- 최근 등록 아이템 -->
+ 	<select id="selectRecentItemList" resultMap="item">
+ 		SELECT ITEM.ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ATTACHED_IMG_NAME
+ 			, CATE_CODE
+ 			, ROWNUM
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND IS_MAIN = 'Y'
+ 		AND ITEM_STATUS = 2
+ 		AND ROWNUM &lt; 21
+ 		ORDER BY ITEM_CODE DESC
+ 	</select>
+ 	
+ 	<!-- 베스트 아이템 -->
+ 	
+ 	
+ 
 </mapper>
 
 

@@ -1,6 +1,6 @@
 package com.kh.project.item.vo;
 
-public class ImageVO {
+public class ImgVO {
 	private String imgCode;
 	private String originImgName;
 	private String attachedImgName;
