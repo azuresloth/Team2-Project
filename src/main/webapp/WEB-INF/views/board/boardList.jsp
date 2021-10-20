@@ -48,13 +48,13 @@ td { padding: 30px; }
 						<td>${pageVO.rowNum - status.index }</td>
 						<td>
 							<a href="/board/view?boardNum=${boardVO.boardNum }&numForReadCnt=1&page=${pageVO.page}&perPageRowNum=${pageVO.perPageRowNum}
-							&searchColunm=${pageVO.searchColunm }&searchWord=${pageVO.searchWord}">
+							&searchColunm=${pageVO.searchColunm }&searchWord=${pageVO.searchWord}" style="color: blue; font-weight: bold;">
 								${boardVO.title }
 							</a>
 						</td>
 						<td>${boardVO.writer }</td>
 						<td>
-							<fmt:formatDate value="${boardVO.createDate }" pattern="yyyy 년 M 월 dd 일 (h 시: m 분)"/>
+							<fmt:formatDate value="${boardVO.createDate }" pattern="yyyy 년 M 월 dd 일 (h 시 m 분)"/>
 						</td>
 						<td>${boardVO.readCnt }</td>
 					</tr>
@@ -63,6 +63,7 @@ td { padding: 30px; }
 		</table>
 		<div>
 			<a href="/board/writeForm" class="btn btn-primary">글쓰기</a>
+			<a href="/board/boardList" class="btn btn-primary">전체 글보기</a>
 		</div>
 		<!-- pagination -->
 		<% request.setAttribute("url", "/board/boardList"); %>

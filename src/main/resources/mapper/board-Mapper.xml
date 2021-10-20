@@ -42,6 +42,13 @@
 			<if test="searchColunm == 't'.toString()">
 				WHERE TITLE LIKE '%'||#{searchWord}||'%'
 			</if>
+			<if test="searchColunm == 'w'.toString()">
+			WHERE WRITER LIKE '%'||#{searchWord}||'%'
+			</if>
+			<if test="searchColunm.equals('tw')">
+			WHERE TITLE LIKE '%'||#{searchWord}||'%'
+				OR WRITER LIKE '%'||#{searchWord}||'%'
+			</if>
 		</if>
 	</select>
 	

@@ -21,4 +21,9 @@ public class ItemController {
 		
 		return "item/item_list";
 	}
+	
+	@GetMapping("/detailItem")
+	public String detailItem(String itemCode) {
+		return "item/item_detail";
+	}
 }

@@ -74,7 +74,7 @@
 						<div>123원</div>
 					</div>
 					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex3.gif"></img></a>
+						<a href="/item/detailItem?itemCode=ITEM_007"><img src="/resources/images/item/sample/item_ex3.gif"></img></a>
 						<a>샘플7 입니다.</a>
 						<div>123원</div>
 					</div>
