@@ -20,6 +20,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<!-- 슬라이드 배너 사용을 위한 링크 -->
+<link  rel="stylesheet"  href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
 <style type="text/css">
 @font-face {
     font-family: 'NanumSquareRound';
