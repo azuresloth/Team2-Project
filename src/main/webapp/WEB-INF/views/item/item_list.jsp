@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/item/itemList" />
+	상품 목록 페이지 입니다.
 </body>
 </html>
