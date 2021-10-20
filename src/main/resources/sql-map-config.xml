@@ -13,6 +13,7 @@
 		<mapper resource="/mapper/board-Mapper.xml"/>
 		<mapper resource="/mapper/item-Mapper.xml"/>
 		<mapper resource="/mapper/member-Mapper.xml"/>
+		<mapper resource="/mapper/common-Mapper.xml"/>
 	</mappers>
 </configuration>
 

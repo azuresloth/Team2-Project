@@ -18,12 +18,6 @@ public class ItemController {
 	// 상품 목록 페이지로 이동
 	@GetMapping("/itemList")
 	public String selectItemList(Model model) {
-		
 		return "item/item_list";
-	}
-	
-	@GetMapping("/detailItem")
-	public String detailItem(String itemCode) {
-		return "item/item_detail";
 	}
 }
