@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 모든 SQL문을 mapper태그 안에 작성 -->
 <mapper namespace="commonMapper">
-	<resultMap type="com.spring.shop.common.vo.MenuVO" id="menu">
+	<resultMap type="com.kh.project.common.vo.MenuVO" id="menu">
 		<id column="MENU_CODE" 		property="menuCode"/>
 		<result column="MENU_NAME" 	property="menuName"/>
 		<result column="MENU_PASS"	property="menuPass"/>
 	</resultMap>
 	
-	<resultMap type="com.spring.shop.common.vo.SideMenuVO" id="sideMenu">
+	<resultMap type="com.kh.project.common.vo.SideMenuVO" id="sideMenu">
 		<id column="SIDE_MENU_CODE"		property="sideMenuCode"/>
 		<result column="SIDE_MENU_NAME"	property="sideMenuName"/>
 		<result column="MENU_CODE"	property="menuCode"/>

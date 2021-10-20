@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,46 +44,13 @@
 			</div>
 			<div class="swiper bestItemSwiper">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex1.gif"></img></a>
-						<a>샘플1 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex2.gif"></img></a>
-						<a>샘플2 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex3.gif"></img></a>
-						<a>샘플3 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex4.gif"></img></a>
-						<a>샘플4 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex1.gif"></img></a>
-						<a>샘플5 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex2.gif"></img></a>
-						<a>샘플6 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a href="/item/detailItem?itemCode=ITEM_007"><img src="/resources/images/item/sample/item_ex3.gif"></img></a>
-						<a>샘플7 입니다.</a>
-						<div>123원</div>
-					</div>
-					<div class="swiper-slide">
-						<a><img src="/resources/images/item/sample/item_ex4.gif"></img></a>
-						<a>샘플8 입니다.</a>
-						<div>123원</div>
-					</div>
+					<c:forEach items="${bestItemList}" var="bestItemInfo">
+						<div class="swiper-slide">
+							<a><img src="/resources/images/item/sample/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
+							<a>${bestItemInfo.itemName}</a>
+							<div>${bestItemInfo.itemPrice}</div>
+						</div>
+					</c:forEach>
 				</div>
 				<div class="swiper-pagination"></div>
 			</div>

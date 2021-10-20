@@ -18,6 +18,9 @@ public class ItemController {
 	// 상품 목록 페이지로 이동
 	@GetMapping("/itemList")
 	public String selectItemList(Model model) {
+		model.addAttribute("itemList", itemService.selectItemList());
+		model.addAttribute("recentItemList", itemService.selectRecentItemList());
+		model.addAttribute("bestItemList", itemService.selectBestItemList());
 		return "item/item_list";
 	}
 }
