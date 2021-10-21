@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
@@ -53,10 +54,23 @@ public class MemberController {
 		MemberVO loginInfo = memberService.login(memberVO);
 			if(loginInfo != null) {
 				session.setAttribute("loginInfo", loginInfo);
+				if(loginInfo.getIsAdmin().equals("Y")) {
+					return "redirect:/admin/insert_item_form";
+				}
+				
 			}
 		
-		return"redirect:/item/itemList";
+		return"redirect:/item/main_page";
 	}
+	//아이디 중복체크
+	@ResponseBody
+	@PostMapping("/checkId")
+	public boolean checkId(String id) {
+		
+		return memberService.confirmRepetitionId(id);
+	}
+	
+	//로그아웃
 
 	//회원탈퇴 
 	

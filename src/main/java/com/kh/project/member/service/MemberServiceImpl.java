@@ -26,4 +26,10 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
+	@Override
+	public boolean confirmRepetitionId(String id) {
+		String result = sqlSession.selectOne("memberMapper.confirmRepetitionId", id);
+		return result == null? false : true;
+	}
+
 }

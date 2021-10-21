@@ -46,7 +46,14 @@
 			AND PW = #{pw}
 	</select>
 	
+	<select id="confirmRepetitionId" resultType="String">
+		SELECT ID
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
 	<delete id="deleteMember"></delete>
+	
 	
 	
 </mapper>

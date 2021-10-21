@@ -24,6 +24,7 @@
 
 				<div>
 					<input type="submit" value="login">
+					<input type="button" value="ID/Password 찾기">
 				</div>
 			</form>
 		</div>

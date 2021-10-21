@@ -6,14 +6,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/member/js/join.js?var=8"></script>
 </head>
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
 			<form action="/member/join" method="post" class="row g-3">
 				<div class="">기본정보
-					<div>아이디 <input type="text" id="id" required name="id" class="col-md-8"> </div>
-					<div> <input type="button" class="btn btn-info" value="중복확인" id="btn" class="col-md-4"> </div>
+				<div class="row">
+					<div class="col-md-7">아이디 
+						<input type="text" id="id" required name="id" > 
+						<input type="button" class="btn btn-info" id="btn"  onclick="checkId();" value="중복확인"> 
+					</div>
+					<div id="checkIdDiv" class="col-md-3"> 
+					</div>
+				</div>
+					
+					 
 					<div>비밀번호 <input type="password" id="pw"  required name="pw" > </div>
 					<div>비밀번호 확인 <input type="password" required> </div>
 					<div>이름  <input type="text" id="name"  name="name" required> </div>
@@ -34,10 +43,10 @@
 																	<option> 직접입력 </option> <!-- 선택시 직접입력 가능  -->
 															</select>
 					</div>
-					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender">여 </div>
+					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender" disabled="disabled">여 </div>
 				</div>
 				<div class="d-grid gap-1">
-				  <button class="btn btn-primary" type="submit" value="회원가입"> 회원가입</button>
+				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입"  > 회원가입</button>
 				</div>
 			</form>
 		</div>
