@@ -55,9 +55,12 @@ public class MemberController {
 			if(loginInfo != null) {
 				session.setAttribute("loginInfo", loginInfo);
 				if(loginInfo.getIsAdmin().equals("Y")) {
-					return "redirect:/admin/insert_item_form";
+					return "redirect:/admin/adminMenu";
 				}
-				
+				else {
+					return "redirect:/item/itemList";
+				}
+					
 			}
 		
 		return"redirect:/item/mainPage";
@@ -71,7 +74,11 @@ public class MemberController {
 	}
 	
 	//로그아웃
-	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loginInfo");
+		return "redirect:/item/itemList";
+	}
 	//회원탈퇴 
 	
 	//정보수정
