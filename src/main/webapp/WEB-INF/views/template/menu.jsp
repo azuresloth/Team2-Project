@@ -30,7 +30,7 @@
 				<li>장바구니</li>
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginInfo}">
-						<li>로그아웃</li>
+						<li><a href="/member/logout">로그아웃</a></li>
 						<li>${sessionScope.loginInfo.name}님</li>
 					</c:when>
 					<c:otherwise>
@@ -46,7 +46,7 @@
 	</div>
 	<div class="row">
 		<div class="col text-center">
-			<button class="titleButton" onclick="location.href='/item/itemList'">T2 SHOP</button>
+			<button class="titleButton" onclick="location.href='/item/mainPage'">T2 SHOP</button>
 			<!-- <img alt="" src="/resources/images/common/titleLogo.png" width="180px"> -->
 			<!-- <a class="titleA" href="/item/itemList"><span class="titleSpan">쇼핑몰</span> 타이틀</a> -->
 		</div>
@@ -55,35 +55,56 @@
 		<div class="col secondMenuDiv">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 2rem;">
 			  <div class="container-fluid bg-light">
-			    <a class="navbar" href="/item/newItemList">NEW ITEM</a>
+			  	<c:if test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
+				    <a class="navbar" href="/item/newItemList">NEW ITEM</a>
+			  	</c:if>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
 			    <div class="collapse navbar-collapse" id="navbarScroll">
 			      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-			        <%-- <c:forEach items="" var="">
-			        
-			        </c:forEach> --%>
-			        <li class="nav-item">
-			          <a class="nav-link active" aria-current="page" href="#"> 목걸이</a>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link active" href="#">귀걸이</a>
-			        </li>
-			        <li class="nav-item dropdown">
-			          <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-			            금속류
-			          </a>
-			          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-			            <li><a class="dropdown-item" href="#">골드</a></li>
-			            <li><a class="dropdown-item" href="#">실버</a></li>
-			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">그외</a></li>
-			          </ul>
-			        </li>
-			        <li class="nav-item">
-			          <a class="nav-link active">잡화</a>
-			        </li>
+			        <c:choose>
+			        	<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
+			        	<!-- 관리자가 아닐때 -->
+			        		<c:if test="${not empty categoryList}">
+			        			<c:forEach items="${categoryList}" var="categoryInfo">
+			        				<c:if test="${categoryInfo.catePass eq '*Drop' }">
+			        					<li class="nav-item dropdown">
+								          <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								            	${categoryInfo.cateName}
+								          </a>
+								          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+								            <li><a class="dropdown-item" href="#">골드</a></li>
+								            <li><a class="dropdown-item" href="#">실버</a></li>
+								            <li><hr class="dropdown-divider"></li>
+								            <li><a class="dropdown-item" href="#">그외</a></li>
+								          </ul>
+								        </li>
+			        				</c:if>
+			        				<c:if test="${categoryInfo.catePass ne '*Drop' }">
+			       						<li class="nav-item">
+					        				<a class="nav-link active" aria-current="page" href="/item/${categoryInfo.catePass}"> ${categoryInfo.cateName}</a>
+					   					</li>
+			        				</c:if>
+			        			</c:forEach>
+			        		</c:if>
+				   				<li class="nav-item">
+				     				<a class="nav-link active" aria-current="page" href="/board/boardList">커뮤니티</a>
+				      			</li>
+			        	</c:when>
+			        	<c:otherwise>
+			        		<c:if test="${not empty menuList }">
+				        		<c:forEach items="${menuList}" var="menuInfo">
+					        		<li class="nav-item">
+					  			        <a class="nav-link active" aria-current="page" href="/admin/${menuInfo.menuPass}">${menuInfo.menuName}</a>
+							        </li>
+				        		</c:forEach>
+				   				<li class="nav-item">
+				     				<a class="nav-link active" aria-current="page" href="/board/boardList">커뮤니티</a>
+				      			</li>
+			        		</c:if>
+			        	</c:otherwise>
+			        </c:choose>
 			      </ul>
 			      <form class="d-flex searchArea">
 			        <input  type="search" placeholder="" aria-label="">
