@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=3">
+<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=4">
 </head>
 
 <body>
@@ -35,27 +35,31 @@
 			
 		</div>
 	</div>
-
+	
 	<div class="container overflow-hidden">
-		<div class="row gy-5">
-			<div class="col-2">
-				<div class="p-3 border">
-					<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 150px;"></img></a>
+		<div class="row gy-1">
+			<div class="col-3">
+				<div class="p-1 border">
+					<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>
 				</div>
 			</div>
-			<div class="col-2">
-				<div class="p-3 border">
-					<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 150px;"></img></a>
+			<div class="col-3">
+				<div class="p-1 border">
+					<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 100%;"></img></a>
 				</div>
 			</div>
-			<div class="col-2">
-				<div class="p-3 border">
-					<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 150px;"></img></a>
+			<div class="col-3">
+				<div class="p-1 border">
+					<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 100%;"></img></a>
 				</div>
 			</div>
-			<div class="col-2">
-				<div class="p-3 border bg-light">
-					Custom column padding
+			<div class="col-3">
+				<div class="p-1 border bg-light" style="height: 100%;">
+					공지사항 불러올 장소
+					<div class="mt-2"></div>
+					<div>공지 1</div>
+					<div>공지 2</div>
+					<div>공지 3</div>
 				</div>
 			</div>
 		</div>

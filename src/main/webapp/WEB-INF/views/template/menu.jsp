@@ -6,8 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/template/css/menu.css?ver=2">
-<script type="text/javascript" src="/resources/template/js/menu.js?ver=6"></script>
+<link rel="stylesheet" href="/resources/template/css/menu.css?ver=5">
+<script type="text/javascript" src="/resources/template/js/menu.js?ver=37"></script>
 </head>
 <body>
 	<div class="row">
@@ -61,7 +61,7 @@
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
-			    <div class="collapse navbar-collapse" id="navbarScroll">
+			    <div class="collapse navbar-collapse mainMenuNavbar bg-light" id="navbarScroll" style="z-index: 1000; padding-left: 1rem;">
 			      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 			        <c:choose>
 			        	<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
@@ -106,9 +106,10 @@
 			        	</c:otherwise>
 			        </c:choose>
 			      </ul>
-			      <form class="d-flex searchArea" id="mainPageSearchForm" action="/item/mainSearchResult" method="post">
-			        <input  type="search" placeholder="상품검색" aria-label="" id="mainSearchBar" name="searchValue" required>
-			        <input type="image" src="/resources/images/layout/btn_search.png" id="searchIcon" alt="검색" >
+			      <form class="d-flex searchArea" id="mainPageSearchForm" action="/item/mainSearchResult" method="post" onsubmit="return false">
+			        <input  type="search" placeholder="상품검색" aria-label="" id="mainSearchBar" name="searchValue">
+			        <input type="hidden" value="x">
+			        <input type="image" src="/resources/images/layout/btn_search.png" id="searchIcon" alt="검색" onclick="mainSearchFun();" >
 			      </form>
 			    </div>
 			  </div>

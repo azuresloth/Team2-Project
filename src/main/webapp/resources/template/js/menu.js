@@ -12,23 +12,23 @@ $(".hover").mouseleave(
 
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
-	$(document).on('click', '#searchIcon', function() { 
-		var searchTest = /\S/;
-		searchTest.test(('#mainSearchBar').val())
-		if(searchTest.test(('#mainSearchBar').val())) {
-	   		$('#mainPageSearchForm').submit() 
-		}
-		else {
-			alert('검색어를 입력해주세요.');
-		}
-	});
 	
 });
 
 
 /* 함수선언 영역*/
 (function($){
-     aaa = function(){
-	
+     mainSearchFun = function(){
+		var mainSearchValue = $('#mainSearchBar').val();
+		$('#mainPageSearchForm').attr('onsubmit', 'return false');
+		mainSearchValue = mainSearchValue.replace(/\s/gi, '');
+		if(mainSearchValue != '') {
+			$('#mainPageSearchForm').attr('onsubmit', 'return true');
+			$('#mainSearchBar').val(mainSearchValue);
+	   		$('#mainPageSearchForm').submit() 
+		}
+		else {
+			alert('검색어를 입력해주세요.');
+		}
      };
 })(jQuery);
