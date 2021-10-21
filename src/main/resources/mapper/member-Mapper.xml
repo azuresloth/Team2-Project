@@ -74,9 +74,10 @@
 		AND NAME = #{name}
 	</select>
 	
-	<update id="">
+	<update id="updatePw">
 		UPDATE MEMBER 
 		SET PW = #{pw}
+		WHERE ID = #{id}
 	</update>
 	
 </mapper>

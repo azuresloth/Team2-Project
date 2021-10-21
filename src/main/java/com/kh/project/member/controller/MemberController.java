@@ -65,6 +65,9 @@ public class MemberController {
 		
 		return"redirect:/item/mainPage";
 	}
+	//아이디 찾기
+	@GetMapping("/")
+	
 	//아이디 중복체크
 	@ResponseBody
 	@PostMapping("/checkId")

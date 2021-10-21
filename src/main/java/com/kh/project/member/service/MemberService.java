@@ -1,5 +1,7 @@
 package com.kh.project.member.service;
 
+import java.util.List;
+
 import com.kh.project.member.vo.MemberVO;
 
 public interface MemberService {
@@ -13,4 +15,12 @@ public interface MemberService {
 	 //id중복체크
 	 boolean confirmRepetitionId(String id);
 	 
+	 //id찾기
+	 MemberVO findId(MemberVO memberVO);
+	 
+	 //pw찾기
+	 MemberVO findPw(MemberVO memberVO);
+	 
+	 //pw변경
+	 void updatePw(MemberVO memberVO);
 }

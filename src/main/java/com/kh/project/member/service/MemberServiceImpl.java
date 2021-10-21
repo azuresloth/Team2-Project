@@ -1,5 +1,7 @@
 package com.kh.project.member.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,21 @@ public class MemberServiceImpl implements MemberService{
 	public boolean confirmRepetitionId(String id) {
 		String result = sqlSession.selectOne("memberMapper.confirmRepetitionId", id);
 		return result == null? false : true;
+	}
+
+	@Override
+	public MemberVO findId(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.findId",memberVO);
+	}
+
+	@Override
+	public MemberVO findPw(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.findPw",memberVO);
+	}
+
+	@Override
+	public void updatePw(MemberVO memberVO) {
+		sqlSession.update("memberMapper.updatePw");
 	}
 
 }

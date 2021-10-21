@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?var=8"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?var=10"></script>
 </head>
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
-			<form action="/member/join" method="post" class="row g-3">
+			<form action="/member/join" method="post" class="row g-3" id="joinForm" >
 				<div class="">기본정보
 				<div class="row">
 					<div class="col-md-7">아이디 
@@ -24,7 +24,7 @@
 					
 					 
 					<div>비밀번호 <input type="password" id="pw"  required name="pw" > </div>
-					<div>비밀번호 확인 <input type="password" required> </div>
+					<div>비밀번호 확인 <input type="password" id="pw_1" required> </div>
 					<div>이름  <input type="text" id="name"  name="name" required> </div>
 					<div>연락처 <select id="tell1" name="tell">
 									<option value="010" selected >010</option>
@@ -46,7 +46,7 @@
 					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender" disabled="disabled">여 </div>
 				</div>
 				<div class="d-grid gap-1">
-				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입"  > 회원가입</button>
+				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입" onclick="finalJoin()" > 회원가입</button>
 				</div>
 			</form>
 		</div>

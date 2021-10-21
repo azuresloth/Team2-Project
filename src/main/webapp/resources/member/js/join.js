@@ -4,7 +4,23 @@ $(document).ready(function() {
 });
 //함수 선언 영역
 (function($){
-   
+   //비밀번호 확인
+	finalJoin = function(){
+		var pw = $('#pw').val();
+		var pw1 = $('#pw_1').val();
+		
+		if(pw != pw1){
+			alert('비밀번호를 확인하세요');
+			$('input[type="pw"]').val('');
+			$$('#pw').focus();
+			
+			return;
+			
+		}
+		$('#joinForm').submit();
+	}
+	
+	
 	//아이디 중복체크
 	checkId = function(){
 		var id = $('#id').val();
@@ -40,7 +56,7 @@ $(document).ready(function() {
                alert('실패');
             }
       });
-	}
+	};
 	
 	
 })(jQuery);

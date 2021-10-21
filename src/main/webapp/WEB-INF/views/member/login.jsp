@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/member/js/login.js"></script>
 </head>
 <body>
 	<div class="row justify-content-center" >
@@ -24,7 +25,7 @@
 
 				<div>
 					<input type="submit" value="login">
-					<input type="button" value="ID/Password 찾기">
+					<input type="button" value="ID/Password 찾기" onclick="findInfo" >
 				</div>
 			</form>
 		</div>
