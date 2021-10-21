@@ -1,6 +1,8 @@
 package com.kh.project.admin.controller;
 
 import java.io.Console;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.item.vo.ImgVO;
 
 @Controller
@@ -80,9 +83,47 @@ public class AdminController {
 			
 			//실제 첨부기능
 			try {
-				
+				//다중 첨부
+				if(inputName.equals("file2")) {
+					List<MultipartFile> fileList = multi.getFiles(inputName);
+					
+					for(MultipartFile file : fileList) {
+						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+						String uploadFile = uploadPath + attachedFileName;
+						file.transferTo(new File(uploadFile));
+						
+						ImgVO img = new ImgVO();
+						img.setItemCode("IMG_" + String.format("%03d", nextImgCode++));
+						img.setOriginImgName(file.getOriginalFilename());
+						img.setAttachedImgName(attachedFileName);
+						img.setItemCode(itemCode);
+						img.setIsMain("N");
+						
+						imgList.add(img);
+					}
+				}
+				//단일첨부
+				else {
+					MultipartFile file = multi.getFile(inputName);
+					String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+					String uploadFile = uploadPath + attachedFileName;
+					file.transferTo(new File(uploadFile));
+
+					ImgVO img = new ImgVO();
+					img.setImgCode("IMG_" + String.format("%03d", nextImgCode++));
+					img.setOriginImgName(file.getOriginalFilename());
+					img.setAttachedImgName(attachedFileName);
+					img.setItemCode(itemCode);
+					img.setIsMain("Y");
+
+					imgList.add(img);
+					
+				}
 			} catch (IllegalStateException e) {
 				// TODO: handle exception
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
 			
