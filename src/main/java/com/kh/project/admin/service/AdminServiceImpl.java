@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.item.vo.ItemVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -35,14 +36,27 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
+	public void insertItem(ItemVO itemVO) {
+		sqlSession.insert("adminMapper.insertItem");
+	}
+
+	@Override
 	public int selectNextNumber() {
 		return sqlSession.selectOne("adminMapper.selectNextNumber");
 	}
 
 	@Override
 	public String selectNextItemCode() {
-		return "adminMapper.selectNextItemCode";
+		return sqlSession.selectOne("adminMapper.selectNextItemCode");
 	}
+
+	@Override
+	public void insertImgs(ItemVO itemVO) {
+		sqlSession.insert("adminMapper.insertImgs");
+		
+	}
+
+
 	
 	
 	

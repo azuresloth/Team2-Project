@@ -12,7 +12,7 @@
   <a href="/admin/adminMenu" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'categoryManage'}"> active </c:if> col-1" aria-current="true">
   	카테고리 관리
   </a>
-  <a href="/admin/insertItem" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'insertItem'}"> active </c:if>">상품등록</a>
+  <a href="/admin/insertItemform" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'insertItem'}"> active </c:if>">상품등록</a>
   <a href="#" class="list-group-item list-group-item-action">상품관리</a>
   <a href="/admin/salesManage" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'salesManage'}"> active </c:if>">매출관리</a>
 </div>

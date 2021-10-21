@@ -8,19 +8,19 @@
 <title>Insert title here</title>
 <style type="text/css">
 .myContainer{
-   background-color: #A8ECAF;
-   border-radius: 6px;
-   padding: 16px;
+   	background-color: #A8ECAF;
+   	border-radius: 6px;
+   	padding: 16px;
 }
 .textAreaDiv{
-	 background-color: #A8ECAF;
-   border-radius: 6px;
-   padding: 16px;
+	background-color: #A8ECAF;
+    border-radius: 6px;
+    padding: 16px;
 }
 </style>
 </head>
 <body>
-<form action="/admin/insertItem" method="post" enctype="multipart/form-data">
+<form action="/admin/insertItem" method="post" enctype="multipart/form-data" class="row g-3">
 <div class="row">
 	<div class="col myContainer">
 		<div class="row">
@@ -65,7 +65,7 @@
 </div>
 <div class="row mt-3 textAreaDiv">
 	<div class="col">
-		<div class="input-group input-group ">
+		<div class="input-group input-group">
 	  		<span class="input-group-text">With textarea</span>
 	  		<textarea class="form-control h-25" rows="15" aria-label="With textarea"></textarea>
 		</div>

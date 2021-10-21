@@ -12,8 +12,9 @@
 		<result column="ITEM_PRICE" property="itemPrice"/>
 		<result column="ITEM_INTRO" property="itemIntro"/>
 		<result column="ITEM_STOCK" property="itemStock"/>
-		<result column="ITEM_STATUS" property="itemStatus"/>
+		<result column="ITEM_STATUS" property="itemstatus"/>
 		<result column="CATE_CODE" property="cateCode"/>
+		<collection property="imgList" resultMap="img"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.project.admin.vo.SalesManageVO" id="view">
@@ -25,7 +26,14 @@
 		<result column="CART_CODE" property="cartCode"/>
 		<result column="BUY_DATE" property="buyDate"/>
 	</resultMap>
-	
+	<!-- 이미지 -->	
+	<resultMap type="com.kh.project.item.vo.ImgVO" id="img">
+		<id column="IMG_CODE"				property="imgCode"/>
+		<result column="ORIGIN_IMG_NAME"	property="originImgName"/>
+		<result column="ATTACHED_IMG_NAME"	property="attachedImgName"/>
+		<result column="ITEM_CODE"			property="itemCode"/>
+		<result column="IS_MAIN"			property="isMain"/>
+	</resultMap>
 	
 	<insert id="insertCategory">
 		INSERT INTO CATEGORY (
@@ -58,34 +66,53 @@
 			, ITEM_NAME
 		FROM SALES
 	</select>
+	
 	<insert id="insertItem">
 		INSERT INTO ITEM(
-			ITEM_NAME
+			ITEM_CODE
+			, ITEM_NAME
 			, ITEM_PRICE
-			, ITEM_STOCK
-			, ITEM_STATUS
-			, ITEM_CODE
 			, ITEM_INTRO
-			, CATE_CODE
-		)VALUES(
-			#{itemName}
+			, ITEM_STOCK
+			, CATE_CODE		
+		) VALUES(
+			#{itemCode}
+			, #{itemName}
 			, #{itemPrice}
-			, #{itemStock}
-			, #{itemStatus}
-			, #{itemCode}
 			, #{itemIntro}
+			, #{itemStock}
 			, #{cateCode}
 		)
 	</insert>
+	<insert id="insertImgs">
+		INSERT INTO ITEM_IMG(
+			IMG_CODE
+			, ORIGIN_IMG_NAME
+			, ATTACHED_IMG_NAME
+			, ITEM_CODE
+			, IS_MAIN
+		)
+		<foreach collection="imgList" item="imgInfo" separator="UNION ALL">
+			SELECT
+				#{imgInfo.imgCode}
+				, #{imgInfo.originImgName}
+				, #{imgInfo.attachedImgName}
+				, #{imgInfo.itemCode}
+				, #{imgInfo.isMain}
+			FROM DUAL
+		</foreach>
+	</insert>
 	
 	<select id="selectNextNumber" resultType="int">
-		SELECT NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5, 3))) + 1, 1)
+		SELECT NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5, 3)))+1, 1) AS IMG_CODE
 		FROM ITEM_IMG
 	</select>
+	
 	<select id="selectNextItemCode" resultType="String">
-		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 4))), 0) + 1, 3, '0') 
+		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0)+1, 3, '0') AS ITEM_CODE
 		FROM ITEM
 	</select>
+	
 	
 </mapper>
 
