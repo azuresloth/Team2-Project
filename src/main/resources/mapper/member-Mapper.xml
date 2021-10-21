@@ -53,7 +53,9 @@
 	</select>
 	
 	<delete id="deleteMember">
-	
+		DELETE FROM MEMBER
+		WHERE ID = #{id}
+		AND PW = #{pw}
 	</delete>
 	
 	<select id="findId">

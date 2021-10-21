@@ -23,4 +23,7 @@ public interface MemberService {
 	 
 	 //pw변경
 	 void updatePw(MemberVO memberVO);
+	 
+	 //회원탈퇴
+	 int deleteMember(MemberVO memberVO);
 }
