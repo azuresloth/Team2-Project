@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/template/css/menu.css?ver=2">
-<script type="text/javascript" src="/resources/template/js/menu.js?ver=2"></script>
+<script type="text/javascript" src="/resources/template/js/menu.js?ver=6"></script>
 </head>
 <body>
 	<div class="row">
@@ -106,9 +106,9 @@
 			        	</c:otherwise>
 			        </c:choose>
 			      </ul>
-			      <form class="d-flex searchArea">
-			        <input  type="search" placeholder="" aria-label="">
-			        <input type="image" src="/resources/images/layout/btn_search.png" alt="검색" >
+			      <form class="d-flex searchArea" id="mainPageSearchForm" action="/item/mainSearchResult" method="post">
+			        <input  type="search" placeholder="상품검색" aria-label="" id="mainSearchBar" name="searchValue" required>
+			        <input type="image" src="/resources/images/layout/btn_search.png" id="searchIcon" alt="검색" >
 			      </form>
 			    </div>
 			  </div>

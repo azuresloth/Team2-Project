@@ -5,10 +5,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.project.board.vo.BoardVO;
 import com.kh.project.common.service.CommonService;
 import com.kh.project.item.service.ItemService;
+import com.kh.project.item.vo.ItemVO;
 
 @Controller
 @RequestMapping("/item")
@@ -31,5 +34,11 @@ public class ItemController {
 		// 어드민일 경우 메뉴 목록 조회후 전달
 		model.addAttribute("menuList", commonService.selectMenuList());
 		return "item/main_page";
+	}
+	
+	@PostMapping("/mainSearchResult")
+	public String mainSearchResult(Model model, ItemVO itemVO) {
+		
+		return "item/main_search_result";
 	}
 }

@@ -2,7 +2,9 @@ package com.kh.project.item.vo;
 
 import java.util.List;
 
-public class ItemVO {
+import com.kh.project.common.vo.PageVO;
+
+public class ItemVO extends PageVO{
 	private String itemCode;
 	private String itemName;
 	private int itemPrice;

@@ -83,6 +83,17 @@
  		FROM CATEGORY
  		ORDER BY CATE_CODE
  	</select>
+ 	
+ 	<!-- 메인페이지에서 상품조회 -->
+ 	<select id="mainPageSearchList" resultMap="item">
+ 		SELECT ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_INTRO
+ 			, ITEM_PRICE
+ 			, CATE_CODE
+ 		FROM ITEM
+ 		
+ 	</select>
  
 </mapper>
 
