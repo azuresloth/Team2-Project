@@ -75,7 +75,8 @@
 	</select>
 	
 	<update id="">
-	
+		UPDATE MEMBER 
+		SET PW = #{pw}
 	</update>
 	
 </mapper>
