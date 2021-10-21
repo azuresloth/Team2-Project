@@ -60,7 +60,7 @@ public class MemberController {
 				
 			}
 		
-		return"redirect:/item/main_page";
+		return"redirect:/item/mainPage";
 	}
 	//아이디 중복체크
 	@ResponseBody
@@ -71,7 +71,7 @@ public class MemberController {
 	}
 	
 	//로그아웃
-
+	
 	//회원탈퇴 
 	
 	//정보수정
