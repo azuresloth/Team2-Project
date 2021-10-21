@@ -1,24 +1,27 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function() {
-	alert('!!!');
+	$(document).on('click', '#id', function() {
+		$('#a').remove();
+		$('#joinBtn').addClass('disabled');
+    });
 });
 //함수 선언 영역
 (function($){
    //비밀번호 확인
 	finalJoin = function(){
-		var pw = $('#pw').val();
-		var pw1 = $('#pw_1').val();
+	var pw = $('#pw').val();
+	var pw1 = $('#pw_1').val();
+	
+	if(pw != pw1){
+		alert('비밀번호를 확인하세요');
+		$('input[type="pw"]').val('');
+		$$('#pw').focus();
 		
-		if(pw != pw1){
-			alert('비밀번호를 확인하세요');
-			$('input[type="pw"]').val('');
-			$$('#pw').focus();
-			
-			return;
-			
-		}
-		$('#joinForm').submit();
+		return;
+		
 	}
+	$('#joinForm').submit();
+};
 	
 	
 	//아이디 중복체크
@@ -42,9 +45,11 @@ $(document).ready(function() {
                //ajax 실행 성공 후 실행할 코드 작성
               
            if(result){
+        	   $('#a').remove();
         	   $('#checkIdDiv').after('<div id="a" style="color:red "> 아이디가 중복입니다 </div>');
            }
            else{
+        	   $('#a').remove();
         	   $('#checkIdDiv').after('<div id="a" style="color:blue "> 사용가능합니다 </div>');
         	   
         	   $('#joinBtn').removeClass('disabled');

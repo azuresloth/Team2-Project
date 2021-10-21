@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?var=10"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?var=26"></script>
 </head>
 <body>
 	<div class="row justify-content-center" >
@@ -36,17 +36,12 @@
 				</div>
 				<div>
 					추가정보
-					<div>이메일<input type="text" id="email" name="email">@<select>
-																	<option value="naver.com" selected >naver.com</option>				
-																	<option value="gmail.com">gmail.com</option>				
-																	<option value="daum.net">daum.net</option>				
-																	<option> 직접입력 </option> <!-- 선택시 직접입력 가능  -->
-															</select>
+					<div>이메일<input type="text" id="email" name="email">@<input type="email" id="email1" name="email1" >
 					</div>
 					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender" disabled="disabled">여 </div>
 				</div>
 				<div class="d-grid gap-1">
-				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입" onclick="finalJoin()" > 회원가입</button>
+				  <button class="btn btn-primary disabled" id="joinBtn" type="button" value="회원가입" onclick="finalJoin()" > 회원가입</button>
 				</div>
 			</form>
 		</div>

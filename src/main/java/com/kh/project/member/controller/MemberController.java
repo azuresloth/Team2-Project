@@ -40,7 +40,7 @@ public class MemberController {
 	@PostMapping("/join")
 	public String memberJoin(MemberVO memberVO) {
 		memberService.memberJoin(memberVO);
-		return "redirect:/item/itemList";
+		return "redirect:/item/mainPage";
 	}
 
 	//로그인 창으로 이동
@@ -58,15 +58,14 @@ public class MemberController {
 					return "redirect:/admin/adminMenu";
 				}
 				else {
-					return "redirect:/item/itemList";
+					return "redirect:/item/mainPage";
 				}
 					
 			}
 		
 		return"redirect:/item/mainPage";
 	}
-	//아이디 찾기
-	@GetMapping("/")
+	
 	
 	//아이디 중복체크
 	@ResponseBody
