@@ -39,7 +39,9 @@ public class MemberController {
 	//회원가입
 	@PostMapping("/join")
 	public String memberJoin(MemberVO memberVO) {
+		
 		memberService.memberJoin(memberVO);
+		
 		return "redirect:/item/mainPage";
 	}
 

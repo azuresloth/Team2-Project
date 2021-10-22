@@ -31,7 +31,7 @@
 					연락처
 				<div class="row">
 					<div class="col-4">
-					<select class="form-select" aria-label="Default select example">
+					<select class="form-select" aria-label="Default select example" id="tell1" name="tells">
 					  <option value="010" selected >010</option>
 					  <option value="016">016</option>
 					  <option value="017">017</option>

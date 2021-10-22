@@ -11,8 +11,17 @@ public class MemberVO {
 	private String birthday;
 	private String isAdmin;
 	private String joinDate;
+	private String[] tells;
 	
 	
+	
+	public String[] getTells() {
+		return tells;
+	}
+	public void setTells(String[] tells) {
+		String tell = tells[0]+ "-" + tells[1] + "-" + tells[2];
+		setTell(tell);
+	}
 	public String getId() {
 		return id;
 	}
