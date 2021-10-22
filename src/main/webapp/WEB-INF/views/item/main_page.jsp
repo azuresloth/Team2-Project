@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=4">
+<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=11">
 </head>
 
 <body>
@@ -36,8 +36,8 @@
 		</div>
 	</div>
 	
-	<div class="container overflow-hidden">
-		<div class="row gy-1">
+	<div class="row">
+		<div class="row gy-1 sideBannerGrid">
 			<div class="col-3">
 				<div class="p-1 border">
 					<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>

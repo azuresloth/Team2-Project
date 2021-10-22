@@ -20,3 +20,11 @@ a img {
 .mainBannerSwiper {
 	z-index: 3;
 }
+.sideBannerGrid {
+	margin: 0 auto;
+	width: 100%;
+}
+.sideBannerDiv {
+	margin: 0;
+	width: 100%;
+}
