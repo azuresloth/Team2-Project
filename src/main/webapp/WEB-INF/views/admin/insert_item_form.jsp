@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-2">
 			    <label for="inputState" class="form-label">Select Category</label>
-			    <select id="inputState" class="form-select">
+			    <select id="inputState" class="form-select" name="cateCode">
 			      <c:forEach items="${categoryList }" var="category">
 			      	<option value="${category.cateCode }">${category.cateName}</option>
 			      </c:forEach>
@@ -34,15 +34,15 @@
 		    </div>
 			<div class="col-4">
 				<label for="inputItemName" class="form-label">상품명</label>
-    			<input type="text" class="form-control" id="inputItemName">
+    			<input type="text" class="form-control" id="inputItemName" name="itemName">
 			</div>
 			<div class="col-3">
 				<label for="inputItemPrice" class="form-label">상품가격</label>
-    			<input type="text" class="form-control" id="inputItemPrice">
+    			<input type="text" class="form-control" id="inputItemPrice" name="itemPrice">
 			</div>
 			<div class="col-2">
 				<label for="inputItemStock" class="form-label">상품수량</label>
-    			<input type="text" class="form-control" id="inputItemStock">
+    			<input type="text" class="form-control" id="inputItemStock" name="itemStock">
 			</div>
 		</div>
 		<div class="row mt-3">
@@ -67,7 +67,7 @@
 	<div class="col">
 		<div class="input-group input-group">
 	  		<span class="input-group-text">With textarea</span>
-	  		<textarea class="form-control h-25" rows="15" aria-label="With textarea"></textarea>
+	  		<textarea class="form-control h-25" rows="15" aria-label="With textarea" name="itemIntro"></textarea>
 		</div>
 	</div>
 </div>

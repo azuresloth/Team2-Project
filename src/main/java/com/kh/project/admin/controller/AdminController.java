@@ -55,7 +55,7 @@ public class AdminController {
 		return "admin/sales_manage";
 	}
 	
-	@GetMapping("/insertItemform")
+	@GetMapping("/insertItemForm")
 	public String goInsertItem(Model model) {
 		model.addAttribute("sidePage", "insertItem");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
@@ -63,13 +63,78 @@ public class AdminController {
 	}
 	
 	@PostMapping("/insertItem")
-	public String insertItem(ItemVO itemVO) {
-		adminService.insertItem(itemVO);
+	public String insertItem(ItemVO itemVO, MultipartHttpServletRequest multi) {
+		Iterator<String> inputNames = multi.getFileNames();
+		
+		//첨부될 폴더 지정 
+		String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		
+		//모든 첨부파일 정보가 들어갈 변수
+		List<ImgVO> imgList = new ArrayList<>();
+		//다음에 들어갈 imgCode의 숫자를 조회
+		int nextImgCode = adminService.selectNextNumber();
+		//다음에 들어갈 itemCode값 조회
 		String itemCode = adminService.selectNextItemCode();
+		while (inputNames.hasNext()) {
+			String inputName = inputNames.next();
+			
+			try {
+				//다중첨부
+				if(inputName.equals("file2")) {
+					List<MultipartFile> fileList = multi.getFiles(inputName);
+					
+					for(MultipartFile file : fileList) {
+						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+						String uploadFile = uploadPath + attachedFileName;
+						file.transferTo(new File(uploadFile));
+						
+						ImgVO img = new ImgVO();
+						img.setImgCode("IMG_" + String.format("%03d", nextImgCode++));
+						img.setOriginImgName(file.getOriginalFilename());
+						img.setAttachedImgName(attachedFileName);
+						img.setItemCode(itemCode);
+						img.setIsMain("N");
+						
+						imgList.add(img);
+					}
+				}
+				//단일첨부
+				else {
+					MultipartFile file = multi.getFile(inputName);
+					String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+					String uploadFile = uploadPath + attachedFileName;
+					file.transferTo(new File(uploadFile));
+					
+					ImgVO img = new ImgVO();
+					img.setImgCode("IMG_" + String.format("%03d", nextImgCode++));
+					img.setOriginImgName(file.getOriginalFilename());
+					img.setAttachedImgName(attachedFileName);
+					img.setItemCode(itemCode);
+					img.setIsMain("Y");
+					
+					imgList.add(img);
+				}
+				
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		//상품정보등록
 		itemVO.setItemCode(itemCode);
+		adminService.insertItem(itemVO);
+		
+		//상품이미지 정보
+		itemVO.setImgList(imgList);
+		adminService.insertImgs(itemVO);
+		
 		return "redirect:/admin/insertItemForm";
 	}
 	
+
 	
 }
 
