@@ -126,15 +126,12 @@ public class AdminController {
 		//상품정보등록
 		itemVO.setItemCode(itemCode);
 		adminService.insertItem(itemVO);
-		
 		//상품이미지 정보
 		itemVO.setImgList(imgList);
 		adminService.insertImgs(itemVO);
 		
 		return "redirect:/admin/insertItemForm";
 	}
-	
-
 	
 }
 

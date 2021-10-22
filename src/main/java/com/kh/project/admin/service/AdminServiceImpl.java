@@ -35,10 +35,7 @@ public class AdminServiceImpl implements AdminService{
 		return sqlSession.selectList("adminMapper.selectSalesList");
 	}
 
-	@Override
-	public void insertItem(ItemVO itemVO) {
-		sqlSession.insert("adminMapper.insertItem");
-	}
+	
 
 	@Override
 	public int selectNextNumber() {
@@ -52,7 +49,13 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public void insertImgs(ItemVO itemVO) {
-		sqlSession.insert("adminMapper.insertImgs");
+		sqlSession.insert("adminMapper.insertImgs", itemVO);
+		
+	}
+
+	@Override
+	public void insertItem(ItemVO itemVO) {
+		sqlSession.insert("adminMapper.insertItem",itemVO);
 		
 	}
 

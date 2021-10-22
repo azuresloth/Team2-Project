@@ -18,7 +18,7 @@ public interface AdminService {
 	//상품 매출 목록 조회
 	List<SalesManageVO> selectSales();
 	
-	//상품 등록
+	//상품등록
 	void insertItem(ItemVO itemVO);
 	
 	//다음 imgCode의 숫자 조회

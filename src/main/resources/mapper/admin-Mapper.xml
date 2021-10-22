@@ -67,23 +67,7 @@
 		FROM SALES
 	</select>
 	
-	<insert id="insertItem">
-		INSERT INTO ITEM(
-			ITEM_CODE
-			, ITEM_NAME
-			, ITEM_PRICE
-			, ITEM_INTRO
-			, ITEM_STOCK
-			, CATE_CODE		
-		) VALUES(
-			#{itemCode}
-			, #{itemName}
-			, #{itemPrice}
-			, #{itemIntro}
-			, #{itemStock}
-			, #{cateCode}
-		)
-	</insert>
+	
 	<insert id="insertImgs">
 		INSERT INTO ITEM_IMG(
 			IMG_CODE
@@ -112,6 +96,27 @@
 		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6, 3))), 0)+1, 3, '0') AS ITEM_CODE
 		FROM ITEM
 	</select>
+	
+	<insert id="insertItem">
+		INSERT INTO ITEM(
+			ITEM_CODE
+			, ITEM_PRICE
+			, ITEM_INTRO
+			, ITEM_STOCK
+			, ITEM_STATUS
+			, ITEM_NAME
+			, CATE_CODE
+		) VALUES(
+			#{itemCode}
+			, #{itemPrice}
+			, #{itemIntro}
+			, #{itemStock}
+			, #{itemStatus}
+			, #{itemName}
+			, #{cateCode}
+		)
+	</insert>
+	
 	
 	
 </mapper>
