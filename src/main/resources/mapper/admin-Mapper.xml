@@ -65,6 +65,7 @@
 			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
 			, ITEM_NAME
 		FROM SALES
+		WHERE CATE_CODE = #{cateCode};
 	</select>
 	
 	

@@ -13,11 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.item.vo.ImgVO;
 import com.kh.project.item.vo.ItemVO;
@@ -51,7 +53,6 @@ public class AdminController {
 	public String gosalesManage(Model model) {
 		model.addAttribute("sidePage", "salesManage");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
-		model.addAttribute("salesList", adminService.selectSales());
 		return "admin/sales_manage";
 	}
 	
@@ -132,7 +133,11 @@ public class AdminController {
 		
 		return "redirect:/admin/insertItemForm";
 	}
-	
+	@ResponseBody
+	@PostMapping("/selectSales")
+	public List<SalesManageVO> selectSales(String cateCode){
+		return adminService.selectSales(cateCode);
+	}
 }
 
 

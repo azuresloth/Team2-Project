@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/admin/sales_manage"></script>
 </head>
 <body>
 <div class="row">
@@ -20,14 +21,11 @@
 			<tbody>
 			<c:forEach items="${categoryList }" var="categoryListInfo" varStatus="status">
 				<tr>
+					<td><input type="hidden" id="cateCode" value="${categoryListInfo.cateName }"></td>
 					<td>${status.index + 1 }</td>
-					<td>${categoryListInfo.cateName }</td>
+					<td><div class="nameDiv">${categoryListInfo.cateName }</div></td>
 				</tr>
 			</c:forEach>
-				<tr>
-					<td>1</td>
-					<td>목걸이</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
@@ -41,7 +39,7 @@
 					<th scope="col">상품 구매일 </th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="salesDiv">
 				<c:forEach items="${salesList }" var="salesInfo">
 					<tr>
 						<td>${salesInfo.itemName }</td>
@@ -50,11 +48,6 @@
 						<td>${salesInfo.buyDate }</td>
 					</tr>
 				</c:forEach>
-				<tr>
-					<th scope="row">목걸이</th>
-					<td>200,000</td>
-					<td>20</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>

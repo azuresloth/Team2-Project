@@ -31,8 +31,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<SalesManageVO> selectSales() {
-		return sqlSession.selectList("adminMapper.selectSalesList");
+	public List<SalesManageVO> selectSales(String cateCode) {
+		return sqlSession.selectList("adminMapper.selectSalesList", cateCode);
 	}
 
 	
