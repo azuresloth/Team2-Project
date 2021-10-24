@@ -26,7 +26,7 @@
 					</div>
 				<div style="margin-top: 10px; "></div>
 				<div class="d-grid gap-2 col-12 mx-auto">
-				  <button class="btn btn-primary" type="button">login</button>
+				  <button class="btn btn-primary" type="submit">login</button>
 				  <button class="btn btn-primary" type="button" onclick="findInfo">ID/Password 찾기</button>
 				</div>
 			</form>
