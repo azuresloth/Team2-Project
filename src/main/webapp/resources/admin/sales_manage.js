@@ -14,11 +14,28 @@ $(document).ready(function(){
 	
 	//이벤트 처리
 	$(document).on('click', '.nameDiv', function() {
-    	//클릭한 카테고리의 CATE_CODE
-    	var cateCode = $('.cateCode').val();
-    	selectSales(cateCode);
-    	
-    });
+    	//클릭한 카테고리의 CATE_CODE\
+		var cateCode = $(this).parent().parent().children(':first').text();
+		alert(1111);
+		$.ajax({
+            url: '/admin/selectSales', //요청경로
+            type: 'post',
+            data:{'cateCode':cateCode}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
+            success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
+            	$(result).each(function(index, element){
+            		alert(element.totalPrice);
+            		
+            	});
+            },
+            error: function(){
+             //ajax 실행 실패 시 실행되는 구간
+               alert('실패');
+            }
+      });
+		
+		
+		
+	});
    
 	//ajax 사용
 //	$.ajax({
@@ -40,20 +57,13 @@ $(document).ready(function(){
 
 //함수 선언 영역
 (function($){
-	selectSales = function(cateCode){
+	selectSales = function(){
 		$.ajax({
             url: '/admin/selectSales', //요청경로
             type: 'post',
             data:{'cateCode':cateCode}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
             success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
-               
-               var str = '';
-               
-               str = '<tr>';
-               str = '<td>' + result.itemName + '</td>';
-               str = '</td>';
-               str = '</tr>';
-               
+            
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간

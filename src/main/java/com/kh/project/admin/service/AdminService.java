@@ -16,7 +16,7 @@ public interface AdminService {
 	//카테고리 삭제
 	void deleteCategory(String cateCode);
 	//상품 매출 목록 조회
-	List<SalesManageVO> selectSales(String cateCode);
+	List<SalesManageVO> selectSales();
 	
 	//상품등록
 	void insertItem(ItemVO itemVO);

@@ -52,6 +52,7 @@ public class AdminController {
 	@GetMapping("/salesManage")
 	public String gosalesManage(Model model) {
 		model.addAttribute("sidePage", "salesManage");
+		model.addAttribute("salesList", adminService.selectSales());
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/sales_manage";
 	}
@@ -134,9 +135,15 @@ public class AdminController {
 		return "redirect:/admin/insertItemForm";
 	}
 	@ResponseBody
-	@PostMapping("/selectSales")
+	@GetMapping("/selectSales")
 	public List<SalesManageVO> selectSales(String cateCode){
-		return adminService.selectSales(cateCode);
+		
+		return adminService.selectSales();
+	}
+	
+	@GetMapping("/selectMonthSales")
+	public String selectMonthSales(Model model) {
+		return "admin/month_sales";
 	}
 }
 

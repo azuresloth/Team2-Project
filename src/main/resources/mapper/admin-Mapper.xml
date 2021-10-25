@@ -65,7 +65,6 @@
 			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
 			, ITEM_NAME
 		FROM SALES
-		WHERE CATE_CODE = #{cateCode};
 	</select>
 	
 	
@@ -118,7 +117,12 @@
 		)
 	</insert>
 	
-	
+	<select id="selectMonthSales" resultMap="view">
+		SELECT ITEM_NAME
+			, TOTAL_PRICE
+			, ITEM_CNT
+		FROM SALES
+	</select>
 	
 </mapper>
 
