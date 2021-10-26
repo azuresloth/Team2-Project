@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/main_search_result.css?ver=7">
+<script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=0"></script>
 </head>
 <body>
 	<div class="row justify-content-center">
@@ -24,18 +25,18 @@
 				</div>
 			</div>
 		
-			<form action="/item/mainSearchResult" method="post">
+			<form id="detailSearchForm" action="/item/mainSearchResult" method="post" onsubmit="return false">
 			<div class="row justify-content-center mainSearchArea">
 				<div class="col-6">
-					<input type="text" name="searchValue" value="${itemVO.searchValue}" class="keywordBox">
+					<input type="text" id="detailSearchBar" name="searchValue" value="${itemVO.searchValue}" class="keywordBox">
 				</div>
 				
 				<div class="col-12 mainSearchResultCnt">
 					검색결과 <strong>${itemVO.totalCnt}</strong> 개의 상품이 있습니다.
 				</div>
 				
-				<div class="col-10" style="border: 1px solid black">
-					<table class="table mr-0">
+				<div class="col-8" style="border: 1px solid black;">
+					<table class="table mr-0" style="height: 200px;">
 					  <tbody>
 					    <tr>
 					      <th scope="row">상품 분류</th>
@@ -75,7 +76,7 @@
 				</div>
 				
 				<div class="col-12 ">
-					<button class="button blackButton submitButton" onclick="">검색</button>
+					<button class="button blackButton submitButton" onclick="detailSearchFun();">검색</button>
 				</div>
 			</div>
 				</form>
@@ -84,11 +85,22 @@
 			
 			<div class="row justify-content-center">
 				<div class="col text-center">
-					<c:if test="${itemVO.totalCnt eq 0}">
-						<strong class="warning">검색결과가 없습니다.</strong>
-						<br>
-						<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
-					</c:if>
+					<c:choose>
+						<c:when test="${itemVO.totalCnt eq 0}">
+							<strong class="warning">검색결과가 없습니다.</strong>
+							<br>
+							<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${itemList}" var="itemInfo">
+								<div class="col-3">
+									<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+									<a>${itemInfo.itemName}</a>
+									<div>${itemInfo.itemPrice}</div>
+								</div>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			

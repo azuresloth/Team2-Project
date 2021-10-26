@@ -86,13 +86,17 @@
  	
  	<!-- 메인페이지에서 상품검색 -->
  	<select id="mainPageSearchList" resultMap="item">
- 		SELECT ITEM_CODE
+ 		SELECT ITEM.ITEM_CODE
  			, ITEM_NAME
  			, ITEM_INTRO
  			, ITEM_PRICE
  			, CATE_CODE
- 		FROM ITEM
- 		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%'
+ 			, ATTACHED_IMG_NAME
+ 			, ROWNUM
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND IS_MAIN = 'Y'
+ 		AND ITEM_NAME LIKE '%'||#{searchValue}||'%'
  		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
  		AND CATE_CODE = #{searchKeyword}
  		</if>
