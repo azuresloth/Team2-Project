@@ -83,7 +83,7 @@
 			        				</c:if>
 			        				<c:if test="${categoryInfo.catePass ne '*Drop' }">
 			       						<li class="nav-item">
-					        				<a class="nav-link active" aria-current="page" href="/item/${categoryInfo.catePass}"> ${categoryInfo.cateName}</a>
+					        				<a class="nav-link active" aria-current="page" href="/item/categoryPage?catePass=${categoryInfo.catePass}"> ${categoryInfo.cateName}</a>
 					   					</li>
 			        				</c:if>
 			        			</c:forEach>
