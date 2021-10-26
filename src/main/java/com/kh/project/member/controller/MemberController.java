@@ -54,21 +54,30 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(MemberVO memberVO, HttpSession session) {
 		MemberVO loginInfo = memberService.login(memberVO);
-			if(loginInfo != null) {
-				session.setAttribute("loginInfo", loginInfo);
-				
 			
-					if(loginInfo.getIsAdmin().equals("Y")) {
-						return "redirect:/admin/adminMenu";
-					}
-					else {
-						return "redirect:/item/mainPage";
-					}
-					
+		
+		if(loginInfo != null) {
+			session.setAttribute("loginInfo", loginInfo);
 			
-					
-					
+			
+			if(loginInfo.getIsAdmin().equals("Y")) {
+				return "redirect:/admin/adminMenu";
 			}
+			else {
+				return "redirect:/item/mainPage";
+			}
+		
+					
+	}else if(loginInfo == null) {
+		int result = 0;
+		return "redirect:/member/login";
+	}
+		
+		
+		
+		
+		
+		
 		
 		return"redirect:/item/mainPage";
 	}
