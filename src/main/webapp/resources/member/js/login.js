@@ -18,7 +18,7 @@ $(document).ready(function(){
 	   var id = $('#id').val();
 	   var pw = $('#pw').val();
 	   
-	   	 if(id!=){
+	   	 if(id!=$('#id')){
 	   		 $('login_warn').attr(hidden).remove();
 	   	 }
    };
