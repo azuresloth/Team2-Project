@@ -53,7 +53,8 @@ td { padding: 30px; }
 						&#60;공지사항&#62;
 					</td>
 					<td>
-						<a href="/board/view?boardNum=${noticeVO.boardNum }&numForReadCnt=1" style="color: blue; font-weight: bold;">
+						<a href="/board/view?boardNum=${noticeVO.boardNum }&numForReadCnt=1&page=${pageVO.page}&perPageRowNum=${pageVO.perPageRowNum}
+							&searchColunm=${pageVO.searchColunm }&searchWord=${pageVO.searchWord}" style="color: blue; font-weight: bold;">
 							${noticeVO.title }
 						</a>
 					</td>

@@ -28,19 +28,19 @@
 			FROM(
 				SELECT BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
 				FROM SHOP_BOARD
+				WHERE IS_ADMIN = 'N'
 				<if test="searchWord != null and !searchWord.equals('')">
 					<if test="searchColunm == 't'.toString()">
-					WHERE TITLE LIKE '%'||#{searchWord}||'%'
+					AND TITLE LIKE '%'||#{searchWord}||'%'
 					</if>
 					<if test="searchColunm == 'w'.toString()">
-					WHERE WRITER LIKE '%'||#{searchWord}||'%'
+					AND WRITER LIKE '%'||#{searchWord}||'%'
 					</if>
 					<if test="searchColunm.equals('tw')">
-					WHERE TITLE LIKE '%'||#{searchWord}||'%'
+					AND TITLE LIKE '%'||#{searchWord}||'%'
 						OR WRITER LIKE '%'||#{searchWord}||'%'
 					</if>
 				</if>
-				WHERE IS_ADMIN = 'N'
 				ORDER BY CREATE_DATE DESC
 				)
 			)

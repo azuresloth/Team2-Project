@@ -35,13 +35,14 @@ public class BoardController {
 	//@ModelAttribute PageVO pageVO 를 사용하면 매개 변수를 담은 객체를 jsp까지 전달해준다.
 	// pageVO는 searchVO를 상속함.
 	public String boardList(Model model, @ModelAttribute PageVO pageVO) {
+
+		System.out.println("boardList().pageVO : " + pageVO);
 		// 1.공지 사항 게시글
 		model.addAttribute("noticeList", boardService.noticeList());
 		
 		// 2.일반 게시글
 		model.addAttribute("boardList", boardService.boardList(pageVO));
 		
-		System.out.println("boardList().pageVO : " + pageVO);
 		return "board/boardList"; 
 	}
 	
