@@ -18,16 +18,16 @@
 				<div style="margin-top: 20px;"></div>
 					<div >
 						<div >
-							아이디    <input type="text" name="id" class="form-control"required>
+							아이디    <input type="text" name="id" id="id" class="form-control"required>
 						</div>
 						<div >
-							비밀번호  <input type="password" name="pw" class="form-control" required>
+							비밀번호  <input type="password" name="pw" id="pw" class="form-control" required>
 						</div>
 					</div>
 				<div style="margin-top: 10px; "></div>
 				<div class="d-grid gap-2 col-12 mx-auto">
-				  <button class="btn btn-primary" type="submit">login</button>
-				  <button class="btn btn-primary" type="button" onclick="findInfo">ID/Password 찾기</button>
+				  <button class="btn btn-primary" type="submit" >login</button>
+				  <button class="btn btn-primary" type="button" onclick="findInfo();">ID/Password 찾기</button>
 				</div>
 			</form>
 		</div>
