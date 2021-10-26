@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/main_search_result.css?ver=7">
+<link rel="stylesheet" href="/resources/item/css/main_search_result.css?ver=8">
 <script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=0"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
 					검색결과 <strong>${itemVO.totalCnt}</strong> 개의 상품이 있습니다.
 				</div>
 				
-				<div class="col-8" style="border: 1px solid black;">
+				<div class="col-6" style="border: 1px solid black;">
 					<table class="table mr-0" style="height: 200px;">
 					  <tbody>
 					    <tr>
@@ -44,7 +44,7 @@
 					      	<select class="searchSelectBox" name="searchKeyword">
 					      		<option value="all">상품 분류 선택</option>
 					      		<c:forEach items="${categoryList}" var="categoryInfo">
-					      			<option value="${categoryInfo.cateCode}">${categoryInfo.cateName}</option>
+					      			<option value="${categoryInfo.cateCode}" <c:if test="${itemVO.searchKeyword eq categoryInfo.cateCode}">selected</c:if>>${categoryInfo.cateName}</option>
 					      		</c:forEach>
 					      	</select>
 					      </td>
@@ -54,7 +54,7 @@
 					    <tr>
 					      <th scope="row">가격대</th>
 					      <td colspan="3">
-					      	<input type="number" name="minPrice"> ~ <input type="number" name="maxPrice"> &nbsp;원
+					      	<input type="number" name="minPrice" value="0"> ~ <input type="number" name="maxPrice" value="0"> &nbsp;원
 					      </td>
 					    </tr>
 					    <tr>
@@ -62,10 +62,10 @@
 					      <td>
 					      	<select class="searchSelectBox" name="orderBy">
 					      		<option value="">:: 기준선택 ::</option>
-					      		<option value="ITEM_NAME">상품명 순</option>
-					      		<option value="REG_DATE DESC">신상품 순</option>
-					      		<option value="ITEM_PRICE">낮은 가격 순</option>
-					      		<option value="ITEM_PRICE DESC">높은 가격 순</option>
+					      		<option value="ITEM_NAME"<c:if test="${itemVO.orderBy eq 'ITEM_NAME'}">selected</c:if>>상품명 순</option>
+					      		<option value="REG_DATE DESC"<c:if test="${itemVO.orderBy eq 'REG_DATE DESC'}">selected</c:if>>신상품 순</option>
+					      		<option value="ITEM_PRICE"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE'}">selected</c:if>>낮은 가격 순</option>
+					      		<option value="ITEM_PRICE DESC"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE DESC'}">selected</c:if>>높은 가격 순</option>
 					      	</select>
 					      </td>
 					      <td></td>
@@ -84,24 +84,24 @@
 			
 			
 			<div class="row justify-content-center">
-				<div class="col text-center">
 					<c:choose>
 						<c:when test="${itemVO.totalCnt eq 0}">
+							<div class="col text-center">
 							<strong class="warning">검색결과가 없습니다.</strong>
 							<br>
 							<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+							</div>
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${itemList}" var="itemInfo">
 								<div class="col-3">
 									<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
 									<a>${itemInfo.itemName}</a>
-									<div>${itemInfo.itemPrice}</div>
+									<div>${itemInfo.itemPrice}원</div>
 								</div>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-				</div>
 			</div>
 			
 		</div>

@@ -8,6 +8,7 @@ th{
 }
 th, td{
 	height: 2rem;
+	vertical-align: middle;
 }
 .keywordBox{
 	width: 500px;

@@ -46,6 +46,7 @@ public class ItemController {
 		// 세부 검색을 위한 정보
 		// 카테고리 
 		model.addAttribute("categoryList", itemService.selectCategoryList());
+		model.addAttribute("itemVO", itemVO);
 		
 		return "item/main_search_result";
 	}

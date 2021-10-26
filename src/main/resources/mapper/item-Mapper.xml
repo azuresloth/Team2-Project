@@ -96,7 +96,9 @@
  		FROM ITEM ITEM, ITEM_IMG IMG
  		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
  		AND IS_MAIN = 'Y'
+ 		<if test="!searchValue.equals('all')">
  		AND ITEM_NAME LIKE '%'||#{searchValue}||'%'
+ 		</if>
  		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
  		AND CATE_CODE = #{searchKeyword}
  		</if>
@@ -120,7 +122,26 @@
  	<select id="mainPageSearchCnt" resultType="int">
  		SELECT COUNT(ITEM_NAME)
  		FROM ITEM
+ 		<if test="!searchValue.equals('all')">
  		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%' 
+ 		</if>
+ 		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
+ 		AND CATE_CODE = #{searchKeyword}
+ 		</if>
+ 		<if test="minPrice != 0 and maxPrice != 0">
+ 		AND ITEM_PRICE &gt;= #{minPrice}
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		</if>
+ 		<if test="minPrice != 0 and maxPrice == 0">
+ 		AND ITEM_PRICE &gt;= #{minPrice}
+ 		</if>
+ 		<if test="minPrice == 0 and maxPrice != 0">
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		</if>
+ 		<if test="orderBy != null and !orderBy.equals('')">
+ 		ORDER BY ${orderBy}
+ 		</if>
  	</select>
  
 </mapper>
