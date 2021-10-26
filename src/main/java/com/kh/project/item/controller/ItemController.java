@@ -36,8 +36,16 @@ public class ItemController {
 		return "item/main_page";
 	}
 	
+	// 메인페이지에서 상품 검색
 	@PostMapping("/mainSearchResult")
 	public String mainSearchResult(Model model, ItemVO itemVO) {
+		// 검색 결과
+		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
+		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
+		
+		// 세부 검색을 위한 정보
+		// 카테고리 
+		model.addAttribute("categoryList", itemService.selectCategoryList());
 		
 		return "item/main_search_result";
 	}

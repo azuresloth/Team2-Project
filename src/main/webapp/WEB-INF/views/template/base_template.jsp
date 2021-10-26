@@ -44,6 +44,55 @@
 body {
 	font-family: 'NanumSquareRound';
 	}
+.path{
+	overflow: left;
+    height: 30px;
+    line-height: 30px;
+    padding: 15px 0 10px;
+    color: #333333;
+}
+.path ol{
+	float: left;
+}
+.path li{
+	display: inline-block;
+}
+.path a{
+	text-decoration: none;
+    color: #666666;
+}
+.warning{
+	color: #008bcc;
+}
+.button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.blackButton {
+  background-color: #555555;
+  color: white;
+  border: 2px solid white;
+}
+
+.blackButton:hover {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+.submitButton{
+	display: table;
+	margin: 20px auto;
+	width: 10rem;
+}
 </style>
 </head>
 <body>
