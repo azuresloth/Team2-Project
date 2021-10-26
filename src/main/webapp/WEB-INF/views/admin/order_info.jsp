@@ -38,14 +38,14 @@
 				<td>${orderInfo.itemName}</td>
 				<td>${orderInfo.totalPrice}</td>
 				<td>${orderInfo.paymentPlan}</td>
-				<td>
-					<select name="buyStatus">
-						<option value="입금대기">${orderInfo.buyStatus }</option>
-						<option value="주문취소">${orderInfo.buyStatus }</option>
-						<option value="배송완료">${orderInfo.buyStatus }</option>
-					</select>
-				</td>
 				<td>${orderInfo.buyDate}</td>
+				<td>
+						<select name="statusName">
+					<c:forEach items="${statusInfo }" var="status">
+							<option value="${status.statusNum }">${status.statusName }</option>
+					</c:forEach>
+						</select>
+				</td>
 				<td>
 					<input type="button" value="변경">
 				</td>

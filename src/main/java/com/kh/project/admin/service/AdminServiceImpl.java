@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
@@ -68,6 +69,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<OrderInfoVO> selectOderInfoList() {
 		return sqlSession.selectList("adminMapper.selectOrderList");
+	}
+
+	@Override
+	public List<BuyStatusVO> selectStatus() {
+		return sqlSession.selectList("adminMapper.selectStatus");
 	}
 
 

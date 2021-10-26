@@ -148,6 +148,7 @@ public class AdminController {
 	@GetMapping("/selectOrderInfo")
 	public String selectOrderInfo(Model model) {
 		model.addAttribute("orderList", adminService.selectOderInfoList());
+		model.addAttribute("statusInfo", adminService.selectStatus());
 		return "admin/order_info";
 	}
 }
