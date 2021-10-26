@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/sales_manage.js?ver=7"></script>
+<script type="text/javascript" src="/resources/admin/sales_manage.js?ver=13"></script>
 </head>
 <body>
 <div class="row">
@@ -32,6 +32,7 @@
 		<table class="table text-center">
 			<thead>
 				<tr>
+					<th scope="col">상품 코드</th>
 					<th scope="col">상품 이름</th>
 					<th scope="col">상품의 총 구매가격</th>
 					<th scope="col">상품의 총 구매수량</th>
@@ -39,9 +40,10 @@
 				</tr>
 				<c:forEach items="${salesList }" var="salesListInfo">
 					<tr>
+						<td>${salesListInfo.itemCode }</td>
 						<td>${salesListInfo.itemName }</td>
 						<td>${salesListInfo.totalPrice }</td>
-						<td>${salesListInfo.itemCnt }</td>
+						<td>${salesListInfo.buyCnt }</td>
 						<td>${salesListInfo.buyDate }</td>
 					</tr>
 				</c:forEach>

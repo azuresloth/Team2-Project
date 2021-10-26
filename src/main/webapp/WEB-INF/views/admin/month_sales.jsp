@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-한달 매출
+한달매출
 </body>
 </html>
