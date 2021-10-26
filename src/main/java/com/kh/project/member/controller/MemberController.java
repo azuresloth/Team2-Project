@@ -56,12 +56,17 @@ public class MemberController {
 		MemberVO loginInfo = memberService.login(memberVO);
 			if(loginInfo != null) {
 				session.setAttribute("loginInfo", loginInfo);
-				if(loginInfo.getIsAdmin().equals("Y")) {
-					return "redirect:/admin/adminMenu";
-				}
-				else {
-					return "redirect:/item/mainPage";
-				}
+				
+			
+					if(loginInfo.getIsAdmin().equals("Y")) {
+						return "redirect:/admin/adminMenu";
+					}
+					else {
+						return "redirect:/item/mainPage";
+					}
+					
+			
+					
 					
 			}
 		

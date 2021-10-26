@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>	
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="/resources/member/js/login.js"></script>
+<link rel="stylesheet" href="/resources/member/css/login.css">
 </head>
 <body>
 	<div class="row justify-content-center" >
@@ -24,9 +27,14 @@
 							비밀번호  <input type="password" name="pw" id="pw" class="form-control" required>
 						</div>
 					</div>
-				<div style="margin-top: 10px; "></div>
+				
+				<div class="login_warn" hidden> 아이디 혹은 비밀번호를 확인해주세요 </div>
+				<div style="margin-top: 20px; "></div>
+				
+				
 				<div class="d-grid gap-2 col-12 mx-auto">
-				  <button class="btn btn-primary" type="submit" >login</button>
+				<input type="submit" value="로그인">
+				  <button class="btn btn-primary" type="button" onclick="goLogin();">login</button>
 				  <button class="btn btn-primary" type="button" onclick="findInfo();">ID/Password 찾기</button>
 				</div>
 			</form>

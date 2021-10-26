@@ -15,7 +15,7 @@ $(document).ready(function() {
 	if(pw != pw1){
 		alert('비밀번호를 확인하세요');
 		$('input[type="pw"]').val('');
-		$$('#pw').focus();
+		$('#pw').focus();
 		
 		return;
 		

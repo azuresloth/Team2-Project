@@ -41,6 +41,7 @@
 			SELECT ID
 			, NAME
 			, IS_ADMIN
+			, PW
 			FROM MEMBER
 			WHERE ID = #{id}
 			AND PW = #{pw}
@@ -81,6 +82,10 @@
 		SET PW = #{pw}
 		WHERE ID = #{id}
 	</update>
+	
+	<select id="">
+	
+	</select>
 	
 </mapper>
 
