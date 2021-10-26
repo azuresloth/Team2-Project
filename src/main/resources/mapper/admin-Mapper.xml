@@ -21,10 +21,9 @@
 		<result column="ITEM_CODE" property="itemCode"/>
 		<result column="ITEM_NAME" property="itemName"/>
 		<result column="TOTAL_PRICE" property="totalPrice"/>
-		<result column="ITEM_CNT" property="itemCnt"/>
 		<result column="CATE_CODE" property="cateCode"/>
-		<result column="CART_CODE" property="cartCode"/>
 		<result column="BUY_DATE" property="buyDate"/>
+		<result column="BUY_CNT" property="buyCnt"/>
 	</resultMap>
 	<!-- 이미지 -->	
 	<resultMap type="com.kh.project.item.vo.ImgVO" id="img">
@@ -34,6 +33,25 @@
 		<result column="ITEM_CODE"			property="itemCode"/>
 		<result column="IS_MAIN"			property="isMain"/>
 	</resultMap>
+
+	<resultMap type="com.kh.project.admin.vo.OrderInfoVO" id="order">
+		<id column="BUY_CODE"				property="buyCode"/>
+		<result column="ITEM_CODE"			property="itemCode"/>
+		<result column="ID"					property="id"/>
+		<result column="TOTAL_PRICE"		property="totalPrice"/>
+		<result column="BUY_DATE"			property="buyDate"/>
+		<result column="BUY_CNT"			property="buyCnt"/>
+		<result column="ITEM_NAME"			property="itemName"/>
+		<result column="PAYMENT_PLAN"		property="paymentPlan"/>
+		<result column="BUY_STATUS"		property="buyStatus"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.project.admin.vo.BuyStatusVO" id="status">
+		<id column="STATUS_NUM"				property="statusNum"/>
+		<result column="STATUS_NAME"			property="statusName"/>
+	</resultMap>
+	
+	
 	
 	<insert id="insertCategory">
 		INSERT INTO CATEGORY (
@@ -61,7 +79,7 @@
 		SELECT ITEM_CODE
 			, TOTAL_PRICE
 			, CATE_CODE
-			, ITEM_CNT
+			, BUY_CNT
 			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
 			, ITEM_NAME
 		FROM SALES
@@ -116,14 +134,37 @@
 			, #{cateCode}
 		)
 	</insert>
-	
-	<select id="selectMonthSales" resultMap="view">
-		SELECT ITEM_NAME
+	<!-- 해당카테고리의 상품의 매출조회 -->
+	<select id="selectSalesByCate" resultMap="view">
+		SELECT ITEM_CODE
+			, ITEM_NAME
+			, CATE_CODE
 			, TOTAL_PRICE
-			, ITEM_CNT
+			, BUY_CNT
+			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
 		FROM SALES
+		WHERE CATE_CODE = #{cateCode}
 	</select>
 	
+	<!-- 주문정보조회 -->
+	<select id="selectOrderList" resultMap="order">
+		SELECT BUY_CODE
+		, ITEM_NAME
+		, TOTAL_PRICE
+		, BUY_CNT
+		, BUY_DATE
+		, ID
+		, PAYMENT_PLAN
+		FROM ORDER_INFO
+	</select>
+	
+	<select id="selectStatus" resultMap="status">
+		SELECT STATUS_NUM
+		, STATUS_NAME
+		FROM BUY_STATUS
+	</select>
+
+
 </mapper>
 
 

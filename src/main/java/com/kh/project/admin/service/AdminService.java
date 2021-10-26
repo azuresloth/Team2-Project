@@ -2,7 +2,9 @@ package com.kh.project.admin.service;
 
 import java.util.List;
 
+import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -29,4 +31,14 @@ public interface AdminService {
 	
 	//이미지 정보 등록
 	void insertImgs(ItemVO itemVO);
+	
+	//카테고리의 상품의 매출조회
+	List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO);
+	
+	//주문정보조회
+	List<OrderInfoVO> selectOderInfoList();
+	
+	//상태 조회
+	List<BuyStatusVO> selectStatus();
+	
 }

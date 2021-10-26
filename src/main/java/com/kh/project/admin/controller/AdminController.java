@@ -135,15 +135,20 @@ public class AdminController {
 		return "redirect:/admin/insertItemForm";
 	}
 	@ResponseBody
-	@GetMapping("/selectSales")
-	public List<SalesManageVO> selectSales(String cateCode){
+	@PostMapping("/selectSalesByCate")
+	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO){
 		
-		return adminService.selectSales();
+		return adminService.selectSalesByCate(salesManageVO);
 	}
 	
 	@GetMapping("/selectMonthSales")
 	public String selectMonthSales(Model model) {
 		return "admin/month_sales";
+	}
+	@GetMapping("/selectOrderInfo")
+	public String selectOrderInfo(Model model) {
+		model.addAttribute("orderList", adminService.selectOderInfoList());
+		return "admin/order_info";
 	}
 }
 

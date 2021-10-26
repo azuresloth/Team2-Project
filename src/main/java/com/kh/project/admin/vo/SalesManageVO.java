@@ -5,12 +5,16 @@ public class SalesManageVO {
 	private String itemCode;
 	private String itemName;
 	private int totalPrice;
-	private int itemCnt;
 	private String cateCode;
-	private String cartCode;
 	private String buyDate;
+	private int buyCnt;
 	
-	
+	public int getBuyCnt() {
+		return buyCnt;
+	}
+	public void setBuyCnt(int buyCnt) {
+		this.buyCnt = buyCnt;
+	}
 	public String getBuyDate() {
 		return buyDate;
 	}
@@ -35,23 +39,11 @@ public class SalesManageVO {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public int getItemCnt() {
-		return itemCnt;
-	}
-	public void setItemCnt(int itemCnt) {
-		this.itemCnt = itemCnt;
-	}
 	public String getCateCode() {
 		return cateCode;
 	}
 	public void setCateCode(String cateCode) {
 		this.cateCode = cateCode;
-	}
-	public String getCartCode() {
-		return cartCode;
-	}
-	public void setCartCode(String cartCode) {
-		this.cartCode = cartCode;
 	}
 	
 	

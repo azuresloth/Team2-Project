@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -58,6 +59,17 @@ public class AdminServiceImpl implements AdminService{
 		sqlSession.insert("adminMapper.insertItem",itemVO);
 		
 	}
+
+	@Override
+	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO) {
+		return sqlSession.selectList("adminMapper.selectSalesByCate", salesManageVO);
+	}
+
+	@Override
+	public List<OrderInfoVO> selectOderInfoList() {
+		return sqlSession.selectList("adminMapper.selectOrderList");
+	}
+
 
 
 	

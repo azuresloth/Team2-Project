@@ -16,6 +16,7 @@
   	<a href="#" class="list-group-item list-group-item-action">상품관리</a>
   	<a href="/admin/salesManage" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'salesManage'}"> active </c:if>">매출관리</a>
   	<a href="/admin/selectMonthSales" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'monthSales'}"> active </c:if>">한달 매출</a>
+  	<a href="/admin/selectOrderInfo" class="list-group-item list-group-item-action <c:if test="${sidePage eq 'selectOrderInfo'}"> active </c:if>">주문관리</a>
 </div>
 </body>
 </html>
