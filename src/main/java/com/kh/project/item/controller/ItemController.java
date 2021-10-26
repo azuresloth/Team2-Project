@@ -23,10 +23,10 @@ public class ItemController {
 	
 	// 상품 목록 페이지로 이동
 	@GetMapping("/mainPage")
-	public String selectItemList(Model model, String path) {
+	public String selectItemList(Model model, String path, ItemVO itemVO) {
 		model.addAttribute("itemList", itemService.selectItemList());
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
-		model.addAttribute("bestItemList", itemService.selectBestItemList());
+		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		
 		return "item/main_page";
 	}
@@ -46,7 +46,9 @@ public class ItemController {
 	
 	// 메뉴 카테고리 페이지
 	@GetMapping("/categoryPage")
-	public String categoryPage() {
+	public String categoryPage(Model model, ItemVO itemVO) {
+		
+		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		return "item/category_page";
 	}
 	

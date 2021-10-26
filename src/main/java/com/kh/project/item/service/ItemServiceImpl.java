@@ -25,8 +25,8 @@ public class ItemServiceImpl implements ItemService{
 	}
 
 	@Override
-	public List<ItemVO> selectBestItemList() {
-		return sqlSession.selectList("itemMapper.selectBestItemList");
+	public List<ItemVO> selectBestItemList(ItemVO itemVO) {
+		return sqlSession.selectList("itemMapper.selectBestItemList", itemVO);
 	}
 
 	@Override
@@ -47,5 +47,10 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public ItemVO selectItemDetail(ItemVO itemVO) {
 		return sqlSession.selectOne("itemMapper.selectItemDetail", itemVO);
+	}
+
+	@Override
+	public CategoryVO selectPath(ItemVO itemVO) {
+		return sqlSession.selectOne("itemMapper.selectPath", itemVO);
 	}
 }

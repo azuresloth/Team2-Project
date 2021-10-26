@@ -72,4 +72,14 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- 아이템 페이지들 path interceptor -->
+	<beans:bean id="ItemPathInterceptor" class="com.kh.project.common.util.ItemPathInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/item/categoryPage"/>
+			<beans:ref bean="ItemPathInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

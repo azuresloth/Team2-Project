@@ -1,12 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/item/css/category_page.css?ver=1">
 </head>
 <body>
 	카테고리 페이지 입니다.
+	<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col path">
+					<ol type="i">
+						<li>
+							<a href="/item/mainPage">home</a>
+						</li>
+						<li>
+							> <a href="/item/categoryPage?cateCode=${pathInfo.cateCode}">${pathInfo.cateName }</a>
+						</li>
+					</ol>
+				</div>
+			</div>
+			
+			<div class="row justify-content-center mt-3">
+				<div class="col-10">
+					<!-- Swiper -->
+					<div class="itemBannerTitle">
+						BEST ITEM
+					</div>
+					<div class="swiper itemSwiper">
+						<div class="swiper-wrapper">
+							<c:forEach items="${bestItemList}" var="bestItemInfo">
+								<div class="swiper-slide">
+									<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}"><img src="/resources/images/item/sample/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
+									<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}">${bestItemInfo.itemName}</a>
+									<div>${bestItemInfo.itemPrice}</div>
+								</div>
+							</c:forEach>
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
+<script type="text/javascript">
+	var swiper = new Swiper(".itemSwiper", {
+		slidesPerView : 1,
+		spaceBetween : 10,
+		autoplay : {
+			delay : 2000,
+			disableOnInteraction : true,
+			loop : true,
+		},
+			loop : true,
+		pagination : {
+			el : ".swiper-pagination",
+			clickable : true,
+		},
+		breakpoints : {
+			640 : {
+				slidesPerView : 2,
+				spaceBetween : 20,
+			},
+			768 : {
+				slidesPerView : 4,
+				spaceBetween : 40,
+			},
+			1024 : {
+				slidesPerView : 5,
+				spaceBetween : 50,
+			},
+		},
+	});
+</script>
 </html>

@@ -70,7 +70,7 @@
 			        			<c:forEach items="${categoryList}" var="categoryInfo">
 			        				<c:if test="${categoryInfo.catePass eq '*Drop' }">
 			        					<li class="nav-item dropdown">
-								          <a class="nav-link dropdown-toggle active" href="/item/categoryPage?catePass=${categoryInfo.catePass}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								          <a class="nav-link dropdown-toggle active" href="/item/categoryPage?cateCode=${categoryInfo.cateCode}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								            	${categoryInfo.cateName}
 								          </a>
 								          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
@@ -83,7 +83,7 @@
 			        				</c:if>
 			        				<c:if test="${categoryInfo.catePass ne '*Drop' }">
 			       						<li class="nav-item">
-					        				<a class="nav-link active" aria-current="page" href="/item/categoryPage?catePass=${categoryInfo.catePass}"> ${categoryInfo.cateName}</a>
+					        				<a class="nav-link active" aria-current="page" href="/item/categoryPage?cateCode=${categoryInfo.cateCode}"> ${categoryInfo.cateName}</a>
 					   					</li>
 			        				</c:if>
 			        			</c:forEach>

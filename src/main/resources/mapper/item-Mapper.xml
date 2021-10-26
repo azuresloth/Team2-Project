@@ -70,6 +70,9 @@
  			, ROWNUM
  		FROM ITEM ITEM, ITEM_IMG IMG
  		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		<if test="cateCode != null and !cateCode.equals('')">
+ 		AND CATE_CODE = #{cateCode}
+ 		</if>
  		AND IS_MAIN = 'Y'
  		AND ITEM_STATUS = 2
  		AND ITEM_STOCK &lt; 50
@@ -159,6 +162,15 @@
  		AND ITEM.ITEM_CODE = #{itemCode}
  	</select>
  	
+ 	<!-- 상품 카테고리 페이지 -->
+ 	
+ 	<!-- 패스 정해주기 -->
+ 	<select id="selectPath" resultMap="category">
+ 		SELECT CATE_NAME
+ 			, CATE_CODE
+ 		FROM CATEGORY
+ 		WHERE CATE_CODE = #{cateCode}
+ 	</select>
  
 </mapper>
 
