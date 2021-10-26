@@ -17,4 +17,9 @@ public interface ItemService {
 	
 	// 카테고리 메뉴 조회
 	List<CategoryVO> selectCategoryList();
+	
+	// 메인페이지 상품 검색
+	List<ItemVO> mainPageSearchList(ItemVO itemVO);
+	// 메인페이지 상품 검색결과 갯수
+	int mainPageSearchCnt(ItemVO itemVO);
 }

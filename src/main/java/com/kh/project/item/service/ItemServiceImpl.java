@@ -33,4 +33,14 @@ public class ItemServiceImpl implements ItemService{
 	public List<CategoryVO> selectCategoryList() {
 		return sqlSession.selectList("itemMapper.selectCategoryList");
 	}
+
+	@Override
+	public List<ItemVO> mainPageSearchList(ItemVO itemVO) {
+		return sqlSession.selectList("itemMapper.mainPageSearchList", itemVO);
+	}
+
+	@Override
+	public int mainPageSearchCnt(ItemVO itemVO) {
+		return sqlSession.selectOne("itemMapper.mainPageSearchCnt", itemVO);
+	}
 }

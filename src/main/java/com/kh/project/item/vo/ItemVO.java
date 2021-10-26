@@ -13,6 +13,9 @@ public class ItemVO extends PageVO{
 	private int itemStatus;
 	private String cateCode;
 	private List<ImgVO> imgList;
+	private int minPrice;
+	private int maxPrice;
+	private String orderBy;
 	
 	public String getItemCode() {
 		return itemCode;
@@ -61,6 +64,24 @@ public class ItemVO extends PageVO{
 	}
 	public void setImgList(List<ImgVO> imgList) {
 		this.imgList = imgList;
+	}
+	public int getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(int minPrice) {
+		this.minPrice = minPrice;
+	}
+	public int getMaxPrice() {
+		return maxPrice;
+	}
+	public void setMaxPrice(int maxPrice) {
+		this.maxPrice = maxPrice;
+	}
+	public String getOrderBy() {
+		return orderBy;
+	}
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
 	}
 	
 }
