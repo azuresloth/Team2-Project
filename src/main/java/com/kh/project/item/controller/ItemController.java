@@ -29,10 +29,10 @@ public class ItemController {
 		model.addAttribute("bestItemList", itemService.selectBestItemList());
 		
 		// 카테고리 메뉴 목록조회 후 jsp로 전달
-		model.addAttribute("categoryList", itemService.selectCategoryList());
+		//model.addAttribute("categoryList", itemService.selectCategoryList());
 		
 		// 어드민일 경우 메뉴 목록 조회후 전달
-		model.addAttribute("menuList", commonService.selectMenuList());
+		//model.addAttribute("menuList", commonService.selectMenuList()); 
 		return "item/main_page";
 	}
 	
@@ -45,9 +45,11 @@ public class ItemController {
 		
 		// 세부 검색을 위한 정보
 		// 카테고리 
-		model.addAttribute("categoryList", itemService.selectCategoryList());
+		//model.addAttribute("categoryList", itemService.selectCategoryList());
 		model.addAttribute("itemVO", itemVO);
 		
 		return "item/main_search_result";
 	}
+	
+	
 }

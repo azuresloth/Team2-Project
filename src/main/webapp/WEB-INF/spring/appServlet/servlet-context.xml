@@ -46,6 +46,17 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- 카테고리 메뉴 interceptor -->
+	<beans:bean id="CategoryMenuInterceptor" class="com.kh.project.common.util.CategoryMenuInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/*/*"/>
+			<exclude-mapping path="/admin/*"/>
+			<beans:ref bean="CategoryMenuInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 	<context:component-scan base-package="com.kh.project.*.controller" />
 	
 	
