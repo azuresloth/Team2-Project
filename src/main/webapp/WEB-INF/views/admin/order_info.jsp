@@ -6,6 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resoursces/admin/order_info"></script>
+<style type="text/css">
+.statusName{
+	display: table;
+	margin: 0 auto;
+	text-align: center;
+}
+</style>
 </head>
 <body>
 <div>
@@ -40,11 +48,11 @@
 				<td>${orderInfo.paymentPlan}</td>
 				<td>${orderInfo.buyDate}</td>
 				<td>
-						<select name="statusName">
-					<c:forEach items="${statusInfo }" var="status">
+					<select name="statusName" class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
+						<c:forEach items="${statusInfo }" var="status">
 							<option value="${status.statusNum }">${status.statusName }</option>
-					</c:forEach>
-						</select>
+						</c:forEach>
+					</select>
 				</td>
 				<td>
 					<input type="button" value="변경">

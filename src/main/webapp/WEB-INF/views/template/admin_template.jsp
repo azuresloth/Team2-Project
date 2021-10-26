@@ -17,10 +17,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <style type="text/css">
 @font-face {
-     font-family: 'S-CoreDream-5Medium';
-     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
-     font-weight: normal;
-     font-style: normal;
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 .aaa{
 	background-color: aqua;
@@ -31,7 +31,7 @@
 }
 body {
   line-height: 1;
-  font-family: 'S-CoreDream-5Medium'; 
+  font-family: 'NanumSquareRound'; 
   font-size: 18px;
 }
 </style>
