@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style type="text/css">
 table { text-align: center; }
 tr { border-bottom: 1px solid black;}
@@ -47,11 +49,18 @@ td { padding: 30px; }
 				<c:forEach items="${noticeList }" var="noticeVO">
 				<tr>
 					<td>
-						<i class='fas fa-bell' style='font-size:48px;color:red'></i>
+						<i class='fas fa-bell' style='color:red'></i>
+						&#60;공지사항&#62;
 					</td>
-					<td>${noticeVO.title }</td>
-					<td>${noticeVO.createDate }</td>
+					<td>
+						<a href="/board/view?boardNum=${noticeVO.boardNum }&numForReadCnt=1" style="color: blue; font-weight: bold;">
+							${noticeVO.title }
+						</a>
+					</td>
 					<td>${noticeVO.writer }</td>
+					<td>
+						<fmt:formatDate value="${noticeVO.createDate }" pattern="yyyy 년 M 월 dd 일 (h 시 m 분)"/>
+					</td>
 					<td>${noticeVO.readCnt }</td>
 				</tr>
 				</c:forEach>
