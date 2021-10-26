@@ -38,6 +38,9 @@ $(document).ready(function(){
 (function($){
 	//aaa = function(){
 	//};
+	show = function(itemCode){
+		alert(itemCode);
+	};
    
 })(jQuery);
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.project.board.service.BoardService;
+import com.kh.project.board.service.FeedbackService;
 import com.kh.project.board.vo.BoardVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.board.vo.SearchVO;
@@ -25,12 +26,19 @@ public class BoardController {
 	@Resource(name = "boardService")
 	private BoardService boardService;
 	
+	// 상품 후기 때문에 추가
+	@Resource(name = "feedbackService")
+	private FeedbackService feedbackService;
+	
 	//공지사항 게시판
 	@RequestMapping("/boardList")
 	//@ModelAttribute PageVO pageVO 를 사용하면 매개 변수를 담은 객체를 jsp까지 전달해준다.
 	// pageVO는 searchVO를 상속함.
 	public String boardList(Model model, @ModelAttribute PageVO pageVO) {
+		// 1.공지 사항 게시글
+		model.addAttribute("noticeList", boardService.noticeList());
 		
+		// 2.일반 게시글
 		model.addAttribute("boardList", boardService.boardList(pageVO));
 		
 		System.out.println("boardList().pageVO : " + pageVO);
@@ -47,6 +55,7 @@ public class BoardController {
 	//글 등록처리
 	@PostMapping("/write")
 	public String write(BoardVO boardVO) {
+	
 		//확인용
 		System.out.println("write().boardVO" + boardVO);
 		boardService.write(boardVO);
@@ -56,8 +65,15 @@ public class BoardController {
 	// 글 보기
 	@GetMapping("/view")
 	public String view(Model model, String boardNum, int numForReadCnt) {
+		
 		model.addAttribute("boardVO", boardService.view(boardNum, numForReadCnt));
+		
 		System.out.println("boardNum : " + boardNum + ", numForReadCnt : " + numForReadCnt);
+		
+		//-------------상품 후기 때문에 추가 함
+		String itemCode = boardNum;
+		model.addAttribute("feedbackList", feedbackService.feedbackList(itemCode));
+		
 		return "board/view";
 	}
 	

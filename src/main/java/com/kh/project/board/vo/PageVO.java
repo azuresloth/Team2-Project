@@ -33,6 +33,20 @@ public class PageVO extends SearchVO{
 		
 
 	}
+	//후기 등록 할때 5개로 하기위해서 쓴다.
+	public PageVO(int page, int perPageRowNum) {
+		this.page = page;
+		this.perPageRowNum = perPageRowNum;
+		// 시작 줄번호와 끝 줄번호 계산
+		// 현재 페이지의 이전 페이지 까지 데이터를 skip시키고 그 다음 번호 시작 번호로 한다.
+		startRow = (page-1)*perPageRowNum + 1;
+		endRow = startRow + perPageRowNum -1;
+		
+		// JSP 하단 부분에 몇개의 페이지를 표시할지 정한다.
+		perGroupPageNum = 10;
+	}
+	
+	
 	public int getPerPageRowNum() {
 		return perPageRowNum;
 	}

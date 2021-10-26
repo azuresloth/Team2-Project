@@ -9,7 +9,16 @@ public class BoardVO {
 	private String content;		// jsp에서 받는다.
 	private int readCnt;	
 	private String title;		// jsp에서 받는다.
+	private String isAdmin;		// jsp에서 받는다.
 	
+	
+	
+	public String getIsAdmin() {
+		return isAdmin;
+	}
+	public void setIsAdmin(String isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	public String getBoardNum() {
 		return boardNum;
 	}

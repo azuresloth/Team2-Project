@@ -14,6 +14,7 @@
 		<mapper resource="/mapper/item-Mapper.xml"/>
 		<mapper resource="/mapper/member-Mapper.xml"/>
 		<mapper resource="/mapper/common-Mapper.xml"/>
+		<mapper resource="/mapper/feedback-Mapper.xml"/>
 	</mappers>
 </configuration>
 

@@ -21,4 +21,8 @@ public interface BoardService {
 	
 	// 글삭제
 	int delete(String boardNum);
+	
+	// 공지사항 리스트 전달
+	List<BoardVO> noticeList();
+	
 }

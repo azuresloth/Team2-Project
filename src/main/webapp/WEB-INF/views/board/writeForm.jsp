@@ -8,9 +8,11 @@
 </head>
 <body>
 	<h1>글쓰기 폼</h1>
+	
 	<form action="/board/write" method="post">
+		<input type="hidden" value="${sessionScope.loginInfo.isAdmin }" name="isAdmin">
 		<div>
-			작성자 : <input type="text" required name="writer">
+			작성자 : <input type="text" required name="writer" value="${sessionScope.loginInfo.id }" readonly>
 		</div>
 		<div>
 			제목 : <input type="text" required name="title">

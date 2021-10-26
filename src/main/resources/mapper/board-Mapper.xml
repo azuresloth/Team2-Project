@@ -9,8 +9,18 @@
 		<result column="CONTENT"		 property="content"/>
 		<result column="READ_CNT" 		 property="readCnt"/>
 		<result column="TITLE"			 property="title"/>
+		<result column="IS_ADMIN"		 property="isAdmin"/>
 	</resultMap>
-	<!-- 글목록 -->
+	
+	<!-- 관리자 공지사항은 매개변수 없이 그냥 데이터 전달 하기 -->
+	<select id="noticeList" resultMap="board">
+		SELECT BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
+		FROM SHOP_BOARD
+		WHERE IS_ADMIN = 'Y'
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<!--  일반 글목록 -->
 	<select id="boardList" resultMap="board">
 		SELECT RNUM, BOARD_NUM, WRITER, CREATE_DATE, TITLE, READ_CNT
 		FROM(
@@ -30,6 +40,7 @@
 						OR WRITER LIKE '%'||#{searchWord}||'%'
 					</if>
 				</if>
+				WHERE IS_ADMIN = 'N'
 				ORDER BY CREATE_DATE DESC
 				)
 			)
@@ -54,12 +65,13 @@
 	
 	<!-- 글등록 -->
 	<insert id="write">
-		INSERT INTO SHOP_BOARD(BOARD_NUM, WRITER, CONTENT, TITLE) 
+		INSERT INTO SHOP_BOARD(BOARD_NUM, WRITER, CONTENT, TITLE, IS_ADMIN) 
 		VALUES(
 			(SELECT 'BOARD_'||LPAD(NVL(MAX(SUBSTR(BOARD_NUM,7,3)),0)+1,3,0) FROM SHOP_BOARD)
 			,#{writer}
 			,#{content}
 			,#{title}
+			,#{isAdmin}
 		)
 	</insert>
 	

@@ -39,8 +39,27 @@ td { padding: 30px; }
 				<td>작성일</td>
 				<td>조회수</td>
 			</tr>
+			<!-- 공지사항 추가 하였음 -->
+			<c:if test="${empty noticeList }">
+				<td colspan="5">아직 등록된 글이 없습니다.</td>
+			</c:if>
+			<c:if test="${not empty noticeList }">
+				<c:forEach items="${noticeList }" var="noticeVO">
+				<tr>
+					<td>
+						<i class='fas fa-bell' style='font-size:48px;color:red'></i>
+					</td>
+					<td>${noticeVO.title }</td>
+					<td>${noticeVO.createDate }</td>
+					<td>${noticeVO.writer }</td>
+					<td>${noticeVO.readCnt }</td>
+				</tr>
+				</c:forEach>
+			</c:if>
+			
+			<!-- 일반 게시글 -->
 			<c:if test="${empty boardList }">
-				아직 등록된 글이 없습니다.
+				<td colspan="5">아직 등록된 글이 없습니다.</td>
 			</c:if>
 			<c:if test="${not empty boardList }">
 				<c:forEach items="${boardList }" var="boardVO" varStatus="status">
@@ -62,7 +81,9 @@ td { padding: 30px; }
 			</c:if>
 		</table>
 		<div>
-			<a href="/board/writeForm" class="btn btn-primary">글쓰기</a>
+			<c:if test="${not empty sessionScope.loginInfo }">
+				<a href="/board/writeForm" class="btn btn-primary">글쓰기</a>
+			</c:if>
 			<a href="/board/boardList" class="btn btn-primary">전체 글보기</a>
 		</div>
 		<!-- pagination -->

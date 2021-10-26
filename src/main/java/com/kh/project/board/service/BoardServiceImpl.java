@@ -46,6 +46,11 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.delete("boardMapper.delete", boardNum);
 	}
 
+	@Override
+	public List<BoardVO> noticeList() {
+		return sqlSession.selectList("boardMapper.noticeList");
+	}
+
 
 }
 //
