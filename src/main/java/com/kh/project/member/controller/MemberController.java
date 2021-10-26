@@ -1,12 +1,18 @@
 package com.kh.project.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.member.service.MemberService;
@@ -47,40 +53,37 @@ public class MemberController {
 
 	//로그인 창으로 이동
 	@GetMapping("/goLogin")
-	public String goLogin() {
+	public String goLogin(@RequestParam(required = false, defaultValue = "1") int loginResult, Model model) {
+		model.addAttribute("loginResult", loginResult);
 		return "member/login";
 	}
 	//로그인
 	@PostMapping("/login")
-	public String login(MemberVO memberVO, HttpSession session) {
+	public String login(MemberVO memberVO, HttpSession session, Model model) {
 		MemberVO loginInfo = memberService.login(memberVO);
-			
+	
 		
 		if(loginInfo != null) {
 			session.setAttribute("loginInfo", loginInfo);
 			
 			
 			if(loginInfo.getIsAdmin().equals("Y")) {
+				
 				return "redirect:/admin/adminMenu";
 			}
 			else {
 				return "redirect:/item/mainPage";
 			}
 		
-					
-	}else if(loginInfo == null) {
-		int result = 0;
-		return "redirect:/member/login";
+		}
+		else {
+			int result = 0;
+			model.addAttribute("loginResult", result);
+			return "redirect:/member/goLogin";
+		}
+		
 	}
-		
-		
-		
-		
-		
-		
-		
-		return"redirect:/item/mainPage";
-	}
+	
 	
 	
 	//아이디 중복체크
@@ -97,9 +100,12 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/item/mainPage";
 	}
-	//회원탈퇴 
-	
-	//정보수정
+	//회원탈퇴
+	@PostMapping("/deleteMember")
+	public String deleteMember(MemberVO memberVO) {
+		return "redirect:/item/mainPage";
+	}
+	//개인정보수정
 	
 	
 	
