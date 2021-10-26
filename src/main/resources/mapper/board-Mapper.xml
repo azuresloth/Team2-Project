@@ -49,16 +49,17 @@
 	
 	<select id="getTotalRow" resultType="int">
 		SELECT COUNT(BOARD_NUM) FROM SHOP_BOARD
+		WHERE IS_ADMIN = 'N'
 		<if test="searchWord != null and !searchWord.equals('')">
 			<if test="searchColunm == 't'.toString()">
-				WHERE TITLE LIKE '%'||#{searchWord}||'%'
+				AND TITLE LIKE '%'||#{searchWord}||'%'
 			</if>
 			<if test="searchColunm == 'w'.toString()">
-			WHERE WRITER LIKE '%'||#{searchWord}||'%'
+				AND WRITER LIKE '%'||#{searchWord}||'%'
 			</if>
 			<if test="searchColunm.equals('tw')">
-			WHERE TITLE LIKE '%'||#{searchWord}||'%'
-				OR WRITER LIKE '%'||#{searchWord}||'%'
+				AND TITLE LIKE '%'||#{searchWord}||'%'
+					OR WRITER LIKE '%'||#{searchWord}||'%'
 			</if>
 		</if>
 	</select>

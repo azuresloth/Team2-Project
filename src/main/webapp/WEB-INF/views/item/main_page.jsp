@@ -60,7 +60,7 @@
 					<div>공지 1</div>
 					<div>공지 2</div>
 					<div>공지 3</div>
-					<a href="/feedback/reviewBoard">임시 후기 게시판 링크</a>
+					<a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
 				</div>
 			</div>
 		</div>
