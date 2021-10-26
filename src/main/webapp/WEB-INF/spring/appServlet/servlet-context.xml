@@ -42,6 +42,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/*"/>
+			<exclude-mapping path="/*/*Ajax"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
@@ -53,7 +54,7 @@
 		<interceptor>
 			<mapping path="/*/*"/>
 			<exclude-mapping path="/admin/*"/>
-			<exclude-mapping path="/*Ajax/*"/>
+			<exclude-mapping path="/*/*Ajax"/>
 			<beans:ref bean="CategoryMenuInterceptor"/>
 		</interceptor>
 	</interceptors>
