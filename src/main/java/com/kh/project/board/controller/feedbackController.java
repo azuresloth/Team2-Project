@@ -56,7 +56,7 @@ public class feedbackController {
 	}
 //	------------------------------------------------- insertAjax
 	
-	
+	// -----이거는 안씀!!!!!!
 	@PostMapping("/insert")
 	public String insert(FeedbackVO feedbackVO, MultipartHttpServletRequest multi) throws IllegalStateException, IOException {
 		
@@ -86,6 +86,7 @@ public class feedbackController {
 		return "redirect:/board/view?boardNum="+feedbackVO.getItemCode() + "&numForReadCnt=0";
 	}
 	
+	// feedBackList ajax로 가져가기
 	@ResponseBody
 	@PostMapping("/feedbackListAjax")
 	public List<FeedbackVO> feedbackListAjax(String itemCode){
@@ -96,6 +97,7 @@ public class feedbackController {
 	
 	@GetMapping("/reviewBoard")
 	public String reviewBoard() {
+		
 		return "board/review_board";
 	}
 

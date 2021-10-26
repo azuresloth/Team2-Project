@@ -191,6 +191,7 @@ $(document).ready(function(){
 	<div id="feedbackAjax">	<!-- 여기에 ajax로 목록 보기가 들어온다. -->
 	
 	</div>
+		
 </body>
 </html>
 
