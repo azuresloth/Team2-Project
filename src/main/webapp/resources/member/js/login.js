@@ -20,7 +20,14 @@ $(document).ready(function(){
 	   
 	   	 if(id!=$('#id')){
 	   		 $('login_warn').attr(hidden).remove();
+	   		
+	   		 return;
 	   	 }
+	   	 else{
+	   		
+	   		 return;
+	   	 }
+	   	 
    };
 
  	
