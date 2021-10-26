@@ -23,32 +23,38 @@ public class ItemController {
 	
 	// 상품 목록 페이지로 이동
 	@GetMapping("/mainPage")
-	public String selectItemList(Model model) {
+	public String selectItemList(Model model, String path) {
 		model.addAttribute("itemList", itemService.selectItemList());
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
 		model.addAttribute("bestItemList", itemService.selectBestItemList());
 		
-		// 카테고리 메뉴 목록조회 후 jsp로 전달
-		//model.addAttribute("categoryList", itemService.selectCategoryList());
-		
-		// 어드민일 경우 메뉴 목록 조회후 전달
-		//model.addAttribute("menuList", commonService.selectMenuList()); 
 		return "item/main_page";
 	}
 	
 	// 메인페이지에서 상품 검색
 	@PostMapping("/mainSearchResult")
-	public String mainSearchResult(Model model, ItemVO itemVO) {
+	public String mainSearchResult(Model model, ItemVO itemVO, String path) {
 		// 검색 결과
 		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
 		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
 		
 		// 세부 검색을 위한 정보
-		// 카테고리 
-		//model.addAttribute("categoryList", itemService.selectCategoryList());
 		model.addAttribute("itemVO", itemVO);
 		
 		return "item/main_search_result";
+	}
+	
+	// 메뉴 카테고리 페이지
+	@GetMapping("/categoryPage")
+	public String categoryPage() {
+		return "item/category_page";
+	}
+	
+	// 상품 상세 페이지
+	@GetMapping("/itemDetail")
+	public String itemDetail(Model model, ItemVO itemVO, String path) {
+		model.addAttribute("itemInfo", itemService.selectItemDetail(itemVO));
+		return "item/item_detail";
 	}
 	
 	

@@ -70,7 +70,7 @@
 			        			<c:forEach items="${categoryList}" var="categoryInfo">
 			        				<c:if test="${categoryInfo.catePass eq '*Drop' }">
 			        					<li class="nav-item dropdown">
-								          <a class="nav-link dropdown-toggle active" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								          <a class="nav-link dropdown-toggle active" href="/item/categoryPage?catePass=${categoryInfo.catePass}" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								            	${categoryInfo.cateName}
 								          </a>
 								          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">

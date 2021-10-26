@@ -53,12 +53,22 @@
 		<interceptor>
 			<mapping path="/*/*"/>
 			<exclude-mapping path="/admin/*"/>
+			<exclude-mapping path="/*Ajax/*"/>
 			<beans:ref bean="CategoryMenuInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
 	<context:component-scan base-package="com.kh.project.*.controller" />
 	
+	<!-- 관리자 메뉴 interceptor -->
+	<beans:bean id="AdminMenuInterceptor" class="com.kh.project.common.util.AdminMenuInterceptor"></beans:bean>
 	
+	<interceptors>
+		<interceptor>
+			<mapping path="/admin/*"/>
+			<exclude-mapping path="/*Ajax/*"/>
+			<beans:ref bean="AdminMenuInterceptor"/>
+		</interceptor>
+	</interceptors>
 	
 </beans:beans>

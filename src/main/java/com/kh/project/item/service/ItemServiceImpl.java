@@ -43,4 +43,9 @@ public class ItemServiceImpl implements ItemService{
 	public int mainPageSearchCnt(ItemVO itemVO) {
 		return sqlSession.selectOne("itemMapper.mainPageSearchCnt", itemVO);
 	}
+
+	@Override
+	public ItemVO selectItemDetail(ItemVO itemVO) {
+		return sqlSession.selectOne("itemMapper.selectItemDetail", itemVO);
+	}
 }

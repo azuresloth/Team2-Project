@@ -22,4 +22,7 @@ public interface ItemService {
 	List<ItemVO> mainPageSearchList(ItemVO itemVO);
 	// 메인페이지 상품 검색결과 갯수
 	int mainPageSearchCnt(ItemVO itemVO);
+	
+	// 상품 상세조회
+	ItemVO selectItemDetail(ItemVO itemVO);
 }

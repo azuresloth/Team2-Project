@@ -143,6 +143,22 @@
  		ORDER BY ${orderBy}
  		</if>
  	</select>
+ 	
+ 	<!-- 상품 상세페이지 -->
+ 	<select id="selectItemDetail" resultMap="item">
+ 		SELECT ITEM.ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ITEM_STOCK
+ 			, ITEM_STATUS
+ 			, CATE_CODE
+ 			, ATTACHED_IMG_NAME
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND ITEM.ITEM_CODE = #{itemCode}
+ 	</select>
+ 	
  
 </mapper>
 
