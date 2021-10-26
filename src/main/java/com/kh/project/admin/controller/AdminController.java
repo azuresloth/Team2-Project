@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
+import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
+import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.item.vo.ImgVO;
@@ -147,10 +149,19 @@ public class AdminController {
 	}
 	@GetMapping("/selectOrderInfo")
 	public String selectOrderInfo(Model model) {
-		model.addAttribute("orderList", adminService.selectOderInfoList());
+		model.addAttribute("sidePage", "selectOrderInfo");
 		model.addAttribute("statusInfo", adminService.selectStatus());
+		model.addAttribute("orderList", adminService.selectOderInfoList());
 		return "admin/order_info";
 	}
+	
+	@ResponseBody
+	@PostMapping("/updateStatus")
+	public void updateStatus(BuyStatusVO buyStatusVO, OrderInfoVO orderInfoVO) {
+		
+	}
+	
+	
 }
 
 

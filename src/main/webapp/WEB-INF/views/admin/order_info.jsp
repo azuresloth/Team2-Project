@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resoursces/admin/order_info"></script>
+<script type="text/javascript" src="/resources/admin/order_info.js"></script>
 <style type="text/css">
 .statusName{
 	display: table;
@@ -47,15 +47,17 @@
 				<td>${orderInfo.totalPrice}</td>
 				<td>${orderInfo.paymentPlan}</td>
 				<td>${orderInfo.buyDate}</td>
+				<td><input type="hidden" ></td>
 				<td>
-					<select name="statusName" class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
+					<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
 						<c:forEach items="${statusInfo }" var="status">
-							<option value="${status.statusNum }">${status.statusName }</option>
+							<option value="${status.statusName }" <c:if test="${status.statusName eq orderInfo.buyStatus }">selected</c:if> >${status.statusName }</option>
 						</c:forEach>
 					</select>
 				</td>
 				<td>
-					<input type="button" value="변경">
+					<input type="hidden" value="${orderInfo.buyCode }">
+					<input type="button" value="변경" class="update">
 				</td>
 			</tr>
 			</c:forEach>
