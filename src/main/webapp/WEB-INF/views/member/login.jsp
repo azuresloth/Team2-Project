@@ -7,19 +7,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/login.js"></script>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
- </script>
+<script type="text/javascript" src="/resources/member/js/login.js?ver1"></script>
+<!-- 
+<script type="text/javascript">
+	
+	var result = ${loginResult};
+	if(result == '0') {
+		alert('로그인 정보가 잘못 되었습니다.  \n아이디 혹은 비밀번호를 확인해 주세요.')
+	}
+</script>
+ -->
  
 <link rel="stylesheet" href="/resources/member/css/login.css">
 </head>
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
-			<form action="/member/login" method="post">
+			<form action="/member/login" method="post" id="loginForm">
 				<div style="margin-top: 20px;"></div>
 				<div>
 					<span style="font-size: 20px;">로그인</span>
@@ -33,15 +37,14 @@
 							비밀번호  <input type="password" name="pw" id="pw" class="form-control" required>
 						</div>
 					</div>
-				<c:if test="${result == 0}">
+				<c:if test="${loginResult == 0}">
 					<div class="login_warn" > 아이디 혹은 비밀번호를 확인해주세요 </div>
 				</c:if>
 				
 				<div style="margin-top: 20px; "></div>
 				
 				<div class="d-grid gap-2 col-12 mx-auto">
-				<input type="submit" value="로그인">
-				  <button class="loginBtn" type="button" >login</button>
+				  <button class="btn btn-primary" type="button"  id="loginBtn" onclick="login();" >login</button>
 				  <button class="btn btn-primary" type="button" onclick="findInfo();">ID/Password 찾기</button>
 				</div>
 			</form>
