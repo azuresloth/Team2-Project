@@ -45,6 +45,23 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="row justify-content-center">
+				<div class="col-10">
+					<div class="row">
+						<div class="itemBannerTitle">
+							${pathInfo.cateName} 목록
+						</div>
+						<c:forEach items="${itemList}" var="itemInfo">
+							<div class="col-3 mt-5">
+								<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+								<a>${itemInfo.itemName}</a>
+								<div>${itemInfo.itemPrice}원</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

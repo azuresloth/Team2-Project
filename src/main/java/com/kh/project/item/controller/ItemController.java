@@ -23,8 +23,8 @@ public class ItemController {
 	
 	// 상품 목록 페이지로 이동
 	@GetMapping("/mainPage")
-	public String selectItemList(Model model, String path, ItemVO itemVO) {
-		model.addAttribute("itemList", itemService.selectItemList());
+	public String selectItemList(Model model, ItemVO itemVO) {
+		model.addAttribute("itemList", itemService.selectItemList(itemVO));
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		
@@ -33,7 +33,7 @@ public class ItemController {
 	
 	// 메인페이지에서 상품 검색
 	@PostMapping("/mainSearchResult")
-	public String mainSearchResult(Model model, ItemVO itemVO, String path) {
+	public String mainSearchResult(Model model, ItemVO itemVO) {
 		// 검색 결과
 		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
 		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
@@ -47,14 +47,16 @@ public class ItemController {
 	// 메뉴 카테고리 페이지
 	@GetMapping("/categoryPage")
 	public String categoryPage(Model model, ItemVO itemVO) {
-		
+		// 베스트 상품
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		// 상품 리스트
+		model.addAttribute("itemList", itemService.selectItemList(itemVO));
 		return "item/category_page";
 	}
 	
 	// 상품 상세 페이지
 	@GetMapping("/itemDetail")
-	public String itemDetail(Model model, ItemVO itemVO, String path) {
+	public String itemDetail(Model model, ItemVO itemVO) {
 		model.addAttribute("itemInfo", itemService.selectItemDetail(itemVO));
 		return "item/item_detail";
 	}
