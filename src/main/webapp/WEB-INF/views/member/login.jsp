@@ -18,15 +18,10 @@
 </script>
  -->
  <script type="text/javascript">
- $(function(){
-	 $('#findIdForm').click();
-	 
-	 $(document).on('click',$('#findIdBtn') , function() { 
-		   //실행내용(추천!!)
-		}); 
+ 	
 
 	 
- })
+ 
  </script>
 <link rel="stylesheet" href="/resources/member/css/login.css">
 </head>
@@ -59,7 +54,7 @@
 			</form>
 				<div style="margin-top: 20px;"></div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				  <button class="btn btn-primary me-md-2" type="button" onclick= "location.href='/member/findIdForm' " id="findIdBtn">ID 찾기</button>
+				  <button class="btn btn-primary me-md-2" type="button"  id="findIdBtn" onclick="findIdForm();">ID 찾기</button>
 				  <button class="btn btn-primary" type="button" onclick="findPw();" id="findPw">Password 찾기</button>
 				</div>
 				

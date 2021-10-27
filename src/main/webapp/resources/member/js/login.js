@@ -22,12 +22,12 @@ $(document).ready(function(){
 	
 	
 	/*ID 찾기*/
-/*	
-	findId = function(){
-    	location.href = '';
-    	
-     };
-     */
+	findIdForm = function(){
+ 		location.href='/member/findIdForm';
+ 	}
+	
+	
+
      /*Password찾기*/
     findPw = function(){
     	

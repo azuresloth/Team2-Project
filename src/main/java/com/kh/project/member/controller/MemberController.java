@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,9 +86,16 @@ public class MemberController {
 	}
 	//아이디 찾기 화면으로 이동
 	@GetMapping("/findIdForm")
-	public String findId(MemberVO memberVO) {
+	public String goFindId() {
 		
-		return"/member/find_id";
+		return"member/find_id";
+	}
+	//아이디 찾기
+	@PostMapping("/findId")
+	public String findId(MemberVO memberVO) {
+		memberService.findId(memberVO);
+		
+		return"member/goLogin";
 	}
 	
 	

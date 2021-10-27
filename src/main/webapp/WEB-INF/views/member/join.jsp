@@ -113,8 +113,6 @@
 						<input type="button" class="btn btn-primary me-md-2" id="btn"  onclick="checkId();" value="중복확인" > 
 					</div>
 				</div>
-					
-					 
 					<div>비밀번호 <input type="password" id="pw"  required name="pw" class="form-control" > </div>
 					<div>비밀번호 확인 <input type="password" id="pw_1" required class="form-control"> </div>
 					<div>이름  <input type="text" id="name"  name="name" required class="form-control"> </div>
