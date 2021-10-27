@@ -83,6 +83,12 @@ public class MemberController {
 		}
 		
 	}
+	//아이디 찾기 화면으로 이동
+	@GetMapping("/findIdForm")
+	public String findId(MemberVO memberVO) {
+		
+		return"/member/find_id";
+	}
 	
 	
 	

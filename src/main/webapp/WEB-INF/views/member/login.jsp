@@ -17,7 +17,17 @@
 	}
 </script>
  -->
- 
+ <script type="text/javascript">
+ $(function(){
+	 $('#findIdForm').click();
+	 
+	 $(document).on('click',$('#findIdBtn') , function() { 
+		   //실행내용(추천!!)
+		}); 
+
+	 
+ })
+ </script>
 <link rel="stylesheet" href="/resources/member/css/login.css">
 </head>
 <body>
@@ -43,12 +53,20 @@
 				
 				<div style="margin-top: 20px; "></div>
 				
-				<div class="d-grid gap-2 col-12 mx-auto">
-				  <button class="btn btn-primary" type="button"  id="loginBtn" onclick="login();" >login</button>
-				  <button class="btn btn-primary" type="button" onclick="findInfo();">ID/Password 찾기</button>
+				<div class="d-grid gap-2 col-12 ">
+				  <button class="btn btn-primary d-grid gap-2 col-12 " type="button"  id="loginBtn" onclick="login();" >login</button>
 				</div>
 			</form>
+				<div style="margin-top: 20px;"></div>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+				  <button class="btn btn-primary me-md-2" type="button" onclick= "location.href='/member/findIdForm' " id="findIdBtn">ID 찾기</button>
+				  <button class="btn btn-primary" type="button" onclick="findPw();" id="findPw">Password 찾기</button>
+				</div>
+				
+								
+			
 		</div>
 	</div>
 </body>
 </html>
+

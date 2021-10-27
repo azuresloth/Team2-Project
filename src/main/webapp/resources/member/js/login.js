@@ -21,14 +21,16 @@ $(document).ready(function(){
 	
 	
 	
-	//아이디찾기
-	
-	findInfo = function(){
-    	var name = $('#name').val();
+	/*ID 찾기*/
+/*	
+	findId = function(){
+    	location.href = '';
     	
      };
-     
-    //지우기
- 	
+     */
+     /*Password찾기*/
+    findPw = function(){
+    	
+    }
  	
 })(jQuery);
