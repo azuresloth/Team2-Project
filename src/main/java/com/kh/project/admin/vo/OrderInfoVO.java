@@ -1,6 +1,6 @@
 package com.kh.project.admin.vo;
 
-public class OrderInfoVO {
+public class OrderInfoVO  extends BuyStatusVO{
 	private String buyCode;
 	private String itemCode;
 	private String id;

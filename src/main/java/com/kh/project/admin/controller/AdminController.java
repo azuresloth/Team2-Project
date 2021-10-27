@@ -137,7 +137,7 @@ public class AdminController {
 		return "redirect:/admin/insertItemForm";
 	}
 	@ResponseBody
-	@PostMapping("/selectSalesByCate")
+	@PostMapping("/selectSalesByCateAjax")
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO){
 		
 		return adminService.selectSalesByCate(salesManageVO);
@@ -156,9 +156,9 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/updateStatus")
-	public void updateStatus(BuyStatusVO buyStatusVO, OrderInfoVO orderInfoVO) {
-		
+	@PostMapping("/updateStatusAjax")
+	public void updateStatus(OrderInfoVO orderInfoVO) {
+		adminService.updateStatus(orderInfoVO);
 	}
 	
 	

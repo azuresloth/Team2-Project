@@ -41,6 +41,7 @@ public interface AdminService {
 	//상태 조회
 	List<BuyStatusVO> selectStatus();
 	
-	
+	//상태업데이트
+	void updateStatus(OrderInfoVO orderInfoVO);
 	
 }

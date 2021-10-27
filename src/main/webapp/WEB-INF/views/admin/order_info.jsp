@@ -16,18 +16,25 @@
 </style>
 </head>
 <body>
-<div>
-	<table class="table">
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-	</table>
+	<div class="row">
+		<div class="col">
+			검색범위 설정
+			<div class="row">
+				<div class="col-2 ">
+					<input type="date" class="form-control">
+				</div>
+				<div class="col-1 text-center">~</div>
+				<div class="col-2">
+					<input type="date" class="form-control">
+				</div>
+				<div class="col-2 ">
+					<input type="text" class="form-control-sm">
+				</div>
+			</div>
+		</div>
 </div>
 <div>
-	<table class="table text-center">
+	<table class="table text-center mt-3">
 		<thead>
 			<tr>
 			  <th scope="col">구매자</th>
@@ -47,7 +54,6 @@
 				<td>${orderInfo.totalPrice}</td>
 				<td>${orderInfo.paymentPlan}</td>
 				<td>${orderInfo.buyDate}</td>
-				<td><input type="hidden" ></td>
 				<td>
 					<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
 						<c:forEach items="${statusInfo }" var="status">
