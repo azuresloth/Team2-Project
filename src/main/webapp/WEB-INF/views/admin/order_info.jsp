@@ -16,22 +16,21 @@
 </style>
 </head>
 <body>
+<div class="container">
 	<div class="row">
-		<div class="col">
-			검색범위 설정
-			<div class="row">
-				<div class="col-2 ">
-					<input type="date" class="form-control">
-				</div>
-				<div class="col-1 text-center">~</div>
-				<div class="col-2">
-					<input type="date" class="form-control">
-				</div>
-				<div class="col-2 ">
-					<input type="text" class="form-control-sm">
-				</div>
-			</div>
+		<div class="col-2">
+			날짜검색
 		</div>
+		<div class="col-3 d-flex justify-content-start">
+			<input type="date" id="startDate">
+		</div>
+		<div class="col-3 d-flex ">
+			<input type="date" id="endDate">
+		</div>
+		<div class="col-1 btn-group">
+			<input type="submit" value="검색" class="form-control btn btn-primary" id="serchBtn">
+		</div>
+	</div>
 </div>
 <div>
 	<table class="table text-center mt-3">

@@ -6,6 +6,15 @@ $(document).ready(function(){
 		var statusName = $(this).parent().prev().children().val();
 		updateStatus(buyCode, statusName);
 	});
+
+   //이벤트 처리
+	$(document).on('click', '#serchBtn', function() {
+		var sertchStareDate = $('#starDate').val();
+		
+	});
+   
+   
+   
    
 });
 
