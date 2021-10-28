@@ -48,10 +48,10 @@
 			
 			<div class="row justify-content-center">
 				<div class="col-10">
-					<div class="row">
 						<div class="itemBannerTitle">
 							${pathInfo.cateName} 목록
 						</div>
+					<div class="row">
 						<c:forEach items="${itemList}" var="itemInfo">
 							<div class="col-3 mt-5">
 								<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>

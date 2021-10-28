@@ -12,3 +12,28 @@ body{
 .footerRowDiv{
 	margin-bottom: 100px;
 }
+.pjEx{
+	padding-right: 3rem;
+	color: #777777;
+    line-height: 1.8em;
+    border-right: 1px solid #efefef;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.pjEx-1{
+	padding-left: 10rem;
+}
+.pjEx > a{
+	display: inline-block;
+	width: 250px;
+}
+.footerStartDiv{
+    border-top: 1px solid #ededed;
+    border-bottom: 1px solid #ededed;
+}
+.footUl > li{
+	float: left;
+	margin-left: 2rem;
+	line-height: 3rem;
+	color: #777777;
+}
