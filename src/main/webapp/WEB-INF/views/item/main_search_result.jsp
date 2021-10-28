@@ -54,7 +54,7 @@
 					    <tr>
 					      <th scope="row">가격대</th>
 					      <td colspan="3">
-					      	<input type="number" name="minPrice" value="0"> ~ <input type="number" name="maxPrice" value="0"> &nbsp;원
+					      	<input type="number" name="minPrice" <c:choose><c:when test="${not empty itemVO.minPrice}">value="${itemVO.minPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> ~ <input type="number" name="maxPrice" <c:choose><c:when test="${not empty itemVO.maxPrice}">value="${itemVO.maxPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> &nbsp;원
 					      </td>
 					    </tr>
 					    <tr>

@@ -97,18 +97,23 @@ body {
 </style>
 </head>
 <body>
-<div class="container-fluid">
 	<div class="row">
-		<div class="col">
+		<div class="col-12">
 			<tiles:insertAttribute name="menu"/>
 		</div>
 	</div>
+<div class="container-fluid">
 	<div class="row" style="padding-top: 10px;">
 		<div class="col">
 			<tiles:insertAttribute name="body"/>
 		</div>
 	</div>
 </div>
+	<div class="row">
+		<div class="col-12">
+			<tiles:insertAttribute name="foot"/>
+		</div>
+	</div>
 </body>
 </html>
 

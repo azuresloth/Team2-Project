@@ -1,0 +1,14 @@
+@charset "UTF-8";
+body{
+	font-size: 13px;
+}
+.footerDiv{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: #151515;
+    text-align: center;
+    color: #999;
+}
+.footerRowDiv{
+	margin-bottom: 100px;
+}

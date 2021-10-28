@@ -18,7 +18,7 @@
 			          <a class=" dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 			            마이페이지
 			          </a>
-			          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+			          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="z-index: 1001;">
 			            <li><a class="dropdown-item" href="#">회원정보</a></li>
 			            <li><a class="dropdown-item" href="#">게시물 관리</a></li>
 			            <li><hr class="dropdown-divider"></li>
@@ -51,7 +51,7 @@
 			<!-- <a class="titleA" href="/item/itemList"><span class="titleSpan">쇼핑몰</span> 타이틀</a> -->
 		</div>
 	</div>
-	<div class="row">
+	<div class="row ">
 		<div class="col secondMenuDiv">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 2rem;">
 			  <div class="container-fluid bg-light">
@@ -115,6 +115,7 @@
 			  </div>
 			</nav>
 		</div>
+		<div class="col-12 menuBorderDiv"></div>
 	</div>
 </body>
 </html>
