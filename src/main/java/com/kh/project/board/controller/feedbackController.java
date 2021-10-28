@@ -56,37 +56,6 @@ public class feedbackController {
 		} //while끝
 		return feedbackVO.getItemCode();
 	}
-//	------------------------------------------------- insertAjax
-	
-	// -----이거는 안씀!!!!!!
-	@PostMapping("/insert")
-	public String insert(FeedbackVO feedbackVO, MultipartHttpServletRequest multi) throws IllegalStateException, IOException {
-		
-		// 여기는 인풋 박스에서 name 에 지정한 속성값이 들어간다. 여기서는 한개만 지정하였다.
-		Iterator<String> inputName = multi.getFileNames();
-		
-		// 첨부될 폴더지정(현제는 집 컴퓨터 폴더)
-		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
-		
-		while (inputName.hasNext()) {
-			//한개만 넘기니까 하나만 나온다.
-			String fileName = inputName.next();
-			MultipartFile file = multi.getFile(fileName);
-			String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
-			
-			
-			String uploadFile = uploadPath + attachedFileName;
-			file.transferTo(new File(uploadFile));
-			feedbackVO.setOriginalFileName(file.getOriginalFilename());
-			feedbackVO.setAttachedFileName(attachedFileName);
-			
-			System.out.println(feedbackVO); // 
-			
-			feedbackService.insert(feedbackVO);
-			
-		} //while끝
-		return "redirect:/board/view?boardNum="+feedbackVO.getItemCode() + "&numForReadCnt=0";
-	}
 	
 	// feedBackList ajax로 가져가기
 	@ResponseBody

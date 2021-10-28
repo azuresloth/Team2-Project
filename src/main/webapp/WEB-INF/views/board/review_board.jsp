@@ -42,30 +42,30 @@ $(document).ready(function(){
 				}else{
 					// 데이터가 있으면 태그를 만들어준다.
 					str += "<h2> 아작스 작성자 상품 후기</h2>";
-					str += "<table>";
+					str += "<div>";
 					
 					$(result).each(function(index,element){
-					str += "<tr class='feedbackTr'>";
+					str += "<div class='feedbackTr' style='border: 1px solid black;'>";
+					str += "<input type='hidden' value='"+ element.fbCode +"' name='fbCode'>";
 					/* feedback 코트 */
-					str += "<input type='hidden' value=" + element.fbCode + " name='fbCode'>";
-					str += "<td class='feedbackTdTitle'>" + element.title + "</td>";
+					str += "<div>" + element.title + "</div>";
 					//시간 관련 함수
-					str += "<td class='feedbackTdCreateDate'>" + dateFormet(element.createDate)+ "</td>";
+					str += "<div class='feedbackTdCreateDate'>" + dateFormet(element.createDate)+ "</div>";
 					//str += new Date(element.createDate);
-					str += "<td class='feedbackTdId'>작성자 : <span>" + element.id + "</span></td>";
-					str += "<td><input type='button' class='btn btn btn-secondary updateBtn'  value='수정'></td>";
-					str += "<td><input type='button' class='btn btn btn-secondary' value='삭제'></td>";
+					str += "<div class='feedbackTdId'>작성자 : <span>" + element.id + "</span></div>";
+					str += "<div><input type='button' class='btn btn btn-secondary updateBtn'  value='수정'></div>";
+					str += "<div><input type='button' class='btn btn btn-secondary' value='삭제'></div>";
 					
-					str += "</tr>";
-					str += "<tr>";
-					str += "<td class='feedbackTdAttachedFileName'>";
+					str += "</div>";
+					str += "<div style='border: 1px solid black;'>";
+					str += "<div class='feedbackTdAttachedFileName'>";
 					str += "<img src='/resources/feedback/images/" + element.attachedFileName + "' height='100px'>";
-					str += "</td>";
-					str += "<td colspan='3' class='feedbackTdContent'>" + element.content + "</td>";
-					str += "</tr>";
+					str += "</div>";
+					str += "<div class='feedbackTdContent'>" + element.content + "</div>";
+					str += "</div>";
 					
 					});
-					str += "</table>";
+					str += "</div>";
 				}
 				//태그 주입
 				$('#feedBackInsertform').after(str); // 노드 바로 뒤에 태그를 추가한다.
@@ -82,9 +82,31 @@ $(document).ready(function(){
 	
 	// updateBtn 클릭 시
 	$(document).on("click",".updateBtn",function(){
+		var fbCode = $(this).parent().prev().prev().prev().prev().val();
+		var title = $(this).parent().prev().prev().prev().text();
 		var id = $(this).parent().prev().children().text();
-		alert(id);
-	});
+		var date = $(this).parent().prev().prev().text();
+		var content = $(this).parent().parent().next().children().eq(1).text();
+		
+		
+		$(this).parent().parent().next().remove();
+		var row = $(this).parent().parent();
+		row.empty();
+		var str = '';
+		
+		str += '<form  method="post" enctype="multipart/form-data" id="fileUploadForm">';
+		str += '<input type="hidden" value="'+ fbCode +'" name="itemCode">';
+		str += '<div>제목(상품후기) : <input type="text" value="' + title + '" name="title"></div>';
+		str += '<div>작성자(상품후기) : <input type="text" readonly value="' + id + '" name="id" ></div>';
+		str += '<div>날짜 : <input type="text" readonly value="' + date + '"></div>';
+		str += '<div>내용 (상품후기) : </div>';
+		str += '<div><textarea rows="10" cols="50" name="content">"' + content + '"</textarea></div>';
+		str += '<div>사진 첨부(상품후기) : <input type="file" name="file"></div>';
+		str += '<input type="submit" value="후기수정" id="btnSubmit">';
+		str += '</form>';
+ 		row.append(str);
+		
+	});//끝
 	
 	
 	
@@ -159,7 +181,6 @@ $(document).ready(function(){
 		
 	</ul>
 
-
 	<div id="feedBackInsertform" style="display: none;">
 		<form  method="post" enctype="multipart/form-data" id="fileUploadForm">
 			<input type="hidden" value="${param.itemCode }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 -->
@@ -167,11 +188,11 @@ $(document).ready(function(){
 			<div>작성자(상품후기) : <input type="text" name="id"></div>
 			<div>내용 (상품후기) : </div>
 			<div><textarea rows="10" cols="50" name="content"></textarea></div>
-			<div>사진 첨부(상품후기) : <input type="file" name="file"> </div>	
+			<div>사진 첨부(상품후기) : <input type="file" name="file"></div>	
 			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btnSubmit">
 		</form>
 	</div>
 	
-	
+	                
 </body>
 </html>
