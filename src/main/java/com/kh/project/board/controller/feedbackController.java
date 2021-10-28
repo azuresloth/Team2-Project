@@ -28,7 +28,7 @@ public class feedbackController {
 	
 	@ResponseBody
 	@PostMapping("/insertAjax")
-	public void insertAjax(FeedbackVO feedbackVO, MultipartHttpServletRequest multi) throws IllegalStateException, IOException {
+	public String insertAjax(FeedbackVO feedbackVO, MultipartHttpServletRequest multi) throws IllegalStateException, IOException {
 		
 		// 여기는 인풋 박스에서 name 에 지정한 속성값이 들어간다. 여기서는 한개만 지정하였다.
 		Iterator<String> inputName = multi.getFileNames();
@@ -52,7 +52,9 @@ public class feedbackController {
 			
 			feedbackService.insert(feedbackVO);
 			
+			
 		} //while끝
+		return feedbackVO.getItemCode();
 	}
 //	------------------------------------------------- insertAjax
 	
