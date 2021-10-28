@@ -17,7 +17,7 @@ $(document).ready(function(){
     	//클릭한 카테고리의 CATE_CODE\
 		var cateCode = $(this).parent().parent().children(':first').text();
 		$.ajax({
-            url: '/admin/selectSalesByCate', //요청경로
+            url: '/admin/selectSalesByCateAjax', //요청경로
             type: 'post',
             data:{'cateCode':cateCode}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
             success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.

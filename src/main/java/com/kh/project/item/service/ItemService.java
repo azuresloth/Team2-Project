@@ -10,7 +10,7 @@ public interface ItemService {
 	CategoryVO selectPath(ItemVO itemVO);
 	
 	// 상품 목록 조회
-	List<ItemVO> selectItemList();
+	List<ItemVO> selectItemList(ItemVO itemVO);
 	
 	// 신상품 목록 조회
 	List<ItemVO> selectRecentItemList();

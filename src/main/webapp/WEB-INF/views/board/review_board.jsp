@@ -36,6 +36,7 @@ $(document).ready(function(){
 				
 // 				//태그 채우기
 				var str = "";
+				// 결과는 리스트(배열로 들어온다.)
 				if(result == null){
 					str += "아직등록된 상품후기가 없습니다.";
 				}else{
@@ -44,21 +45,23 @@ $(document).ready(function(){
 					str += "<table>";
 					
 					$(result).each(function(index,element){
-					str += "<tr>";
-					str += "<td>" + element.title + "</td>";
+					str += "<tr class='feedbackTr'>";
+					/* feedback 코트 */
+					str += "<input type='hidden' value=" + element.fbCode + " name='fbCode'>";
+					str += "<td class='feedbackTdTitle'>" + element.title + "</td>";
 					//시간 관련 함수
-					str += "<td>" + dateFormet(element.createDate)+ "</td>";
+					str += "<td class='feedbackTdCreateDate'>" + dateFormet(element.createDate)+ "</td>";
 					//str += new Date(element.createDate);
-					str += "<td>작성자 : " + element.id + "</td>";
-					str += "<td><input type='button' class='btn btn btn-secondary' value='수정'></td>";
+					str += "<td class='feedbackTdId'>작성자 : <span>" + element.id + "</span></td>";
+					str += "<td><input type='button' class='btn btn btn-secondary updateBtn'  value='수정'></td>";
 					str += "<td><input type='button' class='btn btn btn-secondary' value='삭제'></td>";
 					
 					str += "</tr>";
 					str += "<tr>";
-					str += "<td>";
+					str += "<td class='feedbackTdAttachedFileName'>";
 					str += "<img src='/resources/feedback/images/" + element.attachedFileName + "' height='100px'>";
 					str += "</td>";
-					str += "<td colspan='3'>" + element.content + "</td>";
+					str += "<td colspan='3' class='feedbackTdContent'>" + element.content + "</td>";
 					str += "</tr>";
 					
 					});
@@ -77,6 +80,12 @@ $(document).ready(function(){
 	// 후기 목록 뿌리기 함수 실행
 	showFeedbackList(itemCode);
 	
+	// updateBtn 클릭 시
+	$(document).on("click",".updateBtn",function(){
+		var id = $(this).parent().prev().children().text();
+		alert(id);
+	});
+	
 	
 	
 	// 상품 사진 포함 후기 등록
@@ -86,7 +95,7 @@ $(document).ready(function(){
 	    // Get form         
 	    var form = $('#fileUploadForm')[0];  	    
 	    // Create an FormData object          
-	    var data = new FormData(form);  	   
+	    var data = new FormData(form);  
 	    
 	    $.ajax({             
 	    	type: "POST",          
@@ -97,8 +106,9 @@ $(document).ready(function(){
 	        contentType: false,      
 	        cache: false,           
 	        timeout: 600000,       
-	        success: function () { 
-// 	        	alert("성공");           
+	        success: function (result) { 
+// 	        	 //아이탬 코드 들고오는지 확인
+	        	showFeedbackList(result);
 	        },          
 	        error: function (e) {  
 	        	console.log("ERROR : ", e);     
@@ -134,12 +144,22 @@ $(document).ready(function(){
 	<div>
 		<input type="button" value="후기등록 열기/닫기" class="btn btn-primary" id="feedBackButton">
 	</div>
-	
-	<div id="">
-	
-	</div>
-	
-	
+
+	<ul class="list-group">
+		
+		<li class="list-group-item">
+			<form action="">
+				<div class="row feedbackRow">
+					<div class="col-2">
+						<img src="http://placehold.it/150x150" />
+					</div>
+				</div>
+			</form>
+		</li>
+		
+	</ul>
+
+
 	<div id="feedBackInsertform" style="display: none;">
 		<form  method="post" enctype="multipart/form-data" id="fileUploadForm">
 			<input type="hidden" value="${param.itemCode }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 -->

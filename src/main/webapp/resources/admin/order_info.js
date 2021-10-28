@@ -14,12 +14,12 @@ $(document).ready(function(){
 	updateStatus = function(buyCode, statusName){
 		
 		$.ajax({
-            url: '/admin/updateStatus', //요청경로
+            url: '/admin/updateStatusAjax', //요청경로
             type: 'post',
-            data:{'classCode':classCode, 'statusName':statusName}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
+            data:{'buyCode':buyCode, 'statusName':statusName}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
             success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
                //ajax 실행 성공 후 실행할 코드 작성
-               alert('성공');
+            	alert('상태가 수정되었습니다.');
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간

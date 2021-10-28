@@ -16,7 +16,7 @@
 				<div class="col path">
 					<ol type="i">
 						<li>
-							<a href="/item/mainPage">home</a>
+							<a href="/item/mainPage">home</a> >
 						</li>
 						<li>
 							상품검색

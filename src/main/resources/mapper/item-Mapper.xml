@@ -37,8 +37,10 @@
  			, ROWNUM
  		FROM ITEM ITEM, ITEM_IMG IMG
  		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		<if test="itemCode != null and !itemCode.equals('')">
+ 		AND CATE_CODE = #{cateCode}
+ 		</if>
  		AND IS_MAIN = 'Y'
- 		AND ITEM_STATUS = 2
  		ORDER BY ITEM_CODE DESC
  	</select>
  	
@@ -163,6 +165,9 @@
  	</select>
  	
  	<!-- 상품 카테고리 페이지 -->
+ 	<select id="" resultMap="item">
+ 		SELECT
+ 	</select>
  	
  	<!-- 패스 정해주기 -->
  	<select id="selectPath" resultMap="category">

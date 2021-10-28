@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-한달매출
+<div class="row">
+	<div class="col">
+		검색범위 설정
+		<div class="row">
+			<div class="col-2">
+				<input type="date">
+			</div>
+			<div class="col-1 text-center">~</div>
+			<div class="col-2">
+				<input type="date">
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
