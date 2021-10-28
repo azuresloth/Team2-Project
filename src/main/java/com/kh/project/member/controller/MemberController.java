@@ -107,7 +107,7 @@ public class MemberController {
 	
 	//아이디 중복체크
 	@ResponseBody
-	@PostMapping("/checkId")
+	@PostMapping("/checkIdAjax")
 	public boolean checkId(String id) {
 		
 		return memberService.confirmRepetitionId(id);
