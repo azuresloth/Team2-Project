@@ -15,14 +15,22 @@ $(document).ready(function(){
 
 /* 함수선언 영역*/
 (function($){
-    findId = function(){
+ 
+	/* ID찾기 */
+	findId = function(){
 		var name = $('#name');
 		var email = $('#email');
 		
-		if(){
-			
-		}
+		alert(json.stringify(name));
+		alert(JSON.stringify(email));
+		
+		submit();
      };
+     
+     /*Password찾기*/
+     findPwForm = function(){
+     	location.href='/member/findPwForm'
+     }
 })(jQuery);
 
 </script>
@@ -48,7 +56,7 @@ $(document).ready(function(){
 				<div style="margin-top: 20px;"></div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 				  <button class="btn btn-primary me-md-2" type="button"  id="findIdBtn" onclick="findId();">찾기</button>
-				  <button class="btn btn-primary" type="button" onclick="findPw();" id="findPw">Password 찾기</button>
+				  <button class="btn btn-primary" type="button" onclick="findPwForm();" id="findPwBtn">Password 찾기</button>
 				</div>
 				
 								

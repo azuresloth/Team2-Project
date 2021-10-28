@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+ 	비밀번호찾기화면
 </body>
 </html>

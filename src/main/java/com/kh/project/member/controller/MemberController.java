@@ -88,7 +88,7 @@ public class MemberController {
 	@GetMapping("/findIdForm")
 	public String goFindId() {
 		
-		return"member/find_id";
+		return"member/find_id_form";
 	}
 	//아이디 찾기
 	@PostMapping("/findId")
@@ -97,7 +97,12 @@ public class MemberController {
 		
 		return"member/goLogin";
 	}
-	
+	//비밀번호 찾기 화면으로 이동
+	@GetMapping("/findPwForm")
+	public String goFindPw() {
+			
+		return"member/find_pw_form";
+	}
 	
 	
 	//아이디 중복체크

@@ -29,8 +29,8 @@ $(document).ready(function(){
 	
 
      /*Password찾기*/
-    findPw = function(){
-    	
+    findPwForm = function(){
+    	location.href='/member/findPwForm'
     }
  	
 })(jQuery);
