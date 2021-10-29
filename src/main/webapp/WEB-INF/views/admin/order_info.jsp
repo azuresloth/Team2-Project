@@ -17,6 +17,7 @@
 </head>
 <body>
 <div class="container">
+<form action="">
 	<div class="row">
 		<div class="col-2">
 			날짜검색
@@ -28,9 +29,10 @@
 			<input type="date" id="endDate">
 		</div>
 		<div class="col-1 btn-group">
-			<input type="submit" value="검색" class="form-control btn btn-primary" id="serchBtn">
+			<input type="button" value="검색" class="form-control btn btn-primary" id="serchBtn">
 		</div>
 	</div>
+</form>
 </div>
 <div>
 	<table class="table text-center mt-3">
@@ -45,7 +47,7 @@
 			  <th scope="col">변경</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="orderListDiv">
 			<c:forEach items="${orderList }" var="orderInfo">
 			<tr>
 				<td>${orderInfo.id}</td>

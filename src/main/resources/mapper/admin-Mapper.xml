@@ -157,6 +157,9 @@
 		, PAYMENT_PLAN
 		, BUY_STATUS
 		FROM ORDER_INFO
+		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
+		WHERE BUY_DATE BETWEEN #{startDate} AND #{endDate}  
+		</if>
 	</select>
 	
 	<select id="selectStatus" resultMap="status">
@@ -170,6 +173,9 @@
 		SET BUY_STATUS = #{statusName}
 		WHERE BUY_CODE = #{buyCode}
 	</update>
+
+
+
 
 </mapper>
 

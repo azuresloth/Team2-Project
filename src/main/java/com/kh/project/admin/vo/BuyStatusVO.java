@@ -1,6 +1,6 @@
 package com.kh.project.admin.vo;
 
-public class BuyStatusVO {
+public class BuyStatusVO extends SerchVO{
 	private int statusNum;
 	private String statusName;
 	

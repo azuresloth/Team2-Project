@@ -81,6 +81,11 @@ public class AdminServiceImpl implements AdminService{
 		sqlSession.update("adminMapper.updateStatus", orderInfoVO);
 	}
 
+	@Override
+	public List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO) {
+		return sqlSession.selectList("adminMapper.selectOrderList", orderInfoVO);
+	}
+
 	
 
 

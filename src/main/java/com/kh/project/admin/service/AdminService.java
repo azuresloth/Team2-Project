@@ -44,4 +44,6 @@ public interface AdminService {
 	//상태업데이트
 	void updateStatus(OrderInfoVO orderInfoVO);
 	
+	List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO);
+	
 }

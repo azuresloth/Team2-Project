@@ -161,6 +161,12 @@ public class AdminController {
 		adminService.updateStatus(orderInfoVO);
 	}
 	
+	@ResponseBody
+	@PostMapping("/serchDateAjax")
+	public List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO){
+		return adminService.serchDate(orderInfoVO);
+	}
+	
 	
 }
 
