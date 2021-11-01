@@ -18,10 +18,19 @@ $(document).ready(function(){
 		$('#totalCnt').text(cnt);
 	}); 
 	
-
-})
+	$('#itemForm').attr('onsubmit', 'return false');
+});
 
 /* 함수선언 영역*/
 (function($){
-	
+	goCartBtn = function(){
+		$('#itemForm').attr('onsubmit', 'return true');
+		$('#itemForm').attr('action', '/cart/goCartList');
+		$('#itemForm').submit()
+	};
+	goDirectBtn = function(){
+		$('#itemForm').attr('onsubmit', 'return true');
+		$('#itemForm').attr('action', '/cart/goPurchasePage');
+		$('#itemForm').submit()
+	};
 })(jQuery);

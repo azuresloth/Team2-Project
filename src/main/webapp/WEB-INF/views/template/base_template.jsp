@@ -78,7 +78,7 @@ body {
   transition-duration: 0.4s;
   cursor: pointer;
 }
-.blackButton {
+.blackButton, .blackButton2 {
   background-color: #555555;
   color: white;
   border: 2px solid white;
@@ -89,6 +89,12 @@ body {
   color: black;
   border: 2px solid #555555;
 }
+.blackButton2:hover {
+  color: black;
+  border: 2px solid #555555;
+}
+
+
 .submitButton{
 	display: table;
 	margin: 20px auto;

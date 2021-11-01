@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 모든 SQL문을 mapper태그 안에 작성 -->
+<mapper namespace="cartMapper">
+
+	<resultMap type="com.kh.project.cart.vo.CartViewVO" id="cartView">
+		<id column="CART_CODE" property="cartCode"/>
+		<result column="ITEM_CODE" property="itemCode"/>
+		<result column="ITEM_NAME" property="itemName"/>
+		<result column="ITEM_PRICE" property="itemPrice"/>
+		<result column="TOTAL_PRICE" property="totalPrice"/>
+		<result column="ATTACHED_IMG_NAME" property="attachedImgName"/>
+		<result column="ITEM_CNT" property="itemCnt"/>
+		<result column="ID" property="id"/>
+		<result column="CART_DATE" property="cartDate"/>
+	</resultMap>
+	<resultMap type="com.kh.project.cart.vo.BuyInfoVO" id="buyInfo">
+		<id column="BUY_CODE"	property=""/>
+		<result column=""		property=""/>
+	</resultMap>
+
+	<insert id="insertCart">
+		INSERT INTO ITEM_CART(
+			CART_CODE
+			, ITEM_CODE
+			, ITEM_CNT
+			, ID
+		) VALUES (
+			(SELECT 'CART_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(CART_CODE, 6, 4))), 0) + 1, 4, '0')
+         	 FROM ITEM_CART)
+			, #{itemCode}
+			, #{itemCnt}
+			, #{id}
+		)
+	</insert>
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

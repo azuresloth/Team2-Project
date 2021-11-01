@@ -95,8 +95,8 @@
 						<c:otherwise>
 							<c:forEach items="${itemList}" var="itemInfo">
 								<div class="col-3">
-									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
-									<a>${itemInfo.itemName}</a>
+									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}">${itemInfo.itemName}</a>
 									<div>${itemInfo.itemPrice}원</div>
 								</div>
 							</c:forEach>

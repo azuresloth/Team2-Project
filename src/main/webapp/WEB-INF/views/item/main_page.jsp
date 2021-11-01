@@ -82,8 +82,8 @@
 				<div class="swiper-wrapper">
 					<c:forEach items="${bestItemList}" var="bestItemInfo">
 						<div class="swiper-slide">
-							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}"><img src="/resources/images/item/itemImages/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
-							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}">${bestItemInfo.itemName}</a>
+							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
+							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}">${bestItemInfo.itemName}</a>
 							<div>${bestItemInfo.itemPrice}</div>
 						</div>
 					</c:forEach>
@@ -109,8 +109,8 @@
 				<div class="swiper-wrapper">
 					<c:forEach items="${recentItemList}" var="recentItemInfo">
 						<div class="swiper-slide">
-							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}"><img src="/resources/images/item/itemImages/${recentItemInfo.imgList[0].attachedImgName}"></img></a>
-							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}">${recentItemInfo.itemName}</a>
+							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${recentItemInfo.imgList[0].attachedImgName}"></img></a>
+							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}">${recentItemInfo.itemName}</a>
 							<div>${recentItemInfo.itemPrice}</div>
 						</div>
 					</c:forEach>

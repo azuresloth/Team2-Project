@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=2"></script>
+<link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=2">
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=3"></script>
 </head>
 <body>
 	<div class="row">
@@ -44,8 +44,10 @@
 		
 		
 		<div class="col-5 itemInfoDiv">
+		<form action="" method="post" onsubmit="return false" id="itemForm">
 			<div class="col-12 nameDiv">
 				<h2>${itemInfo.itemName}</h2>
+				<input type="hidden" name="itemCode" value="itemInfo.itemName">
 			</div>
 			<div class="col-12 priceDiv">
 				<input type="hidden" id="itemPrice" value="${itemInfo.itemPrice}">
@@ -69,22 +71,25 @@
 					</tbody>
 				</table>
 			</div>
+			<div class="col-12 introDiv">
+				<span class="introSpan">${itemInfo.itemIntro}</span>
+			</div>
 			<div class="col-12 itemCntDiv">
 				<div class="cntDiv">
 					수량
 				</div>
 				<table class="cntTable">
 					<colgroup>
-						<col width="50%">
-						<col width="25%">
-						<col width="25%">
+						<col width="60%">
+						<col width="20%">
+						<col width="20%">
 					</colgroup>
 					<tr>
 						<td>
 							<p>${itemInfo.itemName}</p>
 						</td>
 						<td class="itemCnt">
-							<input class="itemCnt" id="cnt" type="number" min="0" max="${itemInfo.itemStock}" value="1">개
+							<input class="itemCnt" id="cnt" type="number" min="0" max="${itemInfo.itemStock}" value="1" name="itemCnt">개
 						</td>
 						<td class="itemCnt right">
 							<span class="priceCnt">
@@ -101,6 +106,11 @@
 					<span class="totalCnt">(<strong id="totalCnt">1</strong>)개</span>
 				</span>
 			</div>
+			<div class="col-12 justify-content-center text-center mt-2">
+				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" onclick="goCartBtn();">장바구니 추가</button>
+				<button type="button" class="btn btn-outline-secondary btn-lg directBtn" onclick="goDirectBtn();">바로구매</button>
+			</div>
+			</form>
 		</div>
 	</div>
 </body>

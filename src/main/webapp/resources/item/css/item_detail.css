@@ -3,9 +3,12 @@
 .path{
 	margin-bottom: 40px;
 }
-.priceDiv, .deliveryTable, .cntDiv, .itemCntDiv{
+.priceDiv, .deliveryTable, .cntDiv, .itemCntDiv, .introDiv{
 	border-bottom: 1px solid #ededed;
 	padding-bottom: 10px;
+}
+.itemInfoDiv{
+	border-bottom: 1px solid #ededed;
 }
 .priceSpan{
 	font-size: 34px;
@@ -59,5 +62,14 @@ p{
 }
 .totalPrice{
 	font-size: 18px;
-	
+}
+.introDiv{
+	line-height: 50px;
+	vertical-align: middle;
+}
+.introSpan{
+	vertical-align: middle;
+}
+.cartBtn, .directBtn{
+	margin: 10px;
 }
