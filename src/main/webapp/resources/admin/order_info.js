@@ -18,28 +18,34 @@ $(document).ready(function(){
             data:{'startDate':startDate, 'endDate':endDate}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
             success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
                //ajax 실행 성공 후 실행할 코드 작성
+        		
+        		var statusInfo = result.statusInfo;
+        		var selectBySerchDateList = result.selectBySerchDateList;
+
         		var str = '';
-            	$(result).each(function(index, element){
+            	$(selectBySerchDateList).each(function(index, element1){
             		$('#orderListDiv').empty();
-            		alert(result)
             		str += '<tr>';
-            		str += '	<td>' + element.id + '</td>';
-            		str += '	<td>' + element.itemName + '</td>';
-            		str += '	<td>' + element.totalPrice + '</td>';
-            		str += '	<td>' + element.paymentPlan + '</td>';
-            		str += '	<td class="next">' + element.buyDate + '</td>';
-            		str += '<td><input type="hidden" value="${orderInfo.buyCode }"><input type="button" value="변경" class="update"></td>';
+            		str += '	<td>' + element1.id + '</td>';
+            		str += '	<td>' + element1.itemName + '</td>';
+            		str += '	<td>' + element1.totalPrice + '</td>';
+            		str += '	<td>' + element1.paymentPlan + '</td>';
+            		str += '	<td class="next">' + element1.buyDate + '</td>';
+            		str += '	<td class="next">'+ '<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">';
+								 $(statusInfo).each(function(index, element2){
+										if(element2.statusName == element1.buyStatus){
+												str += '<option value="'+ element2.statusName + '" selected>' + element2.statusName + '</option>'
+										}
+										
+										else{
+											str += '<option value="'+ element2.statusName + '">' + element2.statusName + '</option>'
+										}
+								});
+            		str +=	'</select>'+'</td>';
+            		str += '<td><input type="hidden" value="'+ element1.buyCode + '"><input type="button" value="변경" class="update"></td>';
             		str += '</tr>';
             		$('#orderListDiv').append(str);
-            		
-            		$('.next').after('<td><select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">'
-            			+ '<c:forEach' + 'items="${statusInfo }" var="status">' + 
-            					'<option' + 'value="${status.statusName }"' + '<c:if test="${status.statusName eq orderInfo.buyStatus }">selected</c:if> >' +
-            					element.buyStatus +'</option>'+
-            				'</c:forEach>'
-            		+'</td>');
             	});
-            	
             },
             error: function(){
              //ajax 실행 실패 시 실행되는 구간

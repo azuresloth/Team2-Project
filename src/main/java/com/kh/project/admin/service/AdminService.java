@@ -6,6 +6,7 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
 
 public interface AdminService {
@@ -36,7 +37,7 @@ public interface AdminService {
 	List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO);
 	
 	//주문정보조회
-	List<OrderInfoVO> selectOderInfoList();
+	List<OrderInfoVO> selectOderInfoList(OrderInfoVO orderInfoVO);
 	
 	//상태 조회
 	List<BuyStatusVO> selectStatus();

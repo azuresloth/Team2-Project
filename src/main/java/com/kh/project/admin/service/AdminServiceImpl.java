@@ -1,6 +1,8 @@
 package com.kh.project.admin.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
 
 @Service("adminService")
@@ -67,8 +70,10 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<OrderInfoVO> selectOderInfoList() {
-		return sqlSession.selectList("adminMapper.selectOrderList");
+	public List<OrderInfoVO> selectOderInfoList(OrderInfoVO orderInfoVO) {
+		orderInfoVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRow", orderInfoVO));
+		
+		return sqlSession.selectList("adminMapper.selectOrderList", orderInfoVO);
 	}
 
 	@Override
@@ -83,6 +88,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO) {
+		orderInfoVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRow", orderInfoVO));
 		return sqlSession.selectList("adminMapper.selectOrderList", orderInfoVO);
 	}
 

@@ -1,6 +1,8 @@
 package com.kh.project.admin.vo;
 
-public class SerchVO {
+import com.kh.project.board.vo.PageVO;
+
+public class SerchVO extends PageVO{
 	private String startDate;
 	private String endDate;
 	

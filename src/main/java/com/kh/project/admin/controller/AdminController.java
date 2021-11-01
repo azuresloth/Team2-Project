@@ -3,8 +3,10 @@ package com.kh.project.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -22,6 +24,7 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.item.vo.ImgVO;
 import com.kh.project.item.vo.ItemVO;
@@ -155,10 +158,11 @@ public class AdminController {
 		return "admin/month_sales";
 	}
 	@GetMapping("/selectOrderInfo")
-	public String selectOrderInfo(Model model) {
+	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO) {
 		model.addAttribute("sidePage", "selectOrderInfo");
 		model.addAttribute("statusInfo", adminService.selectStatus());
-		model.addAttribute("orderList", adminService.selectOderInfoList());
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		model.addAttribute("orderInfoVO", orderInfoVO);
 		return "admin/order_info";
 	}
 	
@@ -170,8 +174,12 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/serchDateAjax")
-	public List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO){
-		return adminService.serchDate(orderInfoVO);
+	public Map<String, Object> serchDate(OrderInfoVO orderInfoVO){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("statusInfo", adminService.selectStatus());
+		map.put("selectBySerchDateList", adminService.serchDate(orderInfoVO));
+		
+		return map;
 	}
 	
 	

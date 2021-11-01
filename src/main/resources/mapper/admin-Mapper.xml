@@ -52,7 +52,6 @@
 	</resultMap>
 	
 	
-	
 	<insert id="insertCategory">
 		INSERT INTO CATEGORY (
 			CATE_CODE
@@ -148,18 +147,33 @@
 	
 	<!-- 주문정보조회 -->
 	<select id="selectOrderList" resultMap="order">
-		SELECT BUY_CODE
-		, ITEM_NAME
-		, TOTAL_PRICE
-		, BUY_CNT
-		, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
-		, ID
-		, PAYMENT_PLAN
-		, BUY_STATUS
-		FROM ORDER_INFO
+		SELECT RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS
+		FROM (
+			SELECT ROWNUM RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS
+			FROM (
+					SELECT BUY_CODE
+					, ITEM_NAME
+					, TOTAL_PRICE
+					, BUY_CNT
+					, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
+					, ID
+					, PAYMENT_PLAN
+					, BUY_STATUS
+					FROM ORDER_INFO
+					
+					<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
+					WHERE BUY_DATE BETWEEN #{startDate} AND #{endDate}  
+					</if> 
+				)
+			)
+		WHERE RNUM BETWEEN #{startRow} and #{endRow}
+	</select>
+	
+	<select id="getTotalRow" resultType="int">
+		SELECT COUNT(BUY_CODE) FROM ORDER_INFO
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
 		WHERE BUY_DATE BETWEEN #{startDate} AND #{endDate}  
-		</if>
+		</if> 
 	</select>
 	
 	<select id="selectStatus" resultMap="status">
