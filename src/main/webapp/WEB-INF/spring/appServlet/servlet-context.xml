@@ -78,6 +78,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/item/categoryPage"/>
+			<mapping path="/item/itemDetail"/>
 			<beans:ref bean="ItemPathInterceptor"/>
 		</interceptor>
 	</interceptors>

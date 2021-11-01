@@ -95,7 +95,7 @@
 						<c:otherwise>
 							<c:forEach items="${itemList}" var="itemInfo">
 								<div class="col-3">
-									<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+									<a><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
 									<a>${itemInfo.itemName}</a>
 									<div>${itemInfo.itemPrice}원</div>
 								</div>

@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+.path{
+	margin-bottom: 40px;
+}
+.priceDiv, .deliveryTable, .cntDiv, .itemCntDiv{
+	border-bottom: 1px solid #ededed;
+	padding-bottom: 10px;
+}
+.priceSpan{
+	font-size: 34px;
+}
+.itemInfoDiv{
+	padding-left: 50px;
+}
+.nameDiv{
+	padding-bottom: 20px;
+}
+.deliveryTable{
+	width: 100%;
+	font-size: 13px;
+	color: #555555;
+}
+.cntDiv{
+	display: inline-block;
+	font-size: 20px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.cntTable{
+	width: 100%;
+	font-size: 20px;
+	vertical-align: middle;
+}
+.itemCnt{
+	font-size: 14px;
+}
+th, td {
+	padding: 7px 7px 7px 0;
+	vertical-align: middle;
+}
+p{
+	height: 100%;
+	margin: 0;
+	vertical-align: middle;
+}
+.right{
+	text-align: right;
+}

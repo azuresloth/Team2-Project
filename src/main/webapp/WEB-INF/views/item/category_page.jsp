@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="/resources/item/css/category_page.css?ver=1">
 </head>
 <body>
-	카테고리 페이지 입니다.
 	<div class="row">
 		<div class="col">
 			<div class="row">
@@ -35,7 +34,7 @@
 						<div class="swiper-wrapper">
 							<c:forEach items="${bestItemList}" var="bestItemInfo">
 								<div class="swiper-slide">
-									<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}"><img src="/resources/images/item/sample/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
+									<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}"><img src="/resources/images/item/itemImages/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
 									<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}">${bestItemInfo.itemName}</a>
 									<div>${bestItemInfo.itemPrice}</div>
 								</div>
@@ -54,8 +53,8 @@
 					<div class="row">
 						<c:forEach items="${itemList}" var="itemInfo">
 							<div class="col-3 mt-5">
-								<a><img src="/resources/images/item/sample/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
-								<a>${itemInfo.itemName}</a>
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}">${itemInfo.itemName}</a>
 								<div>${itemInfo.itemPrice}원</div>
 							</div>
 						</c:forEach>
