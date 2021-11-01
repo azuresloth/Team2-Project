@@ -31,6 +31,13 @@ $(document).ready(function(){
             		str += '<td><input type="hidden" value="${orderInfo.buyCode }"><input type="button" value="변경" class="update"></td>';
             		str += '</tr>';
             		$('#orderListDiv').append(str);
+            		
+            		$('.next').after('<td><select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">'
+            			+ '<c:forEach' + 'items="${statusInfo }" var="status">' + 
+            					'<option' + 'value="${status.statusName }"' + '<c:if test="${status.statusName eq orderInfo.buyStatus }">selected</c:if> >' +
+            					element.buyStatus +'</option>'+
+            				'</c:forEach>'
+            		+'</td>');
             	});
             	
             },
