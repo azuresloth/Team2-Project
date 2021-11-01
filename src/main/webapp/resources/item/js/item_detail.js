@@ -14,6 +14,8 @@ $(document).ready(function(){
 		
 		var totalPrice = cnt * price;
 		$('#cntPrice').text(totalPrice.toLocaleString());
+		$('#totalPrice').text(totalPrice.toLocaleString());
+		$('#totalCnt').text(cnt);
 	}); 
 	
 

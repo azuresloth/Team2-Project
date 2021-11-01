@@ -130,8 +130,8 @@
 		autoplay : {
 			delay : 2500,
 			disableOnInteraction : false,
+			loop : true,
 		},
-		loop : true,
 		pagination : {
 			el : ".swiper-pagination",
 			clickable : true,
@@ -150,7 +150,6 @@
 			disableOnInteraction : true,
 			loop : true,
 		},
-			loop : true,
 		pagination : {
 			el : ".swiper-pagination",
 			clickable : true,

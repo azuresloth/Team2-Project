@@ -47,3 +47,17 @@ p{
 .right{
 	text-align: right;
 }
+.totalPriceDiv {
+	padding: 19px 14px 19px 14px;
+	color: #353535;
+    vertical-align: middle;
+    background: #f7f7f7;
+    line-height: 30px;
+}
+.totalPriceSpan{
+	float: right;
+}
+.totalPrice{
+	font-size: 18px;
+	
+}

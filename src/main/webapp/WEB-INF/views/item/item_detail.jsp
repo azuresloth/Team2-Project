@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=2"></script>
 </head>
 <body>
 	<div class="row">
@@ -93,6 +93,13 @@
 						</td>
 					</tr>
 				</table>
+			</div>
+			<div class="col-12 totalPriceDiv">
+				<strong>합계 금액</strong>
+				<span class="totalPriceSpan">
+					<span id="totalPrice" class="totalPrice"><strong><strong id="totalPrice"><fmt:formatNumber type="number" >${itemInfo.itemPrice}</fmt:formatNumber></strong></strong></span><strong>원</strong>
+					<span class="totalCnt">(<strong id="totalCnt">1</strong>)개</span>
+				</span>
 			</div>
 		</div>
 	</div>

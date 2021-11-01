@@ -73,7 +73,6 @@
 			disableOnInteraction : true,
 			loop : true,
 		},
-			loop : true,
 		pagination : {
 			el : ".swiper-pagination",
 			clickable : true,
