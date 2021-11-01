@@ -26,6 +26,11 @@ public class FeedbackServiceImpl implements FeedbackService{
 		sqlSession.insert("feedbackMapper.insert", feedbackVO);
 	}
 
+	@Override
+	public void updateFeedback(FeedbackVO feedbackVO) {
+		sqlSession.update("feedbackMapper.updateFeedback", feedbackVO);
+	}
+
 
 
 

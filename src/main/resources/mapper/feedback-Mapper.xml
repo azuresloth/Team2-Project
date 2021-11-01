@@ -42,6 +42,19 @@
 		WHERE ITEM_CODE = #{itemCode}
 		ORDER BY CREATE_DATE DESC
 	</select>
+	
+	<!-- feedback 수정하기 -->
+	<update id="updateFeedback">
+		UPDATE FEEDBACK
+		SET	TITLE = #{title}
+			, CONTENT = #{content}
+			<if test="attachedFileName != null and !attachedFileName.equals('')">
+			, ATTACHED_FILE_NAME = #{attachedFileName}
+			, ORIGINAL_FILE_NAME = #{originalFileName}
+			</if>
+			, CREATE_DATE = SYSDATE
+		WHERE FB_CODE = #{fbCode}
+	</update>
 </mapper>
 
 

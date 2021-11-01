@@ -11,4 +11,7 @@ public interface FeedbackService {
 	
 	// 후기등록
 	void insert(FeedbackVO feedbackVO);
+	
+	// 후기 수정 
+	void updateFeedback(FeedbackVO feedbackVO);
 }

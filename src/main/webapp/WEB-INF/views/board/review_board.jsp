@@ -41,8 +41,8 @@ $(document).ready(function(){
 					str += "아직등록된 상품후기가 없습니다.";
 				}else{
 					// 데이터가 있으면 태그를 만들어준다.
+					str += "<div id='feedbackDiv'>";
 					str += "<h2> 아작스 작성자 상품 후기</h2>";
-					str += "<div>";
 					
 					$(result).each(function(index,element){
 					str += "<div class='feedbackTr' style='border: 1px solid black;'>";
@@ -54,7 +54,7 @@ $(document).ready(function(){
 					//str += new Date(element.createDate);
 					str += "<div class='feedbackTdId'>작성자 : <span>" + element.id + "</span></div>";
 					str += "<div><input type='button' class='btn btn btn-secondary updateBtn'  value='수정'></div>";
-					str += "<div><input type='button' class='btn btn btn-secondary' value='삭제'></div>";
+					str += "<div><input type='button' class='btn btn btn-secondary' value='삭제' onclick='deleteFeedback(" + element.fbCode + ")'></div>";
 					
 					str += "</div>";
 					str += "<div style='border: 1px solid black;'>";
@@ -79,7 +79,7 @@ $(document).ready(function(){
 	} // showFeedbackList 끝.
 	// 후기 목록 뿌리기 함수 실행
 	showFeedbackList(itemCode);
-	
+	//-------------------------------------------------------------------------
 	// updateBtn 클릭 시
 	$(document).on("click",".updateBtn",function(){
 		var fbCode = $(this).parent().prev().prev().prev().prev().val();
@@ -94,16 +94,18 @@ $(document).ready(function(){
 		row.empty();
 		var str = '';
 		
-		str += '<form  method="post" enctype="multipart/form-data" id="fileUploadForm">';
-		str += '<input type="hidden" value="'+ fbCode +'" name="itemCode">';
-		str += '<div>제목(상품후기) : <input type="text" value="' + title + '" name="title"></div>';
-		str += '<div>작성자(상품후기) : <input type="text" readonly value="' + id + '" name="id" ></div>';
+		str += '<form  method="post" enctype="multipart/form-data" class="updateFileUploadForm">';
+		str += '<input type="hidden" value="'+ fbCode +'" name="fbCode">';
+		str += '<div>제목(상품후기수정) : <input type="text" value="' + title + '" name="title"></div>';
+		str += '<div>작성자 : <input type="text" readonly value="' + id + '" name="id" ></div>';
 		str += '<div>날짜 : <input type="text" readonly value="' + date + '"></div>';
-		str += '<div>내용 (상품후기) : </div>';
-		str += '<div><textarea rows="10" cols="50" name="content">"' + content + '"</textarea></div>';
-		str += '<div>사진 첨부(상품후기) : <input type="file" name="file"></div>';
-		str += '<input type="submit" value="후기수정" id="btnSubmit">';
+		str += '<div>내용 (상품후기수정) : </div>';
+		str += '<div><textarea rows="10" cols="50" name="content">' + content + '</textarea></div>';
+		str += '<div>사진 첨부(상품후기수정) : <input type="file" name="file"></div>';
+		str += '<input type="submit" value="후기수정" class="updateFeedbackBtn">';
+		str += '<input type="button" value="취소" class="cancelFeedbackBtn">';
 		str += '</form>';
+		/* row 밑에 태그를 붙혀준다. */
  		row.append(str);
 		
 	});//끝
@@ -111,7 +113,7 @@ $(document).ready(function(){
 	
 	
 	// 상품 사진 포함 후기 등록
-	$("#btnSubmit").click(function (event) {         
+	$("#btninsertfeedback").click(function (event) {         
 		//preventDefault 는 기본으로 정의된 이벤트를 작동하지 못하게 하는 메서드이다. submit을 막음 
 		event.preventDefault();          
 	    // Get form         
@@ -128,23 +130,69 @@ $(document).ready(function(){
 	        contentType: false,      
 	        cache: false,           
 	        timeout: 600000,       
-	        success: function (result) { 
-// 	        	 //아이탬 코드 들고오는지 확인
-	        	showFeedbackList(result);
+	        success: function () { 
+// 	        	 //아이탬 코드는 전역변수로 설절되어 있음
+	        	showFeedbackList(itemCode);
 	        },          
 	        error: function (e) {  
 	        	console.log("ERROR : ", e);     
 // 	            alert("실패");      
 	         }     
 		});  
+	}); // 후기등록의 끝
+	
+	/* 후기수정에서 취소 눌리면 다시 목록을 뿌려주기 */
+	/* 취소 기능. */
+	$(document).on("click",".cancelFeedbackBtn",function(event){
+		$("#feedbackDiv").remove();
+		showFeedbackList(itemCode);
 	});
+	
+	// 후기 등록 수정하기
+	$(document).on("click",".updateFeedbackBtn",function(event){
+// 		alert("확인");
+		//preventDefault 는 기본으로 정의된 이벤트를 작동하지 못하게 하는 메서드이다. submit을 막음 
+		event.preventDefault();
+		// Get form         
+	    var form = $(this).parent()[0];  	    
+	    // Create an FormData object          
+	    var data = new FormData(form);  
+	    
+	    $.ajax({             
+	    	type: "POST",          
+	        enctype: 'multipart/form-data',  
+	        url: "/feedback/updateAjax",        
+	        data: data,          
+	        processData: false,    
+	        contentType: false,      
+	        cache: false,           
+	        timeout: 600000,       
+	        success: function () { 
+// 	        	 //아이탬 코드는 전역변수로 설정되어 있음
+	        	$("#feedbackDiv").remove();
+	    		showFeedbackList(itemCode);
+	        },          
+	        error: function (e) {  
+	        	console.log("ERROR : ", e);     
+// 	            alert("실패");      
+	         }     
+		});  
+		
+		
+	});
+	
+	
+	
+	
+	
+	
 	
 (function($){
 	/* 후기등록과 동시에 후기 폼을 닫아주기 */
 	feedBackInsertformClose = function(){
 		$('#feedBackInsertform').css("display", "none");
 	};
-	
+	// 날짜 형식
 	dateFormet = function(date){
 		result = new Date(date);
 		var yyyy = result.getFullYear();
@@ -153,7 +201,10 @@ $(document).ready(function(){
 		var hh = result.getHours();
 		var mi = result.getMinutes();
 		return yyyy + "." + mm + "." + dd + "(" + hh + ":" + mi + ")";
-	}	
+	} //날짜 형식 함수 끝	
+	
+	/* 후기 삭제 처리 */
+	
    
 })(jQuery);
 
@@ -167,19 +218,6 @@ $(document).ready(function(){
 		<input type="button" value="후기등록 열기/닫기" class="btn btn-primary" id="feedBackButton">
 	</div>
 
-	<ul class="list-group">
-		
-		<li class="list-group-item">
-			<form action="">
-				<div class="row feedbackRow">
-					<div class="col-2">
-						<img src="http://placehold.it/150x150" />
-					</div>
-				</div>
-			</form>
-		</li>
-		
-	</ul>
 
 	<div id="feedBackInsertform" style="display: none;">
 		<form  method="post" enctype="multipart/form-data" id="fileUploadForm">
@@ -189,7 +227,7 @@ $(document).ready(function(){
 			<div>내용 (상품후기) : </div>
 			<div><textarea rows="10" cols="50" name="content"></textarea></div>
 			<div>사진 첨부(상품후기) : <input type="file" name="file"></div>	
-			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btnSubmit">
+			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btninsertfeedback">
 		</form>
 	</div>
 	
