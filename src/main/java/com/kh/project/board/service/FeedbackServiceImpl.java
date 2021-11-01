@@ -31,6 +31,11 @@ public class FeedbackServiceImpl implements FeedbackService{
 		sqlSession.update("feedbackMapper.updateFeedback", feedbackVO);
 	}
 
+	@Override
+	public void deleteFeedback(String fbCode) {
+		sqlSession.delete("feedbackMapper.deleteFeedback", fbCode);
+	}
+
 
 
 

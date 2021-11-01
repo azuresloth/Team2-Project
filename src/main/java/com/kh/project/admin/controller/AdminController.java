@@ -77,7 +77,9 @@ public class AdminController {
 		// 호연씨 수업 컴
 		//String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 병준씨 수업 컴
-		String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		//String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		// 준호햄 노트북
+		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		
 		//모든 첨부파일 정보가 들어갈 변수
 		List<ImgVO> imgList = new ArrayList<>();

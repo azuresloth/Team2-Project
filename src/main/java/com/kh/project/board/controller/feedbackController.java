@@ -76,7 +76,8 @@ public class feedbackController {
 			// 확인
 			System.out.println("확인(file.getOriginalFilename()) :"+ file.getOriginalFilename());
 			
-			if(file.getOriginalFilename() != null && !file.getOriginalFilename().contentEquals("")) {
+			if(fileName.equals("file")) {
+				
 				String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
 				
 				String uploadFile = uploadPath + attachedFileName;
@@ -104,5 +105,16 @@ public class feedbackController {
 
 		return "board/review_board";
 	}
+	
+	@ResponseBody
+	@PostMapping("/deleteFeedbackAjax")
+	public void deleteFeedbackAjax(String fbCode) {
+		System.out.println("deleteFeedbackAjax().fdCode : " + fbCode);
+		feedbackService.deleteFeedback(fbCode);
+	}
+	
+	
+	
+	
 
 }

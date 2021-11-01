@@ -25,7 +25,7 @@
 .aaa{
 	background-color: aqua;
 }
-.container-fluid{
+.container-fluid{ 
 	width: 90%;
 	
 }

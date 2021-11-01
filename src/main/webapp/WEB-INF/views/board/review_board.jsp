@@ -37,7 +37,7 @@ $(document).ready(function(){
 // 				//태그 채우기
 				var str = "";
 				// 결과는 리스트(배열로 들어온다.)
-				if(result == null){
+				if(result == ''){
 					str += "아직등록된 상품후기가 없습니다.";
 				}else{
 					// 데이터가 있으면 태그를 만들어준다.
@@ -54,7 +54,9 @@ $(document).ready(function(){
 					//str += new Date(element.createDate);
 					str += "<div class='feedbackTdId'>작성자 : <span>" + element.id + "</span></div>";
 					str += "<div><input type='button' class='btn btn btn-secondary updateBtn'  value='수정'></div>";
-					str += "<div><input type='button' class='btn btn btn-secondary' value='삭제' onclick='deleteFeedback(" + element.fbCode + ")'></div>";
+					str += "<div><input type='hidden' value='"+element.fbCode+"'></div>";
+					//str += "<div><input type='button' class='btn btn btn-secondary' value='삭제' onclick='deleteFeedback(\'"        +element.fbCode+ "\');'></div>";
+					str += "<div><input type='button' class='btn btn btn-secondary' value='삭제' onclick='deleteFeedback(\"" +element.fbCode+ "\");'></div>";
 					
 					str += "</div>";
 					str += "<div style='border: 1px solid black;'>";
@@ -132,6 +134,7 @@ $(document).ready(function(){
 	        timeout: 600000,       
 	        success: function () { 
 // 	        	 //아이탬 코드는 전역변수로 설절되어 있음
+				$("#feedbackDiv").remove();
 	        	showFeedbackList(itemCode);
 	        },          
 	        error: function (e) {  
@@ -181,8 +184,27 @@ $(document).ready(function(){
 		
 	});
 	
+	/* 후기 삭제 처리 */
+	deleteFeedback = function(fbCode){
+		$.ajax({
+			url:'/feedback/deleteFeedbackAjax',
+			type:'post',
+			data:{'fbCode':fbCode},
+			// result는 콘트롤러에서 넘어오는 객체이다
+			//ajax 실행 성공 후 실행 할 코드 작성
+			success:function(result){
+				$("#feedbackDiv").remove();
+	    		showFeedbackList(itemCode);
+			},
+			error:function(){
+				//ajax 실행 실패 시 실행되는 구간
+				alert("실패");
+			}
+		});
+	};
 	
 	
+});  // 실행 시 실행되는 구간 끝
 	
 	
 	
@@ -203,15 +225,14 @@ $(document).ready(function(){
 		return yyyy + "." + mm + "." + dd + "(" + hh + ":" + mi + ")";
 	} //날짜 형식 함수 끝	
 	
-	/* 후기 삭제 처리 */
 	
    
 })(jQuery);
 
-});  
 </script>
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<h1>상품 상세 보기 페이지</h1>
 	<h2>후기 등록하기</h2>
 	<div>
@@ -230,7 +251,5 @@ $(document).ready(function(){
 			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btninsertfeedback">
 		</form>
 	</div>
-	
-	                
 </body>
 </html>

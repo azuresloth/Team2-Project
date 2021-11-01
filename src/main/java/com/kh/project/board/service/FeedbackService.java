@@ -14,4 +14,7 @@ public interface FeedbackService {
 	
 	// 후기 수정 
 	void updateFeedback(FeedbackVO feedbackVO);
+	
+	// 후기 삭제 
+	void deleteFeedback(String fbCode);
 }

@@ -55,6 +55,12 @@
 			, CREATE_DATE = SYSDATE
 		WHERE FB_CODE = #{fbCode}
 	</update>
+	
+	<!-- 후기 삭제 처리 -->
+	<delete id="deleteFeedback">
+		DELETE FEEDBACK
+		WHERE FB_CODE = #{fbCode}
+	</delete>
 </mapper>
 
 
