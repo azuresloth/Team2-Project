@@ -55,6 +55,7 @@
 				<td>${orderInfo.totalPrice}</td>
 				<td>${orderInfo.paymentPlan}</td>
 				<td>${orderInfo.buyDate}</td>
+				<td>${orderInfo.buyStatus}</td>
 				<td>
 					<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
 						<c:forEach items="${statusInfo }" var="status">

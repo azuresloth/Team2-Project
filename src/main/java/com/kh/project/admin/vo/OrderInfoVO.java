@@ -1,5 +1,6 @@
 package com.kh.project.admin.vo;
 
+
 public class OrderInfoVO  extends BuyStatusVO{
 	private String buyCode;
 	private String itemCode;
@@ -10,6 +11,8 @@ public class OrderInfoVO  extends BuyStatusVO{
 	private String itemName;
 	private String paymentPlan;
 	private String buyStatus;
+	
+	
 	
 	public String getBuyStatus() {
 		return buyStatus;

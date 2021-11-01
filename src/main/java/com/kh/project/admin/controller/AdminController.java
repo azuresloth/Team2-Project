@@ -72,9 +72,9 @@ public class AdminController {
 		
 		//첨부될 폴더 지정 
 		// 호연씨 수업 컴
-		//String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 병준씨 수업 컴
-		String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		//String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		
 		//모든 첨부파일 정보가 들어갈 변수
 		List<ImgVO> imgList = new ArrayList<>();
@@ -88,22 +88,26 @@ public class AdminController {
 			try {
 				//다중첨부
 				if(inputName.equals("file2")) {
-					List<MultipartFile> fileList = multi.getFiles(inputName);
-					
-					for(MultipartFile file : fileList) {
-						String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
-						String uploadFile = uploadPath + attachedFileName;
-						file.transferTo(new File(uploadFile));
+					if(inputName.equals("")) {
+						System.out.println("!!!!!!!!!!!!!1");
+						List<MultipartFile> fileList = multi.getFiles(inputName);
 						
-						ImgVO img = new ImgVO();
-						img.setImgCode("IMG_" + String.format("%03d", nextImgCode++));
-						img.setOriginImgName(file.getOriginalFilename());
-						img.setAttachedImgName(attachedFileName);
-						img.setItemCode(itemCode);
-						img.setIsMain("N");
-						
-						imgList.add(img);
+						for(MultipartFile file : fileList) {
+							String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+							String uploadFile = uploadPath + attachedFileName;
+							file.transferTo(new File(uploadFile));
+							
+							ImgVO img = new ImgVO();
+							img.setImgCode("IMG_" + String.format("%03d", nextImgCode++));
+							img.setOriginImgName(file.getOriginalFilename());
+							img.setAttachedImgName(attachedFileName);
+							img.setItemCode(itemCode);
+							img.setIsMain("N");
+							
+							imgList.add(img);
+						}
 					}
+					
 				}
 				//단일첨부
 				else {

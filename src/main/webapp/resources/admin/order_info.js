@@ -18,25 +18,19 @@ $(document).ready(function(){
             data:{'startDate':startDate, 'endDate':endDate}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
             success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
                //ajax 실행 성공 후 실행할 코드 작성
+        		var str = '';
             	$(result).each(function(index, element){
-            		alert(element.statusName);
             		$('#orderListDiv').empty();
-            		var str = '';
-            		
+            		alert(result)
             		str += '<tr>';
             		str += '	<td>' + element.id + '</td>';
             		str += '	<td>' + element.itemName + '</td>';
             		str += '	<td>' + element.totalPrice + '</td>';
             		str += '	<td>' + element.paymentPlan + '</td>';
-            		str += '	<td>' + element.buyDate + '</td>';
-            		str += '	<td>' + element.id + '</td>';
-            		str += '	<td>' + element.id + '</td>';
-            		str += '	<td>' + element.id + '</td>';
+            		str += '	<td class="next">' + element.buyDate + '</td>';
+            		str += '<td><input type="hidden" value="${orderInfo.buyCode }"><input type="button" value="변경" class="update"></td>';
             		str += '</tr>';
-            		
-            		
-            		
-            		
+            		$('#orderListDiv').append(str);
             	});
             	
             },
