@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -165,7 +166,7 @@ public class AdminController {
 		model.addAttribute("sidePage", "selectOrderInfo");
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
-		model.addAttribute("orderInfoVO", orderInfoVO);
+		model.addAttribute("orderVO", orderInfoVO);
 		return "admin/order_info";
 	}
 	
@@ -184,11 +185,12 @@ public class AdminController {
 		return map;
 	}
 	
-	@PostMapping("/serchDate")
+	@RequestMapping("/serchDate")
 	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO) {
 		model.addAttribute("sidePage", "selectOrderInfo");
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		model.addAttribute("orderVO", orderInfoVO);
 		return "admin/order_info";
 	}
 }

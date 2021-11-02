@@ -67,7 +67,7 @@
 	<div class="col">
 		<div class="input-group input-group">
 	  		<span class="input-group-text">With textarea</span>
-	  		<textarea class="form-control h-25" rows="15" aria-label="With textarea" name="itemIntro"></textarea>
+	  		<textarea class="form-control h-25" rows="15" name="itemIntro"></textarea>
 		</div>
 	</div>
 </div>
