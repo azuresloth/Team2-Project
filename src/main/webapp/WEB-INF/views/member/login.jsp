@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/login.js?ver1"></script>
+<script type="text/javascript" src="/resources/member/js/login.js?ver2"></script>
 <!-- 
 <script type="text/javascript">
 	
