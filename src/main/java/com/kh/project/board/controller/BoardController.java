@@ -71,10 +71,6 @@ public class BoardController {
 		
 		System.out.println("boardNum : " + boardNum + ", numForReadCnt : " + numForReadCnt);
 		
-		//-------------상품 후기 때문에 추가 함
-		String itemCode = boardNum;
-		model.addAttribute("feedbackList", feedbackService.feedbackList(itemCode));
-		
 		return "board/view";
 	}
 	

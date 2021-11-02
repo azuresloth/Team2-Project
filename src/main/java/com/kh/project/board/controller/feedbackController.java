@@ -42,12 +42,15 @@ public class feedbackController {
 			// 한개만 넘기니까 하나만 나온다.
 			String fileName = inputName.next();
 			MultipartFile file = multi.getFile(fileName);
-			String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
-
-			String uploadFile = uploadPath + attachedFileName;
-			file.transferTo(new File(uploadFile));
-			feedbackVO.setOriginalFileName(file.getOriginalFilename());
-			feedbackVO.setAttachedFileName(attachedFileName);
+			if(!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null) {
+				
+				String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
+				
+				String uploadFile = uploadPath + attachedFileName;
+				file.transferTo(new File(uploadFile));
+				feedbackVO.setOriginalFileName(file.getOriginalFilename());
+				feedbackVO.setAttachedFileName(attachedFileName);
+			}
 
 			System.out.println(feedbackVO); //
 
@@ -65,7 +68,7 @@ public class feedbackController {
 		// 여기는 인풋 박스에서 name 에 지정한 속성값이 들어간다. 여기서는 한개만 지정하였다.
 		Iterator<String> inputName = multi.getFileNames();
 
-		// 첨부될 폴더지정(현제는 집 컴퓨터 폴더)
+		// 첨부될 폴더지정(현제는 내 컴퓨터 폴더)
 		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
 
 		while (inputName.hasNext()) {
@@ -74,10 +77,9 @@ public class feedbackController {
 			MultipartFile file = multi.getFile(fileName);
 			// file이 null 이면 여기서 잡아준다.
 			// 확인
-			System.out.println("확인(file.getOriginalFilename()) :"+ file.getOriginalFilename());
+			System.out.println("확인(file.fileName()) :"+ fileName);
 			
-			if(fileName.equals("file")) {
-				
+			if(!file.getOriginalFilename().equals("") && file.getOriginalFilename() != null ) {
 				String attachedFileName = FileUploadUtil.getNowDateTime() + "_" + file.getOriginalFilename();
 				
 				String uploadFile = uploadPath + attachedFileName;

@@ -61,7 +61,10 @@ $(document).ready(function(){
 					str += "</div>";
 					str += "<div style='border: 1px solid black;'>";
 					str += "<div class='feedbackTdAttachedFileName'>";
-					str += "<img src='/resources/feedback/images/" + element.attachedFileName + "' height='100px'>";
+					if(element.attachedFileName != null){
+						str += "<img src='/resources/feedback/images/" + element.attachedFileName + "' height='100px'>";
+					};
+				
 					str += "</div>";
 					str += "<div class='feedbackTdContent'>" + element.content + "</div>";
 					str += "</div>";
@@ -247,7 +250,7 @@ $(document).ready(function(){
 			<div>작성자(상품후기) : <input type="text" name="id"></div>
 			<div>내용 (상품후기) : </div>
 			<div><textarea rows="10" cols="50" name="content"></textarea></div>
-			<div>사진 첨부(상품후기) : <input type="file" name="file"></div>	
+			<div>사진 첨부(상품후기) : <input type="file" name="file" required="required"></div>	
 			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btninsertfeedback">
 		</form>
 	</div>

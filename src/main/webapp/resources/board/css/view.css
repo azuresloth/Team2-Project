@@ -1,0 +1,27 @@
+@charset "UTF-8";
+.viewDiv{
+	margin-top: 50px;
+}
+.boardTitleDiv > div {
+	padding: 10px;
+	border-top: 1px solid #d7d6d6;
+	border-bottom: 1px solid #d7d6d6;
+}
+.boardTitleDiv > div:first-child {
+	background: #f9f9f9;
+}
+.boardInfoDiv > div{
+	padding: 10px;
+	border-bottom: 1px solid #d7d6d6;
+}
+.boardContentDiv > div {
+	padding: 10px;
+	border-bottom: 1px solid #d7d6d6;
+	height: 500px;
+}
+.boardTitleDiv > div:nth-child(even){
+	font-size: 1.5rem;
+}
+.boardInfoDiv > div:nth-child(odd) {
+	background: #f9f9f9;
+}

@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">	<!-- feedback.js -->
 <title>Insert title here</title>
+<link rel="stylesheet" href="/resources/board/css/view.css?ver=2">
 <script type="text/javascript" src="/resources/feedback/js/feedback.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -94,10 +95,6 @@ $(document).ready(function(){
 		var mi = result.getMinutes();
 		return yyyy + "." + mm + "." + dd + "(" + hh + ":" + mi + ")";
 	}		
-	
-	
-	
-	
    
 })(jQuery);
 
@@ -105,88 +102,76 @@ $(document).ready(function(){
 
 
 </script>
-<style type="text/css">
-#boardTable { text-align: center; }
-#boardTable tr { border-bottom: 1px solid black;}
-#boardTable td { padding: 30px; }
-#feedbackDiv { border: 1px solid black; }
-</style>
 </head>
 <body>
-	<h1>게시글 보기</h1>
-	<table id="boardTable">
-		<tr>
-			<td>게시글 번호</td>
-			<td id="itemCodeTd">${boardVO.boardNum }</td>
-		</tr>
-		<tr>
-			<td>조회수</td>
-			<td>${boardVO.readCnt }</td>
-		</tr>
-		<tr>
-			<td>작성일</td>
-			<td>
-				<fmt:formatDate value="${boardVO.createDate }" pattern="yyyy 년 M 월 dd 일 (h 시: m 분)"/>
-			</td>
-		</tr>
-		<tr>
-			<td>작성자</td>
-			<td>${boardVO.writer }</td>
-		</tr>
-		<tr>
-			<td>제목</td>
-			<td>${boardVO.title }</td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td>${boardVO.content }</td>
-		</tr>
-	</table>
-	<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}
-		&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">수정</a>
-	<a href="/board/delete?boardNum=${boardVO.boardNum }" class="btn btn-primary">삭제</a>
-	<a href="/board/boardList?page=${param.page }&perPageRowNum=${param.perPageRowNum}
-		&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">뒤로가기</a>
+	<!-- 새로운 디자인 -->
+	<div class="row justify-content-center viewDiv">
+		<div class="col-9">
+			<div class="row boardTitleDiv ">
+				<div class="col-2 d-flex align-items-center justify-content-center">제목</div>
+				<div class="col-10 text-start">${boardVO.title }</div>
+			</div>
+			<div class="row boardInfoDiv">
+				<div class="col-2 d-flex align-items-center justify-content-center">작성자</div>
+				<div class="col-2 d-flex align-items-center">${boardVO.writer }</div>
+				<div class="col-2 d-flex align-items-center justify-content-center">조회수</div>
+				<div class="col-2 d-flex align-items-center">${boardVO.readCnt }</div>
+				<div class="col-2 d-flex align-items-center justify-content-center">작성일</div>
+				<div class="col-2">
+					<div>
+						<fmt:formatDate value="${boardVO.createDate }" pattern="yyyy년 M월 dd일"/>
+					</div>
+					<div>
+						<fmt:formatDate value="${boardVO.createDate }" pattern="(h시:m분)"/>
+					</div>
+				</div>
+			</div>
+			<div class="row boardContentDiv">
+				<div class="col-12">${boardVO.content }</div>
+			</div>
+			<div class="m-2">
+				<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}
+					&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">수정</a>
+				<a href="/board/delete?boardNum=${boardVO.boardNum }" class="btn btn-primary">삭제</a>
+				<a href="/board/boardList?page=${param.page }&perPageRowNum=${param.perPageRowNum}
+					&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">뒤로가기</a>
+			</div>
+			
+			<div class="replyDiv">
+				<button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">댓글등록</button>
+				<div id="demo" class="collapse">
+					<div class="input-group mt-3 input-group-sm">
+   						<span class="input-group-text">작성자 : </span>
+  						<input type="text" class="form-control">
+					</div>
+					
+					<div class="input-group mt-3 input-group-sm">
+   						<span class="input-group-text">댓글 : </span>
+  						<textarea type="text" class="form-control h-5" rows="5" name="replyContent"></textarea>
+					</div>
+				</div>
+			</div>
+			
+			<div class="d-flex justify-content-end">
+				<div>
+					<a class="btn btn-secondary" id="openFeedBackForm" href="#">후기작성폼열기/닫기</a>
+				</div>
+				<div id="feedbackDiv" style="display: none;">
+					<form action="/feedback/insert" method="post" enctype="multipart/form-data">
+						<input type="hidden" value="${boardVO.boardNum }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 -->
+						<div>제목(상품후기) : <input type="text" name="title"></div>
+						<div>작성자(상품후기) : <input type="text" name="id"></div>
+						<div>내용 (상품후기) : </div>
+						<div><textarea rows="10" cols="50" name="content"></textarea></div>
+						<div>사진 첨부(상품후기) : <input type="file" name="file"> </div>	
+						<input type="submit" value="후기등록">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 새로운 디자인 끝 -->
 	
-	<div>
-		<div>
-			<a class="btn btn-secondary" id="openFeedBackForm" href="#">후기작성폼열기/닫기</a>
-		</div>
-		<div id="feedbackDiv" style="display: none;">
-			<form action="/feedback/insert" method="post" enctype="multipart/form-data">
-				<input type="hidden" value="${boardVO.boardNum }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 -->
-				<div>제목(상품후기) : <input type="text" name="title"></div>
-				<div>작성자(상품후기) : <input type="text" name="id"></div>
-				<div>내용 (상품후기) : </div>
-				<div><textarea rows="10" cols="50" name="content"></textarea></div>
-				<div>사진 첨부(상품후기) : <input type="file" name="file"> </div>	
-				<input type="submit" value="후기등록">
-			</form>
-		</div>
-	</div>
-	<div>
-		<c:if test="${empty feedbackList }">아직등록된 상품후기가 없습니다.</c:if>
-		<c:if test="${not empty feedbackList }">
-			<h2>작성자 상품 후기</h2>
-			<table>
-				<c:forEach items="${feedbackList }" var="feedBackVO">
-					<tr>
-						<td>${feedBackVO.title }</td>
-						<td>
-							<fmt:formatDate value="${feedBackVO.createDate }" pattern="yyyy 년 M 월 dd 일 (h 시: m 분)"/>
-						</td>
-						<td>작성자 : ${feedBackVO.id }</td>
-					</tr>
-					<tr>
-						<td>
-							<img src="/resources/feedback/images/${feedBackVO.attachedFileName }" height="100px">
-						</td>
-						<td colspan="2">${feedBackVO.content }</td>
-					</tr>
-				</c:forEach>
-			</table>
-		</c:if>
-	</div>
 	
 	<div id="feedbackAjax">	<!-- 여기에 ajax로 목록 보기가 들어온다. -->
 	
