@@ -12,9 +12,17 @@ public class MemberVO {
 	private String isAdmin;
 	private String joinDate;
 	private String[] tells;
+	private String[] addres;
 	
 	
 	
+	public String[] getAddres() {
+		return addres;
+	}
+	public void setAddres(String[] addres) {
+		String addr ="(" + addres[0]+ ")" + addres[1] + addres[2];
+		setAddr(addr);
+	}
 	public String[] getTells() {
 		return tells;
 	}

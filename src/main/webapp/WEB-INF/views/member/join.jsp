@@ -48,19 +48,19 @@
 				  		 <input type="text" class="form-control" id="tell3" name="tells" required>
 				  	</div>
 				</div>	
-					
-						<input type="text" id="sample4_postcode" placeholder="우편번호" name="addr">
-						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-						<input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+					<div>주소</div>	
+						<input type="text" id="sample4_postcode" placeholder="우편번호" name="addres">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="addres">
+						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" >
 						<span id="guide" style="color:#999;display:none"></span>
-						<input type="text" id="sample4_detailAddress" placeholder="상세주소">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목">
+						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addres">
+						<input type="text" id="sample4_extraAddress" placeholder="참고항목" >
 					
 					
 					<!-- 
 					
-						<div>주소</div>	
+						
 							<input type="text" id="postCode" name="addr" required class="form-control" placeholder="우편번호" style=""></div>
 							<input type="button"  class="btn btn-primary me-md-2" value="검색" onclick=""></div>
 							
@@ -83,16 +83,13 @@
 						</div>
 						<div class="col-1"> @</div> 
 						<div class="col-6">
-							<input type="email" id="email1" name="email1" class="form-control">
-						</div>
+							<input type="text" id="email1" name="email" class="form-control">
+						</div> 
 						
 						
 						<div style="margin-top: 10px;"></div>
 						<div class="row">
-							<div class="col-9">
-								<input type="text"  required placeholder="우편번호" class="mail_check_input_box"  id="mail_check_input_box_false">
- 
-															</div>
+							
 							<div class="col-3">
 								<input type="button" class="btn btn-primary me-md-2" id="btn2"  value="인증번호발송">
 							</div>
@@ -101,7 +98,7 @@
 					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender" disabled="disabled">여 </div>
 				</div>
 				<div class="d-grid gap-1">
-				  <button class="btn btn-primary disabled" id="joinBtn" type="button" value="회원가입" onclick="finalJoin()" > 회원가입</button>
+				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입"  > 회원가입</button>
 				</div>
 			</form>
 		</div>

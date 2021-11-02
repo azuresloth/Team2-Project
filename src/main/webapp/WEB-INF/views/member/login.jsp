@@ -39,7 +39,7 @@
 							아이디    <input type="text" name="id" id="id" class="form-control"required>
 						</div>
 						<div>
-							비밀번호  <input type="password" name="pw" id="pw" class="form-control" required>
+							비밀번호  <input type="password" name="pw" id="pw" class="form-control" onkeyup="enterkey()"  required>
 						</div>
 					</div>
 				<c:if test="${loginResult == 0}">
@@ -64,4 +64,5 @@
 	</div>
 </body>
 </html>
+
 

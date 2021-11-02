@@ -6,6 +6,7 @@ $(document).ready(function(){
     });
 });
 
+
 /* 함수선언 영역*/
 (function($){
 	/* 로그인 버튼 클릭 */
@@ -32,5 +33,16 @@ $(document).ready(function(){
     findPwForm = function(){
     	location.href='/member/findPwForm'
     }
+    
+    //enterkey 로그인
+    enterkey =  function(){
+    	if(window.event.keyCode == 13){
+    		login();
+    	}
+    	
+    }
+   
+    
+   
  	
 })(jQuery);
