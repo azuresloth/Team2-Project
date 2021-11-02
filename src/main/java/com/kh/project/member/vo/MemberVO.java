@@ -19,6 +19,24 @@ public class MemberVO {
 	
 	
 	
+	public String getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
 	public String[] getMailes() {
 		return mailes;
 	}
