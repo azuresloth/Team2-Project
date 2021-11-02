@@ -75,11 +75,11 @@ public class AdminController {
 		
 		//첨부될 폴더 지정 
 		// 호연씨 수업 컴
-		//String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 병준씨 수업 컴
 		//String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 준호햄 노트북
-		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		
 		//모든 첨부파일 정보가 들어갈 변수
 		List<ImgVO> imgList = new ArrayList<>();
@@ -151,7 +151,6 @@ public class AdminController {
 	@ResponseBody
 	@PostMapping("/selectSalesByCateAjax")
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO){
-		
 		return adminService.selectSalesByCate(salesManageVO);
 	}
 	
@@ -180,11 +179,16 @@ public class AdminController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("statusInfo", adminService.selectStatus());
 		map.put("selectBySerchDateList", adminService.serchDate(orderInfoVO));
-		
 		return map;
 	}
 	
-	
+	@PostMapping("/serchDate")
+	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO) {
+		model.addAttribute("sidePage", "selectOrderInfo");
+		model.addAttribute("statusInfo", adminService.selectStatus());
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		return "admin/order_info";
+	}
 }
 
 

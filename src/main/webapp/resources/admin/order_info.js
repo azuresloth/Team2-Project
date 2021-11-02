@@ -1,12 +1,13 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
+   var now = new Date();
+   
    //이벤트 처리
 	$(document).on('click', '.update', function() {
 		var buyCode = $(this).parent().children(':first').val();
 		var statusName = $(this).parent().prev().children().val();
 		updateStatus(buyCode, statusName);
 	});
-
    //이벤트 처리
 	$(document).on('click', '#serchBtn', function() {
 		var startDate = $('#startDate').val();
@@ -24,27 +25,35 @@ $(document).ready(function(){
 
         		var str = '';
             	$(selectBySerchDateList).each(function(index, element1){
-            		$('#orderListDiv').empty();
-            		str += '<tr>';
-            		str += '	<td>' + element1.id + '</td>';
-            		str += '	<td>' + element1.itemName + '</td>';
-            		str += '	<td>' + element1.totalPrice + '</td>';
-            		str += '	<td>' + element1.paymentPlan + '</td>';
-            		str += '	<td class="next">' + element1.buyDate + '</td>';
-            		str += '	<td class="next">'+ '<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">';
-								 $(statusInfo).each(function(index, element2){
-										if(element2.statusName == element1.buyStatus){
-												str += '<option value="'+ element2.statusName + '" selected>' + element2.statusName + '</option>'
-										}
-										
-										else{
-											str += '<option value="'+ element2.statusName + '">' + element2.statusName + '</option>'
-										}
-								});
-            		str +=	'</select>'+'</td>';
-            		str += '<td><input type="hidden" value="'+ element1.buyCode + '"><input type="button" value="변경" class="update"></td>';
-            		str += '</tr>';
-            		$('#orderListDiv').append(str);
+            		if(elment1.totalRow != 0){
+            			$('#orderListDiv').empty();
+	            		str += '<tr>';
+	            		str += '	<td>' + element1.id + '</td>';
+	            		str += '	<td>' + element1.itemName + '</td>';
+	            		str += '	<td>' + element1.totalPrice + '</td>';
+	            		str += '	<td>' + element1.paymentPlan + '</td>';
+	            		str += '	<td class="next">' + element1.buyDate + '</td>';
+	            		str += '	<td class="next">'+ '<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">';
+									 $(statusInfo).each(function(index, element2){
+											if(element2.statusName == element1.buyStatus){
+													str += '<option value="'+ element2.statusName + '" selected>' + element2.statusName + '</option>'
+											}
+											
+											else{
+												str += '<option value="'+ element2.statusName + '">' + element2.statusName + '</option>'
+											}
+									});
+	            		str +=	'</select>'+'</td>';
+	            		str += '<td><input type="hidden" value="'+ element1.buyCode + '"><input type="button" value="변경" class="update"></td>';
+	            		str += '</tr>';
+	            		$('#orderListDiv').append(str);
+            		}
+            		else{
+            			str += '<tr>'
+            			str += '<td>데이터가 없습니다.</td>'
+            			str += '</tr>'
+            		}
+            		
             	});
             },
             error: function(){
