@@ -24,12 +24,13 @@ public class CartController {
 	// 상품 목록 페이지로 이동
 	@PostMapping("/goCartList")
 	public String goCartList(Model model, ItemVO itemVO) {
-		
+
 		return "cart/cart_list";
 	}
 	
 	// 상품 목록 페이지로 이동
-	@PostMapping("/goPurchasePage")
+	//@PostMapping("/goPurchasePage")
+	@RequestMapping("/goPurchasePage")
 	public String goPurchasePage(Model model, ItemVO itemVO) {
 		
 		return "cart/purchase_page";

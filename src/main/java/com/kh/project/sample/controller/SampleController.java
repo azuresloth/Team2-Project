@@ -3,6 +3,7 @@ package com.kh.project.sample.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,6 +19,12 @@ public class SampleController {
 	@GetMapping("/sampleJsp")
 	public String goSampleJsp() {
 		return  "sample/sample";
+	}
+	
+	@GetMapping("/asdf")
+	public String asdf(Model model) {
+		model.addAttribute("test", "asdf");
+		return  "sample/asdf";
 	}
 }
 

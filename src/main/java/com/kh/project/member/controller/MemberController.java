@@ -1,13 +1,12 @@
 package com.kh.project.member.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -84,6 +83,52 @@ public class MemberController {
 		}
 		
 	}
+	
+	// 인터셉트 로그인 창으로 이동
+	@GetMapping("/goInterceptLogin")
+	public String goInterceptLogin(@RequestParam(required = false, defaultValue = "1") int loginResult, HttpSession session, Model model, @RequestParam(required = false) String requestURI) {
+		model.addAttribute("loginResult", loginResult);
+		/*
+		 * model.addAttribute("requestURI", requestURI); System.out.println("!!!!!!@!@"
+		 * + requestURI);
+		 */
+		return "member/intercept_login";
+		
+		
+	}
+	// 인터셉트 로그인
+	@PostMapping("/interceptLogin")
+	public String interceptLogin(MemberVO memberVO, HttpSession session, Model model, @RequestParam(required = false) String requestURI) {
+		
+		//System.out.println("11111111" + requestURI);
+		
+		MemberVO loginInfo = memberService.login(memberVO);
+	
+		
+		if(loginInfo != null) {
+			session.setAttribute("loginInfo", loginInfo);
+			
+			 
+			if(loginInfo.getIsAdmin().equals("Y")) {
+				 
+				return "redirect:/admin/adminMenu";
+				//return "member/intercept_login_result";
+			}
+			else {
+
+				return "member/intercept_login_result";
+//				return "redirect:" + requestURI;
+			}
+		
+		}
+		else {
+			int result = 0;
+			model.addAttribute("loginResult", result);
+			return "redirect:/member/goLogin";
+		}
+		
+	}
+	
 	//아이디 찾기 화면으로 이동
 	@GetMapping("/findIdForm")
 	public String goFindId() {
