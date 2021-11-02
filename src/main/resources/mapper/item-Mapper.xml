@@ -130,6 +130,9 @@
  		<if test="!searchValue.equals('all')">
  		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%' 
  		</if>
+ 		<if test="searchValue.equals('all')">
+ 		WHERE 1 = 1
+ 		</if>
  		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
  		AND CATE_CODE = #{searchKeyword}
  		</if>
