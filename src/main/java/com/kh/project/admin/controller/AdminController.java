@@ -80,6 +80,8 @@ public class AdminController {
 		//String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 준호햄 노트북
 		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		// 영빈햄 노트북
+		//String uploadPath = "C:\\Users\\admin\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		
 		//모든 첨부파일 정보가 들어갈 변수
 		List<ImgVO> imgList = new ArrayList<>();

@@ -84,9 +84,14 @@
 		WHERE ID = #{id}
 	</update>
 	
-	<select id="">
-	
-	</select>
+	<update id="updateInfo">
+		UPDATE MEMBER
+		SET ADDR = #{addr}	
+			, TELL = #{tell}
+			, EMAIL = #{email}
+			, PW = #{pw}
+		WHERE ID = #{id} 
+	</update>
 	
 	
 	
