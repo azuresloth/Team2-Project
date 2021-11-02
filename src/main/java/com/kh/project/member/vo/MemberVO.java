@@ -5,14 +5,15 @@ public class MemberVO {
 	private String pw;
 	private	String name;
 	private String tell;
-	private String addr;
+	private String postCode;
+	private String roadAddr;
+	private String detailAddr;
 	private String gender;
 	private String email;
 	private String birthday;
 	private String isAdmin;
 	private String joinDate;
 	private String[] tells;
-	private String[] addres;
 	private String[] mailes;
 	
 	
@@ -25,13 +26,7 @@ public class MemberVO {
 		String email = mailes[0]+"@"+ mailes[1];
 		setEmail(email);
 	}
-	public String[] getAddres() {
-		return addres;
-	}
-	public void setAddres(String[] addres) {
-		String addr ="(" + addres[0]+ ")" + addres[1] + addres[2];
-		setAddr(addr);
-	}
+	
 	public String[] getTells() {
 		return tells;
 	}
@@ -64,12 +59,7 @@ public class MemberVO {
 	public void setTell(String tell) {
 		this.tell = tell;
 	}
-	public String getAddr() {
-		return addr;
-	}
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
+	
 	public String getGender() {
 		return gender;
 	}

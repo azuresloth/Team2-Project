@@ -7,7 +7,9 @@
 		<result column="PW"	property="pw"/>
 		<result column="NAME"	property="name"/>
 		<result column="TELL"	property="tell"/>
-		<result column="ADDR"	property="addr"/>
+		<result column="POST_CODE"	property="postCode"/>
+		<result column="ROAD_ADDR"	property="roadAddr"/>
+		<result column="DETAIL_ADDR"	property="detailAddr"/>
 		<result column="GENDER"	property="gender"/>
 		<result column="EMAIL"	property="email"/>
 		<result column="BIRTHDAY"	property="birthday"/>
@@ -21,7 +23,9 @@
 			, PW
 			, NAME
 			, TELL
-			, ADDR
+			, POST_CODE
+			, ROAD_ADDR
+			, DETAIL_ADDR
 			, GENDER
 			, EMAIL
 			, BIRTHDAY
@@ -30,7 +34,9 @@
 			, #{pw}
 			, #{name}
 			, #{tell}
-			, #{addr}
+			, #{postCode}
+			, #{roadAddr}
+			, #{detailAddr}
 			, #{gender}
 			, #{email}
 			, #{birthday}
@@ -86,7 +92,9 @@
 	
 	<update id="updateInfo">
 		UPDATE MEMBER
-		SET ADDR = #{addr}	
+		SET POST_CODE = #{postCode}
+			, ROAD_ADDR = #{roadAddr}
+			, DETAIL_ADDR = #{detailAddr}
 			, TELL = #{tell}
 			, EMAIL = #{email}
 			, PW = #{pw}
