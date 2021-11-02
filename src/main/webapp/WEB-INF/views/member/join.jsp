@@ -58,7 +58,7 @@
 					    <input type="text" id="sample4_extraAddress" placeholder="참고항목" hidden >
 					
 							
-							<div>생년월일 <input type="date" id="birthday" name="birthday" required class="form-control"></div>
+							<div>생년월일 <input type="text" id="birthday" name="birthday" placeholder="ex)19920211" required class="form-control"></div>
 				</div>
 				<div>
 					추가정보
@@ -71,7 +71,7 @@
 						</div>
 						<div class="col-1"> @</div> 
 						<div class="col-6">
-							<input type="text" id="email1" name="mailes" class="form-control">
+							<input type="text" id="email1" name="mailes" class="form-control" placeholder="ex)naver.com">
 						</div> 
 						
 						

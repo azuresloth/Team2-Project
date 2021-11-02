@@ -18,13 +18,12 @@ $(document).ready(function(){
  
 	/* ID찾기 */
 	findId = function(){
-		var name = $('#name');
-		var email = $('#email');
 		
-		alert(json.stringify(name));
-		alert(JSON.stringify(email));
-		
-		submit();
+		if(){
+			
+		};
+		alert ('111');
+		location.href='/member/goLogin'
      };
      
      /*Password찾기*/
