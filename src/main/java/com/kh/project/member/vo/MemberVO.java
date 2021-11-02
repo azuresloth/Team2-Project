@@ -13,9 +13,18 @@ public class MemberVO {
 	private String joinDate;
 	private String[] tells;
 	private String[] addres;
+	private String[] mailes;
 	
 	
 	
+	
+	public String[] getMailes() {
+		return mailes;
+	}
+	public void setMailes(String[] mailes) {
+		String email = mailes[0]+"@"+ mailes[1];
+		setEmail(email);
+	}
 	public String[] getAddres() {
 		return addres;
 	}

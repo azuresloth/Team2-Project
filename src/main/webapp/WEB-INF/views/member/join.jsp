@@ -57,18 +57,6 @@
 						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="addres">
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목" >
 					
-					
-					<!-- 
-					
-						
-							<input type="text" id="postCode" name="addr" required class="form-control" placeholder="우편번호" style=""></div>
-							<input type="button"  class="btn btn-primary me-md-2" value="검색" onclick=""></div>
-							
-							<input type="text" id="roadAddr" name="addr" required class="form-control" style="margin-top: 10px;" placeholder="기본주소"></div>
-							
-							<input type="text" id="JibunAddr" name="addr" required class="form-control" placeholder="상세주소" style="margin-top: 10px;"></div>
-					
-					 -->
 							
 							<div>생년월일 <input type="date" id="birthday" name="birthday" required class="form-control"></div>
 				</div>
@@ -79,11 +67,11 @@
 					이메일
 					<div class="row">
 						<div class="col-5">
-							<input type="text" id="email" name="email" class="form-control">
+							<input type="text" id="email" name="mailes" class="form-control">
 						</div>
 						<div class="col-1"> @</div> 
 						<div class="col-6">
-							<input type="text" id="email1" name="email" class="form-control">
+							<input type="text" id="email1" name="mailes" class="form-control">
 						</div> 
 						
 						
