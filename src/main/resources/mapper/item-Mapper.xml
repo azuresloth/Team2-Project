@@ -151,7 +151,7 @@
  		ORDER BY ${orderBy}
  		</if>
  	</select>
- 	<!-- 수정확인용 주석 -->
+ 	<!-- 수정확인용 주석2 -->
  	<!-- 상품 상세페이지 -->
  	<select id="selectItemDetail" resultMap="item">
  		SELECT ITEM.ITEM_CODE
