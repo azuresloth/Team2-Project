@@ -36,8 +36,8 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="col-8" id="salesDiv">
-		<table class="table text-center">
+	<div class="col-8" >
+		<table class="table text-center" id="salesDiv">
 			<thead>
 				<tr>
 					<th scope="col">상품 코드</th>
@@ -58,6 +58,92 @@
 			</thead>
 		</table>
 	</div>
+	<!-- pagination -->
+	<% request.setAttribute("url", "/admin/salesManage"); %>
+	<% request.setAttribute("noLinkColor", "#999"); %>
+	<div class="container mt-3 pagination">
+		<ul class="pagination">
+			<!-- << 버튼(처음으로 이동) -->
+			<li class="page-item">
+				<!-- page 1보다 크면은 -->
+				<c:if test="${salesManageVO.page > 1 }">
+					<a class="page-link" href="${url}?page=1&perPageRowNum=${salesManageVO.perPageRowNum}">
+						<i class="fa fa-angle-double-left"></i>
+					</a>
+				</c:if>
+				<!-- page 1 이면 -->
+				<c:if test="${salesManageVO.page == 1 }">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-double-left" style="color: ${noLinkColor};"></i>
+					</a>
+				</c:if>
+			</li>
+			<!-- < 버튼(다음 그룹 페이지로이동)-->
+			<li class="page-item">
+				<c:if test="${salesManageVO.startPage > 1}">
+					<a class="page-link" href="${url }?${salesManageVO.startPage -1}&perPageRow=${salesManageVO.perPageRowNum}">
+						<i class="fa fa-angle-left"></i>
+					</a>
+				</c:if>
+				<c:if test="${salesManageVO.startPage == 1 }">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-left" style="color: ${noLinkColor};"></i>
+					</a>
+				</c:if>
+			</li>
+			<!-- 숫자를 눌려서 페이지 이동 -->
+			<c:forEach begin="${salesManageVO.startPage }" end="${salesManageVO.endPage }" var="cnt">
+				<li class="page-item <c:if test="${orderVO.page == cnt }">active</c:if>">
+					<c:if test="${salesManageVO.page == cnt }">
+						<a class="page-link" style="pointer-events: none; cursor: default;">
+							${cnt }
+						</a>
+					</c:if>
+					<c:if test="${salesManageVO.page != cnt }">
+							<%-- <c:if test="${!empty salesManageVO.cateCode}">
+								href = "/admin/selectSalesByCateAjax?page=${cnt }&perPageRowNum=${salesManageVO.perPageRowNum }&cateCode=${salesManageVO.cateCode }"
+							</c:if> --%>
+						<a class="page-link"
+							
+							href="${url }?page=${cnt}&perPageRowNum=${salesManageVO.perPageRowNum}">
+							${cnt }
+						</a>
+					</c:if>
+				</li>
+			</c:forEach>
+			<!-- > 버튼(다음 그룹 페이지로 이동) -->
+			<c:if test="${salesManageVO.endPage < salesManageVO.totalPage }">
+				<li class="page-item">
+					<a class="page-link" href="${url }?page=${salesManageVO.endPage +1}&perPageRowNum=${salesManageVO.perPageRowNum}">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</li>
+			</c:if>
+			<c:if test="${salesManageVO.endPage == salesManageVO.totalPage }">
+				<li class="page-item">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-right" style="color: ${noLinkColor};"></i>
+					</a>
+				</li>
+			</c:if>
+			<!-- > 버튼(마지막 페이지로 이동) -->
+			<c:if test="${salesManageVO.page < salesManageVO.totalPage }">
+				<li class="page-item">
+				<a class="page-link" href="${url }?page=${salesManageVO.totalPage}&perPageRowNum=${salesManageVO.perPageRowNum}">
+					<i class="fa fa-angle-double-right"></i>
+				</a>
+			</li>
+			</c:if>
+			<c:if test="${salesManageVO.page == salesManageVO.totalPage }">
+				<li class="page-item">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-double-right" style="color: ${noLinkColor};"></i>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+	<!-- container mt-3 의 끝 -->
 </div>
 </body>
 </html>

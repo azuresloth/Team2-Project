@@ -28,10 +28,10 @@
 </style>
 </head>
 <body>
-	<form action="/admin/serchDate" method="post">
-<div class="container myContainer">
+<form action="/admin/serchDate" method="post">
+	<div class="container myContainer">
 		<div class="row">
-			<div class="col-2">
+			<div class="col-2 aling-self-center">
 				날짜검색
 			</div>
 			<div class="col-3 d-flex justify-content-start">
@@ -44,8 +44,8 @@
 				<input type="submit" value="검색" class="form-control btn btn-primary" >
 			</div>
 		</div>
-</div>
-	</form>
+	</div>
+</form>
 <div>
 	<table class="table text-center mt-3 ">
 		<thead>
@@ -92,91 +92,91 @@
 		</tbody>
 	</table>
 	<!-- pagination -->
-		<% request.setAttribute("url", "/admin/selectOrderInfo"); %>
-		<% request.setAttribute("noLinkColor", "#999"); %>
-		<div class="container mt-3 pagination">
-			<ul class="pagination">
-				<!-- << 버튼(처음으로 이동) -->
-				<li class="page-item">
-					<!-- page 1보다 크면은 -->
-					<c:if test="${orderVO.page > 1 }">
-						<a class="page-link" href="${url}?page=1&perPageRowNum=${orderVO.perPageRowNum}">
-							<i class="fa fa-angle-double-left"></i>
+	<% request.setAttribute("url", "/admin/selectOrderInfo"); %>
+	<% request.setAttribute("noLinkColor", "#999"); %>
+	<div class="container mt-3 pagination">
+		<ul class="pagination">
+			<!-- << 버튼(처음으로 이동) -->
+			<li class="page-item">
+				<!-- page 1보다 크면은 -->
+				<c:if test="${orderVO.page > 1 }">
+					<a class="page-link" href="${url}?page=1&perPageRowNum=${orderVO.perPageRowNum}">
+						<i class="fa fa-angle-double-left"></i>
+					</a>
+				</c:if>
+				<!-- page 1 이면 -->
+				<c:if test="${orderVO.page == 1 }">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-double-left" style="color: ${noLinkColor};"></i>
+					</a>
+				</c:if>
+			</li>
+			<!-- < 버튼(다음 그룹 페이지로이동)-->
+			<li class="page-item">
+				<c:if test="${orderVO.startPage > 1}">
+					<a class="page-link" href="${url }?${orderVO.startPage -1}&perPageRow=${orderVO.perPageRowNum}">
+						<i class="fa fa-angle-left"></i>
+					</a>
+				</c:if>
+				<c:if test="${orderVO.startPage == 1 }">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-left" style="color: ${noLinkColor};"></i>
+					</a>
+				</c:if>
+			</li>
+			<!-- 숫자를 눌려서 페이지 이동 -->
+			<c:forEach begin="${orderVO.startPage }" end="${orderVO.endPage }" var="cnt">
+				<li class="page-item <c:if test="${orderVO.page == cnt }">active</c:if>">
+					<c:if test="${orderVO.page == cnt }">
+						<a class="page-link" style="pointer-events: none; cursor: default;">
+							${cnt }
 						</a>
 					</c:if>
-					<!-- page 1 이면 -->
-					<c:if test="${orderVO.page == 1 }">
-						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class="fa fa-angle-double-left" style="color: ${noLinkColor};"></i>
+					<c:if test="${orderVO.page != cnt }">
+						<a class="page-link"
+							<c:if test="${!empty orderVO.startDate and !empty orderVO.endDate }">
+								href = "/admin/serchDate?page=${cnt }&perPageRowNum=${orderVO.perPageRowNum }&startDate=${orderVO.startDate }&endDate=${orderVO.endDate }"
+							</c:if>
+							
+							href="${url }?page=${cnt}&perPageRowNum=${orderVO.perPageRowNum}">
+							${cnt }
 						</a>
 					</c:if>
 				</li>
-				<!-- < 버튼(다음 그룹 페이지로이동)-->
+			</c:forEach>
+			<!-- > 버튼(다음 그룹 페이지로 이동) -->
+			<c:if test="${orderVO.endPage < orderVO.totalPage }">
 				<li class="page-item">
-					<c:if test="${orderVO.startPage > 1}">
-						<a class="page-link" href="${url }?${orderVO.startPage -1}&perPageRow=${orderVO.perPageRowNum}">
-							<i class="fa fa-angle-left"></i>
-						</a>
-					</c:if>
-					<c:if test="${orderVO.startPage == 1 }">
-						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class="fa fa-angle-left" style="color: ${noLinkColor};"></i>
-						</a>
-					</c:if>
-				</li>
-				<!-- 숫자를 눌려서 페이지 이동 -->
-				<c:forEach begin="${orderVO.startPage }" end="${orderVO.endPage }" var="cnt">
-					<li class="page-item <c:if test="${orderVO.page == cnt }">active</c:if>">
-						<c:if test="${orderVO.page == cnt }">
-							<a class="page-link" style="pointer-events: none; cursor: default;">
-								${cnt }
-							</a>
-						</c:if>
-						<c:if test="${orderVO.page != cnt }">
-							<a class="page-link"
-								<c:if test="${!empty orderVO.startDate and !empty orderVO.endDate }">
-									href = "/admin/serchDate?page=${cnt }&perPageRowNum=${orderVO.perPageRowNum }&startDate=${orderVO.startDate }&endDate=${orderVO.endDate }"
-								</c:if>
-								
-								href="${url }?page=${cnt}&perPageRowNum=${orderVO.perPageRowNum}">
-								${cnt }
-							</a>
-						</c:if>
-					</li>
-				</c:forEach>
-				<!-- > 버튼(다음 그룹 페이지로 이동) -->
-				<c:if test="${orderVO.endPage < orderVO.totalPage }">
-					<li class="page-item">
-						<a class="page-link" href="${url }?page=${orderVO.endPage +1}&perPageRowNum=${orderVO.perPageRowNum}">
-							<i class="fa fa-angle-right"></i>
-						</a>
-					</li>
-				</c:if>
-				<c:if test="${orderVO.endPage == orderVO.totalPage }">
-					<li class="page-item">
-						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class="fa fa-angle-right" style="color: ${noLinkColor};"></i>
-						</a>
-					</li>
-				</c:if>
-				<!-- > 버튼(마지막 페이지로 이동) -->
-				<c:if test="${orderVO.page < orderVO.totalPage }">
-					<li class="page-item">
-					<a class="page-link" href="${url }?page=${orderVO.totalPage}&perPageRowNum=${orderVO.perPageRowNum}">
-						<i class="fa fa-angle-double-right"></i>
+					<a class="page-link" href="${url }?page=${orderVO.endPage +1}&perPageRowNum=${orderVO.perPageRowNum}">
+						<i class="fa fa-angle-right"></i>
 					</a>
 				</li>
-				</c:if>
-				<c:if test="${orderVO.page == orderVO.totalPage }">
-					<li class="page-item">
-						<a class="page-link" style="pointer-events: none; cursor: default;">
-							<i class="fa fa-angle-double-right" style="color: ${noLinkColor};"></i>
-						</a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
-		<!-- container mt-3 의 끝 -->
+			</c:if>
+			<c:if test="${orderVO.endPage == orderVO.totalPage }">
+				<li class="page-item">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-right" style="color: ${noLinkColor};"></i>
+					</a>
+				</li>
+			</c:if>
+			<!-- > 버튼(마지막 페이지로 이동) -->
+			<c:if test="${orderVO.page < orderVO.totalPage }">
+				<li class="page-item">
+				<a class="page-link" href="${url }?page=${orderVO.totalPage}&perPageRowNum=${orderVO.perPageRowNum}">
+					<i class="fa fa-angle-double-right"></i>
+				</a>
+			</li>
+			</c:if>
+			<c:if test="${orderVO.page == orderVO.totalPage }">
+				<li class="page-item">
+					<a class="page-link" style="pointer-events: none; cursor: default;">
+						<i class="fa fa-angle-double-right" style="color: ${noLinkColor};"></i>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</div>
+	<!-- container mt-3 의 끝 -->
 </div>
 </body>
 </html>

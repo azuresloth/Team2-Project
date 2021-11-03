@@ -12,6 +12,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -56,10 +57,11 @@ public class AdminController {
 	}
 	
 	@GetMapping("/salesManage")
-	public String gosalesManage(Model model) {
+	public String gosalesManage(Model model, SalesManageVO salesManageVO) {
 		model.addAttribute("sidePage", "salesManage");
 		model.addAttribute("salesList", adminService.selectSales());
 		model.addAttribute("categoryList", adminService.selectCategoryList());
+		model.addAttribute("salesManageVO", salesManageVO);
 		return "admin/sales_manage";
 	}
 	
@@ -97,7 +99,6 @@ public class AdminController {
 				//다중첨부
 				if(inputName.equals("file2")) {
 					if(inputName.equals("")) {
-						System.out.println("!!!!!!!!!!!!!1");
 						List<MultipartFile> fileList = multi.getFiles(inputName);
 						
 						for(MultipartFile file : fileList) {
@@ -157,8 +158,13 @@ public class AdminController {
 		return adminService.selectSalesByCate(salesManageVO);
 	}
 	
-	@GetMapping("/selectMonthSales")
-	public String selectMonthSales(Model model) {
+	@RequestMapping("/selectMonthSales")
+	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SalesManageVO salesManageVO) {
+		model.addAttribute("sidePage", "selectMonthSales");
+		model.addAttribute("statusInfo", adminService.selectStatus());
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		model.addAttribute("salesManageVO", salesManageVO);
+		model.addAttribute("orderInfoVO", orderInfoVO);
 		return "admin/month_sales";
 	}
 	@GetMapping("/selectOrderInfo")
@@ -193,6 +199,7 @@ public class AdminController {
 		model.addAttribute("orderVO", orderInfoVO);
 		return "admin/order_info";
 	}
+	
 }
 
 

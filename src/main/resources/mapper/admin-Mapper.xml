@@ -160,13 +160,14 @@
 					, PAYMENT_PLAN
 					, BUY_STATUS
 					FROM ORDER_INFO
-					
 					<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
 					WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
-					</if> 
+					</if>
+					ORDER BY BUY_DATE 
 				)
 			)
 		WHERE RNUM BETWEEN #{startRow} and #{endRow}
+		 
 	</select>
 	
 	<select id="getTotalRow" resultType="int">
@@ -190,6 +191,9 @@
 	
 	<select id="getTotalRowBySales" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SALES
+		<if test="cateCode != null and !cateCode.equals('')">
+		WHERE CATE_CODE = #{cateCode}  
+		</if> 
 	</select>
 
 

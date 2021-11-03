@@ -44,7 +44,9 @@ public interface AdminService {
 	
 	//상태업데이트
 	void updateStatus(OrderInfoVO orderInfoVO);
-	
+	//기간 내의 팔린 상품 정보 조회
 	List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO);
+	
+	//
 	
 }

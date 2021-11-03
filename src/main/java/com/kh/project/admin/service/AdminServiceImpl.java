@@ -63,6 +63,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO) {
+		salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBySales", salesManageVO));
 		return sqlSession.selectList("adminMapper.selectSalesByCate", salesManageVO);
 	}
 

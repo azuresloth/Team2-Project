@@ -24,7 +24,6 @@ $(document).ready(function(){
             	$('#salesDiv').empty();
             	
             	var str = '';
-            	str += '<table class="table text-center">';
             	str += '	<thead>';
             	str += '		<tr>';
             	str += '			<th scope="col">상품코드</th>';
@@ -48,7 +47,6 @@ $(document).ready(function(){
             	
             	});
        
-            	str += '</table>';
             	$('#salesDiv').append(str);
             	
             },

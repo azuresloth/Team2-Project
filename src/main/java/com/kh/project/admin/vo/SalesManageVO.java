@@ -1,6 +1,7 @@
 package com.kh.project.admin.vo;
 
-public class SalesManageVO {
+
+public class SalesManageVO extends OrderInfoVO{
 	
 	private String itemCode;
 	private String itemName;
