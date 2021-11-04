@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script type="text/javascript" src="/resources/admin/month_sales.js?ver=7"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #A8ECAF;
@@ -45,20 +46,23 @@
 		<thead>
 			<tr>
 			  <th scope="col">주문상품</th>
-			  <th scope="col">결재금액</th>
 			  <th scope="col">결재방식</th>
 			  <th scope="col">주문일자</th>
+			  <th scope="col">결재금액</th>
 			</tr>
 		</thead>
 		<tbody id="orderListDiv">
 				<c:choose>
-					<c:when test="${!empty salesManageVO.totalRow}">
+					<c:when test="${!empty orderInfoVO.totalRow}">
 						<c:forEach items="${orderList }" var="orderInfo">
 							<tr>
 								<td>${orderInfo.itemName}</td>
-								<td><fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###"/></td>
 								<td>${orderInfo.paymentPlan}</td>
 								<td>${orderInfo.buyDate}</td>
+								<td>
+									<input type="hidden" value="${orderInfo.totalPrice }" class="totalPrice">
+									<fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###" />
+								</td>
 							</tr>
 						</c:forEach>
 					</c:when>
@@ -72,6 +76,12 @@
 				</c:choose>
 		</tbody>
 	</table>
+	<div class="row">
+		<div class="col">
+			<input type="text" value="${totalPrice }" class="totalPrice">
+		</div>
+	</div>
+	
 	<!-- pagination -->
 	<% request.setAttribute("url", "/admin/selectMonthSales"); %>
 	<% request.setAttribute("noLinkColor", "#999"); %>
@@ -107,7 +117,7 @@
 			</li>
 			<!-- 숫자를 눌려서 페이지 이동 -->
 			<c:forEach begin="${orderInfoVO.startPage }" end="${orderInfoVO.endPage }" var="cnt">
-				<li class="page-item <c:if test="${orderVO.page == cnt }">active</c:if>">
+				<li class="page-item <c:if test="${orderInfoVO.page == cnt }">active</c:if>">
 					<c:if test="${orderInfoVO.page == cnt }">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
 							${cnt }
@@ -119,7 +129,7 @@
 								href = "/admin/selectMonthSales?page=${cnt }&perPageRowNum=${orderInfoVO.perPageRowNum }&startDate=${orderInfoVO.startDate }&endDate=${orderInfoVO.endDate }"
 							</c:if>
 							
-							href="${url }?page=${cnt}&perPageRowNum=${salesManageVO.perPageRowNum}">
+							href="${url }?page=${cnt}&perPageRowNum=${orderInfoVO.perPageRowNum}">
 							${cnt }
 						</a>
 					</c:if>

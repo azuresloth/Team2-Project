@@ -93,7 +93,7 @@
 			</li>
 			<!-- 숫자를 눌려서 페이지 이동 -->
 			<c:forEach begin="${salesManageVO.startPage }" end="${salesManageVO.endPage }" var="cnt">
-				<li class="page-item <c:if test="${orderVO.page == cnt }">active</c:if>">
+				<li class="page-item <c:if test="${salesManageVO.page == cnt }">active</c:if>">
 					<c:if test="${salesManageVO.page == cnt }">
 						<a class="page-link" style="pointer-events: none; cursor: default;">
 							${cnt }

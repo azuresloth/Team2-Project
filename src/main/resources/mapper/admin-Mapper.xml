@@ -191,9 +191,6 @@
 	
 	<select id="getTotalRowBySales" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SALES
-		<if test="cateCode != null and !cateCode.equals('')">
-		WHERE CATE_CODE = #{cateCode}  
-		</if> 
 	</select>
 
 

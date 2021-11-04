@@ -33,8 +33,9 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<SalesManageVO> selectSales() {
-		return sqlSession.selectList("adminMapper.selectSalesList");
+	public List<SalesManageVO> selectSales(SalesManageVO salesManageVO) {
+		salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBySales", salesManageVO));
+		return sqlSession.selectList("adminMapper.selectSalesList", salesManageVO);
 	}
 
 	
