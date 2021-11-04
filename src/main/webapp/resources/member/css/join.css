@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.emailDiv{
+	vertical-align: middle;
+	line-height: 35px;
+}
+.emailBtn, .idCheckBtn{
+	width: 100%;
+}

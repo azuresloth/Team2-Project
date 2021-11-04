@@ -5,34 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/member/js/find_id_form.js?var=1"></script>
+
 </head>
-<script type="text/javascript">
-	
-/* 페이지 로딩 후 실행 */
-$(document).ready(function(){
-
-});
-
-/* 함수선언 영역*/
-(function($){
- 
-	/* ID찾기 */
-	findId = function(){
-		
-		if(){
-			
-		};
-		alert ('111');
-		location.href='/member/goLogin'
-     };
-     
-     /*Password찾기*/
-     findPwForm = function(){
-     	location.href='/member/findPwForm'
-     }
-})(jQuery);
-
-</script>
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
@@ -54,8 +29,8 @@ $(document).ready(function(){
 				
 				<div style="margin-top: 20px;"></div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-				  <button class="btn btn-primary me-md-2" type="button"  id="findIdBtn" onclick="findId();">찾기</button>
-				  <button class="btn btn-primary" type="button" onclick="findPwForm();" id="findPwBtn">Password 찾기</button>
+				  <button class="btn btn-primary" type="submit"  id="findIdBtn">찾기</button>
+				  <!-- <button class="btn btn-primary" type="button" onclick="findPwForm();" id="findPwBtn">Password 찾기</button> -->
 				</div>
 				
 								

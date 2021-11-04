@@ -10,6 +10,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="stylesheet" href="/resources/member/css/join.css?ver=1">
 
 </head>
 <body>
@@ -23,8 +24,8 @@
 					<div class="col-9">
 						<input type="text" id="id" required name="id" class="form-control" > 
 					</div>
-					<div id="checkIdDiv" class="col-3"> 
-						<input type="button" class="btn btn-primary me-md-2" id="btn"  onclick="checkId();" value="중복확인" > 
+					<div id="checkIdDiv" class="col"> 
+						<input type="button" class="btn btn-primary me-md-2 idCheckBtn" id="btn"  onclick="checkId();" value="중복확인" > 
 					</div>
 				</div>
 					<div>비밀번호 <input type="password" id="pw"  required name="pw" class="form-control" > </div>
@@ -61,29 +62,27 @@
 							<div>생년월일 <input type="text" id="birthday" name="birthday" placeholder="ex)19920211" required class="form-control"></div>
 				</div>
 				<div>
-					추가정보
+					<div>추가정보</div>
 					<div style="margin-top: 10px;"></div>
 					
-					이메일
-					<div class="row">
-						<div class="col-5">
+					<div>이메일</div>
+					<div class="row emailDiv">
+						<div class="col-4">
 							<input type="text" id="email" name="mailes" class="form-control">
 						</div>
-						<div class="col-1"> @</div> 
-						<div class="col-6">
+						 @
+						<div class="col-5">
 							<input type="text" id="email1" name="mailes" class="form-control" placeholder="ex)naver.com">
 						</div> 
-						
-						
-						<div style="margin-top: 10px;"></div>
-						<div class="row">
-							
-							<div class="col-3">
-								<input type="button" class="btn btn-primary me-md-2" id="btn2"  value="인증번호발송">
+							<div class="col">
+								<input type="button" class="btn btn-primary me-md-2 emailBtn" id="btn2"  value="인증번호발송">
 							</div>
-						</div>
+							 <div>인증번호입력</div>
+							<div>
+								<input type="text" class="form-control" disabled>
+							</div> 
 					</div>
-					<div>성별 <input type="radio" value="남" checked name="gender">남 <input type="radio" value="여" name="gender" disabled="disabled">여 </div>
+					<div class="mt-3">성별 &nbsp;<input type="radio" value="남" checked name="gender"> 남 <input type="radio" value="여" name="gender" disabled="disabled"> 여 </div>
 				</div>
 				<div class="d-grid gap-1">
 				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입"  > 회원가입</button>

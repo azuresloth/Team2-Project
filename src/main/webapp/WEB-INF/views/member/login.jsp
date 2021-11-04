@@ -17,12 +17,7 @@
 	}
 </script>
  -->
- <script type="text/javascript">
- 	
 
-	 
- 
- </script>
 <link rel="stylesheet" href="/resources/member/css/login.css">
 </head>
 <body>

@@ -54,6 +54,7 @@ public class MemberController {
 	//로그인 창으로 이동
 	@GetMapping("/goLogin")
 	public String goLogin(@RequestParam(required = false, defaultValue = "1") int loginResult, Model model) {
+		
 		model.addAttribute("loginResult", loginResult);
 		return "member/login";
 	}
@@ -137,10 +138,9 @@ public class MemberController {
 	}
 	//아이디 찾기
 	@PostMapping("/findId")
-	public String findId(MemberVO memberVO) {
-		memberService.findId(memberVO);
-		
-		return"member/goLogin";
+	public String findId(MemberVO memberVO, Model model) {
+		model.addAttribute("memberInfo", memberService.findId(memberVO));
+		return"member/find_id_result";
 	}
 	//비밀번호 찾기 화면으로 이동
 	@GetMapping("/findPwForm")
@@ -148,6 +148,9 @@ public class MemberController {
 			
 		return"member/find_pw_form";
 	}
+	//비밀번호 찾기
+	
+	
 	
 	
 	//아이디 중복체크
