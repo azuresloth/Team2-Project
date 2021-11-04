@@ -4,6 +4,8 @@ $(document).ready(function() {
 		$('#a').remove();
 		$('#joinBtn').addClass('disabled');
     });
+	
+	
 });
 //함수 선언 영역
 (function($){

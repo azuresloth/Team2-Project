@@ -72,15 +72,17 @@
 						</div>
 						 @
 						<div class="col-5">
-							<input type="text" id="email1" name="mailes" class="form-control" placeholder="ex)naver.com">
+							<input type="text" id="email1" name="mailes" class="form-control" placeholder="ex) naver.com">
 						</div> 
+						<div class="mail_check_wrap">
 							<div class="col">
 								<input type="button" class="btn btn-primary me-md-2 emailBtn" id="btn2"  value="인증번호발송">
 							</div>
 							 <div>인증번호입력</div>
-							<div>
-								<input type="text" class="form-control" disabled>
+							<div >
+								<input type="text" class="form-control " id="verificationCodeBtn" disabled >
 							</div> 
+						</div>	
 					</div>
 					<div class="mt-3">성별 &nbsp;<input type="radio" value="남" checked name="gender"> 남 <input type="radio" value="여" name="gender" disabled="disabled"> 여 </div>
 				</div>
