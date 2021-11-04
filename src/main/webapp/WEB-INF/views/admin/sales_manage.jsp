@@ -57,11 +57,10 @@
 				</c:forEach>
 			</thead>
 		</table>
-	</div>
 	<!-- pagination -->
 	<% request.setAttribute("url", "/admin/salesManage"); %>
 	<% request.setAttribute("noLinkColor", "#999"); %>
-	<div class="container mt-3 pagination">
+	<div class="container mt-3 pagination d-flex justify-content-center">
 		<ul class="pagination">
 			<!-- << 버튼(처음으로 이동) -->
 			<li class="page-item">
@@ -100,7 +99,7 @@
 						</a>
 					</c:if>
 					<c:if test="${salesManageVO.page != cnt }">
-							<%-- <c:if test="${!empty salesManageVO.cateCode}">
+							<%--  <c:if test="${!empty salesManageVO.cateCode}">
 								href = "/admin/selectSalesByCateAjax?page=${cnt }&perPageRowNum=${salesManageVO.perPageRowNum }&cateCode=${salesManageVO.cateCode }"
 							</c:if> --%>
 						<a class="page-link"
@@ -144,6 +143,7 @@
 		</ul>
 	</div>
 	<!-- container mt-3 의 끝 -->
+	</div>
 </div>
 </body>
 </html>

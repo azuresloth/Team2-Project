@@ -91,6 +91,11 @@ public class AdminServiceImpl implements AdminService{
 		return sqlSession.selectList("adminMapper.selectOrderList", orderInfoVO);
 	}
 
+	@Override
+	public List<ItemVO> selectItemList() {
+		return sqlSession.selectList("itemMapper.selectItemList");
+	}
+
 	
 
 

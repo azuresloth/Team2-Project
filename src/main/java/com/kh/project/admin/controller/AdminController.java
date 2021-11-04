@@ -198,6 +198,11 @@ public class AdminController {
 		return "admin/order_info";
 	}
 	
+	@GetMapping("/itemManage")
+	public String itemManage(Model model) {
+		model.addAttribute("itemList", adminService.selectItemList());
+		return "admin/item_manage";
+	}
 }
 
 

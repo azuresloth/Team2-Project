@@ -47,6 +47,8 @@ public interface AdminService {
 	//기간 내의 팔린 상품 정보 조회
 	List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO);
 	
+	//itemList조회
+	List<ItemVO> selectItemList();
 	
 	
 }

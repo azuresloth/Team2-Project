@@ -1,13 +1,15 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 	
+	
 	var totalPrice = 0;
 	
 	$('.totalPrice').each(function(index, element){
-		var price = Number($('.totalPrice').val());
+		var price = Number($(element).val());
 		totalPrice += price
 	});	
-	$('#totalPrice').val(totalPrice);
+	var total = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	$('#totalPrice').text(total);
 	//이벤트 처리
 	//$(document).on('click', '#id', function() {
     //});

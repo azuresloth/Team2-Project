@@ -9,17 +9,19 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script type="text/javascript" src="/resources/admin/month_sales.js?ver=7"></script>
+<script type="text/javascript" src="/resources/admin/month_sales.js?ver=10"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #A8ECAF;
    	border-radius: 6px;
    	padding: 16px;
+   	a
 }
 .pagination{
 	margin: 0 auto;
 	text-align: center;
 }
+
 </style>
 </head>
 <body>
@@ -78,10 +80,21 @@
 	</table>
 	<div class="row">
 		<div class="col">
-			<input type="text" value="${totalPrice }" class="totalPrice">
+			<div>
+				<div class="row" >
+					<div class="col">
+						<div class="d-flex justify-content-end align-self-end text-bottum">
+							<span style="margin-right: 3rem;">총가격</span>
+							<div id="totalPrice" class="d-flex justify-content-end" style="margin-right: 100px;"></div>
+						</div>
+						<div class="d-flex justify-content-end" >
+							<hr width="155px" align="right" style="margin-right: 100px; margin-top: 5px;">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	
 	<!-- pagination -->
 	<% request.setAttribute("url", "/admin/selectMonthSales"); %>
 	<% request.setAttribute("noLinkColor", "#999"); %>

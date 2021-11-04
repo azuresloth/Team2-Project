@@ -75,13 +75,21 @@
 	
 	<!-- 매출관리를 위한 상품정보 목록 -->
 	<select id="selectSalesList" resultMap="view">
-		SELECT ITEM_CODE
-			, TOTAL_PRICE
-			, CATE_CODE
-			, BUY_CNT
-			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
-			, ITEM_NAME
-		FROM SALES
+		SELECT RNUM, ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
+		FROM(
+			SELECT ROWNUM RNUM , ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
+			FROM(
+				SELECT ITEM_CODE
+					, ITEM_NAME
+					, CATE_CODE
+					, TOTAL_PRICE
+					, BUY_CNT
+					, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
+				FROM SALES
+				ORDER BY BUY_DATE
+			)
+		)
+		WHERE RNUM BETWEEN #{startRow} and #{endRow}
 	</select>
 	
 	
@@ -135,14 +143,21 @@
 	</insert>
 	<!-- 해당카테고리의 상품의 매출조회 -->
 	<select id="selectSalesByCate" resultMap="view">
-		SELECT ITEM_CODE
-			, ITEM_NAME
-			, CATE_CODE
-			, TOTAL_PRICE
-			, BUY_CNT
-			, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
-		FROM SALES
-		WHERE CATE_CODE = #{cateCode}
+		SELECT RNUM, ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
+		FROM(
+			SELECT ROWNUM RNUM , ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
+			FROM(
+				SELECT ITEM_CODE
+					, ITEM_NAME
+					, CATE_CODE
+					, TOTAL_PRICE
+					, BUY_CNT
+					, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
+				FROM SALES
+				WHERE CATE_CODE = #{cateCode}
+			)
+		)
+		WHERE RNUM BETWEEN #{startRow} and #{endRow}
 	</select>
 	
 	<!-- 주문정보조회 -->
@@ -192,8 +207,6 @@
 	<select id="getTotalRowBySales" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SALES
 	</select>
-
-
 
 </mapper>
 
