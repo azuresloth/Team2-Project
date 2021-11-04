@@ -36,7 +36,7 @@
 					<c:otherwise>
 						<li><a href="/member/goJoin">회원가입</a></li>
 						<li><a href="/member/goLogin">로그인</a></li> 
-					</c:otherwise>
+					</c:otherwise> 
 				</c:choose>
 				<c:if test="${sessionScope.loginInfo.isAdmin eq 'Y'}">
 					<li><a href="/admin/adminMenu">관리자 메뉴</a></li>
