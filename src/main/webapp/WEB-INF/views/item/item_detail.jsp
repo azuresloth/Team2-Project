@@ -42,15 +42,14 @@
 		    </div>
 		</div>
 		
-		
 		<div class="col-5 itemInfoDiv">
 		<form action="" method="post" onsubmit="return false" id="itemForm">
 			<div class="col-12 nameDiv">
 				<h2>${itemInfo.itemName}</h2>
-				<input type="hidden" name="itemCode" value="itemInfo.itemName">
+				<input type="hidden" name="itemCode" value="itemInfo.itemCode">
 			</div>
 			<div class="col-12 priceDiv">
-				<input type="hidden" id="itemPrice" value="${itemInfo.itemPrice}">
+				<input type="hidden" id="itemPrice" name="itemPrice" value="${itemInfo.itemPrice}">
 				<span class="priceSpan"><fmt:formatNumber type="number" value="${itemInfo.itemPrice}"></fmt:formatNumber>원</span>
 			</div>
 			<div class="col-12 ">

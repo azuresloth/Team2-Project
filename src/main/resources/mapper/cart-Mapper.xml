@@ -18,7 +18,8 @@
 		<id column="BUY_CODE"	property=""/>
 		<result column=""		property=""/>
 	</resultMap>
-
+	
+	<!-- 장바구니에 추가 -->
 	<insert id="insertCart">
 		INSERT INTO ITEM_CART(
 			CART_CODE
@@ -33,7 +34,40 @@
 			, #{id}
 		)
 	</insert>
-
+	
+	<!-- 장바구니 조회 -->
+	<select id="selectCartViewList" resultMap="cartView">
+		SELECT ITEM_CODE
+			, ID
+			, ITEM_NAME
+			, ITEM_PRICE
+			, TOTAL_PRICE
+			, ATTACHED_IMG_NAME
+			, CART_DATE
+			, CART_CODE
+			, ITEM_CNT
+		FROM CART_VIEW
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 바로구매 눌럿을 경우 조회 -->
+	<!-- 바로구매 눌렀을때 장바구니에 같은제품 들어있는지 확인 -->
+	<select id="directSelectCartViewList" resultMap="cartView">
+		SELECT ITEM_CODE
+			, ID
+			, ITEM_NAME
+			, ITEM_PRICE
+			, TOTAL_PRICE
+			, ATTACHED_IMG_NAME
+			, CART_DATE
+			, CART_CODE
+			, ITEM_CNT
+		FROM CART_VIEW
+		WHERE ID = #{id}
+		AND ITEM_CODE = #{itemCode}
+	</select>
+	
+	
 
 </mapper>
 

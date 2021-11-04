@@ -1,6 +1,8 @@
 package com.kh.project.cart.service;
 
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,16 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void insertCart(CartViewVO cartViewVO) {
 		sqlSession.insert("cartMapper.insertCart", cartViewVO);
+	}
+
+	@Override
+	public List<CartViewVO> selectCartViewList(CartViewVO cartViewVO) {
+		return sqlSession.selectList("cartMapper.selectCartViewList", cartViewVO);
+	}
+
+	@Override
+	public CartViewVO directSelectCartViewList(CartViewVO cartViewVO) {
+		return sqlSession.selectOne("cartMapper.directSelectCartViewList", cartViewVO);
 	}
 
 	
