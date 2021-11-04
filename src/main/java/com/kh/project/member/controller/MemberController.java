@@ -123,7 +123,7 @@ public class MemberController {
 				else {
 					return "member/intercept_login_result";
 				}
-//				return "redirect:" + requestURI;  
+//				return "redirect:" + requestURI; 
 			}
 		
 		}
