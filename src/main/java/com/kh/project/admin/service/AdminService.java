@@ -19,7 +19,7 @@ public interface AdminService {
 	//카테고리 삭제
 	void deleteCategory(String cateCode);
 	//상품 매출 목록 조회
-	List<SalesManageVO> selectSales();
+	List<SalesManageVO> selectSales(SalesManageVO salesManageVO);
 	
 	//상품등록
 	void insertItem(ItemVO itemVO);
@@ -47,6 +47,6 @@ public interface AdminService {
 	//기간 내의 팔린 상품 정보 조회
 	List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO);
 	
-	//
+	
 	
 }

@@ -33,13 +33,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(result == null) {
 			// 실패할경우 바로 로그인창으로 이동
 			//
-			/*
-			 * String requestURI = request.getRequestURI(); System.out.println("요천된 경로 : " +
-			 * requestURI);
-			 * 
-			 * response.sendRedirect("/member/goInterceptLogin?requestURI=" + requestURI);
-			 */
-			response.sendRedirect("/member/goInterceptLogin");
+			
+			String requestURI = request.getRequestURI(); System.out.println("요천된 경로 : " +
+			requestURI);
+			
+			response.sendRedirect("/member/goInterceptLogin?requestURI=" + requestURI);
+			
+			//response.sendRedirect("/member/goInterceptLogin");
 			return false;
 		}
 		

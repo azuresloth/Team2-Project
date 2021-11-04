@@ -59,7 +59,7 @@ public class AdminController {
 	@GetMapping("/salesManage")
 	public String gosalesManage(Model model, SalesManageVO salesManageVO) {
 		model.addAttribute("sidePage", "salesManage");
-		model.addAttribute("salesList", adminService.selectSales());
+		model.addAttribute("salesList", adminService.selectSales(salesManageVO));
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		model.addAttribute("salesManageVO", salesManageVO);
 		return "admin/sales_manage";
@@ -159,12 +159,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/selectMonthSales")
-	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SalesManageVO salesManageVO) {
+	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO) {
 		model.addAttribute("sidePage", "selectMonthSales");
-		model.addAttribute("statusInfo", adminService.selectStatus());
-		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
-		model.addAttribute("salesManageVO", salesManageVO);
 		model.addAttribute("orderInfoVO", orderInfoVO);
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		return "admin/month_sales";
 	}
 	@GetMapping("/selectOrderInfo")

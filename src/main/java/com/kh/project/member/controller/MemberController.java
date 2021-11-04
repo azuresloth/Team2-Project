@@ -89,10 +89,8 @@ public class MemberController {
 	@GetMapping("/goInterceptLogin")
 	public String goInterceptLogin(@RequestParam(required = false, defaultValue = "1") int loginResult, HttpSession session, Model model, @RequestParam(required = false) String requestURI) {
 		model.addAttribute("loginResult", loginResult);
-		/*
-		 * model.addAttribute("requestURI", requestURI); System.out.println("!!!!!!@!@"
-		 * + requestURI);
-		 */
+		
+		model.addAttribute("requestURI", requestURI); System.out.println("!!!!!!@!@" + requestURI);
 		return "member/intercept_login";
 		
 		
@@ -111,14 +109,22 @@ public class MemberController {
 			
 			 
 			if(loginInfo.getIsAdmin().equals("Y")) {
-				 
-				return "redirect:/admin/adminMenu";
-				//return "member/intercept_login_result";
+				if(requestURI.substring(0, 7).equals("/admin/")) {
+					return "member/intercept_login_result";
+				}
+				else { 
+					return "redirect:/admin/adminMenu";
+				}
+				//return "member/intercept_login_result"; 
 			}
-			else {
-
-				return "member/intercept_login_result";
-//				return "redirect:" + requestURI;
+			else {  
+				if(requestURI.substring(0, 7).equals("/admin/")) {
+					return "redirect:/item/mainPage";
+				}
+				else {
+					return "member/intercept_login_result";
+				}
+//				return "redirect:" + requestURI; 
 			}
 		
 		}
