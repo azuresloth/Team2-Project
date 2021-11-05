@@ -13,42 +13,19 @@ $(document).ready(function() {
 	mail_check_btn = function(){
 		var emailId = $('#email').val();
 		var emailAddr = $('#email1').val();
+		var code = '';  //이메일전송 인증번호 저장을 위한 코드
 		
-		var email = emailId + '@ '+ emailAddr;
+		
+		var email = emailId + '@'+ emailAddr;
 		
 		$.ajax({
-            url: '/stu/studentListAjax', //요청경로
+            url: '/member/mailCheckAjax', //요청경로
             type: 'GET', // 받을 매핑 방식
-            data:{'classCode' : classCode}, //(컨트롤러에 전해줄)필요한 데이터  {'a' : sing, 'b' : song}
-            success: function(result) {
-               //ajax 실행 성공 후 실행할 코드 작성
-            	// 성공시 컨트롤러의 return값이 매개변수 result로 받아온다.
-				/*$(result).each(function(index, element){
-					console.log(element.stuNum + ' / ' + element.stuName);
-				}); */           
-				// 학생 목록 테이블을 지운다.
-				/*$('#tableDiv').remove(); // 선택한 태그와 하위태그 모두삭제*/
-				$('#tableDiv').empty(); // 하위태그만
-				
-				 var str = '';
-            str += '<table>'
-            str += '<tr>'
-            str += '<td>학번</td>'
-            str += '<td>학급이름</td>'
-            str += '<td>학생이름</td>'
-            str += '</tr>'
-            $(result).each(function(index, element){
-               str += '<tr>'
-               str += '<td>' + element.stuNum + '</td>'
-               str += '<td>' + element.classInfo.className + '</td>'
-               str += '<td class="stuNameTd">' + element.stuName + '</td>'
-               str += '</tr>'
-            });
-            str += '</table>'
-            /* 결국 str 의 내용은 '<table><tr><td>학번</td>~~~~~</table>'*/
-            // 해당 노드의 마지막 자식 노드 뒤에 html코드를 추가한다
-            $('#tableDiv').append(str);
-
+            data:{'email' : email}, //(컨트롤러에 전해줄)필요한 데이터  {'a' : sing, 'b' : song}
+            success: function(data) {
+            
+            	$('#verificationCodeBtn').attr('disabled',false);
+            	code = data;
 			},
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
@@ -56,6 +33,21 @@ $(document).ready(function() {
             }
       	});
 	};
+	//인증번호비교
+	$('#verificationCodeBtn').blur(function(){
+		var inputCode = $('#verificationCodeBtn').val(); //입력코드
+		var checkResult = $(mail_check_input_box_warn); //비교결과
+		
+		if(inputCode == code){							//일치할경우
+			checkResult.html("인증번호가 일치합니다.");
+			checkResult.attr("class" , "correct");
+		}
+		else{											//일치하지않을경우
+			checkResult.html("인증번호를 다시 확인하세요.");
+			checkResult.attr("class" , "incorrect");
+			
+		}
+	});
 	
 	
    //비밀번호 확인

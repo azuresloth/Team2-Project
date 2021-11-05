@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?var=31"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?var=32"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -22,7 +22,7 @@
 				아이디 
 				<div class="row">
 					<div class="col-9">
-						<input type="text" id="id" required name="id" class="form-control" > 
+						<input type="text" id="id" required name="id" class="form-control" autofocus> 
 					</div>
 					<div id="checkIdDiv" class="col"> 
 						<input type="button" class="btn btn-primary me-md-2 idCheckBtn" id="btn"  onclick="checkId();" value="중복확인" > 
@@ -80,7 +80,8 @@
 							</div>
 							 <div>인증번호입력</div>
 							<div >
-								<input type="text" class="form-control " id="verificationCodeBtn" disabled >;
+								<input type="text" class="form-control " id="verificationCodeBtn" disabled >
+								<span id="mail_check_input_box_warn"></span>
 							</div> 
 						</div>	
 					</div>
