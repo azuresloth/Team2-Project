@@ -7,23 +7,23 @@
 		<result column="CATE_NAME" property="cateName"/>
 	</resultMap>
 	<resultMap type="com.kh.project.item.vo.ItemVO" id="item">
-		<id column="ITEM_CODE" property="itemCode"/>
-		<result column="ITEM_NAME" property="itemName"/>
-		<result column="ITEM_PRICE" property="itemPrice"/>
-		<result column="ITEM_INTRO" property="itemIntro"/>
-		<result column="ITEM_STOCK" property="itemStock"/>
-		<result column="ITEM_STATUS" property="itemstatus"/>
-		<result column="CATE_CODE" property="cateCode"/>
-		<collection property="imgList" resultMap="img"/>
+		<id column="ITEM_CODE"			property="itemCode"/>
+		<result column="ITEM_NAME"		property="itemName"/>
+		<result column="ITEM_PRICE"		property="itemPrice"/>
+		<result column="ITEM_INTRO"		property="itemIntro"/>
+		<result column="ITEM_STOCK"		property="itemStock"/>
+		<result column="ITEM_STATUS"	property="itemStatus"/>
+		<result column="CATE_CODE"		property="cateCode"/>
+		<collection property="imgList"	resultMap="img"></collection>
 	</resultMap>
 	
 	<resultMap type="com.kh.project.admin.vo.SalesManageVO" id="view">
-		<result column="ITEM_CODE" property="itemCode"/>
-		<result column="ITEM_NAME" property="itemName"/>
-		<result column="TOTAL_PRICE" property="totalPrice"/>
-		<result column="CATE_CODE" property="cateCode"/>
-		<result column="BUY_DATE" property="buyDate"/>
-		<result column="BUY_CNT" property="buyCnt"/>
+		<result column="ITEM_CODE" 		property="itemCode"/>
+		<result column="ITEM_NAME" 		property="itemName"/>
+		<result column="TOTAL_PRICE" 	property="totalPrice"/>
+		<result column="CATE_CODE" 		property="cateCode"/>
+		<result column="BUY_DATE" 		property="buyDate"/>
+		<result column="BUY_CNT" 		property="buyCnt"/>
 	</resultMap>
 	<!-- 이미지 -->	
 	<resultMap type="com.kh.project.item.vo.ImgVO" id="img">
@@ -43,12 +43,19 @@
 		<result column="BUY_CNT"			property="buyCnt"/>
 		<result column="ITEM_NAME"			property="itemName"/>
 		<result column="PAYMENT_PLAN"		property="paymentPlan"/>
-		<result column="BUY_STATUS"		property="buyStatus"/>
+		<result column="BUY_STATUS"			property="buyStatus"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.project.admin.vo.BuyStatusVO" id="status">
 		<id column="STATUS_NUM"				property="statusNum"/>
-		<result column="STATUS_NAME"			property="statusName"/>
+		<result column="STATUS_NAME"		property="statusName"/>
+	</resultMap>
+	
+	<resultMap type="com.kh.project.admin.vo.SideMenuVO" id="sideMenu">
+		<id column="SIDE_MENU_CODE" property="sideMenuCode"/>
+		<result column="SIDE_MENU_NAME" property="sideMenuName"/>
+		<result column="MENU_PASS" property="menuPass"/>
+		<result column="MENU_CODE" property="menuCode"/>
 	</resultMap>
 	
 	
@@ -208,6 +215,48 @@
 		SELECT COUNT(ITEM_CODE) FROM SALES
 	</select>
 
+	<select id="getTotalRowByItem" resultType="int">
+		SELECT COUNT(I.ITEM_CODE)
+		FROM ITEM I , ITEM_IMG IMG
+		WHERE I.ITEM_CODE = IMG.ITEM_CODE
+		AND IS_MAIN = 'Y'
+	</select>
+	
+	<select id="selectItem" resultMap="item">
+		SELECT ITEM_CODE, ITEM_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_STATUS, ATTACHED_IMG_NAME, RNUM
+		FROM (
+			SELECT ITEM_CODE, ITEM_NAME, ITEM_PRICE, ITEM_STOCK, ITEM_STATUS, ATTACHED_IMG_NAME, ROWNUM RNUM
+			    FROM(
+			        SELECT I.ITEM_CODE
+			            , ITEM_NAME
+			            , ITEM_PRICE
+			            , ITEM_STOCK
+			            , ITEM_STATUS
+			            , ATTACHED_IMG_NAME
+			        FROM ITEM I , ITEM_IMG IMG
+			        WHERE I.ITEM_CODE = IMG.ITEM_CODE
+			        AND IS_MAIN = 'Y')
+			)
+		WHERE RNUM BETWEEN #{startRow} and #{endRow}
+	</select>
+	
+	<update id="updateItemStatus">
+		UPDATE ITEM
+		SET ITEM_STATUS = #{itemStatus}
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
+	
+	<delete id="deleteItem">
+		DELETE ITEM
+		WHERE ITEM_CODE = #{itemCode}
+	</delete>
+	
+	<select id="selectSideMenu" resultMap="sideMenu">
+		SELECT SIDE_MENU_CODE, SIDE_MENU_NAME, SM.MENU_PASS, SM.MENU_CODE
+		FROM MENU M , SIDE_MENU SM
+		WHERE M.MENU_CODE = SM.MENU_CODE
+	</select>
+	
 </mapper>
 
 

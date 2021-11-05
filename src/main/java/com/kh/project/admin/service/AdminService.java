@@ -6,6 +6,7 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -47,8 +48,16 @@ public interface AdminService {
 	//기간 내의 팔린 상품 정보 조회
 	List<OrderInfoVO> serchDate(OrderInfoVO orderInfoVO);
 	
-	//itemList조회
-	List<ItemVO> selectItemList();
+	//item조회
+	List<ItemVO> selectItem(PageVO pageVO);
 	
+	//item상품 판매상태 수정
+	void updateItemStatus(ItemVO itemVO);
+	
+	//상품 삭제
+	void deleteItem(String itemCode);
+	
+	//sideMune조회
+	List<SideMenuVO> selectSideMenu();
 	
 }

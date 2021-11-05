@@ -26,8 +26,10 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.common.util.FileUploadUtil;
+import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ImgVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -37,9 +39,14 @@ public class AdminController {
 	@Resource(name = "adminService")
 	private AdminService adminService;
 	
+	@Resource(name = "itemService")
+	private ItemService itemService;
+	
+	
 	@GetMapping("/adminMenu")
-	public String goAdminMenu(Model model) {
-		model.addAttribute("sidePage", "categoryManage");
+	public String goAdminMenu(Model model, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("sidePage", "adminMenu");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/reg_category";
 	}
@@ -57,7 +64,8 @@ public class AdminController {
 	}
 	
 	@GetMapping("/salesManage")
-	public String gosalesManage(Model model, SalesManageVO salesManageVO) {
+	public String gosalesManage(Model model, SalesManageVO salesManageVO, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "salesManage");
 		model.addAttribute("salesList", adminService.selectSales(salesManageVO));
 		model.addAttribute("categoryList", adminService.selectCategoryList());
@@ -66,8 +74,9 @@ public class AdminController {
 	}
 	
 	@GetMapping("/insertItemForm")
-	public String goInsertItem(Model model) {
-		model.addAttribute("sidePage", "insertItem");
+	public String goInsertItem(Model model, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("sidePage", "insertItemForm");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/insert_item_form";
 	}
@@ -159,14 +168,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/selectMonthSales")
-	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO) {
+	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectMonthSales");
 		model.addAttribute("orderInfoVO", orderInfoVO);
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		return "admin/month_sales";
 	}
 	@GetMapping("/selectOrderInfo")
-	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO) {
+	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectOrderInfo");
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
@@ -199,10 +210,31 @@ public class AdminController {
 	}
 	
 	@GetMapping("/itemManage")
-	public String itemManage(Model model) {
-		model.addAttribute("itemList", adminService.selectItemList());
+	public String selectItem(Model model, PageVO pageVO, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("sidePage", "itemManage");
+		model.addAttribute("pageVO", pageVO);
+		model.addAttribute("itemList",adminService.selectItem(pageVO));
 		return "admin/item_manage";
 	}
+	@ResponseBody
+	@PostMapping("/itemStatusUpdateAjax")
+	public void updateStatus(ItemVO itemVO) {
+		adminService.updateItemStatus(itemVO);
+	}
+	
+	@GetMapping("/deleteItem")
+	public String deleteItem(String itemCode) {
+		adminService.deleteItem(itemCode);
+		return "redirect:/admin/itemManage";
+	}
+	
+	public List<SideMenuVO> sideMenu( SideMenuVO sideMenuVO){
+		return adminService.selectSideMenu();
+	}
+	
+	
+	
 }
 
 

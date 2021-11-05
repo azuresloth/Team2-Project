@@ -83,7 +83,7 @@
 							</td>
 							<td>
 								<input type="hidden" value="${orderInfo.buyCode }">
-								<input type="button" value="변경" class="update">
+								<input type="button" value="변경" class="update btn btn-primary">
 							</td>
 						</tr>
 					</c:otherwise>

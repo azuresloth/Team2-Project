@@ -10,6 +10,8 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
+import com.kh.project.admin.vo.SideMenuVO;
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
 
 @Service("adminService")
@@ -92,9 +94,28 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<ItemVO> selectItemList() {
-		return sqlSession.selectList("itemMapper.selectItemList");
+	public List<ItemVO> selectItem(PageVO pageVO) {
+		pageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowByItem"));
+		return sqlSession.selectList("adminMapper.selectItem", pageVO);
 	}
+
+	@Override
+	public void updateItemStatus(ItemVO itemVO) {
+		sqlSession.update("adminMapper.updateItemStatus", itemVO);
+	}
+
+	@Override
+	public void deleteItem(String itemCode) {
+		sqlSession.delete("adminMapper.deleteItem", itemCode);
+	}
+
+	@Override
+	public List<SideMenuVO> selectSideMenu() {
+		return sqlSession.selectList("adminMapper.selectSideMenu");
+	}
+
+
+	
 
 	
 
