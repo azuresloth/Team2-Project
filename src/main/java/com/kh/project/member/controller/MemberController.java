@@ -109,7 +109,6 @@ public class MemberController {
 		model.addAttribute("requestURI", requestURI); System.out.println("!!!!!!@!@" + requestURI);
 		return "member/intercept_login";
 		
-		
 	}
 	// 인터셉트 로그인
 	@PostMapping("/interceptLogin")
@@ -118,7 +117,6 @@ public class MemberController {
 		//System.out.println("11111111" + requestURI);
 		
 		MemberVO loginInfo = memberService.login(memberVO);
-	
 		
 		if(loginInfo != null) {
 			session.setAttribute("loginInfo", loginInfo);
@@ -142,7 +140,6 @@ public class MemberController {
 				}
 //				return "redirect:" + requestURI; 
 			}
-		
 		}
 		else {
 			int result = 0;
@@ -151,10 +148,6 @@ public class MemberController {
 		}
 		
 	}
-	
-	
-	
-	
 	
 	 /* 이메일 인증 */
 	@ResponseBody

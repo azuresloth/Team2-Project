@@ -7,21 +7,23 @@ $(document).ready(function() {
 		var inputCode = $('#verificationCode').val(); //입력코드
 		var checkResult = $(mail_check_input_box_warn); //비교결과
 		if(inputCode == code){							//일치할경우
-			checkResult.html("인증번호가 일치합니다.");
-			checkResult.attr("class" , "correct");
-			$('#joinBtn').removeClass('disabled');
+			checkResult.html('인증번호가 일치합니다.');
+			checkResult.attr('class' , 'correct');
+			checkResult.addClass('success');
+			/*$('#joinBtn').removeClass('disabled');*/
 		}
 		else{											//일치하지않을경우
-			checkResult.html("인증번호를 다시 확인하세요.");
-			checkResult.attr("class" , "incorrect");
-			$('#joinBtn').addClass('disabled');
+			checkResult.html('인증번호를 다시 확인하세요.');
+			checkResult.attr('class' , 'incorrect');
+			/*$('#joinBtn').addClass('disabled');*/
 			
 		}
 	});
 	//아이디 중복체크 클릭시 
 	$(document).on('click', '#id', function() {
 		$('#a').remove();
-		$('#joinBtn').addClass('disabled');
+		/*$('#joinBtn').addClass('disabled');*/
+		
     });
 	
 	// 엔터키 방지
@@ -30,7 +32,6 @@ $(document).ready(function() {
 			event.preventDefault();
 		};
     });
-	
 	
 });
 //함수 선언 영역
@@ -59,11 +60,12 @@ $(document).ready(function() {
       	});
 	};
 	
-	
-   //비밀번호 확인
+
+	//회원가입 버튼 클릭시(비밀번호확인 / 인증번호 아이디중복체크 통과시 가입처리)
 	finalJoin = function(){
 	var pw = $('#pw').val();
 	var pw1 = $('#pw_1').val();
+	var success = $('#joinForm').find('.success').length
 	
 	if(pw != pw1){
 		alert('비밀번호를 확인하세요');
@@ -71,11 +73,31 @@ $(document).ready(function() {
 		$('#pw').focus();
 		
 		return;
-		
 	}
-	$('#joinForm').attr('onsubmit','return true');
-	$('#joinForm').submit();
+	
+		if(success == 2){
+			$('#joinForm').attr('onsubmit','return true');
+			
+		}else
+			alert('입력하신 정보를 확인하여주십시요');
+			return;
+			
 	};
+	/*if($('#mail_check_input_box_warn').is('succesCode')){
+		if($($'#a').is('succesId')){
+			$('#joinForm').attr('onsubmit','return true');
+			$('#joinForm').submit();
+		}
+		
+	}else
+		alert('입력하신 정보를 확인하여주십시요');
+		return;
+		
+		
+	};*/
+		
+	
+	
 	
 	
 	//아이디 중복체크
@@ -102,12 +124,14 @@ $(document).ready(function() {
            if(result){
         	   $('#a').remove();
         	   $('#checkIdDiv').after('<div id="a" style="color:red "> 아이디가 중복입니다 </div>');
+        	  /* $('#joinBtn').addClass('disabled');*/
            }
            else{
         	   $('#a').remove();
         	   $('#checkIdDiv').after('<div id="a" style="color:blue "> 사용가능합니다 </div>');
-        	   
-        	$('#joinBtn').removeClass('disabled')
+        	   $('#a').addClass('success');
+        	 /*  $('#id').attr('readonly', 'readonly');*/
+        	/*$('#joinBtn').removeClass('disabled')*/
          	 }
             
             },
