@@ -4,6 +4,8 @@ $(document).ready(function(){
 		$('.login_warn').remove();
 		
     });
+	
+	
 });
 
 

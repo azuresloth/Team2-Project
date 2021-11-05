@@ -31,7 +31,7 @@
 				<div style="margin-top: 20px;"></div>
 					<div >
 						<div>
-							아이디    <input type="text" name="id" id="id" class="form-control"required>
+							아이디    <input type="text" name="id" id="id" class="form-control"required autofocus>
 						</div>
 						<div>
 							비밀번호  <input type="password" name="pw" id="pw" class="form-control" onkeyup="enterkey()"  required>

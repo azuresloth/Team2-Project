@@ -20,7 +20,7 @@
 				<div style="margin-top: 20px;"></div>
 					<div >
 						<div>
-							이름   <input type="text" name="name" id="name" class="form-control" autocomplete="OFF" required >
+							이름   <input type="text" name="name" id="name" class="form-control" autocomplete="OFF" required autofocus>
 						</div>
 						<div>
 							이메일  <input type="text" name="email" id="email" class="form-control" autocomplete="OFF" required>
