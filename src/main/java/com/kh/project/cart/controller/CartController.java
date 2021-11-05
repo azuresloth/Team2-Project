@@ -8,12 +8,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.common.service.CommonService;
+import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ItemVO;
+import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/cart")
@@ -24,6 +28,8 @@ public class CartController {
 	private CommonService commonService;
 	@Resource(name = "cartService")
 	private CartService cartService;
+	@Resource(name = "memberService")
+	private MemberService memberService;
 	
 	// 장바구니에 추가 메소드(추가후 장바구니페이지로 이동할지 물어봄)
 	//(상세페이지 에서 1.에이작스로? or 2.페이지이동으로?)
@@ -38,24 +44,91 @@ public class CartController {
 	// 구매 페이지로 이동
 	//@PostMapping("/goPurchasePage")
 	@RequestMapping("/goPurchasePage")
-	public String goPurchasePage(Model model, CartViewVO cartViewVO, HttpServletRequest request) {
-		String requestURI = request.getRequestURI();
+	public String goPurchasePage(Model model, CartViewVO cartViewVO, String requestURI, String insOrUpd) {
+		System.out.println(requestURI);
 		if(requestURI.equals("/cart/goCartList")) {
+			System.out.println(1);
 			model.addAttribute("cartList", cartService.selectCartViewList(cartViewVO));
 			model.addAttribute("requestURI", requestURI);
 		}
 		else if(requestURI.equals("/item/itemDetail")){
-			/* 이부분 상세페이지에서 에이작스로 넘겨서 기존 장바구니에 같은 물건이 있는경우 confirm창으로 기존꺼
-			 * 같이구매할지, 삭제할지 if문으로 설정 하고 여기와서 지금 else if문안에 if문 추가해서
-			 * 기존꺼 삭제 cartService타고 갈지 결정
-			 * CartViewVO checkCart = cartService.directSelectCartViewList(cartViewVO);
-			 * if(checkCart != null) {
-			 * 
-			 * }
-			 */
+			if(insOrUpd.equals("0")) {
+				// 추가쿼리
+				System.out.println("추가쿼리탐");
+				cartService.insertCart(cartViewVO);
+			}
+			else if(insOrUpd.equals("1")) {
+				// cnt 수정쿼리
+				System.out.println("수정쿼리탐");
+				cartService.updateCartCnt(cartViewVO);
+				
+			}
+			System.out.println(insOrUpd+2+"!!!!!!!!!상세정보에서 바로구매!!!!!!!!!!!!");
+			System.out.println(cartViewVO.getItemCode());
+			return "redirect:/cart/goDirectPurchasePage?itemCode="+cartViewVO.getItemCode()+"&id="+cartViewVO.getId();
 		}
 		return "cart/purchase_page";
 	}
+	
+	// 바로구매시 redirect 메소드(새로고침 오류땜에 만듬)(장바구니에서 가는거도 하나더 만들어야함)
+	@GetMapping("/goDirectPurchasePage")
+	public String goDirectPurchasePage(Model model, CartViewVO cartViewVO, EmailAndTellVO emailandTellVO) {
+		System.out.println(cartViewVO.getItemCode()+ "1234556666" + cartViewVO.getId());
+		model.addAttribute("buyItemInfo", cartService.directSelectCartViewList(cartViewVO));
+		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
+		// 이메일, 전화번호 쪼개서 던지기
+		MemberVO splitTellEmail = memberService.selectBuyMemberInfo(cartViewVO);
+		
+		String email = splitTellEmail.getEmail();
+		int idx = email.indexOf("@");
+		String email1 = email.substring(0, idx);
+		String email2 = email.substring(idx+1);
+		emailandTellVO.setEmail1(email1);
+		emailandTellVO.setEmail2(email2);
+		
+		String tell = splitTellEmail.getTell();
+		String tell1 = "0", tell2 = "0", tell3 = "0";
+		String tells[] = tell.split("-");
+		for(int i = 0 ; i < tells.length ; i++) {
+			if(i == 0) {
+				tell1 = tells[i];
+			}
+			else if(i == 1) {
+				tell2 = tells[i];
+			}
+			else if(i == 2) {
+				tell3 = tells[i];
+			}
+		}
+		emailandTellVO.setTell1(tell1);
+		emailandTellVO.setTell2(tell2);
+		emailandTellVO.setTell3(tell3);
+		
+		model.addAttribute("emailandTellInfo", emailandTellVO);
+		
+		return "cart/purchase_page";
+	}
+	
+	//------------------------- 에이작스 
+	
+	// 카트에 동일제품 체크
+	@ResponseBody
+	@PostMapping("/checkCartAjax")
+	public CartViewVO checkCartAjax(CartViewVO cartViewVO) {
+		System.out.println("동일제품 체크 에이작스");
+		return cartService.directSelectCartViewList(cartViewVO);
+	}
+	
+	// 카트의 동일제품 삭제
+	@ResponseBody
+	@PostMapping("/deleteSameCartAjax")
+	public void deleteSameCartAjax(CartViewVO cartViewVO) {
+		System.out.println("동일제품 삭제 에이작스");
+		cartService.deleteSameCart(cartViewVO);
+	}
+	
+	//
+	
 	
 	
 	

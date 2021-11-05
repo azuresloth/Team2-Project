@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=2">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=3"></script>
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
 </head>
 <body>
 	<div class="row">
@@ -46,7 +46,7 @@
 		<form action="" method="post" onsubmit="return false" id="itemForm">
 			<div class="col-12 nameDiv">
 				<h2>${itemInfo.itemName}</h2>
-				<input type="hidden" name="itemCode" value="itemInfo.itemCode">
+				<input type="hidden" name="itemCode" id="itemCode" value="${itemInfo.itemCode}">
 			</div>
 			<div class="col-12 priceDiv">
 				<input type="hidden" id="itemPrice" name="itemPrice" value="${itemInfo.itemPrice}">
@@ -106,8 +106,13 @@
 				</span>
 			</div>
 			<div class="col-12 justify-content-center text-center mt-2">
+				<input type="hidden" name="id" id="loginId" value="${sessionScope.loginInfo.id}">
+				<!-- 장바구니에 추가할지 갯수만 수정할지 정할 정보 0: 추가 1: 수정 -->
+				<input type="hidden" name="insOrUpd" id="insOrUpd" value="0">
+				<!-- requestURI -->
+				<input type="hidden" name="requestURI" value="${requestURI}">
 				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" onclick="goCartBtn();">장바구니 추가</button>
-				<button type="button" class="btn btn-outline-secondary btn-lg directBtn" onclick="goDirectBtn();">바로구매</button>
+				<button type="button" class="btn btn-outline-secondary btn-lg directBtn" id="purchaseBtn">바로구매</button>
 			</div>
 			</form>
 		</div>

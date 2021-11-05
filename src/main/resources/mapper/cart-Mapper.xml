@@ -18,6 +18,15 @@
 		<id column="BUY_CODE"	property=""/>
 		<result column=""		property=""/>
 	</resultMap>
+	<resultMap type="com.kh.project.cart.vo.DeliveryInfoVO" id="deliveryInfo">
+		<result column="DELIVERY_NAME"	property="deliveryName"/>
+		<result column="POST_CODE"	property="postCode"/>
+		<result column="ROAD_ADDR"	property="roadAddr"/>
+		<result column="DETAIL_ADDR"	property="detailAddr"/>
+		<result column="DELIVERY_TELL"	property="deliveryTell"/>
+		<result column="DELIVERY_EMAIL"	property="deliveryEmail"/>
+		<result column="DELIVERY_MSG"	property="deliveryMSG"/>
+	</resultMap>
 	
 	<!-- 장바구니에 추가 -->
 	<insert id="insertCart">
@@ -67,8 +76,20 @@
 		AND ITEM_CODE = #{itemCode}
 	</select>
 	
+	<!-- 장바구니에 있는 동일한 기존제품 삭제 -->
+	<delete id="deleteSameCart">
+		DELETE ITEM_CART
+		WHERE ID = #{id}
+		AND ITEM_CODE = #{itemCode}
+	</delete>
 	
-
+	<!-- 상품 갯수 수정 -->
+	<update id="updateCartCnt">
+		UPDATE ITEM_CART
+		SET ITEM_CNT = (SELECT ITEM_CNT FROM ITEM_CART WHERE ID = #{id} AND ITEM_CODE = #{itemCode}) + #{itemCnt}
+		WHERE ID = #{id}
+		AND ITEM_CODE = #{itemCode}
+	</update>
 </mapper>
 
 

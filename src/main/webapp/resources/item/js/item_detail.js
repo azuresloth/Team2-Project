@@ -19,6 +19,49 @@ $(document).ready(function(){
 	}); 
 	
 	$('#itemForm').attr('onsubmit', 'return false');
+	
+	$(document).on('click', '#purchaseBtn', function() { 
+		var loginId = $('#loginId').val();
+		var itemCode = $('#itemCode').val();
+		
+  	 	/*location.href = '/stu/goStuManage?classCode=' + classCode;*/
+  	 	$.ajax({
+            url: '/cart/checkCartAjax', //요청경로
+            type: 'post',
+            data:{'id' : loginId, 'itemCode' : itemCode}, //필요한 데이터
+            success: function(result) {
+               if(result == ''){
+            	   goDirectBtn();
+               }
+               else{
+            	   var result = confirm('장바구니에 같은 제품이 존재합니다. \n 같이 구매하시겠습니까?');
+            	   if(result){
+            		   $('#insOrUpd').val(1);
+            		   goDirectBtn();
+            	   }
+            	   else{
+            		   $.ajax({
+            			   url: '/cart/deleteSameCartAjax',
+            			   type: 'post',
+            			   async : false,
+            			   data:{'id' : loginId, 'itemCode' : itemCode},
+            			   success: function() {
+            				   goDirectBtn();
+            			   },
+            			   error: function() {
+            				   alert('실패');
+            			   }
+            		   });
+            	   }
+               }
+
+			},
+            error: function(){
+             //ajax 실행 실패 시 실행되는 구간
+               alert('실패');
+            }
+      	});
+	});
 });
 
 /* 함수선언 영역*/

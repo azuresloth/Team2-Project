@@ -50,9 +50,9 @@
 				  	</div>
 				</div>	
 					<div>주소</div>	
-						<input type="text" id="sample4_postcode" placeholder="우편번호" name="postCode" required>
+						<input type="text" id="sample4_postcode" placeholder="우편번호" name="postCode" >
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
-						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr" required>
+						<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr" >
 						<input type="text" id="sample4_jibunAddress" placeholder="지번주소" hidden > 
 						<span id="guide" style="color:#999;display:none"></span>
 						<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr">

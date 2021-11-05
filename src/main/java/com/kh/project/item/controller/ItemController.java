@@ -1,6 +1,7 @@
 package com.kh.project.item.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,7 +57,8 @@ public class ItemController {
 	
 	// 상품 상세 페이지
 	@GetMapping("/itemDetail")
-	public String itemDetail(Model model, ItemVO itemVO) {
+	public String itemDetail(Model model, ItemVO itemVO, HttpServletRequest request) {
+		model.addAttribute("requestURI", request.getRequestURI());
 		model.addAttribute("itemInfo", itemService.selectItemDetail(itemVO));
 		return "item/item_detail";
 	}

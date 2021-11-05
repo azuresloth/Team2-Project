@@ -30,6 +30,16 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectOne("cartMapper.directSelectCartViewList", cartViewVO);
 	}
 
+	@Override
+	public void deleteSameCart(CartViewVO cartViewVO) {
+		sqlSession.delete("cartMapper.deleteSameCart", cartViewVO);
+	}
+
+	@Override
+	public void updateCartCnt(CartViewVO cartViewVO) {
+		sqlSession.update("cartMapper.updateCartCnt", cartViewVO);
+	}
+
 	
 	
 }

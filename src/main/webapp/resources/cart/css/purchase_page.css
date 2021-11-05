@@ -8,7 +8,7 @@
 	border-top: 1px solid #333333;
 	margin: 0 auto;
 }
-.purInfoTable th{
+.purInfoTable th, .purInfoTable td{
 	padding-top: 15px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #efefef;
@@ -102,4 +102,10 @@ p{
 }
 .btn_payment{
 	width: 200px;
+}
+.addrBtn{
+	border: 1px solid #cbcbcb;
+	background-color: white;
+	height: 28px;
+	color: #666666;
 }
