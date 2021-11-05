@@ -21,10 +21,18 @@ import com.kh.project.common.util.FileUploadUtil;
 
 @Controller
 @RequestMapping("/feedback")
-public class feedbackController {
+public class FeedbackController {
 
 	@Resource(name = "feedbackService")
 	private FeedbackService feedbackService;
+	
+	// 상품 후기 페이지 이동
+	@GetMapping("/reviewBoard")
+	public String reviewBoard() {
+
+		return "board/review_board";
+	}
+	
 
 	// 후기 등록하기
 	@ResponseBody
@@ -102,12 +110,8 @@ public class feedbackController {
 		return feedbackService.feedbackList(itemCode);
 	}
 
-	@GetMapping("/reviewBoard")
-	public String reviewBoard() {
-
-		return "board/review_board";
-	}
 	
+	// 후기 지우기
 	@ResponseBody
 	@PostMapping("/deleteFeedbackAjax")
 	public void deleteFeedbackAjax(String fbCode) {

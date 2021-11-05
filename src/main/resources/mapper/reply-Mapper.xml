@@ -30,6 +30,27 @@
 			)
 	</insert>
 	
+	<!-- 댓글 취소를 위한 기존의 내용 데이터만 받기 -->
+	<select id="cancelReplyData" resultType="String">
+		SELECT CONTENT
+		FROM BOARD_REPLY
+		WHERE REPLY_CODE= #{replyCode}
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply">
+		UPDATE BOARD_REPLY
+		SET CONTENT = #{content}, CREATE_DATE = SYSDATE
+		WHERE REPLY_CODE= #{replyCode}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply">
+		DELETE BOARD_REPLY
+		WHERE REPLY_CODE= #{replyCode}
+	</delete>
+	
+	
 </mapper>
 
 

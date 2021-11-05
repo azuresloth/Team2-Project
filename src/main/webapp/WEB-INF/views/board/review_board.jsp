@@ -19,8 +19,7 @@ $(document).ready(function(){
 	
 	// 화면에 바로 후기 목록 뿌려주기
 	
-	var itemCode = '${param.itemCode }';	//전역변수    
-	alert(itemCode);
+	var itemCode = '${param.itemCode }';	//전역변수
 // 	alert(itemCode);// 확인함
 	
 	showFeedbackList = function(itemCode){
@@ -233,11 +232,45 @@ $(document).ready(function(){
 })(jQuery);
 
 </script>
+<script type="text/javascript" src="/resources/board/js/feedback.js"></script>
 </head>
 <body>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+	<div class="row justify-content-center formDiv">
+		<div class="col-9">
 	<h1>상품 상세 보기 페이지</h1>
 	<h2>후기 등록하기</h2>
+	<button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">후기등록 열기/닫기</button>
+	<div id="demo" class="collapse">
+			<!-- 세로운 디자인의 폼태그 -->
+			<div>
+				<form method="post" enctype="multipart/form-data" id="fileUploadForm">
+					<input type="hidden" value="${param.itemCode }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 -->
+					<div class="input-group mt-2 mb-2">
+						<span class="input-group-text">제목 : </span> 
+						<input type="text" class="form-control" name="title">
+					</div>
+					<div class="input-group mt-2 mb-2">
+						<span class="input-group-text">작성자 : </span> 
+						<input type="text" class="form-control" name="id">
+					</div>
+					<div class="input-group mb-2">
+						<span class="input-group-text">내용 : </span>
+						<textarea rows="5" class="form-control" style="resize: none;" name="content"></textarea>
+					</div>
+					<div class="input-group mb-2">
+						<span class="input-group-text">사진 첨부 : </span> 
+						<input type="file" class="form-control" required>
+					</div>
+					<div class="text-center">
+						<input type="submit" class="btn btn-primary mt-2" value="후기등록">
+						<input type="button" class="btn btn-primary mt-2" value="취소" id="cancelFeedbackForm">
+					</div>
+				</form>
+			</div>
+	<!-- 세로운 디자인의 폼태그 끝!!!!!!!!!!!!-->
+	</div>
+
 	<div>
 		<input type="button" value="후기등록 열기/닫기" class="btn btn-primary" id="feedBackButton">
 	</div>
@@ -253,6 +286,10 @@ $(document).ready(function(){
 			<div>사진 첨부(상품후기) : <input type="file" name="file" required="required"></div>	
 			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btninsertfeedback">
 		</form>
+	</div>
+
+
+		</div>
 	</div>
 </body>
 </html>

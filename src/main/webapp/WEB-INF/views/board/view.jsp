@@ -19,9 +19,6 @@ $(document).ready(function(){
 
 /* 함수선언 영역*/
 (function($){
-     aaa = function(){
-	
-     };
      
    //이벤트 처리
  	//$(document).on('click', '#id', function() {
@@ -101,6 +98,7 @@ $(document).ready(function(){
 			
 						<!-- 여기에 ajax로 목록 보기가 들어온다. -->
 			<div class="mt-2">
+				<input type="hidden" value="${boardVO.boardNum}" id="boardNumInput">
 				<ul class="list-group" id="replyListUl">
 					<!-- 아작스로 뿌려주는곳 -->
 					<li class="list-group-item">
