@@ -102,6 +102,19 @@
 	</update>
 	
 	
+	<!-- 구입시 기존 회원정보 조회 -->
+	<select id="selectBuyMemberInfo" resultMap="member">
+		SELECT ID
+			, NAME
+			, TELL
+			, EMAIL
+			, POST_CODE
+			, ROAD_ADDR
+			, DETAIL_ADDR
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
 	
 </mapper>
 

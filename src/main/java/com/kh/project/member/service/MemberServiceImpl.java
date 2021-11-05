@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.annotation.SessionScope;
 
+import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.member.vo.MemberVO;
 
 
@@ -52,6 +53,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public int deleteMember(MemberVO memberVO) {
 		return sqlSession.delete("memberMapper.deleteMember",memberVO);
+	}
+
+	@Override
+	public MemberVO selectBuyMemberInfo(CartViewVO cartViewVO) {
+		return sqlSession.selectOne("memberMapper.selectBuyMemberInfo", cartViewVO);
 	}
 
 }

@@ -6,17 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?var=32"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?var=42"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet" href="/resources/member/css/join.css?ver=1">
+<link rel="stylesheet" href="/resources/member/css/join.css?ver=2">
 
 </head>
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
-			<form action="/member/join" method="post" class="row g-3" id="joinForm" >
+			<form action="/member/join" method="post" class="row g-3" id="joinForm" onsubmit="return false">
 				<div class="">기본정보
 				<div></div>
 				아이디 
@@ -59,7 +59,7 @@
 					    <input type="text" id="sample4_extraAddress" placeholder="참고항목" hidden >
 					
 							
-							<div>생년월일 <input type="text" id="birthday" name="birthday" placeholder="ex)19920211" required class="form-control"></div>
+							<div>생년월일<input type="hidden"> <input type="text" id="birthday" name="birthday" placeholder="ex)19920211" required class="form-control"></div>
 				</div>
 				<div>
 					<div>추가정보</div>
@@ -79,8 +79,8 @@
 								<input type="button" class="btn btn-primary me-md-2 emailBtn" id="btn2"  value="인증번호발송" onclick="mail_check_btn()">
 							</div>
 							 <div>인증번호입력</div>
-							<div >
-								<input type="text" class="form-control " id="verificationCodeBtn" disabled >
+							<div>
+								<input type="text" class="form-control " id="verificationCode" disabled >
 								<span id="mail_check_input_box_warn"></span>
 							</div> 
 						</div>	
@@ -88,7 +88,7 @@
 					<div class="mt-3">성별 &nbsp;<input type="radio" value="남" checked name="gender"> 남 <input type="radio" value="여" name="gender" disabled="disabled"> 여 </div>
 				</div>
 				<div class="d-grid gap-1">
-				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입"  > 회원가입</button>
+				  <button class="btn btn-primary disabled" id="joinBtn" type="submit" value="회원가입" onclick="finalJoin();"> 회원가입</button>
 				</div>
 			</form>
 		</div>

@@ -159,7 +159,7 @@ public class MemberController {
 	 /* 이메일 인증 */
 	@ResponseBody
     @RequestMapping(value="/mailCheckAjax", method=RequestMethod.GET)
-    public void mailCheckGET(String email) throws Exception{
+    public int mailCheckGET(String email) throws Exception{
         
 		/* 인증번호 난수생성 */
     	Random random = new Random();
@@ -191,7 +191,7 @@ public class MemberController {
         }catch(Exception e) {
             e.printStackTrace();
         }
-		
+		return checkNum;
 	}
 	
 	//아이디 찾기 화면으로 이동

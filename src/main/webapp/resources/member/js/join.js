@@ -1,8 +1,34 @@
+var code;  //이메일전송 인증번호 저장을 위한 코드
 //화면 로딩 후 바로 실행
 $(document).ready(function() {
+	
+	//인증번호비교
+	$('#verificationCode').blur(function(){
+		var inputCode = $('#verificationCode').val(); //입력코드
+		var checkResult = $(mail_check_input_box_warn); //비교결과
+		if(inputCode == code){							//일치할경우
+			checkResult.html("인증번호가 일치합니다.");
+			checkResult.attr("class" , "correct");
+			$('#joinBtn').removeClass('disabled');
+		}
+		else{											//일치하지않을경우
+			checkResult.html("인증번호를 다시 확인하세요.");
+			checkResult.attr("class" , "incorrect");
+			$('#joinBtn').addClass('disabled');
+			
+		}
+	});
+	//아이디 중복체크 클릭시 
 	$(document).on('click', '#id', function() {
 		$('#a').remove();
 		$('#joinBtn').addClass('disabled');
+    });
+	
+	// 엔터키 방지
+	$(document).on('keydown', 'input', function() {
+		if(event.keyCode === 13){
+			event.preventDefault();
+		};
     });
 	
 	
@@ -13,7 +39,6 @@ $(document).ready(function() {
 	mail_check_btn = function(){
 		var emailId = $('#email').val();
 		var emailAddr = $('#email1').val();
-		var code = '';  //이메일전송 인증번호 저장을 위한 코드
 		
 		
 		var email = emailId + '@'+ emailAddr;
@@ -23,9 +48,9 @@ $(document).ready(function() {
             type: 'GET', // 받을 매핑 방식
             data:{'email' : email}, //(컨트롤러에 전해줄)필요한 데이터  {'a' : sing, 'b' : song}
             success: function(data) {
-            
-            	$('#verificationCodeBtn').attr('disabled',false);
             	code = data;
+            	alert('인증번호가 발송되었습니다.');
+            	$('#verificationCode').attr('disabled',false);
 			},
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
@@ -33,21 +58,6 @@ $(document).ready(function() {
             }
       	});
 	};
-	//인증번호비교
-	$('#verificationCodeBtn').blur(function(){
-		var inputCode = $('#verificationCodeBtn').val(); //입력코드
-		var checkResult = $(mail_check_input_box_warn); //비교결과
-		
-		if(inputCode == code){							//일치할경우
-			checkResult.html("인증번호가 일치합니다.");
-			checkResult.attr("class" , "correct");
-		}
-		else{											//일치하지않을경우
-			checkResult.html("인증번호를 다시 확인하세요.");
-			checkResult.attr("class" , "incorrect");
-			
-		}
-	});
 	
 	
    //비밀번호 확인
@@ -63,6 +73,7 @@ $(document).ready(function() {
 		return;
 		
 	}
+	$('#joinForm').attr('onsubmit','return true');
 	$('#joinForm').submit();
 	};
 	
@@ -96,7 +107,7 @@ $(document).ready(function() {
         	   $('#a').remove();
         	   $('#checkIdDiv').after('<div id="a" style="color:blue "> 사용가능합니다 </div>');
         	   
-        	   $('#joinBtn').removeClass('disabled');
+        	$('#joinBtn').removeClass('disabled')
          	 }
             
             },
