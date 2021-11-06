@@ -50,7 +50,7 @@
 							<col width="120px">
 						</colgroup>
 						<tr>
-							<th><input type="checkbox" class="motherBox"><input type="hidden" id="id" name="id" value="${sessionScope.loginInfo.id}"></input></th>
+							<th><input type="checkbox" id="motherBox" class="motherBox"><input type="hidden" id="id" name="id" value="${sessionScope.loginInfo.id}"></input></th>
 							<th>이미지</th>
 							<th>상품정보</th>
 							<th>판매가</th>

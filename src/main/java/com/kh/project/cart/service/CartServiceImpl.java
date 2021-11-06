@@ -14,6 +14,8 @@ import com.kh.project.cart.vo.CartViewVO;
 public class CartServiceImpl implements CartService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	@Autowired
+	private CartViewVO cartViewVo;
 
 	@Override
 	public void insertCart(CartViewVO cartViewVO) {
@@ -38,6 +40,20 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void updateCartCnt(CartViewVO cartViewVO) {
 		sqlSession.update("cartMapper.updateCartCnt", cartViewVO);
+	}
+
+	@Override
+	public void deleteCartItem(String itemCode, String id) {
+		cartViewVo.setId(id);
+		cartViewVo.setItemCode(itemCode);
+		sqlSession.delete("cartMapper.deleteCartItem", cartViewVo);
+	}
+
+	@Override
+	public int selectCheckPurchaseData(String itemCode, String id) {
+		cartViewVo.setId(id);
+		cartViewVo.setItemCode(itemCode);
+		return sqlSession.selectOne("cartMapper.selectCheckPurchaseData", cartViewVo);
 	}
 
 	

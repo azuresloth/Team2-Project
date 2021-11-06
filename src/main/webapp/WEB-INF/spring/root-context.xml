@@ -9,6 +9,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:component-scan base-package="com.kh.project.*.service"></context:component-scan>
+	<context:component-scan base-package="com.kh.project.cart.vo"></context:component-scan>
 	
 	<!-- 어노테이션으로 트렌잭션 처리를 하기 위한 설정 -->
 	<tx:annotation-driven />

@@ -57,11 +57,101 @@ function execDaumPostcode() {
 	}).open();
 }	
 
+
 // ---------------------------------제이쿼리
 
 
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
+	// 구매목록 삭제로 비어있을경우
+	$(window).bind("pageshow", function (event) {
+		if (event.originalEvent.persisted) { 
+			alert('BFCahe로부터 복원됨'); 
+			var id = $('#id').val();
+			alert(id);
+			var codeArr = new Array();
+			$('.childBox').each(function() {
+				codeArr.push($(this).val());
+			});
+			$.ajax({
+				url: '/cart/checkPurchaseDataAjax',
+				type: 'post',
+				data: {'itemCodes' : codeArr, 'id' : id},
+				/*async: false,*/
+				success: function() {
+					alert('성공');
+					/*if(asdf == 0){
+						alert(asdf);
+						alert('구매페이지로 갈 수 없습니다.');
+						location.href='/item/mainPage';
+					}
+					else{
+						alert(asdf);
+					}
+*/					
+				},
+				error: function() {
+					alert('실패');
+				}
+			});
+			alert('에이작스 지나감');
+		} 
+		else { 
+		} 
+	});
+	/*var id = $('#id').val();
+	var codeArr = new Array();
+	$('.childBox').each(function() {
+		codeArr.push($(this).val());
+	});
+	$.ajax({
+		url: '/cart/checkPurchaseDataAjax',
+		type: 'post',
+		data: {'itemCodes' : codeArr, 'id' : id},
+		success: function(result) {
+			alert('성공');
+			if(result == 0){
+				alert(result);
+				alert('구매페이지로 갈 수 없습니다.');
+				location.href='/item/mainPage';
+			}
+			else{
+				alert(result);
+			}
+			
+		},
+		error: function() {
+			alert('실패');
+		}
+	});*/
+	
+	// 체크박스
+	$(document).on('click', '#motherBox', function() {
+		// 마더박스의 체크여부
+		var isChecked = $('#motherBox').is(':checked');
+		
+		// 전체체크, 전체해제
+		if(isChecked) {
+			$('.childBox').prop('checked', true);
+		}
+		else {
+			$('.childBox').prop('checked', false);
+		}
+	});
+	$(document).on('click', '.childBox', function() {
+		// 체크박스 개수
+		var childCnt = $('.childBox').length;
+		// 체크된 박스 개수
+		var checkedCnt = $('.childBox:checked').length;
+		
+		if(childCnt == checkedCnt) {
+			$('#motherBox').prop('checked', true);
+		}
+		else {
+			$('#motherBox').prop('checked', false);
+		}
+	});
+	
 	// 이메일박스 값 전달
 	$(document).on('change', '#emailSelectBox', function() { 
 		var email = $('#emailSelectBox').val();
@@ -195,6 +285,38 @@ $(document).ready(function(){
 	};*/
 	
 	checkedDelete = function() {
-		var cnt = $().length
+		var cnt = $('.childBox:checked').length;
+		if(cnt != 0){
+			var sure = confirm('선택한 상품을 삭제하시겠습니까?');
+			if(sure){
+				var id = $('#id').val();
+				var arr = new Array();
+				$('.childBox:checked').each(function() {
+					arr.push($(this).val());
+				});
+				$(arr).each(function(index, element) {
+				});
+				$.ajax({
+					url: '/cart/checkedDeleteAjax',
+					type: 'post',
+					data: {'itemCodes' : arr, 'cnt' : cnt, 'id' : id},
+					success: function() {
+						if($('.childBox').length){
+							alert('구매목록에 상품이 없습니다. \n 장바구니로 돌아갑니다.');
+							location.href='/cart/goCartList';
+						}
+						else{
+							history.go(0);
+						}
+					},
+					error: function() {
+						alert('실패');
+					}
+				});
+			}
+		}
+		else {
+			alert('선택한 상품이 없습니다.');
+		}
 	};
 })(jQuery);

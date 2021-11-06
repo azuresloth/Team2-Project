@@ -19,4 +19,10 @@ public interface CartService {
 	
 	// 장바구니 상품 갯수 수정
 	void updateCartCnt(CartViewVO cartViewVO);
+	
+	// 구매 목록 삭제
+	void deleteCartItem(String itemCode, String id);
+	
+	// 구매 목록 지웟는데 뒤로가기로 왔을때 확인
+	int selectCheckPurchaseData(String itemCode, String id);
 }

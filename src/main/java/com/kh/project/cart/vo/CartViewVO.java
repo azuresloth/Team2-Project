@@ -1,5 +1,8 @@
 package com.kh.project.cart.vo;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CartViewVO {
 	private String cartCode;
 	private String itemCode;

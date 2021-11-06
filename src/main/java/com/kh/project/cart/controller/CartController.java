@@ -1,5 +1,8 @@
 package com.kh.project.cart.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.cart.service.CartService;
@@ -36,7 +40,8 @@ public class CartController {
 	//(상세페이지 에서 1.에이작스로? or 2.페이지이동으로?)
 	
 	// 장바구니 페이지로 이동
-	@PostMapping("/goCartList")
+	//@PostMapping("/goCartList")
+	@RequestMapping("/goCartList")
 	public String goCartList(Model model, ItemVO itemVO) {
 
 		return "cart/cart_list";
@@ -74,6 +79,9 @@ public class CartController {
 	// 바로구매시 redirect 메소드(새로고침 오류땜에 만듬)(장바구니에서 가는거도 하나더 만들어야함)
 	@GetMapping("/goDirectPurchasePage")
 	public String goDirectPurchasePage(Model model, CartViewVO cartViewVO, EmailAndTellVO emailandTellVO) {
+		if(cartViewVO.getItemCode() == null || cartViewVO.getItemCode().equals("")) {
+			return "redirect:/cart/goCartList";
+		}
 		System.out.println(cartViewVO.getItemCode()+ "1234556666" + cartViewVO.getId());
 		model.addAttribute("buyItemInfo", cartService.directSelectCartViewList(cartViewVO));
 		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
@@ -124,6 +132,36 @@ public class CartController {
 		return deliveryInfoVO;
 	}
 	
+	// 체크된 상품 삭제하기
+	@ResponseBody
+	@PostMapping("/checkedDeleteAjax")
+	public void checkedDeleteAjax(@RequestParam(value = "itemCodes[]") List<String> itemCodes, String cnt, String id) {
+		System.out.println("체크박스 에이작스 들어왔어여");
+		System.out.println("지금 구매자의 아이디" + id);
+		System.out.println("체크박스" + cnt);
+		System.out.println(itemCodes);
+		for(String e : itemCodes) {
+			System.out.println(e);
+			cartService.deleteCartItem(e, id); 
+		}
+	}
+	
+	
+	// 구매목록 삭제해서 없는데 뒤로왔을때 조회
+	@ResponseBody
+	@PostMapping("/checkPurchaseDataAjax")
+	public int checkPurchaseDataAjax(@RequestParam(value = "itemCodes[]") List<String> itemCodes, String id) {
+		int result = 0;
+		System.out.println("뒤로가기 에이작스 들어왔어여");
+		System.out.println("지금 구매자의 아이디" + id);
+		System.out.println(itemCodes);
+		for(String e : itemCodes) {
+			System.out.println(e);
+			result += cartService.selectCheckPurchaseData(e, id); 
+		}
+		System.out.println(result);
+		return result;
+	}
 	
 	// 이메일, 연락처 쪼개는 메소드
 	public EmailAndTellVO setTellEmailfun(MemberVO memberVO) {

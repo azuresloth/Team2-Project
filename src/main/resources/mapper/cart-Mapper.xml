@@ -95,6 +95,21 @@
 		WHERE ID = #{id}
 		AND ITEM_CODE = #{itemCode}
 	</update>
+	
+	<!-- 구매 목록 상품 삭제 -->
+	<delete id="deleteCartItem">
+		DELETE ITEM_CART
+		WHERE ITEM_CODE = #{itemCode}
+		AND ID = #{id}
+	</delete>
+	
+	<!-- 구매 목록 지웟는데 뒤로가기로 왔을때 확인 -->
+	<select id="selectCheckPurchaseData" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM ITEM_CART
+		WHERE ID = #{id}
+		AND ITEM_CODE = #{itemCode}
+	</select>
 </mapper>
 
 
