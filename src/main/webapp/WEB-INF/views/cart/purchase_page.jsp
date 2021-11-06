@@ -60,7 +60,7 @@
 						</tr>
 						<c:if test="${not empty buyItemInfo}">
 							<tr>
-								<td><input type="checkbox" class="childBox" ></td>
+								<td><input type="checkbox" class="childBox" value="${buyItemInfo.itemCode }"></td>
 								<td><img alt="" src="/resources/images/item/itemImages/${buyItemInfo.attachedImgName}" width="75px;"></td>
 								<td>${buyItemInfo.itemName}</td>
 								<td><fmt:formatNumber type="number" value="${buyItemInfo.itemPrice}"></fmt:formatNumber>원</td>
@@ -75,7 +75,7 @@
 					<span class="warningSpan"><img alt="" src="/resources/images/common/warning.png"> 상품의 옵션 및 수량 변경은 상품상세 또는 장바구니에서 가능합니다.</span>
 				</div>
 				<div class="col-12 checkDeleteDiv">
-					<strong>선택상품 </strong><button type="button" class="btn btn-outline-secondary btn-sm checkDeleteBtn">삭제하기</button>
+					<strong>선택상품 </strong><button type="button" class="btn btn-outline-secondary btn-sm checkDeleteBtn" onclick="checkedDelete();">삭제하기</button>
 				</div>
 				<div class="col-12 deliveryInfoTitle">
 					<span>배송정보</span><span class="requiredCheckSpan"><img src="/resources/images/common/required_check_icon.png"></img> 필수입력사항</span>
@@ -102,7 +102,7 @@
 							<th>주소 <img src="/resources/images/common/required_check_icon.png"></img></th>
 							<td>
 								<input type="text" id="postcode" placeholder="우편번호" name="postCode" required value="${basicDeliveryInfo.postCode}">
-								<button class="addrBtn" type="button" onclick="execDaumPostcode()">우편번호 찾기</button><br>
+								<button id="SearchAddr" class="addrBtn" type="button" onclick="execDaumPostcode()">우편번호 찾기</button><br>
 								<input type="text" class="longAddrInput" id="roadAddress" placeholder="도로명주소" name="roadAddr" required value="${basicDeliveryInfo.roadAddr}"><br>
 								<span id="guide" style="color:#999;display:none"></span>
 								<input type="text" class="longAddrInput" id="detailAddress" name="detailAddr" placeholder="상세주소" value="${basicDeliveryInfo.detailAddr}"> (선택입력가능)

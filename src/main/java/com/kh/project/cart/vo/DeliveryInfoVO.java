@@ -7,9 +7,46 @@ public class DeliveryInfoVO {
 	private String detailAddr;
 	private String deliveryTell;
 	private String[] deliveryTells;
+	private String tell1;
+	private String tell2;
+	private String tell3;
 	private String deliveryEmail;
 	private String[] deliveryEmails;
+	private String email1;
+	private String email2;
 	private String deliveryMSG;
+	
+	
+	public String getTell1() {
+		return tell1;
+	}
+	public void setTell1(String tell1) {
+		this.tell1 = tell1;
+	}
+	public String getTell2() {
+		return tell2;
+	}
+	public void setTell2(String tell2) {
+		this.tell2 = tell2;
+	}
+	public String getTell3() {
+		return tell3;
+	}
+	public void setTell3(String tell3) {
+		this.tell3 = tell3;
+	}
+	public String getEmail1() {
+		return email1;
+	}
+	public void setEmail1(String email1) {
+		this.email1 = email1;
+	}
+	public String getEmail2() {
+		return email2;
+	}
+	public void setEmail2(String email2) {
+		this.email2 = email2;
+	}
 	public String getDeliveryName() {
 		return deliveryName;
 	}

@@ -4,28 +4,33 @@
 <mapper namespace="cartMapper">
 
 	<resultMap type="com.kh.project.cart.vo.CartViewVO" id="cartView">
-		<id column="CART_CODE" property="cartCode"/>
-		<result column="ITEM_CODE" property="itemCode"/>
-		<result column="ITEM_NAME" property="itemName"/>
-		<result column="ITEM_PRICE" property="itemPrice"/>
-		<result column="TOTAL_PRICE" property="totalPrice"/>
-		<result column="ATTACHED_IMG_NAME" property="attachedImgName"/>
-		<result column="ITEM_CNT" property="itemCnt"/>
-		<result column="ID" property="id"/>
-		<result column="CART_DATE" property="cartDate"/>
+		<id column="CART_CODE" 					property="cartCode"/>
+		<result column="ITEM_CODE" 				property="itemCode"/>
+		<result column="ITEM_NAME"				property="itemName"/>
+		<result column="ITEM_PRICE" 			property="itemPrice"/>
+		<result column="TOTAL_PRICE" 			property="totalPrice"/>
+		<result column="ATTACHED_IMG_NAME" 		property="attachedImgName"/>
+		<result column="ITEM_CNT" 				property="itemCnt"/>
+		<result column="ID" 					property="id"/>
+		<result column="CART_DATE" 				property="cartDate"/>
 	</resultMap>
 	<resultMap type="com.kh.project.cart.vo.BuyInfoVO" id="buyInfo">
-		<id column="BUY_CODE"	property=""/>
-		<result column=""		property=""/>
+		<id column="BUY_CODE"					property=""/>
+		<result column=""						property=""/>
 	</resultMap>
 	<resultMap type="com.kh.project.cart.vo.DeliveryInfoVO" id="deliveryInfo">
-		<result column="DELIVERY_NAME"	property="deliveryName"/>
-		<result column="POST_CODE"	property="postCode"/>
-		<result column="ROAD_ADDR"	property="roadAddr"/>
-		<result column="DETAIL_ADDR"	property="detailAddr"/>
-		<result column="DELIVERY_TELL"	property="deliveryTell"/>
-		<result column="DELIVERY_EMAIL"	property="deliveryEmail"/>
-		<result column="DELIVERY_MSG"	property="deliveryMSG"/>
+		<result column="DELIVERY_NAME"			property="deliveryName"/>
+		<result column="POST_CODE"				property="postCode"/>
+		<result column="ROAD_ADDR"				property="roadAddr"/>
+		<result column="DETAIL_ADDR"			property="detailAddr"/>
+		<result column="DELIVERY_TELL"			property="deliveryTell"/>
+		<result column="TELL1"	 				property="tell1"/>
+		<result column="TELL2"	 				property="tell2"/>
+		<result column="TELL3"	 				property="tell3"/>
+		<result column="DELIVERY_EMAIL"			property="deliveryEmail"/>
+		<result column="EMAIL1"					property="email1"/>
+		<result column="EMAIL2"					property="email2"/>
+		<result column="DELIVERY_MSG"			property="deliveryMSG"/>
 	</resultMap>
 	
 	<!-- 장바구니에 추가 -->

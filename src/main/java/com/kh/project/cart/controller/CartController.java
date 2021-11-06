@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.CartViewVO;
+import com.kh.project.cart.vo.DeliveryInfoVO;
 import com.kh.project.common.service.CommonService;
 import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.item.service.ItemService;
@@ -78,33 +79,9 @@ public class CartController {
 		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
 		// 이메일, 전화번호 쪼개서 던지기
 		MemberVO splitTellEmail = memberService.selectBuyMemberInfo(cartViewVO);
+		setTellEmailfun(splitTellEmail);
 		
-		String email = splitTellEmail.getEmail();
-		int idx = email.indexOf("@");
-		String email1 = email.substring(0, idx);
-		String email2 = email.substring(idx+1);
-		emailandTellVO.setEmail1(email1);
-		emailandTellVO.setEmail2(email2);
-		
-		String tell = splitTellEmail.getTell();
-		String tell1 = "0", tell2 = "0", tell3 = "0";
-		String tells[] = tell.split("-");
-		for(int i = 0 ; i < tells.length ; i++) {
-			if(i == 0) {
-				tell1 = tells[i];
-			}
-			else if(i == 1) {
-				tell2 = tells[i];
-			}
-			else if(i == 2) {
-				tell3 = tells[i];
-			}
-		}
-		emailandTellVO.setTell1(tell1);
-		emailandTellVO.setTell2(tell2);
-		emailandTellVO.setTell3(tell3);
-		
-		model.addAttribute("emailandTellInfo", emailandTellVO);
+		model.addAttribute("emailandTellInfo", setTellEmailfun(splitTellEmail));
 		
 		return "cart/purchase_page";
 	}
@@ -127,7 +104,59 @@ public class CartController {
 		cartService.deleteSameCart(cartViewVO);
 	}
 	
-	//
+	// 배송정보에 회원정보 넣기
+	@ResponseBody
+	@PostMapping("/selectMemberDeliveryInfoAjax")
+	public DeliveryInfoVO selectMemberDeliveryInfo(CartViewVO cartViewVO, DeliveryInfoVO deliveryInfoVO) {
+		MemberVO deli = memberService.selectBuyMemberInfo(cartViewVO);
+		deliveryInfoVO.setDeliveryName(deli.getName());
+		deliveryInfoVO.setPostCode(deli.getPostCode());
+		deliveryInfoVO.setRoadAddr(deli.getRoadAddr());
+		deliveryInfoVO.setDetailAddr(deli.getDetailAddr());
+		EmailAndTellVO emailAndTell = setTellEmailfun(deli);
+		deliveryInfoVO.setDeliveryEmail(emailAndTell.getEmail());
+		deliveryInfoVO.setEmail1(emailAndTell.getEmail1());
+		deliveryInfoVO.setEmail2(emailAndTell.getEmail2());
+		deliveryInfoVO.setDeliveryTell(emailAndTell.getTell());
+		deliveryInfoVO.setTell1(emailAndTell.getTell1());
+		deliveryInfoVO.setTell2(emailAndTell.getTell2());
+		deliveryInfoVO.setTell3(emailAndTell.getTell3());
+		return deliveryInfoVO;
+	}
+	
+	
+	// 이메일, 연락처 쪼개는 메소드
+	public EmailAndTellVO setTellEmailfun(MemberVO memberVO) {
+		EmailAndTellVO emailAndTellVO = new EmailAndTellVO();
+		String email = memberVO.getEmail();
+		int idx = email.indexOf("@");
+		String email1 = email.substring(0, idx);
+		String email2 = email.substring(idx+1);
+		emailAndTellVO.setEmail(email);
+		emailAndTellVO.setEmail1(email1);
+		emailAndTellVO.setEmail2(email2);
+		
+		String tell = memberVO.getTell();
+		String tell1 = "0", tell2 = "0", tell3 = "0";
+		String tells[] = tell.split("-");
+		for(int i = 0 ; i < tells.length ; i++) {
+			if(i == 0) {
+				tell1 = tells[i];
+			}
+			else if(i == 1) {
+				tell2 = tells[i];
+			}
+			else if(i == 2) {
+				tell3 = tells[i];
+			}
+		}
+		emailAndTellVO.setTell(tell);
+		emailAndTellVO.setTell1(tell1);
+		emailAndTellVO.setTell2(tell2);
+		emailAndTellVO.setTell3(tell3);
+		return emailAndTellVO;
+	}
+	
 	
 	
 	

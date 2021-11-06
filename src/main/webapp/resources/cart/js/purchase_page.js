@@ -89,42 +89,48 @@ $(document).ready(function(){
 	// 배송정보 라디오 버튼
 	$(document).on('change', 'input[name="deliveryAddrRadio"]', function() {
 		if($(this).val() == '0'){
-			alert($(this).val());
-			/*$.ajax({
-	            url: '/cart/checkCartAjax', //요청경로
+			var id = $('#id').val()
+			$.ajax({
+	            url: '/cart/selectMemberDeliveryInfoAjax', //요청경로
 	            type: 'post',
-	            data:{'id' : loginId, 'itemCode' : itemCode}, //필요한 데이터
+	            data:{'id' : id}, //필요한 데이터
 	            success: function(result) {
-	               if(result == ''){
-	            	   goDirectBtn();
-	               }
-	               else{
-	            	   var result = confirm('장바구니에 같은 제품이 존재합니다. \n 같이 구매하시겠습니까?');
-	            	   if(result){
-	            		   $('#insOrUpd').val(1);
-	            		   goDirectBtn();
-	            	   }
-	            	   else{
-	            		   $.ajax({
-	            			   url: '/cart/deleteSameCartAjax',
-	            			   type: 'post',
-	            			   async : false,
-	            			   data:{'id' : loginId, 'itemCode' : itemCode},
-	            			   success: function() {
-	            				   goDirectBtn();
-	            			   },
-	            			   error: function() {
-	            				   alert('실패');
-	            			   }
-	            		   });
-	            	   }
-	               }
-
-				}
-		}*/
+	            	$('#deliveryName').val(result.deliveryName);
+	            	$('#deliveryName').prop('readonly', true);
+	            	$('#postcode').val(result.postCode);
+	            	$('#postcode').prop('readonly', true);
+	            	$('#roadAddress').val(result.roadAddr);
+	            	$('#roadAddress').prop('readonly', true);
+	            	$('#detailAddress').val(result.detailAddr);
+	            	$('#detailAddress').prop('readonly', true);
+	            	if($('#basicTell1').val() != null || $('#basicTell1').val() != ''){
+	            		$('#basicTell1').val(result.tell1)
+	            		$('#basicTell1').text(result.tell1)
+	            		$("#tell1 option").not(":selected").prop("disabled", true);
+	            	}
+	            	$('#tell2').val(result.tell2);
+	            	$('#tell2').prop('readonly', true);
+	            	$('#tell3').val(result.tell3);
+	            	$('#tell3').prop('readonly', true);
+	            	$('#email1').val(result.email1);
+	            	$('#email1').prop('readonly', true);
+	            	$('#emailChoosedBox').val(result.email2);
+	            	$('#emailChoosedBox').prop('readonly', true);
+	            	$("#emailSelectBox option").not(":selected").prop("disabled", true);
+	            	$("#SearchAddr").prop("disabled", true);
+				},
+	            error: function(){
+	             //ajax 실행 실패 시 실행되는 구간
+	               alert('실패');
+	            }
+	      	});
 		}
-			else if($(this).val() == '1'){
+		if($(this).val() == '1'){
 			$('.deliveryInfoTable').find('input').not('input[type="radio"]').val('');
+			$('.deliveryInfoTable').find('input').not('input[type="radio"]').prop('readonly', false);
+			$("#tell1 option").not(":selected").prop("disabled", false);
+			$("#emailSelectBox option").not(":selected").prop("disabled", false);
+			$("#SearchAddr").prop("disabled", false);
 			$('#basicTell1').remove();
 		}
 	});
@@ -187,4 +193,8 @@ $(document).ready(function(){
 		$('#itemForm').attr('action', '/cart/goPurchasePage');
 		$('#itemForm').submit()
 	};*/
+	
+	checkedDelete = function() {
+		var cnt = $().length
+	};
 })(jQuery);
