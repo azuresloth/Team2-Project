@@ -12,7 +12,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=2"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=3"></script>
 </head>
 <body>
 	<div class="row">

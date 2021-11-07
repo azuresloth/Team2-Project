@@ -65,10 +65,8 @@ function execDaumPostcode() {
 $(document).ready(function(){
 	// 구매목록 삭제로 비어있을경우
 	$(window).bind("pageshow", function (event) {
-		if (event.originalEvent.persisted) { 
-			alert('BFCahe로부터 복원됨'); 
+		if (event.originalEvent.persisted || (window.performance && window.performance.navigation.type == 2)) { 
 			var id = $('#id').val();
-			alert(id);
 			var codeArr = new Array();
 			$('.childBox').each(function() {
 				codeArr.push($(this).val());
@@ -77,24 +75,20 @@ $(document).ready(function(){
 				url: '/cart/checkPurchaseDataAjax',
 				type: 'post',
 				data: {'itemCodes' : codeArr, 'id' : id},
-				/*async: false,*/
-				success: function() {
-					alert('성공');
-					/*if(asdf == 0){
-						alert(asdf);
+				async: false,
+				success: function(result) {
+					if(result == 0){
 						alert('구매페이지로 갈 수 없습니다.');
 						location.href='/item/mainPage';
 					}
 					else{
-						alert(asdf);
+						alert(result);
 					}
-*/					
 				},
 				error: function() {
 					alert('실패');
 				}
 			});
-			alert('에이작스 지나감');
 		} 
 		else { 
 		} 
