@@ -66,29 +66,47 @@ $(document).ready(function(){
 	// 구매목록 삭제로 비어있을경우
 	$(window).bind("pageshow", function (event) {
 		if (event.originalEvent.persisted || (window.performance && window.performance.navigation.type == 2)) { 
-			var id = $('#id').val();
-			var codeArr = new Array();
-			$('.childBox').each(function() {
-				codeArr.push($(this).val());
-			});
-			$.ajax({
-				url: '/cart/checkPurchaseDataAjax',
-				type: 'post',
-				data: {'itemCodes' : codeArr, 'id' : id},
-				async: false,
-				success: function(result) {
-					if(result == 0){
-						alert('구매페이지로 갈 수 없습니다.');
-						location.href='/item/mainPage';
-					}
-					else{
-						alert(result);
-					}
-				},
-				error: function() {
-					alert('실패');
+				var id = $('#id').val();
+				alert(id);
+				var codeArr = new Array();
+				var arrCnt = 0;
+				$('.childBox').each(function() {
+					codeArr.push($(this).val());
+				});
+				alert(codeArr);
+				$.each(codeArr, function(index, element) {
+					alert(element+'!!!');
+					arrCnt += 1;
+				})
+				/*if(codeArr[0] == null){
+					alert(1);
+				}*/
+				alert(arrCnt + 'arrCnt값입니다.');
+				if(arrCnt == 0){
+					codeArr.push('ITEM_000');
 				}
-			});
+				alert(codeArr + 'ajax 들어가기전 값입니다.')
+				$.ajax({
+					url: '/cart/checkPurchaseDataAjax',
+					type: 'post',
+					data: {'itemCodes' : codeArr, 'id' : id},
+					async: false,
+					success: function(result) {
+						if(result == 0){
+							alert('구매페이지로 갈 수 없습니다.');
+							location.href='/item/mainPage';
+						}
+						else{
+							alert(result);
+						}
+					},
+					error: function(request,status,error) {
+						alert('실패');
+						alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					}
+				});
+			
 		} 
 		else { 
 		} 
@@ -278,6 +296,7 @@ $(document).ready(function(){
 		$('#itemForm').submit()
 	};*/
 	
+	// 체크된 상품 삭제하기
 	checkedDelete = function() {
 		var cnt = $('.childBox:checked').length;
 		if(cnt != 0){

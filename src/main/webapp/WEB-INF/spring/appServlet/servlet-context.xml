@@ -84,4 +84,14 @@
 		</interceptor>
 	</interceptors>
 	
+	<!-- 캐시 Interceptor -->
+	<beans:bean id="CacheInterceptor" class="com.kh.project.common.util.CacheInterceptor"></beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/cart/*"/>
+			<beans:ref bean="CacheInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

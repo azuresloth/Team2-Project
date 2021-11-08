@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%-- <% response.setHeader("Pragma","no-cache"); response.setDateHeader("Expires",0); response.setHeader("Cache-Control", "no-cache"); %> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,16 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=3"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=4"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> 
+/*위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다.(1990년 이후 쭉 )*/ 
+<meta http-equiv="Expires" content="-1"> 
+/*캐시된 페이지가 만료되어 삭제되는 시간을 정의하나 특별한 경우가 아니면 -1로 설정*/ 
+<meta http-equiv="Pragma" content="no-cache"> 
+/*페이지 로드시마다 페이지를 캐싱하지 않는다.(HTTP 1.0)*/ 
+<meta http-equiv="Cache-Control" content="no-cache"> 
+/*페이지 로드시마다 페이지를 캐싱하지 않는다.(HTTP 1.1)*/ -->
 </head>
 <body>
 	<div class="row">
@@ -171,7 +181,7 @@
 								</span>
 							</td>
 							<td>
-								<button class="button blackButton2 btn_payment">결제하기</button>
+								<button type="button" class="button blackButton2 btn_payment">결제하기</button>
 							</td>
 						</tr>
 					</table>

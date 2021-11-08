@@ -163,6 +163,7 @@ public class CartController {
 		return result;
 	}
 	
+	
 	// 이메일, 연락처 쪼개는 메소드
 	public EmailAndTellVO setTellEmailfun(MemberVO memberVO) {
 		EmailAndTellVO emailAndTellVO = new EmailAndTellVO();
