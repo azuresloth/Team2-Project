@@ -90,6 +90,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/cart/*"/>
+			<mapping path="/item/*"/>
 			<beans:ref bean="CacheInterceptor"/>
 		</interceptor>
 	</interceptors>
