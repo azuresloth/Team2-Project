@@ -29,6 +29,7 @@
 					<textarea class="form-control" rows="5" id="content" name="content"></textarea>
 				</div>
 				<input type="submit" class="btn btn-primary" value="글등록">
+				<input type="button" class="btn btn-primary" value="뒤로가기" onclick="location.href='/board/boardList';">
 			</form>
 		</div>
 	</div>

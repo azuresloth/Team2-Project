@@ -20,7 +20,7 @@ public interface MemberService {
 	 MemberVO findId(MemberVO memberVO);
 	 
 	 //pw찾기
-	 MemberVO findPw(MemberVO memberVO);
+	 String findPw(MemberVO memberVO);
 	 
 	 //pw변경
 	 void updatePw(MemberVO memberVO);
@@ -31,4 +31,6 @@ public interface MemberService {
 	 // 기존 회원정보 조회(주문시 사용)
 	 MemberVO selectBuyMemberInfo(CartViewVO cartViewVO);
 	 
+	 // 이메일 체크
+	 String checkEmail(String id);
 }

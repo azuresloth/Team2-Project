@@ -41,7 +41,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberVO findPw(MemberVO memberVO) {
+	public String findPw(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.findPw",memberVO);
 	}
 
@@ -60,5 +60,9 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.selectBuyMemberInfo", cartViewVO);
 	}
 
+	@Override
+	public String checkEmail(String id) {
+		return sqlSession.selectOne("memberMapper.checkEmail", id);
+	}
 
 }

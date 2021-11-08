@@ -70,9 +70,14 @@ $(document).ready(function(){
 		// alert("loginId : " + loginId);
 		// alert("replyId : " + replyId);
 		
-		if(loginId != replyId){
-			alert("다른사람의 후기는 삭제 할수없습니다.");
-			return ;
+		var isAdmin = $("#loginIsAdmin").val();;
+		
+		if (isAdmin != 'Y' || isAdmin == ""){
+			if(loginId != replyId){
+				var msg = (isAdmin == "N") ? "다른사람의 댓글은 삭제 할 수없습니다." : "로그인 해주세요.";
+				alert(msg);
+				return ;
+			}
 		}
 		
 		var fbCode = $(this).prev().prev().val();
@@ -112,10 +117,16 @@ $(document).ready(function(){
 		// alert("loginId : " + loginId);
 		// alert("replyId : " + replyId);
 		
-		if(loginId != replyId){
-			alert("다른사람의 후기는 수정 할 수없습니다.");
-			return ;
+		var isAdmin = $("#loginIsAdmin").val();;
+		
+		if (isAdmin != 'Y' || isAdmin == ""){
+			if(loginId != replyId){
+				var msg = (isAdmin == "N") ? "다른사람의 댓글은 수정 할 수없습니다." : "로그인 해주세요.";
+				alert(msg);
+				return ;
+			}
 		}
+		
 		
 		// alert("확인");
 		// 제목이랑 내용만 일단 들고오기
