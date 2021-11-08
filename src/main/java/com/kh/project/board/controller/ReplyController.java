@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.board.service.ReplyService;
 import com.kh.project.board.vo.ReplyVO;
+import com.kh.project.member.service.MemberService;
 
 
 @Controller
@@ -64,14 +65,13 @@ public class ReplyController {
 		return replyService.updateReply(vo);
 	}
 	
-	// 대글 삭제 처리
+	// 댓글 삭제 처리
 	@ResponseBody
 	@PostMapping("/deleteReplyAjax")
 	int deleteReplyAjax(String replyCode) {
 		System.out.println("deleteReplyAjax.replyCode : " + replyCode);
 		return replyService.deleteReply(replyCode);
 	}
-	
 	
 	
 	

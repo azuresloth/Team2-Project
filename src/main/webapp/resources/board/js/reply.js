@@ -99,12 +99,14 @@ $(document).ready(function() {
 		var replyId = $(this).parent().parent().children(":first").children().eq(1).text();
 		// alert("loginId : " + loginId);
 		// alert("replyId : " + replyId);
-
-		if(loginId != replyId){
-			alert("다른사람의 댓글은 수정 할 수없습니다.");
-			return ;
-		}
+		var isAdmin = $("#loginIsAdmin").val();;
 		
+		if (isAdmin != 'Y'){
+			if(loginId != replyId){
+				alert("다른사람의 댓글은 수정 할 수없습니다.");
+				return ;
+			}
+		}
 		
 		// alert(replyCode);
 		// 내용 데이터 받음

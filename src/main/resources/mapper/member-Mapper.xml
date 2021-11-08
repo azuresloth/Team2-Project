@@ -120,7 +120,6 @@
 		WHERE ID = #{id}
 	</select>
 	
-	
 </mapper>
 
 

@@ -60,4 +60,5 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.selectBuyMemberInfo", cartViewVO);
 	}
 
+
 }

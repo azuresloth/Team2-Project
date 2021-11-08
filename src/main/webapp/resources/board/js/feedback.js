@@ -158,42 +158,6 @@ $(document).ready(function(){
 	// 1.(쉬운 버젼) 2. (어려운 버젼) DB에서 원본데이터를 가져와서 하나의 줄만 바꾸어주기. 
 	$(document).on('click', '.cancelUpdateFeedbackBtn', function() {
 		var fbCode = $(this).prev().prev().val();
-		// alert("fbCode : " + fbCode);
-		
-		var row = $(this);
-		//하나의 후기의 제목, 내용 데이터를 가지고 오기
-		// ajax 사용
-		$.ajax({
-			url : '/feedback/cancelUpdateFeedbackAjax', // 요청경로
-			type : 'post',
-			data : {'fbCode' : fbCode}, // 필요한 데이터
-			success : function(result) {
-//				alert("성공");
-//				// ajax 실행 성공 시 실행되는 구간
-//				// alert(result.title);
-//				// alert(result.content);
-//				// "제목 : <span>" + result.title + "</span>";
-//				// "내용 : <span>" + result.content + "</span>";
-//				
-//				// 파일 인풋테그를 지운다.
-//				row.parent().prev().remove();
-//				
-//				// 제목인풋 태그를 지운다.
-//				var str = "<span>" + result.title + "</span>";
-//				row.parent().parent().children().eq(0).children().eq(0).children().eq(1).remove(); // 제목인풋 태그를 지운다.
-//				row.parent().parent().children().eq(0).children().eq(0).children().eq(0).after(str); // 제목 줄을 넣는다.
-			
-			
-			
-			
-			
-			
-			},
-			error : function() {
-				// ajax 실행 실패 시 실행되는 구간
-				alert('실패');
-			}
-		});
 		
 		
 		//alert("확인");

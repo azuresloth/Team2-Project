@@ -28,6 +28,7 @@
 					<div class="input-group mt-2 mb-2">
 						<span class="input-group-text">작성자 : </span> 
 						<input type="text" class="form-control" value="${sessionScope.loginInfo.id }"  readonly name="id" id="loginId">
+						<input type="hidden" class="form-control" value="${sessionScope.loginInfo.isAdmin }"  readonly name="isAdmin" id="loginIsAdmin">
 					</div>
 					<div class="input-group mb-2">
 						<span class="input-group-text">내용 : </span>

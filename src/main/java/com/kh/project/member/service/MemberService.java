@@ -30,4 +30,5 @@ public interface MemberService {
 	 
 	 // 기존 회원정보 조회(주문시 사용)
 	 MemberVO selectBuyMemberInfo(CartViewVO cartViewVO);
+	 
 }
