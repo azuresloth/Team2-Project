@@ -91,6 +91,7 @@
 		<interceptor>
 			<mapping path="/cart/*"/>
 			<mapping path="/item/*"/>
+			<mapping path="/member/goInterceptLogin"/>
 			<beans:ref bean="CacheInterceptor"/>
 		</interceptor>
 	</interceptors>

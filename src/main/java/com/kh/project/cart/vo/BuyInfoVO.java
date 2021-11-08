@@ -1,5 +1,7 @@
 package com.kh.project.cart.vo;
 
+import java.util.Arrays;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -12,8 +14,33 @@ public class BuyInfoVO {
 	private int buyCnt;
 	private String buyStatus;
 	private String paymentPlan;
+	private String deliveryName;
+	private String deliveryTell;
+	private String[] deliveryTells;
+	private String deliveryEmail;
+	private String[] deliveryEmails;
+	private String deliveryMsg;
+	private String postCode;
+	private String roadAddr;
+	private String detailAddr;
 	
 	
+	
+	
+	public String[] getDeliveryTells() {
+		return deliveryTells;
+	}
+	public void setDeliveryTells(String[] deliveryTells) {
+		String deliveryTell = deliveryTells[0] + "-" + deliveryTells[1] + "-" + deliveryTells[2];
+		setDeliveryTell(deliveryTell);
+	}
+	public String[] getDeliveryEmails() {
+		return deliveryEmails;
+	}
+	public void setDeliveryEmails(String[] deliveryEmails) {
+		String deliveryEmail = deliveryEmails[0] + "@" + deliveryEmails[1];
+		setDeliveryEmail(deliveryEmail);
+	}
 	public String getBuyCode() {
 		return buyCode;
 	}
@@ -61,6 +88,57 @@ public class BuyInfoVO {
 	}
 	public void setPaymentPlan(String paymentPlan) {
 		this.paymentPlan = paymentPlan;
+	}
+	public String getDeliveryName() {
+		return deliveryName;
+	}
+	public void setDeliveryName(String deliveryName) {
+		this.deliveryName = deliveryName;
+	}
+	public String getDeliveryTell() {
+		return deliveryTell;
+	}
+	public void setDeliveryTell(String deliveryTell) {
+		this.deliveryTell = deliveryTell;
+	}
+	public String getDeliveryEmail() {
+		return deliveryEmail;
+	}
+	public void setDeliveryEmail(String deliveryEmail) {
+		this.deliveryEmail = deliveryEmail;
+	}
+	public String getDeliveryMsg() {
+		return deliveryMsg;
+	}
+	public void setDeliveryMsg(String deliveryMsg) {
+		this.deliveryMsg = deliveryMsg;
+	}
+	public String getPostCode() {
+		return postCode;
+	}
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	@Override
+	public String toString() {
+		return "BuyInfoVO [buyCode=" + buyCode + ", itemCode=" + itemCode + ", id=" + id + ", totalPrice=" + totalPrice
+				+ ", buyDate=" + buyDate + ", buyCnt=" + buyCnt + ", buyStatus=" + buyStatus + ", paymentPlan="
+				+ paymentPlan + ", deliveryName=" + deliveryName + ", deliveryTell=" + deliveryTell + ", deliveryTells="
+				+ Arrays.toString(deliveryTells) + ", deliveryEmail=" + deliveryEmail + ", deliveryEmails="
+				+ Arrays.toString(deliveryEmails) + ", deliveryMsg=" + deliveryMsg + ", postCode=" + postCode
+				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + "]";
 	}
 	
 	

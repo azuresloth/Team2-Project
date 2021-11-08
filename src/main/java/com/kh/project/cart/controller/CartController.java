@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.cart.service.CartService;
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.cart.vo.DeliveryInfoVO;
 import com.kh.project.common.service.CommonService;
@@ -94,6 +95,18 @@ public class CartController {
 		return "cart/purchase_page";
 	}
 	
+	// 구매완료시 주문완료 페이지로 이동
+	@PostMapping("/goOrderCompletePage")
+	public String goOrderCompletePage(BuyInfoVO buyInfoVO) {
+		System.out.println(buyInfoVO);
+		// 필요한거
+		
+		// 구매한 상품 장바구니(item_cart)에서 삭제
+		
+		
+		// 받은 정보들 buy_Info테이블에 insert
+		return "cart/order_complete_page";
+	}
 	//------------------------- 에이작스 
 	
 	// 카트에 동일제품 체크

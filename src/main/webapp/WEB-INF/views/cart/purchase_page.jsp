@@ -13,7 +13,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=4"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=5"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> 
 /*위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다.(1990년 이후 쭉 )*/ 
@@ -43,7 +43,7 @@
 	</div>
 	<div class="row justify-content-center">
 		<div class="col-10 ">
-			<form action="" method="post" onsubmit="return false">
+			<form id="orderForm" action="/cart/goOrderCompletePage" method="post" onsubmit="return false">
 			<div class="row mt-2 justify-content-center">
 				<div class="col-12 purTitleDiv">
 					<h4>주문서작성</h4>
@@ -70,13 +70,22 @@
 						</tr>
 						<c:if test="${not empty buyItemInfo}">
 							<tr>
-								<td><input type="checkbox" class="childBox" value="${buyItemInfo.itemCode }"></td>
+								<td>
+									<input type="checkbox" class="childBox" value="${buyItemInfo.itemCode}">
+									<input type="hidden" name="itemCode" value="${buyItemInfo.itemCode}">
+								</td>
 								<td><img alt="" src="/resources/images/item/itemImages/${buyItemInfo.attachedImgName}" width="75px;"></td>
 								<td>${buyItemInfo.itemName}</td>
 								<td><fmt:formatNumber type="number" value="${buyItemInfo.itemPrice}"></fmt:formatNumber>원</td>
-								<td>${buyItemInfo.itemCnt}개</td>
+								<td>
+									${buyItemInfo.itemCnt}개
+									<input type="hidden" name="buyCnt" value="${buyItemInfo.itemCnt}">
+								</td>
 								<td>[무료]</td>
-								<td><fmt:formatNumber type="number" value="${buyItemInfo.totalPrice}"></fmt:formatNumber>원</td>
+								<td>
+									<fmt:formatNumber type="number" value="${buyItemInfo.totalPrice}"></fmt:formatNumber>원
+									<input type="hidden" name="totalPrice" value="${buyItemInfo.totalPrice}">
+								</td>
 							</tr>
 						</c:if>
 					</table>
@@ -205,38 +214,39 @@ $(".btn_payment").click(function() {
 	  		var postCode = $('#postcode').val();
 	  		var loginId = $('#id').val();
 			IMP.request_pay({
-					    pg : 'inicis', 
-					    pay_method : 'card',
-					    merchant_uid : 'merchant_' + new Date().getTime(),
-					    name : '${buyItemInfo.itemName} (${buyItemInfo.itemCnt}개)'/*상품명*/,
-					    amount : parseInt(${buyItemInfo.totalPrice} / 10000)/*상품 가격*/, 
-					    buyer_email : email/*구매자 이메일*/,
-					    buyer_name : name,
-					    buyer_tel : tell/*구매자 연락처*/,
-					    buyer_addr : addr/*구매자 주소*/,
-					    buyer_postcode : postCode/*구매자 우편번호*/
-					}, function(rsp) {
-						var result = '';
-					    if ( rsp.success ) {
-					        var msg = '결제가 완료되었습니다. \n';
-					        msg += '고유ID : ' + rsp.imp_uid + '\n';
-					        msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
-					        msg += '결제 금액 : ' + rsp.paid_amount + '\n';
-					        msg += '카드 승인번호 : ' + rsp.apply_num + '\n';
-					        msg += '로그인 아이디 : ' + loginId + '\n';
-					        result ='0';
-					    } else {
-					        var msg = '결제에 실패하였습니다.';
-					        msg += '에러내용 : ' + rsp.error_msg;
-					        result ='1';
-					    }
-					    if(result=='0') {
-						    alert(msg);
-					    	
-					    	/* location.href= $.getContextPath()+"/Cart/Success"; */
-					    }
-					});
-	  	}
+			    pg : 'inicis', 
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : '${buyItemInfo.itemName} (${buyItemInfo.itemCnt}개)'/*상품명*/,
+			    amount : parseInt(${buyItemInfo.totalPrice} / 10000)/*상품 가격*/, 
+			    buyer_email : email/*구매자 이메일*/,
+			    buyer_name : name,
+			    buyer_tel : tell/*구매자 연락처*/,
+			    buyer_addr : addr/*구매자 주소*/,
+			    buyer_postcode : postCode/*구매자 우편번호*/
+			}, function(rsp) {
+					var result = '';
+					if ( rsp.success ) {
+					    var msg = '결제가 완료되었습니다. \n';
+					    msg += '고유ID : ' + rsp.imp_uid + '\n';
+					    msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
+					    msg += '결제 금액 : ' + rsp.paid_amount + '\n';
+					    msg += '카드 승인번호 : ' + rsp.apply_num + '\n';
+					    msg += '로그인 아이디 : ' + loginId + '\n';
+					    result ='0';
+					} else {
+					    var msg = '결제에 실패하였습니다.';
+					    msg += '에러내용 : ' + rsp.error_msg;
+					    result ='1';
+					}
+					if(result=='0') {
+				    	alert(msg);
+				    	$('#orderForm').attr('onsubmit', 'return true');
+				    	$('#orderForm').submit();
+						/* location.href= $.getContextPath()+"/Cart/goOrderCompletePage"; */
+					}
 			});
+	  	}
+});
 </script>
 </html>

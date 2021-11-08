@@ -64,7 +64,6 @@ function execDaumPostcode() {
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
 	
-	alert('1\u00a0\u00a0\u00a02');
 	// 구매목록 삭제로 비어있을경우
 	$(window).bind("pageshow", function (event) {
 		if (event.originalEvent.persisted || (window.performance && window.performance.navigation.type == 2)) { 
