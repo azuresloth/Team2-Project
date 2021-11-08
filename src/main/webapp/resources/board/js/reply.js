@@ -99,14 +99,18 @@ $(document).ready(function() {
 		var replyId = $(this).parent().parent().children(":first").children().eq(1).text();
 		// alert("loginId : " + loginId);
 		// alert("replyId : " + replyId);
+		// 관리자 일때 확인 하기.
 		var isAdmin = $("#loginIsAdmin").val();;
 		
-		if (isAdmin != 'Y'){
+		if (isAdmin != 'Y' || isAdmin == ""){
 			if(loginId != replyId){
-				alert("다른사람의 댓글은 수정 할 수없습니다.");
+				var msg = (isAdmin == "N") ? "다른사람의 댓글은 수정 할 수없습니다." : "로그인 해주세요.";
+				alert(msg);
 				return ;
 			}
 		}
+		
+		
 		
 		// alert(replyCode);
 		// 내용 데이터 받음
@@ -240,12 +244,16 @@ $(document).ready(function() {
 		var replyId = $(this).parent().parent().children(":first").children().eq(1).text();
 		// alert(loginId);
 		// alert(replyId);
-
-		if(loginId != replyId){
-			alert("다른사람의 댓글은 삭제 할수없습니다.");
-			return ;
-		}
+		var isAdmin = $("#loginIsAdmin").val();;
 		
+		if (isAdmin != 'Y' || isAdmin == ""){
+			if(loginId != replyId){
+				var msg = (isAdmin == "N") ? "다른사람의 댓글은 삭제 할 수없습니다." : "로그인 해주세요.";
+				alert(msg);
+				return ;
+			}
+		}
+
 		var replyCode = $(this).prev().prev().val();
 		var boardNum = $("#boardNumInput").val();
 //		alert(boardNum);

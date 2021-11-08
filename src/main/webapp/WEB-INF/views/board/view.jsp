@@ -88,7 +88,7 @@ $(document).ready(function(){
 						<div class="input-group mt-3 input-group-sm">
 	   						<span class="input-group-text">작성자 : </span>
 	  						<input type="text" class="form-control" value="${sessionScope.loginInfo.id }" readonly id="idInput">
-	  						<input type="hidden" class="form-control" value="${sessionScope.loginInfo.isAdmin }"  readonly name="isAdmin" id="loginIsAdmin">
+	  						<input type="hidden" value="${sessionScope.loginInfo.isAdmin }" id="loginIsAdmin">
 						</div>
 						
 						<div class="input-group mt-3 input-group-sm">
