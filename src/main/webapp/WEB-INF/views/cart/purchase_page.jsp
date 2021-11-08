@@ -203,6 +203,7 @@ $(".btn_payment").click(function() {
 	  		var email = $('#email1').val() + '@' + $('#emailChoosedBox').val();
 	  		var addr = $('#roadAddress').val() + ' ' + $('#detailAddress').val();
 	  		var postCode = $('#postcode').val();
+	  		var loginId = $('#id').val();
 			IMP.request_pay({
 					    pg : 'inicis', 
 					    pay_method : 'card',
@@ -217,12 +218,12 @@ $(".btn_payment").click(function() {
 					}, function(rsp) {
 						var result = '';
 					    if ( rsp.success ) {
-					        var msg = '결제가 완료되었습니다.';
-					        msg += '고유ID : ' + rsp.imp_uid;
-					        msg += '상점 거래ID : ' + rsp.merchant_uid;
-					        msg += '결제 금액 : ' + rsp.paid_amount;
-					        msg += '카드 승인번호 : ' + rsp.apply_num;
-					        
+					        var msg = '결제가 완료되었습니다. \n';
+					        msg += '고유ID : ' + rsp.imp_uid + '\n';
+					        msg += '상점 거래ID : ' + rsp.merchant_uid + '\n';
+					        msg += '결제 금액 : ' + rsp.paid_amount + '\n';
+					        msg += '카드 승인번호 : ' + rsp.apply_num + '\n';
+					        msg += '로그인 아이디 : ' + loginId + '\n';
 					        result ='0';
 					    } else {
 					        var msg = '결제에 실패하였습니다.';

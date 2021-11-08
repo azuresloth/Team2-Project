@@ -4,6 +4,15 @@ $(document).ready(function(){
 		$('.login_warn').remove();
 		
     });
+	
+	$(window).bind("pageshow", function (event) {
+		var checkId = $('#checkId').val();
+		
+		if(checkId != ''){
+			location.href='/item/mainPage';
+		}
+	});
+
 });
 
 

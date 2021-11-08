@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/interceptLogin.js?ver2"></script>
+<script type="text/javascript" src="/resources/member/js/interceptLogin.js?ver3"></script>
 <!-- 
 <script type="text/javascript">
 	
@@ -28,6 +28,7 @@
 <body>
 	<div class="row justify-content-center" >
 		<div class="col-5">
+			<input type="hidden" value="${sessionScope.loginInfo.id}" id="checkId">
 			<form action="/member/interceptLogin" method="post" id="interceptLoginForm">
 				<input type="hidden" name="requestURI" value="${requestURI }"> 
 				<div style="margin-top: 20px;"></div>
