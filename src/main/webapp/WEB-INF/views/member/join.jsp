@@ -10,7 +10,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<link rel="stylesheet" href="/resources/member/css/join.css?ver=2">
+<link rel="stylesheet" href="/resources/member/css/join.css?ver=1">
 
 </head>
 <body>
@@ -28,7 +28,7 @@
 						<input type="button" class="btn btn-primary me-md-2 idCheckBtn" id="btn"  onclick="checkId();" value="중복확인" > 
 					</div>
 				</div>
-					<div>비밀번호 <input type="password" id="pw"  required name="pw" class="form-control" > </div>
+					<div>비밀번호 <input type="password" id="pw"  required name="pw" class="form-control" m> </div>
 					<div>비밀번호 확인 <input type="password" id="pw_1" required class="form-control"> </div>
 					<div>이름  <input type="text" id="name"  name="name" required class="form-control"> </div>
 					연락처
@@ -43,10 +43,10 @@
 					</div>
 					 
 					<div class="col-4">
-				  		<input type="text" class="form-control " id="tell2" name="tells" required>
+				  		<input type="text" class="form-control " id="tell2" name="tells" required maxlength="4">
 				  	</div>
 				  	<div class="col-4">
-				  		 <input type="text" class="form-control" id="tell3" name="tells" required>
+				  		 <input type="text" class="form-control" id="tell3" name="tells" required maxlength="4">
 				  	</div>
 				</div>	
 					<div>주소</div>	
@@ -59,8 +59,9 @@
 					    <input type="text" id="sample4_extraAddress" placeholder="참고항목" hidden >
 					
 							
-							<div>생년월일<input type="hidden"> <input type="text" id="birthday" name="birthday" placeholder="ex)19920211" required class="form-control"></div>
-				</div>
+					<div class="col-12">
+						<input type="text" name="birthday" id="birthday" placeholder="ex)19920211" required class="form-control"  maxlength="8" >
+					</div>
 				<div>
 					<div>추가정보</div>
 					<div style="margin-top: 10px;"></div>
@@ -80,9 +81,9 @@
 							</div>
 							 <div>인증번호입력</div>
 							<div>
-								<input type="text" class="form-control " id="verificationCode" disabled >
+								<input type="text" class="form-control " id="verificationCode" disabled maxlength="6">
 								<span id="mail_check_input_box_warn" ></span>
-							</div> 
+							</div>
 						</div>	
 					</div>
 					<div class="mt-3">성별 &nbsp;<input type="radio" value="남" checked name="gender"> 남 <input type="radio" value="여" name="gender"> 여 </div>

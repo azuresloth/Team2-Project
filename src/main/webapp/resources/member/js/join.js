@@ -2,19 +2,87 @@ var code;  //이메일전송 인증번호 저장을 위한 코드
 //화면 로딩 후 바로 실행
 $(document).ready(function() {
 	
+	
+	// 숫자가 아닌 정규식 (인증코드)
+    var replaceNotInt = /[^0-9]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#verificationCode").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceNotInt)) {
+                   x = x.replace(replaceNotInt, "");
+                }
+                $(this).val(x);
+            }
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceNotInt, ""));
+        });
+ 
+    });
+    
+    // 숫자가 아닌 정규식 (생년월일)
+    var replaceNotInt = /[^0-9]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#birthday").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceNotInt)) {
+                   x = x.replace(replaceNotInt, "");
+                }
+                $(this).val(x);
+            }
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceNotInt, ""));
+        });
+ 
+    });
+    
+    // 특수문자 정규식 변수(공백 미포함)
+    var replaceChar = /[~!@\#$%^&*\()\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}]/gi;
+ 
+    // 완성형 아닌 한글 정규식
+    var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#name").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
+                    x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+                }
+                $(this).val(x);
+            }
+            }).on("keyup", function() {
+                $(this).val($(this).val().replace(replaceChar, ""));
+
+       });
+
+    });       
+    
+	
+	
 	//인증번호비교
 	$('#verificationCode').blur(function(){
 		var inputCode = $('#verificationCode').val(); //입력코드
 		var checkResult = $(mail_check_input_box_warn); //비교결과
+		var replaceNotInt = /[^0-9]/gi;
+		
+				
 		if(inputCode == code){							//일치할경우
-			checkResult.html('인증번호가 일치합니다.');
+			checkResult.html('인증번호가 일치합니다.' + code);
 			checkResult.attr('class' , 'correct');
 			checkResult.addClass('success');
 			/*$('#joinBtn').removeClass('disabled');*/
 		}
 		else{											//일치하지않을경우
-			checkResult.html('인증번호를 다시 확인하세요.');
+			checkResult.html('인증번호를 다시 확인하세요.' + code);
 			checkResult.attr('class' , 'incorrect');
+			checkResult.removeClass('success');
 			/*$('#joinBtn').addClass('disabled');*/
 			
 		}
@@ -36,6 +104,11 @@ $(document).ready(function() {
 });
 //함수 선언 영역
 (function($){
+	
+
+
+	
+
 	//이메일 인증번호발송
 	mail_check_btn = function(){
 		var emailId = $('#email').val();
@@ -50,8 +123,21 @@ $(document).ready(function() {
             data:{'email' : email}, //(컨트롤러에 전해줄)필요한 데이터  {'a' : sing, 'b' : song}
             success: function(data) {
             	code = data;
-            	alert('인증번호가 발송되었습니다.');
-            	$('#verificationCode').attr('disabled',false);
+            	if(emailId != ''){
+            		if(emailAddr != ''){
+            			$(mail_check_input_box_warn).removeClass('success');
+            			alert('인증번호가 발송되었습니다.'+code);
+                    	$('#verificationCode').attr('disabled',false);
+            		}else{
+            			alert('인증번호 발송 실패 \n 이메일주소를 확인해주세요.');
+                		$('#email1').focus();
+            		};
+            		
+            	}else{
+            		alert('인증번호 발송 실패 \n 이메일 아이디를 확인해주세요.');
+            		$('#email').focus();
+            	};
+            	
 			},
             error: function(){
              //ajax 실행 실패 시 실행되는 구간
@@ -66,7 +152,13 @@ $(document).ready(function() {
 	var pw = $('#pw').val();
 	var pw1 = $('#pw_1').val();
 	var success = $('#joinForm').find('.success').length
-	
+	var dateStr = $('#birthday').val();
+	var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+	var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
+	var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일) 
+	var today = new Date(); // 날짜 변수 선언 
+	var yearNow = today.getFullYear(); // 올해 연도 가져옴
+
 	if(pw != pw1){
 		alert('비밀번호를 확인하세요');
 		$('input[type="pw"]').val('');
@@ -143,6 +235,51 @@ $(document).ready(function() {
 	};
 	
 })(jQuery);
+
+
+//생년월일 유효성체크
+function birthday1() { 
+	var dateStr = $('#birthday').val();
+	var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+	var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
+	var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일) 
+	var today = new Date(); // 날짜 변수 선언 
+	var yearNow = today.getFullYear(); // 올해 연도 가져옴
+	
+	
+	console.log(yearNow)
+	if (dateStr.length <=8) {
+		 // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+		 if (1900 > year || year > yearNow){
+			alert('년도 색기야');
+		} 
+		else if (1900 <= year || year <= yearNow){
+			if (month < 1 || month > 12){
+				alert('월 확인 해');
+			}
+			else if (month >= 1 || month <= 12){
+				if (day < 1 || day > 31){
+					alert('일 확인 해 !');
+				}
+				else if (day >= 1 || day <= 31){
+					if ((month==4 || month==6 || month==9 || month==11) && day == 31){
+						alert('31확인 해');
+					}
+					else if (!(month==4 || month==6 || month==9 || month==11) && day != 31){
+						if (month == 2) {
+							var isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+							 if (day>29 || (day==29 && !isLeap)){
+								 alert('윤달 확인');
+							 }
+						}
+					}
+				}
+			}
+		}
+		 
+		}
+		
+	}
 
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

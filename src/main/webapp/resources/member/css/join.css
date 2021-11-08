@@ -7,3 +7,6 @@
 .emailBtn, .idCheckBtn{
 	width: 100%;
 }
+.bth{
+	display: inline-block;
+}
