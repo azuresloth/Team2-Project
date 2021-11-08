@@ -61,6 +61,12 @@
 		DELETE FEEDBACK
 		WHERE FB_CODE = #{fbCode}
 	</delete>
+	
+	<select id="cancelUpdateFeedbackData" resultMap="feedback">
+		SELECT TITLE, CONTENT
+		FROM FEEDBACK
+		WHERE FB_CODE = #{fbCode}
+	</select>
 </mapper>
 
 

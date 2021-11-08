@@ -68,9 +68,12 @@ $(document).ready(function(){
 				<div class="col-12">${boardVO.content }</div>
 			</div>
 			<div class="m-2">
-				<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}
-					&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">수정</a>
-				<a href="/board/delete?boardNum=${boardVO.boardNum }" class="btn btn-primary">삭제</a>
+				<!-- 임시로 아이디가 게시판 등록한 사람과 로그인 한사람이 같으면 수정 삭제를 버튼이 나오도록 하였음 -->
+				<c:if test="${sessionScope.loginInfo.id eq boardVO.writer }">
+					<a href="/board/updateForm?boardNum=${boardVO.boardNum }&page=${param.page }&perPageRowNum=${param.perPageRowNum}
+						&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">수정</a>
+					<a href="/board/delete?boardNum=${boardVO.boardNum }" class="btn btn-primary">삭제</a>
+				</c:if>
 				<a href="/board/boardList?page=${param.page }&perPageRowNum=${param.perPageRowNum}
 					&searchColunm=${param.searchColunm }&searchWord=${param.searchWord}" class="btn btn-primary">뒤로가기</a>
 			</div>

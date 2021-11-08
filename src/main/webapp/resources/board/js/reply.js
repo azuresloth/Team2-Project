@@ -26,7 +26,7 @@ $(document).ready(function() {
 						str += 	"<li class='list-group-item'>";
 						str += 		"<div>";
 						str += 			"<strong>작성자 : </strong>";
-						str += 			element.writer;
+						str += 			"<span>" + element.writer + "</span>";
 						str += 			"<span class='pull-right'>";
 						str += 				dateFormet(element.createDate);
 						str += 			"</span>";
@@ -94,6 +94,18 @@ $(document).ready(function() {
 	
 	// 업데이트 폼으로 바꾸어 주기-----------------------------------
 	$(document).on('click', '.updateReplyForm', function() {
+		// 아이디가 일치 한지 먼저 체크 하기
+		var loginId = $("#idInput").val();
+		var replyId = $(this).parent().parent().children(":first").children().eq(1).text();
+		// alert("loginId : " + loginId);
+		// alert("replyId : " + replyId);
+
+		if(loginId != replyId){
+			alert("다른사람의 댓글은 수정 할 수없습니다.");
+			return ;
+		}
+		
+		
 		// alert(replyCode);
 		// 내용 데이터 받음
 		var content = $(this).parent().prev().children().last().text();
@@ -221,6 +233,17 @@ $(document).ready(function() {
 	
 	// 댓글 지우기
 	$(document).on('click', '.deleteReply', function() {
+		// 아이디가 일치 한지 먼저 체크 하기
+		var loginId = $("#idInput").val();
+		var replyId = $(this).parent().parent().children(":first").children().eq(1).text();
+		// alert(loginId);
+		// alert(replyId);
+
+		if(loginId != replyId){
+			alert("다른사람의 댓글은 삭제 할수없습니다.");
+			return ;
+		}
+		
 		var replyCode = $(this).prev().prev().val();
 		var boardNum = $("#boardNumInput").val();
 //		alert(boardNum);

@@ -36,6 +36,14 @@ public class FeedbackServiceImpl implements FeedbackService{
 		sqlSession.delete("feedbackMapper.deleteFeedback", fbCode);
 	}
 
+	@Override
+	public FeedbackVO cancelUpdateFeedbackData(String fbCode) {
+		return sqlSession.selectOne("feedbackMapper.cancelUpdateFeedbackData", fbCode);
+	}
+	
+	
+	
+
 
 
 

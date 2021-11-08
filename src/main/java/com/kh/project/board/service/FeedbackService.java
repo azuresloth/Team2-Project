@@ -17,4 +17,7 @@ public interface FeedbackService {
 	
 	// 후기 삭제 
 	void deleteFeedback(String fbCode);
+	
+	// 후기 수정 취소를 위한 정보 제목 내용만 받아가기
+	FeedbackVO cancelUpdateFeedbackData(String fbCode);
 }

@@ -77,7 +77,8 @@ public class FeedbackController {
 		Iterator<String> inputName = multi.getFileNames();
 
 		// 첨부될 폴더지정(현제는 내 컴퓨터 폴더)
-		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		String uploadPath = "D:\\workspaceSTS\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Team2 Shop Project\\resources\\feedback\\images\\";
 
 		while (inputName.hasNext()) {
 			// 한개만 넘기니까 하나만 나온다.
@@ -98,6 +99,7 @@ public class FeedbackController {
 			
 		} // while끝
 		System.out.println("updateAjax().feedbackVO" + feedbackVO); //
+		
 		feedbackService.updateFeedback(feedbackVO);
 	} // 후기수정하기 끝
 
@@ -119,6 +121,13 @@ public class FeedbackController {
 		feedbackService.deleteFeedback(fbCode);
 	}
 	
+	// 후기 수정 취소 하면 원래의 데이터 제목, 내용만 가지고 온다.cancelUpdateFeedbackAjax
+	@ResponseBody
+	@PostMapping("/cancelUpdateFeedbackAjax")
+	public FeedbackVO cancelUpdateFeedbackAjax(String fbCode) {
+		System.out.println("deleteFeedbackAjax().fdCode : " + fbCode);
+		return feedbackService.cancelUpdateFeedbackData(fbCode);
+	}
 	
 	
 	
