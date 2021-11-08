@@ -31,7 +31,7 @@
 					<div>비밀번호 <input type="password" id="pw"  required name="pw" class="form-control" m> </div>
 					<div>비밀번호 확인 <input type="password" id="pw_1" required class="form-control"> </div>
 					<div>이름  <input type="text" id="name"  name="name" required class="form-control"> </div>
-					연락처
+					<div>연락처</div>
 				<div class="row">
 					<div class="col-4">
 					<select class="form-select" aria-label="Default select example" id="tell1" name="tells">
@@ -61,6 +61,7 @@
 							
 					<div class="col-12">
 						<input type="text" name="birthday" id="birthday" placeholder="ex)19920211" required class="form-control"  maxlength="8" >
+						<button class="btn btn-primary" type="button" onclick="birthday1();">확인</button>
 					</div>
 				<div>
 					<div>추가정보</div>

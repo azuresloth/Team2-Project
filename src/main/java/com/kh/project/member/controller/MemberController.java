@@ -3,15 +3,11 @@ package com.kh.project.member.controller;
 
 
 
-import java.lang.System.Logger;
 import java.util.Random;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -27,7 +23,6 @@ import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
 
 import javax.mail.internet.MimeMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
 
@@ -187,6 +182,53 @@ public class MemberController {
 		return checkNum;
 	}
 	
+	/* 비밀번호찾기 임시비밀번호 발송 */
+	@ResponseBody
+    @RequestMapping(value="/pwCheckAjax", produces = "application/text; charset=utf8")
+    public String pwCheck(String email, String id) throws Exception{
+        
+		// 이메일이 맞는지 조회
+		String checkEmail = memberService.checkEmail(id);
+		if(email.equals(checkEmail)) {
+			// 아이디를 매개변수로 비밀번호찾는 쿼리문 실행
+			MemberVO memberVO = new MemberVO();
+			memberVO.setId(id);
+			memberVO.setEmail(email);
+	    	String password = memberService.findPw(memberVO);
+	    	
+	        System.out.println("비밀번호 :  " + password);       
+	        
+	        /* 이메일 보내기 */
+	        String setFrom = "bjk9648@naver.com";
+	        String toMail = email;
+	        String title = "회원님의 잊어버린 비밀번호입니다.";
+	        String content = 
+	                "비밀번호는 추후 변경 부탁드립니다." +
+	                "<br><br>" + 
+	                "비밀번호는 " + password + "입니다.";
+	        
+	        try {
+	            
+	            MimeMessage message = mailSender.createMimeMessage();
+	            MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+	            helper.setFrom(setFrom);
+	            helper.setTo(toMail);
+	            helper.setSubject(title);
+	            helper.setText(content,true);
+	            mailSender.send(message);
+	            
+	        }catch(Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return password;
+		}
+		else {
+			String wrongEmail = "이메일을 다시 입력해주세요.";
+			return wrongEmail;
+		}
+	}
+	
 	//아이디 찾기 화면으로 이동
 	@GetMapping("/findIdForm")
 	public String goFindId() {
@@ -206,8 +248,11 @@ public class MemberController {
 		return"member/find_pw_form";
 	}
 	//비밀번호 찾기
-	
-	
+	@PostMapping("/findPw")
+	public String findPw(MemberVO memberVO, Model model) {
+		model.addAttribute("memberInfo",memberService.findPw(memberVO));
+		return "member/find_pw_result";
+	}
 	
 	
 	//아이디 중복체크
