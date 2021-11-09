@@ -33,4 +33,7 @@ public interface MemberService {
 	 
 	 // 이메일 체크
 	 String checkEmail(String id);
+	 
+	 //회원정보수정
+	 int updateInfo(MemberVO memberVO);
 }

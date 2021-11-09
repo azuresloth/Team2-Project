@@ -65,4 +65,9 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.checkEmail", id);
 	}
 
+	@Override
+	public int updateInfo(MemberVO memberVO) {
+		return sqlSession.update("memberMapper.updateInfo", memberVO);
+	}
+
 }

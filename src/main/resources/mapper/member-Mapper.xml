@@ -96,12 +96,12 @@
 	<!-- 정보수정 -->
 	<update id="updateInfo">
 		UPDATE MEMBER
-		SET POST_CODE = #{postCode}
+		SET NAME = #{name}
+			, POST_CODE = #{postCode}
 			, ROAD_ADDR = #{roadAddr}
 			, DETAIL_ADDR = #{detailAddr}
 			, TELL = #{tell}
 			, EMAIL = #{email}
-			, PW = #{pw}
 		WHERE ID = #{id} 
 	</update>
 	

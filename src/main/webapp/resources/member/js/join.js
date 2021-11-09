@@ -152,13 +152,7 @@ $(document).ready(function() {
 	var pw = $('#pw').val();
 	var pw1 = $('#pw_1').val();
 	var success = $('#joinForm').find('.success').length
-	var dateStr = $('#birthday').val();
-	var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
-	var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
-	var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일) 
-	var today = new Date(); // 날짜 변수 선언 
-	var yearNow = today.getFullYear(); // 올해 연도 가져옴
-
+	
 	if(pw != pw1){
 		alert('비밀번호를 확인하세요');
 		$('input[type="pw"]').val('');
@@ -251,25 +245,25 @@ function birthday1() {
 	if (dateStr.length <=8) {
 		 // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
 		 if (1900 > year || year > yearNow){
-			alert('년도 색기야');
+			alert('출생년도를 확인해주세요');
 		} 
 		else if (1900 <= year || year <= yearNow){
 			if (month < 1 || month > 12){
-				alert('월 확인 해');
+				alert('출생월을 확인해주세요');
 			}
 			else if (month >= 1 || month <= 12){
 				if (day < 1 || day > 31){
-					alert('일 확인 해 !');
+					alert('출생일을 확인해주세요!');
 				}
 				else if (day >= 1 || day <= 31){
 					if ((month==4 || month==6 || month==9 || month==11) && day == 31){
-						alert('31확인 해');
+						alert('생년월일을 확인해주세요');
 					}
 					else if (!(month==4 || month==6 || month==9 || month==11) && day != 31){
 						if (month == 2) {
 							var isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 							 if (day>29 || (day==29 && !isLeap)){
-								 alert('윤달 확인');
+								 alert('생년월일을 확인해주세요');
 							 }
 						}
 					}

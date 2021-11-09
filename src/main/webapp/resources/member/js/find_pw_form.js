@@ -23,6 +23,7 @@ $(document).ready(function(){
             success: function(result) {
             	if(result == '이메일을 다시 입력해주세요.'){
             		alert('입력하신 이메일을 확인해주세요.');
+            		$('#email').focus();
             	}
             	else {
             		alert('입력하신 이메일로 비밀번호가 발송되었습니다.  '+result);

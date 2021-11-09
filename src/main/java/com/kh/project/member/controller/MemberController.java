@@ -274,7 +274,24 @@ public class MemberController {
 	public String deleteMember(MemberVO memberVO) {
 		return "redirect:/item/mainPage";
 	}
-	//개인정보수정
+	//회원정보수정페이지로 이동
+	@GetMapping("/goMemberInfo")
+	public String goMemberInfo() {
+		
+		return "member/member_info";
+	}
+	/*
+	 * //회원정보수정페이지로 이동
+	 * 
+	 * @GetMapping("/goMemberInfo") public String goMemberInfo(MemberVO memberVO,
+	 * Model model) { model.addAttribute("memberInfo", memberVO); return
+	 * "member/member_info"; }
+	 */
+	/*
+	 * //회원정보수정 public int updateInfo(MemberVO memberVO) {
+	 * 
+	 * }
+	 */
 	
 	
 	
