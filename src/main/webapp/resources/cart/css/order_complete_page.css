@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+.purTitleDiv{
+	margin-top: 2rem;
+}
+.purInfoTable{
+	width: 100%;
+	border-top: 1px solid #333333;
+	margin: 0 auto;
+}
+.purInfoTable th, .purInfoTable td{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #efefef;
+}
+.warningDiv{
+	vertical-align: center;
+	background-color: #fff8f5;
+	border-bottom: 1px solid #e8e5e4;
+	border-top: 1px solid #e8e5e4;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.warningSpan{
+	color: #f76560;
+	font-size: 12px;
+	font-weight: lighter;
+}
+.checkDeleteDiv{
+	font-size: 12px;
+	padding-top: 10px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #868686;}
+.checkDeleteBtn{
+	padding: 2px;
+	font-size: 12px;
+}
+.deliveryInfoTitle, .buyTotalPriceTitle{
+	padding: 40px 0 10px 0;
+	border-bottom: 1px solid #dedede;
+	font-size: 15px;
+}
+.requiredCheckSpan{
+	float: right;
+	color: #666666;
+	font-size: 11px;
+	padding-right: 20px;
+}
+.deliveryInfoTableDiv, .buyTotalPriceTableDiv{
+	padding: 0;
+}
+.deliveryInfoTable, .buyTotalPriceTable{
+	width: 100%;
+	border-bottom: 1px solid #dedede;
+}
+.deliveryInfoTable th, .deliveryInfoTable td, .buyTotalPriceTable th, .buyTotalPriceTable td{
+	padding: 10px 0 10px 15px;
+	color: #666666;
+	border-bottom: 1px solid #dedede;
+	vertical-align: middle;
+}
+.buyTotalPriceTable th{
+	height: 70px;
+	background: #fbfafa;
+}
+.buyTotalPriceTable td{
+	font-size: 22px;
+}
+input[type="radio"] {
+	margin-bottom: 1px;
+	width: 12px;
+	height: 12px;
+	vertical-align: middle;
+}
+input, select, textarea, input[type=text], input[type=password]{
+	color: #666666;
+	border: 1px solid #dedede;
+}
+input[type=text], select{
+	height: 28px;
+	line-height: 24px;
+	padding: 2px 4px;
+	border: 1px solid #d5d5d5;
+	font-size: 12px;
+}
+.tellInput{
+	width: 5rem;
+}
+.longAddrInput {
+	width: 450px;
+	margin: 5px 5px 0 0;
+}
+.msgTextarea{
+	width: 750px;
+	height: 60px;
+	padding: 5px 6px;
+	line-height: 1.5;
+}
+p{
+	margin: 0;
+	margin-top: 5px;
+}
+.btn_payment{
+	width: 200px;
+}
+.addrBtn{
+	border: 1px solid #cbcbcb;
+	background-color: white;
+	height: 28px;
+	color: #666666;
+}

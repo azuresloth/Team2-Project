@@ -25,7 +25,6 @@
 			            <li><a class="dropdown-item" href="#">그외 추가 자리</a></li>
 			          </ul>
 			    </li>
-				<li>마이페이지</li>
 				<li>주문조회</li>
 				<li>장바구니</li>
 				<c:choose>

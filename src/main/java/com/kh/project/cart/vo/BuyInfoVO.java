@@ -25,10 +25,17 @@ public class BuyInfoVO {
 	private String detailAddr;
 	private int insertCnt;
 	private String orderCode;
+	private int allTotalPrice;
 	
 	
 	
 	
+	public int getAllTotalPrice() {
+		return allTotalPrice;
+	}
+	public void setAllTotalPrice(int allTotalPrice) {
+		this.allTotalPrice = allTotalPrice;
+	}
 	public String getOrderCode() {
 		return orderCode;
 	}

@@ -13,7 +13,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=5"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=3"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> 
 /*위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다.(1990년 이후 쭉 )*/ 
@@ -187,11 +187,13 @@
 									<c:if test="${not empty buyItemInfo}">
 										<fmt:formatNumber type="number" value="${buyItemInfo.totalPrice}"></fmt:formatNumber>원
 									</c:if>
+									<input type="hidden" name="allTotalPrice" id="allTotalPrice" value="${buyItemInfo.totalPrice}">
 									<input type="hidden" name="orderCode" id="orderCode" value="0">
 								</span>
 							</td>
 							<td>
 								<button type="button" class="button blackButton2 btn_payment">결제하기</button>
+								<button type="button" class="button blackButton2" onclick="testPay();">임시결제</button>
 							</td>
 						</tr>
 					</table>
