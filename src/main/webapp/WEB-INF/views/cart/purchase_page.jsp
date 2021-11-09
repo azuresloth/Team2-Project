@@ -187,6 +187,7 @@
 									<c:if test="${not empty buyItemInfo}">
 										<fmt:formatNumber type="number" value="${buyItemInfo.totalPrice}"></fmt:formatNumber>원
 									</c:if>
+									<input type="hidden" name="orderCode" id="orderCode" value="0">
 								</span>
 							</td>
 							<td>
@@ -233,6 +234,7 @@ $(".btn_payment").click(function() {
 					    msg += '결제 금액 : ' + rsp.paid_amount + '\n';
 					    msg += '카드 승인번호 : ' + rsp.apply_num + '\n';
 					    msg += '로그인 아이디 : ' + loginId + '\n';
+				    	$('#orderCode').val(rsp.merchant_uid);
 					    result ='0';
 					} else {
 					    var msg = '결제에 실패하였습니다.';

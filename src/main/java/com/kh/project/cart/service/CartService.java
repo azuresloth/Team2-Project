@@ -2,6 +2,7 @@ package com.kh.project.cart.service;
 
 import java.util.List;
 
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 
 public interface CartService {
@@ -25,4 +26,10 @@ public interface CartService {
 	
 	// 구매 목록 지웟는데 뒤로가기로 왔을때 확인
 	int selectCheckPurchaseData(String itemCode, String id);
+	
+	// 구매후 주문정보에 추가
+	int insertBuyInfo(BuyInfoVO buyInfoVO);
+	
+	// 구매후 구매한 상품 조회
+	List<BuyInfoVO> selectRecentBoughtInfo(BuyInfoVO buyInfoVO);
 }

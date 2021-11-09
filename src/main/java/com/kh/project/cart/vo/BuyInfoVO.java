@@ -23,10 +23,24 @@ public class BuyInfoVO {
 	private String postCode;
 	private String roadAddr;
 	private String detailAddr;
+	private int insertCnt;
+	private String orderCode;
 	
 	
 	
 	
+	public String getOrderCode() {
+		return orderCode;
+	}
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
+	}
+	public int getInsertCnt() {
+		return insertCnt;
+	}
+	public void setInsertCnt(int insertCnt) {
+		this.insertCnt = insertCnt;
+	}
 	public String[] getDeliveryTells() {
 		return deliveryTells;
 	}

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 
 
@@ -54,6 +55,16 @@ public class CartServiceImpl implements CartService{
 		cartViewVo.setId(id);
 		cartViewVo.setItemCode(itemCode);
 		return sqlSession.selectOne("cartMapper.selectCheckPurchaseData", cartViewVo);
+	}
+
+	@Override
+	public int insertBuyInfo(BuyInfoVO buyInfoVO) {
+		return sqlSession.insert("cartMapper.insertBuyInfo", buyInfoVO);
+	}
+
+	@Override
+	public List<BuyInfoVO> selectRecentBoughtInfo(BuyInfoVO buyInfoVO) {
+		return sqlSession.selectList("cartMapper.selectRecentBoughtInfo", buyInfoVO);
 	}
 
 	

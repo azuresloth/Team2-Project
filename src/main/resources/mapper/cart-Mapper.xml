@@ -30,6 +30,7 @@
 		<result column="POST_CODE"						property="postCode"/>
 		<result column="ROAD_ADDR"						property="roadAddr"/>
 		<result column="DETAIL_ADDR"					property="detailAddr"/>
+		<result column="ORDER_CODE"						property="orderCode"/>
 	</resultMap>
 	<resultMap type="com.kh.project.cart.vo.DeliveryInfoVO" id="deliveryInfo">
 		<result column="DELIVERY_NAME"					property="deliveryName"/>
@@ -124,6 +125,61 @@
 		AND ITEM_CODE = #{itemCode}
 	</select>
 	
+	<!-- 구매후 주문정보에 추가 -->
+	<insert id="insertBuyInfo">
+		INSERT INTO BUY_INFO(
+			BUY_CODE
+			, ITEM_CODE
+			, ID
+			, TOTAL_PRICE
+			, BUY_CNT
+			, DELIVERY_NAME
+			, DELIVERY_TELL
+			, DELIVERY_EMAIL
+			, DELIVERY_MSG
+			, POST_CODE
+			, ROAD_ADDR
+			, DETAIL_ADDR
+			, ORDER_CODE
+		) VALUES (
+			(SELECT 'BUY_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BUY_CODE, 6, 3))), 0) + 1, 4, '0') FROM BUY_INFO)
+			, #{itemCode}
+			, #{id}
+			, #{totalPrice}
+			, #{buyCnt}
+			, #{deliveryName}
+			, #{deliveryTell}
+			, #{deliveryEmail}
+			, #{deliveryMsg}
+			, #{postCode}
+			, #{roadAddr}
+			, #{detailAddr}
+			, #{orderCode}
+		)
+	</insert>
+	
+	<!-- 방금 산거 조회 -->
+	<select id="selectRecentBoughtInfo" resultMap="buyInfo">
+		SELECT BUY_CODE
+			, ITEM_CODE
+			, ID
+			, TOTAL_PRICE
+			, TO_CHAR(BUY_DATE, 'YY-MM-DD HH24-MI') AS BUY_DATE
+			, BUY_CNT
+			, BUY_STATUS
+			, PAYMENT_PLAN
+			, DELIVERY_NAME
+			, DELIVERY_TELL
+			, DELIVERY_EMAIL
+			, DELIVERY_MSG
+			, POST_CODE
+			, ROAD_ADDR
+			, DETAIL_ADDR
+		FROM BUY_INFO
+		WHERE ID = #{id}
+		AND ORDER_CODE = #{orderCode}
+		ORDER BY ROWNUM
+	</select>
 	
 </mapper>
 

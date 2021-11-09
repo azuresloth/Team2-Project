@@ -97,17 +97,28 @@ public class CartController {
 	
 	// 구매완료시 주문완료 페이지로 이동
 	@PostMapping("/goOrderCompletePage")
-	public String goOrderCompletePage(BuyInfoVO buyInfoVO) {
+	public String goOrderCompletePage(Model model, BuyInfoVO buyInfoVO) {
 		System.out.println(buyInfoVO);
+		System.out.println(buyInfoVO.getOrderCode()+"!!!!!!!!!!!!!!!!!!!!!1");
 		// 필요한거
 		
 		// 구매한 상품 장바구니(item_cart)에서 삭제
-		
+		cartService.deleteCartItem(buyInfoVO.getItemCode(), buyInfoVO.getId());
 		
 		// 받은 정보들 buy_Info테이블에 insert
+		int insertCnt = 0;
+		insertCnt += cartService.insertBuyInfo(buyInfoVO);
+		
+		// 방금산거 조회 (id, insert쿼리 돌아가는 횟수 이용) 
+		buyInfoVO.setInsertCnt(insertCnt);
+		model.addAttribute("nowBuyList", cartService.selectRecentBoughtInfo(buyInfoVO));
 		return "cart/order_complete_page";
 	}
-	//------------------------- 에이작스 
+	
+	
+	//---------------------------------------------------- ajax 
+	
+	
 	
 	// 카트에 동일제품 체크
 	@ResponseBody
