@@ -26,10 +26,17 @@ public class BuyInfoVO {
 	private int insertCnt;
 	private String orderCode;
 	private int allTotalPrice;
+	private String attachedImgName;
 	
 	
 	
 	
+	public String getAttachedImgName() {
+		return attachedImgName;
+	}
+	public void setAttachedImgName(String attachedImgName) {
+		this.attachedImgName = attachedImgName;
+	}
 	public int getAllTotalPrice() {
 		return allTotalPrice;
 	}
@@ -159,7 +166,18 @@ public class BuyInfoVO {
 				+ paymentPlan + ", deliveryName=" + deliveryName + ", deliveryTell=" + deliveryTell + ", deliveryTells="
 				+ Arrays.toString(deliveryTells) + ", deliveryEmail=" + deliveryEmail + ", deliveryEmails="
 				+ Arrays.toString(deliveryEmails) + ", deliveryMsg=" + deliveryMsg + ", postCode=" + postCode
-				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + "]";
+				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + ", insertCnt=" + insertCnt + ", orderCode="
+				+ orderCode + ", allTotalPrice=" + allTotalPrice + ", getAllTotalPrice()=" + getAllTotalPrice()
+				+ ", getOrderCode()=" + getOrderCode() + ", getInsertCnt()=" + getInsertCnt() + ", getDeliveryTells()="
+				+ Arrays.toString(getDeliveryTells()) + ", getDeliveryEmails()=" + Arrays.toString(getDeliveryEmails())
+				+ ", getBuyCode()=" + getBuyCode() + ", getItemCode()=" + getItemCode() + ", getId()=" + getId()
+				+ ", getTotalPrice()=" + getTotalPrice() + ", getBuyDate()=" + getBuyDate() + ", getBuyCnt()="
+				+ getBuyCnt() + ", getBuyStatus()=" + getBuyStatus() + ", getPaymentPlan()=" + getPaymentPlan()
+				+ ", getDeliveryName()=" + getDeliveryName() + ", getDeliveryTell()=" + getDeliveryTell()
+				+ ", getDeliveryEmail()=" + getDeliveryEmail() + ", getDeliveryMsg()=" + getDeliveryMsg()
+				+ ", getPostCode()=" + getPostCode() + ", getRoadAddr()=" + getRoadAddr() + ", getDetailAddr()="
+				+ getDetailAddr() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 	
 	

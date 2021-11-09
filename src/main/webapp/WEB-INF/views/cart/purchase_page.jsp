@@ -13,7 +13,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=3"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=1"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> 
 /*위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다.(1990년 이후 쭉 )*/ 
@@ -43,7 +43,7 @@
 	</div>
 	<div class="row justify-content-center">
 		<div class="col-10 ">
-			<form id="orderForm" action="/cart/goOrderCompletePage" method="post" onsubmit="return false">
+			<form id="orderForm" action="/cart/orderComplete" method="post" onsubmit="return false">
 			<div class="row mt-2 justify-content-center">
 				<div class="col-12 purTitleDiv">
 					<h4>주문서작성</h4>
@@ -74,7 +74,10 @@
 									<input type="checkbox" class="childBox" value="${buyItemInfo.itemCode}">
 									<input type="hidden" name="itemCode" value="${buyItemInfo.itemCode}">
 								</td>
-								<td><img alt="" src="/resources/images/item/itemImages/${buyItemInfo.attachedImgName}" width="75px;"></td>
+								<td>
+									<img alt="" src="/resources/images/item/itemImages/${buyItemInfo.attachedImgName}" width="75px;">
+									<input type="hidden" name="attachedImgName" value="${buyItemInfo.attachedImgName}">
+								</td>
 								<td>${buyItemInfo.itemName}</td>
 								<td><fmt:formatNumber type="number" value="${buyItemInfo.itemPrice}"></fmt:formatNumber>원</td>
 								<td>

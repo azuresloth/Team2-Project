@@ -68,25 +68,17 @@ $(document).ready(function(){
 	$(window).bind("pageshow", function (event) {
 		if (event.originalEvent.persisted || (window.performance && window.performance.navigation.type == 2)) { 
 				var id = $('#id').val();
-				alert(id);
 				var codeArr = new Array();
 				var arrCnt = 0;
 				$('.childBox').each(function() {
 					codeArr.push($(this).val());
 				});
-				alert(codeArr);
 				$.each(codeArr, function(index, element) {
-					alert(element+'!!!');
 					arrCnt += 1;
 				})
-				/*if(codeArr[0] == null){
-					alert(1);
-				}*/
-				alert(arrCnt + 'arrCnt값입니다.');
 				if(arrCnt == 0){
 					codeArr.push('ITEM_000');
 				}
-				alert(codeArr + 'ajax 들어가기전 값입니다.')
 				$.ajax({
 					url: '/cart/checkPurchaseDataAjax',
 					type: 'post',
@@ -221,7 +213,7 @@ $(document).ready(function(){
 	// 임시 결제
 	testPay = function() {
 		var random = Math.random();
-		var ranNum = Math.floor(ranNum*1000+1);
+		var ranNum = Math.floor(random*10000+1);
 		var orderCode = 'merchant_'+ ranNum;
 		alert('임시결제합니다. \n' + orderCode);
 		$('#orderCode').val(orderCode);

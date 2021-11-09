@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="/resources/template/css/foot.css?ver=1">
 </head>
 <body>
+	<div class="bgi">
 	<div class="row footerRowDiv mt-5">
+		<div class="footBoundaryDiv"></div>
 		<div class="row justify-content-center">
 			<div class="col-12 footerStartDiv">
 				<ul class="footUl">
@@ -46,6 +48,7 @@
 		<div class="col footerDiv">
 			Copyrightleft @ team2 project . All rights reserved.
 		</div>
+	</div>
 	</div>
 </body>
 </html>

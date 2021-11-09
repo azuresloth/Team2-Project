@@ -7,12 +7,19 @@
     font-style: normal;
 }
 
+.mainBannerDiv{
+	margin: 0;
+	padding: 0;
+}
 .itemBannerTitle {
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 1.5rem;
+	line-height: 2rem;
 	display: table;
 	margin: 1rem auto;
-	border-bottom: 1px solid black
+	padding-top: 1rem;
+	border-bottom: 1px solid black;
+	color: black;
 }
 a img {
 	width: 100%;
@@ -27,4 +34,7 @@ a img {
 .sideBannerDiv {
 	margin: 0;
 	width: 100%;
+}
+.mainRow{
+	height: auto;
 }

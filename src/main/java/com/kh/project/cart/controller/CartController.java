@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.BuyInfoVO;
@@ -94,25 +96,42 @@ public class CartController {
 		
 		return "cart/purchase_page";
 	}
-	
+	  
 	// 구매완료시 주문완료 페이지로 이동
-	@PostMapping("/goOrderCompletePage")
-	public String goOrderCompletePage(Model model, BuyInfoVO buyInfoVO) {
-		System.out.println(buyInfoVO);
-		System.out.println(buyInfoVO.getOrderCode()+"!!!!!!!!!!!!!!!!!!!!!1");
+	@PostMapping("/orderComplete")
+	public String orderComplete(Model model, BuyInfoVO buyInfoVO, RedirectAttributes redirectAttributes) {
 		// 필요한거
-		
 		// 구매한 상품 장바구니(item_cart)에서 삭제
 		cartService.deleteCartItem(buyInfoVO.getItemCode(), buyInfoVO.getId());
-		
 		// 받은 정보들 buy_Info테이블에 insert
 		int insertCnt = 0;
 		insertCnt += cartService.insertBuyInfo(buyInfoVO);
-		
-		// 방금산거 조회 (id, insert쿼리 돌아가는 횟수 이용) 
 		buyInfoVO.setInsertCnt(insertCnt);
-		model.addAttribute("nowBuyList", cartService.selectRecentBoughtInfo(buyInfoVO));
+		redirectAttributes.addFlashAttribute("buyInfoVO", buyInfoVO);
+		//return "redirect:/cart/goOrderCompletePage?orderCode="+buyInfoVO.getOrderCode()+"&allTotalPrice="+buyInfoVO.getAllTotalPrice();
+		return "redirect:/cart/goOrderCompletePage";
+	}
+	
+	@RequestMapping("/goOrderCompletePage")
+	public String goOrderCompletePage(Model model, BuyInfoVO buyInfoVO, HttpSession session) {
+		System.out.println(buyInfoVO);
+		String buyDate = cartService.selectBuyDate(buyInfoVO);
+		buyInfoVO.setBuyDate(buyDate);
+		// 상품이 하나 일때
+		if(buyInfoVO.getItemCode() != null) {
+			session.setAttribute("nowBuyInfo", buyInfoVO);
+		}
+		BuyInfoVO nowBuyInfo = (BuyInfoVO) session.getAttribute("nowBuyInfo");
+		model.addAttribute("nowBuyList", cartService.selectRecentBoughtInfo(nowBuyInfo));
+		// 방금산거 조회  
 		return "cart/order_complete_page";
+	}
+	
+	@GetMapping("/goOrderLookupPage")
+	public String goOrderLookupPage() {
+		
+		
+		return "cart/order_lookup_page";
 	}
 	
 	

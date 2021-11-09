@@ -37,10 +37,19 @@
 .aaa{
 	background-color: aqua;
 }
+.templateMenuDiv{
+	margin: 0;
+	padding: 0;
+}
 .container-fluid{
 	width: 90%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+}
+.btn-primary{
+	background-color: #555555;
+	border: 2px solid #818181;
+	
 }
 body {
 	font-family: 'NanumSquareRound';
@@ -81,7 +90,7 @@ body {
 .blackButton, .blackButton2 {
   background-color: #555555;
   color: white;
-  border: 2px solid white;
+  border: 2px solid #818181;
 }
 
 .blackButton:hover {
@@ -89,23 +98,48 @@ body {
   color: black;
   border: 2px solid #555555;
 }
-.blackButton2:hover {
+.blackButton2:hover, .btn-primary:hover {
   color: black;
   border: 2px solid #555555;
 }
+.whiteButton {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
 
-
+.whiteButton:hover {
+    background-color: #555555;
+    color: white;
+}
+.smallBtn{
+	font-size: 13px;
+	padding: 10px 15px 10px 15px;
+}
+.f-right{
+	float: right;
+}
 .submitButton{
 	display: table;
 	margin: 20px auto;
 	width: 10rem;
 }
+.templateMainPageDiv, .templateFootDiv{
+	margin: 0;
+	padding: 0;
+}
 </style>
 </head>
 <body>
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 templateMenuDiv">
 			<tiles:insertAttribute name="menu"/>
+		</div>
+	</div>
+<body>
+	<div class="row">
+		<div class="col-12 templateMainPageDiv">
+			<tiles:insertAttribute name="mainPage"/>
 		</div>
 	</div>
 <div class="container-fluid">
@@ -116,7 +150,7 @@ body {
 	</div>
 </div>
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 templateFootDiv">
 			<tiles:insertAttribute name="foot"/>
 		</div>
 	</div>

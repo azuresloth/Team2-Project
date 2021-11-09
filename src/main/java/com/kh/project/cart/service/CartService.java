@@ -32,4 +32,7 @@ public interface CartService {
 	
 	// 구매후 구매한 상품 조회
 	List<BuyInfoVO> selectRecentBoughtInfo(BuyInfoVO buyInfoVO);
+	
+	// 구매 날짜 조회
+	String selectBuyDate(BuyInfoVO buyInfoVO);
 }

@@ -25,7 +25,7 @@
 			            <li><a class="dropdown-item" href="#">그외 추가 자리</a></li>
 			          </ul>
 			    </li>
-				<li>주문조회</li>
+				<li><a href="/cart/goOrderLookupPage">주문조회</a></li>
 				<li>장바구니</li>
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginInfo}">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col text-center">
+		<div class="col text-center titleDiv">
 			<button class="titleButton" onclick="location.href='/item/mainPage'">T2 SHOP</button>
 			<!-- <img alt="" src="/resources/images/common/titleLogo.png" width="180px"> -->
 			<!-- <a class="titleA" href="/item/itemList"><span class="titleSpan">쇼핑몰</span> 타이틀</a> -->
@@ -52,7 +52,7 @@
 	</div>
 	<div class="row ">
 		<div class="col secondMenuDiv">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 2rem;">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light menuNavbar">
 			  <div class="container-fluid bg-light">
 			  	<c:if test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
 				    <a class="navbar" href="/item/newItemList">NEW ITEM</a>

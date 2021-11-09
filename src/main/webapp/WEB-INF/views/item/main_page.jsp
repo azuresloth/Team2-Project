@@ -6,12 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=11">
+<link rel="stylesheet" href="/resources/item/css/main_page.css?ver=12">
 </head>
 
 <body>
 	<div class="row">
-		<div class="col-12">
+		<div class="col-12 mainBannerDiv">
 			<!-- Swiper -->
 			<div class="swiper mainBannerSwiper">
 				<div class="swiper-wrapper">
@@ -30,93 +30,101 @@
 		</div>
 	</div>
 	
-	<div class="row">
-		<div class="col-12" style="height: 3rem;">
-			
+	<div class="container-fluid mainRow">
+		<div class="row">
+			<div class="col-12" style="height: 3rem;">
+				
+			</div>
 		</div>
-	</div>
+		
+		<div class="row ">
+			<div class="row gy-1 sideBannerGrid">
+				<div class="col-3">
+					<div class="p-1 border">
+						<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="p-1 border">
+						<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 100%;"></img></a>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="p-1 border">
+						<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 100%;"></img></a>
+					</div>
+				</div>
+				<div class="col-3">
+					<div class="p-1 border bg-light" style="height: 100%;">
+						공지사항 불러올 장소
+						<div class="mt-2"></div>
+						<div>공지 1</div>
+						<div>공지 2</div>
+						<div>공지 3</div>
+						<a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
+						<a href="/sample/asdf">???</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	
-	<div class="row">
-		<div class="row gy-1 sideBannerGrid">
-			<div class="col-3">
-				<div class="p-1 border">
-					<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="p-1 border">
-					<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 100%;"></img></a>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="p-1 border">
-					<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 100%;"></img></a>
-				</div>
-			</div>
-			<div class="col-3">
-				<div class="p-1 border bg-light" style="height: 100%;">
-					공지사항 불러올 장소
-					<div class="mt-2"></div>
-					<div>공지 1</div>
-					<div>공지 2</div>
-					<div>공지 3</div>
-					<a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
-					<a href="/sample/asdf">???</a>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-12" style="height: 3rem;">
-			
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="col-12">
-			<!-- Swiper -->
-			<div class="itemBannerTitle">
-				BEST ITEM
-			</div>
-			<div class="swiper itemSwiper">
-				<div class="swiper-wrapper">
-					<c:forEach items="${bestItemList}" var="bestItemInfo">
-						<div class="swiper-slide">
-							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
-							<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}">${bestItemInfo.itemName}</a>
-							<div>${bestItemInfo.itemPrice}</div>
-						</div>
-					</c:forEach>
-				</div>
-				<div class="swiper-pagination"></div>
+		<div class="row">
+			<div class="col-12" style="height: 3rem;">
+				
 			</div>
 		</div>
 	</div>
 	
-	<div class="row">
-		<div class="col-12" style="height: 3rem;">
-			
+	<div class="itemBannerTitle bgi2">
+		BEST ITEM
+	</div>
+		
+	<div class="container-fluid mainRow">		
+		<div class="row">
+			<div class="col-12">
+				<!-- Swiper -->
+				<div class="swiper itemSwiper">
+					<div class="swiper-wrapper">
+						<c:forEach items="${bestItemList}" var="bestItemInfo">
+							<div class="swiper-slide">
+								<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${bestItemInfo.imgList[0].attachedImgName}"></img></a>
+								<a href="/item/itemDetail?itemCode=${bestItemInfo.itemCode}&cateCode=${bestItemInfo.cateCode}">${bestItemInfo.itemName}</a>
+								<div>${bestItemInfo.itemPrice}</div>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-12" style="height: 3rem;">
+				
+			</div>
 		</div>
 	</div>
+		
+	<div class="itemBannerTitle bgi2">
+		NEW ITEM
+	</div>
 	
-	<div class="row">
-		<div class="col-12">
-			<!-- Swiper -->
-			<div class="itemBannerTitle">
-				NEW ITEM
-			</div>
-			<div class="swiper itemSwiper">
-				<div class="swiper-wrapper">
-					<c:forEach items="${recentItemList}" var="recentItemInfo">
-						<div class="swiper-slide">
-							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${recentItemInfo.imgList[0].attachedImgName}"></img></a>
-							<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}">${recentItemInfo.itemName}</a>
-							<div>${recentItemInfo.itemPrice}</div>
-						</div>
-					</c:forEach>
+	<div class="container-fluid mainRow">
+		<div class="row">
+			<div class="col-12">
+				<!-- Swiper -->
+				<div class="swiper itemSwiper">
+					<div class="swiper-wrapper">
+						<c:forEach items="${recentItemList}" var="recentItemInfo">
+							<div class="swiper-slide">
+								<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}"><img src="/resources/images/item/itemImages/${recentItemInfo.imgList[0].attachedImgName}"></img></a>
+								<a href="/item/itemDetail?itemCode=${recentItemInfo.itemCode}&cateCode=${recentItemInfo.cateCode}">${recentItemInfo.itemName}</a>
+								<div>${recentItemInfo.itemPrice}</div>
+							</div>
+						</c:forEach>
+					</div>
+					<div class="swiper-pagination"></div>
 				</div>
-				<div class="swiper-pagination"></div>
 			</div>
 		</div>
 	</div>

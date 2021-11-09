@@ -67,6 +67,11 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectList("cartMapper.selectRecentBoughtInfo", buyInfoVO);
 	}
 
+	@Override
+	public String selectBuyDate(BuyInfoVO buyInfoVO) {
+		return sqlSession.selectOne("cartMapper.selectBuyDate", buyInfoVO);
+	}
+
 	
 	
 }
