@@ -25,4 +25,7 @@ public interface BoardService {
 	// 공지사항 리스트 전달
 	List<BoardVO> noticeList();
 	
+	// 아이디로 작성한 글 목록 리스트 전달
+	List<BoardVO> boardListWrittenById(String loginId);
+	
 }

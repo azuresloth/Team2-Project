@@ -102,6 +102,13 @@
 		DELETE SHOP_BOARD
 		WHERE BOARD_NUM = #{boardNum}
 	</delete>
+		
+	<!-- 아이디가 쓴 글 목록만 전달해주기 -->
+	<select id="boardListWrittenById" resultMap="board">
+		SELECT BOARD_NUM, WRITER, CREATE_DATE, CONTENT, READ_CNT, TITLE, IS_ADMIN
+		FROM SHOP_BOARD
+		WHERE WRITER = #{loginId}
+	</select>
 </mapper>
 
 
