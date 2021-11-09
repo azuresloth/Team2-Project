@@ -125,6 +125,11 @@ public class AdminServiceImpl implements AdminService{
 		return sqlSession.selectOne("adminMapper.selectMemberDetail", id);
 	}
 
+	@Override
+	public int selectAllTotalPrice(OrderInfoVO orderInfoVO) {
+		return sqlSession.selectOne("adminMapper.allTotalPrice", orderInfoVO);
+	}
+
 
 	
 

@@ -9,7 +9,7 @@ $(document).ready(function(){
 		totalPrice += price
 	});	
 	var total = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	//$('#totalPrice').text(total);
+	$('#totalPrice').text(total);
 	//이벤트 처리
 	//$(document).on('click', '#id', function() {
     //});

@@ -171,6 +171,7 @@ public class AdminController {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectMonthSales");
 		model.addAttribute("orderInfoVO", orderInfoVO);
+		model.addAttribute("allTotalPrice", adminService.selectAllTotalPrice(orderInfoVO));
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		return "admin/month_sales";
 	}

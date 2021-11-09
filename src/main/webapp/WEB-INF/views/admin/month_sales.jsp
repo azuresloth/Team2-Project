@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script type="text/javascript" src="/resources/admin/month_sales.js?ver=10"></script>
+<script type="text/javascript" src="/resources/admin/month_sales.js?ver=11"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #A8ECAF;
@@ -21,15 +21,17 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
+.totalPriceDiv{
+	margin: 0 auto;
+}
 </style>
 </head>
 <body>
 <form action="/admin/selectMonthSales" method="post">
 	<div class="container myContainer">
 		<div class="row">
-			<div class="col-2 text-center align-text-middle">
-				<span class="">날짜검색</span>
+			<div class="col-2 text-center d-flex justify-content-center">
+				<span class="align-self-center">날짜검색</span> 
 			</div>
 			<div class="col-3 d-flex justify-content-start">
 				<input type="date" id="startDate" class="form-select" name="startDate" value="${param.startDate }">
@@ -79,22 +81,23 @@
 		</tbody>
 	</table>
 	<div class="row">
-		<div class="col">
-			<div>
-				<div class="row" >
-					<div class="col">
-						<div class="d-flex justify-content-end align-self-end text-bottum">
-							<span style="margin-right: 3rem;">총가격</span>
-							<div id="totalPrice" class="d-flex justify-content-end" style="margin-right: 100px;">
-								<fmt:formatNumber>${ }</fmt:formatNumber>
-							</div>
-						</div>
-						<div class="d-flex justify-content-end" >
-							<hr width="155px" align="right" style="margin-right: 100px; margin-top: 5px;">
-						</div>
-					</div>
-				</div>
+		<%-- <div class="col-4 d-flex justify-content-center">
+			<span>전체 상품의 총 가격</span>
+			${allTotalPrice }
+		</div> --%>
+		<%-- <div class="col-12">
+			<div class="d-flex justify-content-end align-self-end" style="text-align: center; float: right;">
+				<span>전체 상품의 총 가격 ${allTotalPrice }</span>
+				<span style="margin-right: 3rem; margin-left: 4rem;">현재 페이지의 상품 총가격
+				<span id="totalPrice" class="d-flex justify-content-end" style="margin-right: 100px;"></span>
+				</span>
 			</div>
+		</div> --%>
+		<div class="col-12" style="text-align:right; float: right;">
+				<span>전체 상품의 총 가격 ${allTotalPrice }</span>
+				<span style="margin-right: 3rem; margin-left: 8rem; text-align: right; float: right;">현재 페이지의 상품 총가격
+				<span id="totalPrice" ></span>
+				</span>
 		</div>
 	</div>
 	<!-- pagination -->
@@ -143,7 +146,6 @@
 							<c:if test="${!empty orderInfoVO.startDate and !empty orderInfoVO.endDate }">
 								href = "/admin/selectMonthSales?page=${cnt }&perPageRowNum=${orderInfoVO.perPageRowNum }&startDate=${orderInfoVO.startDate }&endDate=${orderInfoVO.endDate }"
 							</c:if>
-							
 							href="${url }?page=${cnt}&perPageRowNum=${orderInfoVO.perPageRowNum}">
 							${cnt }
 						</a>

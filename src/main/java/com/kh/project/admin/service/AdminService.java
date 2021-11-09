@@ -68,5 +68,5 @@ public interface AdminService {
 	MemberVO selectMemberDetail(String id);
 	
 	//한달 총 상품의 
-	
+	int selectAllTotalPrice(OrderInfoVO orderInfoVO);
 }

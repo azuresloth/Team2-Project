@@ -315,10 +315,12 @@
 	</select>
 	
 	<!-- 한달의 총 가격 -->
-	<select id="allTotalPrice" resultMap="orderInfo">
+	<select id="allTotalPrice" resultType="int">
 		SELECT SUM(TOTAL_PRICE)
 		FROM ORDER_INFO
-		WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN '2021-11-01' AND '2021-11-30'
+		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
+		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  
+		</if>
 	</select>
 </mapper>
 

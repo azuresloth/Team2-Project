@@ -21,9 +21,10 @@
 	text-align: center;
 }
 .myContainer{
-   	background-color: #A8ECAF;
+   	background-color: #fba062;
    	border-radius: 6px;
    	padding: 16px;
+   	color: white;
 }
 .form-select{
 	display: block; 
@@ -48,6 +49,7 @@
 			</div>
 			<div class="col-2">
 				<select name="serchStatus" class="form-select text-center">
+					<option value="전체" selected>전체</option>
 					<c:forEach items="${statusInfo }" var="status">
 					<option value="${status.statusName}" <c:if test="${status.statusName eq orderVO.serchStatus }">selected</c:if>>${status.statusName }</option>
 					</c:forEach>

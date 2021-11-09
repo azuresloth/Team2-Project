@@ -95,7 +95,7 @@
 			        		<c:if test="${not empty menuList }">
 				        		<c:forEach items="${menuList}" var="menuInfo">
 					        		<li class="nav-item">
-					  			        <a class="nav-link active" aria-current="page" href="/admin/${menuInfo.menuPass}">${menuInfo.menuName}</a>
+					  			        <a class="nav-link active" aria-current="page" href="/admin/${menuInfo.menuPass}?menuCode=${menuInfo.menuCode}">${menuInfo.menuName}</a>
 							        </li>
 				        		</c:forEach>
 				   				<li class="nav-item">
