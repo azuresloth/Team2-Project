@@ -13,11 +13,11 @@
 			<div>회원정보 관리</div>
 		</div>
 		<div id="body">
-		<c:forEach items="${memberInfo }" var="member">
-			<div>${member.name }님  저희 쇼핑몰을 이용해주셔서 감사합니다.</div>
+		<c:if test="${not empty memberInfo.id}">
+			<div>${memberInfo.name }님  저희 쇼핑몰을 이용해주셔서 감사합니다.</div>
 			<div>
 				<div>아이디</div>
-				<div>${member.id }</div>
+				<div>${memberInfo.id }</div>
 			</div>
 			<div>
 				<div>주소</div>
@@ -33,7 +33,7 @@
 				<div>이메일</div>
 				<div><input type="text" name="email"></div>
 			</div>	
-			</c:forEach>		
+		</c:if>
 		</div>
 	</div>
 </body>

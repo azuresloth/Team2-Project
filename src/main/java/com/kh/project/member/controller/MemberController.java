@@ -276,8 +276,9 @@ public class MemberController {
 	}
 	//회원정보수정페이지로 이동
 	@GetMapping("/goMemberInfo")
-	public String goMemberInfo() {
+	public String goMemberInfo(MemberVO memberVO, Model model, HttpSession session) {
 		
+		model.addAttribute("memberInfo", memberService.selectMemberInfo(memberVO));
 		return "member/member_info";
 	}
 	/*

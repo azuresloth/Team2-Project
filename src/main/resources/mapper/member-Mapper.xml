@@ -125,6 +125,19 @@
 		FROM MEMBER
 		WHERE ID = #{id}
 	</select>
+	
+	<!-- 회원 조회 -->
+	<select id="selectMemberInfo" resultMap="member">
+		SELECT ID
+			, PW 
+			, NAME
+			, TELL
+			, ROAD_ADDR
+			, DETAIL_ADDR
+			, EMAIL
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
 </mapper>
 
 

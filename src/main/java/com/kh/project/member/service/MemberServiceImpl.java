@@ -70,4 +70,9 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.update("memberMapper.updateInfo", memberVO);
 	}
 
+	@Override
+	public MemberVO selectMemberInfo(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.selectMemberInfo", memberVO);
+	}
+
 }
