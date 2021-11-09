@@ -85,7 +85,9 @@
 					<div class="col">
 						<div class="d-flex justify-content-end align-self-end text-bottum">
 							<span style="margin-right: 3rem;">총가격</span>
-							<div id="totalPrice" class="d-flex justify-content-end" style="margin-right: 100px;"></div>
+							<div id="totalPrice" class="d-flex justify-content-end" style="margin-right: 100px;">
+								<fmt:formatNumber>${ }</fmt:formatNumber>
+							</div>
 						</div>
 						<div class="d-flex justify-content-end" >
 							<hr width="155px" align="right" style="margin-right: 100px; margin-top: 5px;">

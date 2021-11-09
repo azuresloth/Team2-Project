@@ -13,6 +13,7 @@ import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
+import com.kh.project.member.vo.MemberVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService{
@@ -101,7 +102,7 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public void updateItemStatus(ItemVO itemVO) {
-		sqlSession.update("adminMapper.updateItemStatus", itemVO);
+		 sqlSession.update("adminMapper.updateItemStatus", itemVO);
 	}
 
 	@Override
@@ -110,8 +111,18 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public List<SideMenuVO> selectSideMenu() {
-		return sqlSession.selectList("adminMapper.selectSideMenu");
+	public List<SideMenuVO> selectSideMenu(SideMenuVO sideMenuVO) {
+		return sqlSession.selectList("adminMapper.selectSideMenu", sideMenuVO);
+	}
+
+	@Override
+	public List<MemberVO> selectMember() {
+		return sqlSession.selectList("adminMapper.selectMemberList");
+	}
+
+	@Override
+	public MemberVO selectMemberDetail(String id) {
+		return sqlSession.selectOne("adminMapper.selectMemberDetail", id);
 	}
 
 

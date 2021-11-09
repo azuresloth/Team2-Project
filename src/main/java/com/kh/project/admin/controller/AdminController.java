@@ -12,9 +12,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
-import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
@@ -46,6 +43,7 @@ public class AdminController {
 	@GetMapping("/adminMenu")
 	public String goAdminMenu(Model model, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		System.out.println(sideMenuVO.getMenuCode()+"!!!!!!!!!!");
 		model.addAttribute("sidePage", "adminMenu");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/reg_category";
@@ -180,6 +178,7 @@ public class AdminController {
 	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectOrderInfo");
+		model.addAttribute("status", adminService.selectStatus());
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		model.addAttribute("orderVO", orderInfoVO);
@@ -202,14 +201,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/serchDate")
-	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO) {
+	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
 		model.addAttribute("sidePage", "selectOrderInfo");
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		model.addAttribute("orderVO", orderInfoVO);
 		return "admin/order_info";
 	}
-	
+	//상품목록 조회
 	@GetMapping("/itemManage")
 	public String selectItem(Model model, PageVO pageVO, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
@@ -218,9 +218,10 @@ public class AdminController {
 		model.addAttribute("itemList",adminService.selectItem(pageVO));
 		return "admin/item_manage";
 	}
+	//상품 상태 수정
 	@ResponseBody
 	@PostMapping("/itemStatusUpdateAjax")
-	public void updateStatus(ItemVO itemVO) {
+	public void updateStatus(ItemVO itemVO, PageVO pageVO) {
 		adminService.updateItemStatus(itemVO);
 	}
 	
@@ -230,8 +231,33 @@ public class AdminController {
 		return "redirect:/admin/itemManage";
 	}
 	
+	@GetMapping("/memberList")
+	public String memberManage(Model model, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("memberList", adminService.selectMember());
+		model.addAttribute("sidePage", "memberList");
+		return "admin/member_manage";
+	}
+	
+	@GetMapping("/selectMemberDetail")
+	public String selectMemberDetail(Model model, String id, SideMenuVO sideMenuVO) {
+		sideMenuVO.setMenuCode("MENU_002");
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("memberInfo", adminService.selectMemberDetail(id));
+		return "admin/member_detail";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public List<SideMenuVO> sideMenu( SideMenuVO sideMenuVO){
-		return adminService.selectSideMenu();
+		return adminService.selectSideMenu(sideMenuVO);
 	}
 	
 	

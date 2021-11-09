@@ -25,14 +25,20 @@
    	border-radius: 6px;
    	padding: 16px;
 }
+.form-select{
+	display: block; 
+}
+.statusName{
+	width: 110px;
+}
 </style>
 </head>
 <body>
 <form action="/admin/serchDate" method="post">
 	<div class="container myContainer">
 		<div class="row">
-			<div class="col-2 aling-self-center">
-				날짜검색
+			<div class="col-2 text-center d-flex justify-content-center">
+				<span class="align-self-center">날짜검색</span> 
 			</div>
 			<div class="col-3 d-flex justify-content-start">
 				<input type="date" id="startDate" class="form-select" name="startDate" value="${param.startDate }">
@@ -40,6 +46,13 @@
 			<div class="col-3 d-flex justify-content-start">
 				<input type="date" id="endDate" class="form-select" name="endDate" value="${param.endDate }">
 			</div>
+			<div class="col-2">
+				<select name="serchStatus" class="form-select text-center">
+					<c:forEach items="${statusInfo }" var="status">
+					<option value="${status.statusName}" <c:if test="${status.statusName eq orderVO.serchStatus }">selected</c:if>>${status.statusName }</option>
+					</c:forEach>
+				</select>
+			</div>	
 			<div class="col-1 btn-group">
 				<input type="submit" value="검색" class="form-control btn btn-primary" >
 			</div>
@@ -51,11 +64,12 @@
 		<thead>
 			<tr>
 			  <th scope="col">구매자</th>
-			  <th scope="col">주문상품</th>
-			  <th scope="col">결재금액</th>
-			  <th scope="col">결재방식</th>
-			  <th scope="col">주문일자</th>
-			  <th scope="col">상태</th>
+			  <th scope="col" >주문상품</th>
+			  <th scope="col" >결재금액</th>
+			  <th scope="col" >결재방식</th>
+			  <th scope="col" >배송지</th>
+			  <th scope="col" >주문일자</th>
+			  <th scope="col" >상태</th>
 			  <th scope="col">변경</th>
 			</tr>
 		</thead>
@@ -73,15 +87,16 @@
 							<td>${orderInfo.itemName}</td>
 							<td><fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###"/></td>
 							<td>${orderInfo.paymentPlan}</td>
+							<td>${orderInfo.roadAddr} ${orderInfo.detailAddr}</td>
 							<td>${orderInfo.buyDate}</td>
-							<td>
-								<select class="form-select form-select-sm w-60 statusName" aria-label=".form-select-sm example">
+							<td >
+								<select class="form-select form-select-sm statusName text-start" aria-label=".form-select-sm example">
 									<c:forEach items="${statusInfo }" var="status">
 										<option value="${status.statusName }" <c:if test="${status.statusName eq orderInfo.buyStatus }">selected</c:if>>${status.statusName }</option>
 									</c:forEach>
 								</select>
 							</td>
-							<td>
+							<td >
 								<input type="hidden" value="${orderInfo.buyCode }">
 								<input type="button" value="변경" class="update btn btn-primary">
 							</td>
@@ -135,10 +150,9 @@
 					<c:if test="${orderVO.page != cnt }">
 						<a class="page-link"
 							<c:if test="${!empty orderVO.startDate and !empty orderVO.endDate }">
-								href = "/admin/serchDate?page=${cnt }&perPageRowNum=${orderVO.perPageRowNum }&startDate=${orderVO.startDate }&endDate=${orderVO.endDate }"
+								href = "/admin/serchDate?page=${cnt }&perPageRowNum=${orderVO.perPageRowNum }&startDate=${orderVO.startDate }&endDate=${orderVO.endDate }&buyStatus=${orderVO.serchStatus }"
 							</c:if>
-							
-							href="${url }?page=${cnt}&perPageRowNum=${orderVO.perPageRowNum}">
+							href="${url }?page=${cnt}&perPageRowNum=${orderVO.perPageRowNum}&serchStatus=${orderVO.serchStatus}">
 							${cnt }
 						</a>
 					</c:if>

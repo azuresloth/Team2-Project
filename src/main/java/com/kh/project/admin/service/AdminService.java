@@ -9,6 +9,7 @@ import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.item.vo.ItemVO;
+import com.kh.project.member.vo.MemberVO;
 
 public interface AdminService {
 	//카테고리 등록
@@ -58,6 +59,14 @@ public interface AdminService {
 	void deleteItem(String itemCode);
 	
 	//sideMune조회
-	List<SideMenuVO> selectSideMenu();
+	List<SideMenuVO> selectSideMenu(SideMenuVO sideMenuVO);
+	
+	//회원 목록조회
+	List<MemberVO> selectMember();
+	
+	//회원상세 조회
+	MemberVO selectMemberDetail(String id);
+	
+	//한달 총 상품의 
 	
 }

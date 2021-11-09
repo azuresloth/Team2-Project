@@ -44,6 +44,9 @@
 		<result column="ITEM_NAME"			property="itemName"/>
 		<result column="PAYMENT_PLAN"		property="paymentPlan"/>
 		<result column="BUY_STATUS"			property="buyStatus"/>
+		<result column="ROAD_ADDR"			property="roadAddr"/>
+		<result column="DETAIL_ADDR"		property="detailAddr"/>
+		<result column="ALL_TOTAL_PRICE"		property="allTotalPrice"/>
 	</resultMap>
 	
 	<resultMap type="com.kh.project.admin.vo.BuyStatusVO" id="status">
@@ -57,6 +60,22 @@
 		<result column="MENU_PASS" property="menuPass"/>
 		<result column="MENU_CODE" property="menuCode"/>
 	</resultMap>
+	
+	<resultMap type="com.kh.project.member.vo.MemberVO" id="member">
+		<id column="ID" property="id"/>
+		<result column="PW" property="pw"/>
+		<result column="NAME" property="name"/>
+		<result column="TELL" property="tell"/>
+		<result column="POST_CODE" property="postCode"/>
+		<result column="ROAD_ADDR" property="roadAddr"/>
+		<result column="DETAIL_ADDR" property="detailAddr"/>
+		<result column="GENDER" property="gender"/>
+		<result column="EMAIL" property="email"/>
+		<result column="BIRTHDAY" property="birthday"/>
+		<result column="IS_ADMIN" property="isAdmin"/>
+		<result column="JOIN_DATE" property="joinDate"/>
+	</resultMap>
+	
 	
 	
 	<insert id="insertCategory">
@@ -169,9 +188,9 @@
 	
 	<!-- 주문정보조회 -->
 	<select id="selectOrderList" resultMap="order">
-		SELECT RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS
+		SELECT RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS, ROAD_ADDR, DETAIL_ADDR
 		FROM (
-			SELECT ROWNUM RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS
+			SELECT ROWNUM RNUM , BUY_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE, ID, PAYMENT_PLAN, BUY_STATUS, ROAD_ADDR, DETAIL_ADDR
 			FROM (
 					SELECT BUY_CODE
 					, ITEM_NAME
@@ -181,11 +200,17 @@
 					, ID
 					, PAYMENT_PLAN
 					, BUY_STATUS
+					, ROAD_ADDR
+					, DETAIL_ADDR
 					FROM ORDER_INFO
+					WHERE 1 = 1
 					<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
-					WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
+					AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 					</if>
-					ORDER BY BUY_DATE 
+					<if test="serchStatus != null and !serchStatus.equals('') and !serchStatus.equals('전체')">
+					AND BUY_STATUS = #{serchStatus}
+					</if>
+					ORDER BY BUY_DATE DESC 
 				)
 			)
 		WHERE RNUM BETWEEN #{startRow} and #{endRow}
@@ -194,8 +219,12 @@
 	
 	<select id="getTotalRow" resultType="int">
 		SELECT COUNT(BUY_CODE) FROM ORDER_INFO
+		WHERE 1 = 1
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
-		WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  
+		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  
+		</if>
+		<if test="serchStatus != null and !serchStatus.equals('') and !serchStatus.equals('전체')">
+		AND BUY_STATUS = #{serchStatus}
 		</if> 
 	</select>
 	
@@ -243,6 +272,7 @@
 	<update id="updateItemStatus">
 		UPDATE ITEM
 		SET ITEM_STATUS = #{itemStatus}
+			, ITEM_STOCK = #{itemStock}
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
@@ -255,8 +285,41 @@
 		SELECT SIDE_MENU_CODE, SIDE_MENU_NAME, SM.MENU_PASS, SM.MENU_CODE
 		FROM MENU M , SIDE_MENU SM
 		WHERE M.MENU_CODE = SM.MENU_CODE
+		<if test="menuCode != null">
+		AND SM.MENU_CODE = #{menuCode}
+		</if>
+		<if test="menuCode == null">
+		AND M.MENU_CODE = 'MENU_001'
+		</if>
 	</select>
 	
+	<select id="selectMemberList" resultMap="member">
+		SELECT ID
+			, NAME
+			, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS JOIN_DATE
+		FROM MEMBER
+	</select>
+	
+	<select id="selectMemberDetail" resultMap="member">
+		SELECT ID
+			, NAME
+			, TELL
+			, ROAD_ADDR
+			, DETAIL_ADDR
+			, GENDER
+			, EMAIL
+			, TO_CHAR(BIRTHDAY, 'YYYY-MM-DD') AS BIRTHDAY
+			, TO_CHAR(JOIN_DATE, 'YYYY-MM-DD') AS JOIN_DATE
+		FROM MEMBER
+		WHERE ID = #{id}
+	</select>
+	
+	<!-- 한달의 총 가격 -->
+	<select id="allTotalPrice" resultMap="orderInfo">
+		SELECT SUM(TOTAL_PRICE)
+		FROM ORDER_INFO
+		WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN '2021-11-01' AND '2021-11-30'
+	</select>
 </mapper>
 
 
