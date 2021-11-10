@@ -38,7 +38,7 @@
 	</tr>
 </table>
 <div class="d-flex justify-content-end">
-	<a href="/admin/memberList?menuCode=MENU_002"><input type="button" value="뒤로가기" class="btn btn-primary"></a>
+	<a href="/admin/memberList?menuCode=MENU_002"><input type="button" value="뒤로가기" class="btn btn-secondary"></a>
 </div>
 </body>
 </html>

@@ -26,7 +26,7 @@
 					<td><a href="/admin/selectMemberDetail?id=${memberInfo.id }">${memberInfo.name }</a></td>
 					<td>${memberInfo.id }</td>
 					<td>${memberInfo.joinDate} </td>
-					<td><input type="button" value="삭제" class="btn btn-primary btn-sm"></td>
+					<td><input type="button" value="삭제" class="btn btn-secondary btn-sm"></td>
 				</tr>
 			</c:forEach>
 		</table>
