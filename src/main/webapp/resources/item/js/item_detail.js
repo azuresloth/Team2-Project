@@ -21,6 +21,14 @@ $(document).ready(function(){
 	$('#itemForm').attr('onsubmit', 'return false');
 	
 	$(document).on('click', '#purchaseBtn', function() { 
+		//수량이 0보다 작을경우 못사게 막기
+		var cnt = $('#cnt').val();
+		var itemStock = $('#itemStock').val();
+		if(cnt < 0 || cnt > itemStock) {
+			alert('수량을 확인해 주세요.');
+			return;
+		}
+		
 		var loginId = $('#loginId').val();
 		var itemCode = $('#itemCode').val();
 		

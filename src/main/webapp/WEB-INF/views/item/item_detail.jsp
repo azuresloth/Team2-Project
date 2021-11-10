@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=2">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
+<link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=2"></script>
 </head>
 <body>
 	<div class="row">
@@ -88,7 +88,8 @@
 							<p>${itemInfo.itemName}</p>
 						</td>
 						<td class="itemCnt">
-							<input class="itemCnt" id="cnt" type="number" min="0" max="${itemInfo.itemStock}" value="1" name="itemCnt">개
+							<input type="hidden" id="itemStock" value="${itemInfo.itemStock}">
+							<input class="itemCnt" id="cnt" type="number" min="1" max="${itemInfo.itemStock}" value="1" name="itemCnt">개
 						</td>
 						<td class="itemCnt right">
 							<span class="priceCnt">

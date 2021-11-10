@@ -72,6 +72,16 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectOne("cartMapper.selectBuyDate", buyInfoVO);
 	}
 
+
+//	@Override
+//	public List<BuyInfoVO> selectOrderCode(BuyInfoVO buyInfoVO) {
+//		return sqlSession.selectList("cartMapper.selectOrderCode", buyInfoVO);
+//	}
+
+	@Override
+	public String sltOdCode(String id) {
+		return sqlSession.selectOne("cartMapper.sltOdCode", id);
+	}
 	
 	
 }

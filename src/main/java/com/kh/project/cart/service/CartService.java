@@ -35,4 +35,10 @@ public interface CartService {
 	
 	// 구매 날짜 조회
 	String selectBuyDate(BuyInfoVO buyInfoVO);
+	
+//	// 회원 주문 정보
+//	List<BuyInfoVO> selectOrderCode(BuyInfoVO buyInfoVO);
+	
+	// test.회원 주문 정보
+	String sltOdCode(String id);
 }

@@ -1,5 +1,6 @@
 package com.kh.project.cart.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.cart.vo.DeliveryInfoVO;
+import com.kh.project.cart.vo.OrderListVO;
 import com.kh.project.common.service.CommonService;
 import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.item.service.ItemService;
@@ -131,8 +133,13 @@ public class CartController {
 	
 	// 주문조회
 	@GetMapping("/goOrderLookupPage")
-	public String goOrderLookupPage() {
-		
+	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, OrderListVO orderList) {
+		String id = (((MemberVO) session.getAttribute("loginInfo")).getId());
+//		orderList.setOrderCodeList(orderCodeList);
+//		for(BuyInfoVO e : a) {
+//			List<BuyInfoVO> v = new ArrayList<BuyInfoVO>(e.getOrderCode(a.get(e)));
+//			
+//		}
 		
 		return "cart/order_lookup_page";
 	}

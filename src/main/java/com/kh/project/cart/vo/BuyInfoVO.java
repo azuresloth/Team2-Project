@@ -4,8 +4,10 @@ import java.util.Arrays;
 
 import org.springframework.stereotype.Component;
 
+import com.kh.project.admin.vo.BuyStatusVO;
+
 @Component
-public class BuyInfoVO {
+public class BuyInfoVO  extends BuyStatusVO{
 	private String buyCode;
 	private String itemCode;
 	private String id;

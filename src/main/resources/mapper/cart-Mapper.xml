@@ -204,6 +204,20 @@
 		FROM BUY_INFO
 		WHERE ORDER_CODE = #{orderCode}
 	</select>
+	
+<!--
+	<select id="selectOrderCode" resultMap="buyInfo">
+		SELECT ORDER_CODE
+		FROM BUY_INFO
+		WHERE ID = #{}
+	</select> -->
+	
+	<select id="sltOdCode" resultType="String">
+		SELECT ORDER_CODE
+		FROM BUY_INFO
+		WHERE ID = #{id}
+	</select>
+	
 </mapper>
 
 
