@@ -133,14 +133,9 @@ public class CartController {
 	
 	// 주문조회
 	@GetMapping("/goOrderLookupPage")
-	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, OrderListVO orderList) {
-		String id = (((MemberVO) session.getAttribute("loginInfo")).getId());
-//		orderList.setOrderCodeList(orderCodeList);
-//		for(BuyInfoVO e : a) {
-//			List<BuyInfoVO> v = new ArrayList<BuyInfoVO>(e.getOrderCode(a.get(e)));
-//			
-//		}
-		
+	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model) {
+		buyInfoVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+		model.addAttribute("lookupList", cartService.selectOrderLookup(buyInfoVO));
 		return "cart/order_lookup_page";
 	}
 	

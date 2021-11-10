@@ -212,8 +212,14 @@
 		WHERE ID = #{}
 	</select> -->
 	
-	<select id="sltOdCode" resultType="String">
-		SELECT ORDER_CODE
+	<select id="selectOrderLookup" resultMap="buyInfo">
+		SELECT BUY_DATE
+		    , ORDER_CODE
+		    , ATTACHED_IMG_NAME
+		    , ITEM_CODE
+		    , BUY_CNT
+		    , TOTAL_PRICE
+		    , BUY_STATUS
 		FROM BUY_INFO
 		WHERE ID = #{id}
 	</select>
