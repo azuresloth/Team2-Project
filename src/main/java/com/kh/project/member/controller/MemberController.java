@@ -269,32 +269,38 @@ public class MemberController {
 		session.removeAttribute("loginInfo");
 		return "redirect:/item/mainPage";
 	}
-	//회원탈퇴
-	@PostMapping("/deleteMember")
-	public String deleteMember(MemberVO memberVO) {
-		return "redirect:/item/mainPage";
-	}
+	
 	//회원정보수정페이지로 이동
 	@GetMapping("/goMemberInfo")
 	public String goMemberInfo(MemberVO memberVO, Model model, HttpSession session) {
+		System.out.println(session.getAttribute("loginInfo")+"!!!!!!!!!!");
+//		if(session.getAttribute("loginInfo") != null) {
+//			model.addAttribute("memberInfo", memberService.selectMemberInfo(memberVO));
+//			return "member/member_info";
+//		}
+//			return "redirect:/member/goLogin";
+			if(session.getAttribute("loginInfo") != null) {
+				memberVO.setId(((MemberVO)session.getAttribute("loginInfo")).getId());	
+				model.addAttribute("memberInfo", memberService.selectMemberInfo(memberVO));
+				return "member/member_info";
+			}
+			return "redirect:/member/goLogin";
 		
-		model.addAttribute("memberInfo", memberService.selectMemberInfo(memberVO));
-		return "member/member_info";
 	}
-	/*
-	 * //회원정보수정페이지로 이동
-	 * 
-	 * @GetMapping("/goMemberInfo") public String goMemberInfo(MemberVO memberVO,
-	 * Model model) { model.addAttribute("memberInfo", memberVO); return
-	 * "member/member_info"; }
-	 */
-	/*
-	 * //회원정보수정 public int updateInfo(MemberVO memberVO) {
-	 * 
-	 * }
-	 */
-	
-	
+	//회원정보수정
+	@PostMapping("/updateInfo")
+	public String updateInfo(MemberVO memberVO, Model model) {
+		model.addAttribute("memberInfo", memberService.updateInfo(memberVO));		
+		return "redirect:/member/goMemberInfo";
+		
+	}
+	//회원탈퇴
+		@GetMapping("/deleteMember")
+		public String deleteMember(MemberVO memberVO, HttpSession session) {
+			memberService.deleteMember(memberVO);
+			session.removeAttribute("loginInfo");
+			return "redirect:/item/mainPage";
+		}
 	
 }
 

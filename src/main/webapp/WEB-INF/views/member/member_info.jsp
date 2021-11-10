@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/member_info.js?var=1"></script>
+<script type="text/javascript" src="/resources/member/js/member_info.js?var=3"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+
 	<div>
+	<form action="/member/updateInfo" method="post">
 		<div id="title">
 			<div>회원정보 관리</div>
 		</div>
@@ -19,21 +21,24 @@
 		<div id="body">
 		<c:choose>
 			<c:when test="${not empty memberInfo.id}">
-				<div>${memberInfo.name }님  저희 쇼핑몰을 이용해주셔서 감사합니다.</div>
+				<div>
+					${memberInfo.name }님  저희 쇼핑몰을 이용해주셔서 감사합니다.
+					<input type="hidden" name="name" value="${memberInfo.name }">
+				</div>
 				<div class="row">
 					<div>
 						<div class="col-2">아이디</div>
-						<div class="col-10"><input type="text" value=" ${memberInfo.id }" readonly></div>
+						<div class="col-10"><input type="text" name="id" value="${memberInfo.id }" readonly></div>
 					</div>
 					<div>
 						<div>주소</div>
 							<div>
-								<input type="text" id="sample4_postcode" placeholder="우편번호" name="postCode" >
+								<input type="text" id="sample4_postcode"  name="postCode" value="${memberInfo.postCode }">
 								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
-								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr" >
+								<input type="text" id="sample4_roadAddress" value="${memberInfo.roadAddr }" name="roadAddr" >
 								<input type="text" id="sample4_jibunAddress" placeholder="지번주소" hidden > 
 								<span id="guide" style="color:#999;display:none"></span>
-								<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr">
+								<input type="text" id="sample4_detailAddress" value="${memberInfo.detailAddr }" name="detailAddr">
 							    <input type="text" id="sample4_extraAddress" placeholder="참고항목" hidden >
 							</div>
 					</div>
@@ -47,12 +52,11 @@
 					</div>
 				</div>	
 			</c:when>
-			<c:otherwise>
-					<div>로그인시 이용가능 합니다.</div>
-			</c:otherwise>
 		</c:choose>
-		
+			<button type="submit">수정하기</button>	
+			<button type="button" id="deleteMember" >회원탈퇴</button>	
 		</div>
+		</form>
 	</div>
 </body>
 </html>

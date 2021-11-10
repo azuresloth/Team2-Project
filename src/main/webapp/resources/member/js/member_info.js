@@ -55,3 +55,24 @@ function sample4_execDaumPostcode() {
 	
 	
 }	
+/* 페이지 로딩 후 실행 */
+$(document).ready(function(){
+	$(document).on('click', '#deleteMember', function() { 
+		 
+		var result = confirm('회원 탈퇴를 진행하시겠습니까?\n확인 버튼을 클릭 시 되돌릴 수 없습니다.')
+			if(result){
+				var id = $('input[name="id"]').val();
+				   location.href = '/member/deleteMember?id=' + id;
+			}
+			return;
+			
+		});
+
+});
+
+/* 함수선언 영역*/
+(function($){
+     aaa = function(){
+	
+     };
+})(jQuery);

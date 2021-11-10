@@ -65,7 +65,6 @@
 	<delete id="deleteMember">
 		DELETE FROM MEMBER
 		WHERE ID = #{id}
-		AND PW = #{pw}
 	</delete>
 	
 	<!-- 아이디 찾기 -->
@@ -132,6 +131,7 @@
 			, PW 
 			, NAME
 			, TELL
+			, POST_CODE
 			, ROAD_ADDR
 			, DETAIL_ADDR
 			, EMAIL

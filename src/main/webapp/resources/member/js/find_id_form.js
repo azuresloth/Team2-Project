@@ -10,8 +10,5 @@ $(document).ready(function(){
 /* 함수선언 영역*/
 (function($){
  
-     /*Password찾기*/
-     findPwForm = function(){
-     	location.href='/member/findPwForm';
-     };
+     
 })(jQuery);
