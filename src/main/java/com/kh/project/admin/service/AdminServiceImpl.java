@@ -130,6 +130,11 @@ public class AdminServiceImpl implements AdminService{
 		return sqlSession.selectOne("adminMapper.allTotalPrice", orderInfoVO);
 	}
 
+	@Override
+	public int sisk(String itemCode) {
+		return sqlSession.selectOne("adminMapper.sisk",itemCode);
+	}
+
 
 	
 

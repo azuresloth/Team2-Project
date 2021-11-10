@@ -3,6 +3,7 @@ package com.kh.project.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.kh.project.admin.service.AdminService;
+import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
@@ -168,6 +170,11 @@ public class AdminController {
 	
 	@RequestMapping("/selectMonthSales")
 	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
+		
+		Calendar mon = Calendar.getInstance();
+	    mon.add(Calendar.MONTH , -1);
+	    String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
+		model.addAttribute("beforMonth", beforeMonth);
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectMonthSales");
 		model.addAttribute("orderInfoVO", orderInfoVO);
@@ -248,8 +255,11 @@ public class AdminController {
 		return "redirect:/admin/itemManage";
 	}
 	
-	
-	
+	@ResponseBody
+	@PostMapping("/changeStatusAjax")
+	public int selectStock(String itemCode){
+		return adminService.sisk(itemCode);
+	}
 	
 	
 	

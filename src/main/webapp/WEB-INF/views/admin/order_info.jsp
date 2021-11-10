@@ -43,8 +43,25 @@
 				<div class="col-2 text-center d-flex justify-content-center">
 					<span class="align-self-center">날짜검색</span> 
 				</div>
+				<c:choose>
+					<c:when test="">
+					
+					</c:when>
+					<c:otherwise>
+					
+					</c:otherwise>
+				</c:choose>
 				<div class="col-3 d-flex justify-content-start">
-					<input type="date" id="startDate" class="form-select " name="startDate" value="${param.startDate }">
+					<input type="date" id="startDate" class="form-select " name="startDate" value="
+						<c:choose>
+							<c:when test="${param.startDate ne null and !param.StartDate eq '' }">
+								${param.startDate }
+							</c:when>
+							<c:otherwise>
+								${beforDate }
+							</c:otherwise>
+						</c:choose>				
+							">
 				</div>
 				<div class="col-3 d-flex justify-content-start">
 					<input type="date" id="endDate" class="form-select " name="endDate" value="${param.endDate }">

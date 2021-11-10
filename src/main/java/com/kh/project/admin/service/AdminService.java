@@ -69,4 +69,7 @@ public interface AdminService {
 	
 	//한달 총 상품의 
 	int selectAllTotalPrice(OrderInfoVO orderInfoVO);
+	
+	//itemStock 조회
+	int sisk(String itemCode);
 }

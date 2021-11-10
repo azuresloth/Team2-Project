@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script type="text/javascript" src="/resources/admin/item_manage.js?ver=4"></script>
+<script type="text/javascript" src="/resources/admin/item_manage.js?ver=8"></script>
 <style type="text/css">
 .select{
 	width: 100px;
@@ -18,6 +18,11 @@
 .form-control{
 	width: 100px;
 	margin: 0 auto;
+}
+input[type="number"]{
+	height: 30px;
+	width: 63px;
+	display: inline-block;
 }
 </style>
 </head>
@@ -45,19 +50,19 @@
 							<td>${itemInfo.itemName }</td>
 							<td><fmt:formatNumber value="${itemInfo.itemPrice}" pattern="#,###"/></td>
 							<td>
-								<c:if test="${itemInfo.itemStatus eq 2 }">
-									<input type="number" value="${itemInfo.itemStock }" class="form-control text-center" readonly>
-								</c:if>
-								<c:if test="${itemInfo.itemStatus ne  2}">
-									<input type="number" value="${itemInfo.itemStock }" class="form-control text-center" min="0">
-								</c:if>
-							</td>
-							<td>
 								<select class="form-select form-select-sm select">
-									<option value="0" <c:if test="${itemInfo.itemStatus eq 0 }">selected</c:if>>판매대기</option>
-									<option value="1" <c:if test="${itemInfo.itemStatus eq 1 }">selected</c:if>>판매중</option>
-									<option value="2" <c:if test="${itemInfo.itemStatus eq 2 }">selected</c:if>>매진</option>
+									<option value="0"<c:if test="${itemInfo.itemStatus eq 0 }">selected</c:if>>판매대기</option>
+									<option value="1"<c:if test="${itemInfo.itemStatus eq 1 }">selected</c:if>>판매중</option>
+									<option value="2"<c:if test="${itemInfo.itemStatus eq 2 }">selected</c:if>>매진</option>
 								</select>
+							</td>
+							<td class="itemStock">
+								<c:if test="${itemInfo.itemStock <= 0 }">
+									<input type="number" value="${itemInfo.itemStock }" class="form-control text-start" readonly>
+								</c:if>
+								<c:if test="${itemInfo.itemStock > 0}">
+									<input type="number" value="${itemInfo.itemStock }" class="form-control text-start" min="0">
+								</c:if>
 								<input type="hidden" value="${itemInfo.itemCode }">
 								<input type="button" value="변경" class="btn btn-secondary btn-sm update"> 
 							</td>

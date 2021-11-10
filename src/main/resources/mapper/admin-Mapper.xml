@@ -319,9 +319,17 @@
 		SELECT SUM(TOTAL_PRICE)
 		FROM ORDER_INFO
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
-		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  
+		WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  
 		</if>
 	</select>
+	
+	<select id="sisk" resultType="int">
+		SELECT ITEM_STOCK
+		FROM ITEM
+		WHERE ITEM_CODE = #{itemCode}
+	</select>
+	
+	
 </mapper>
 
 
