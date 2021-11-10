@@ -219,12 +219,6 @@ public class AdminController {
 		model.addAttribute("itemList",adminService.selectItem(pageVO));
 		return "admin/item_manage";
 	}
-	//상품 상태 수정
-	@ResponseBody
-	@PostMapping("/itemStatusUpdateAjax")
-	public void updateStatus(ItemVO itemVO, PageVO pageVO) {
-		adminService.updateItemStatus(itemVO);
-	}
 	
 	@GetMapping("/deleteItem")
 	public String deleteItem(String itemCode) {
@@ -248,8 +242,11 @@ public class AdminController {
 		return "admin/member_detail";
 	}
 	
-	
-	
+	@GetMapping("/itemUpdate")
+	public String itemUpdate(ItemVO itemVO) {
+		adminService.updateItemStatus(itemVO);
+		return "redirect:/admin/itemManage";
+	}
 	
 	
 	

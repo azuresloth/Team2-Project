@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script type="text/javascript" src="/resources/admin/item_manage.js?ver=3"></script>
+<script type="text/javascript" src="/resources/admin/item_manage.js?ver=4"></script>
 <style type="text/css">
 .select{
 	width: 100px;
@@ -44,7 +44,14 @@
 							</td>
 							<td>${itemInfo.itemName }</td>
 							<td><fmt:formatNumber value="${itemInfo.itemPrice}" pattern="#,###"/></td>
-							<td> <input type="number" value="${itemInfo.itemStock }" class="form-control text-center"></td>
+							<td>
+								<c:if test="${itemInfo.itemStatus eq 2 }">
+									<input type="number" value="${itemInfo.itemStock }" class="form-control text-center" readonly>
+								</c:if>
+								<c:if test="${itemInfo.itemStatus ne  2}">
+									<input type="number" value="${itemInfo.itemStock }" class="form-control text-center" min="0">
+								</c:if>
+							</td>
 							<td>
 								<select class="form-select form-select-sm select">
 									<option value="0" <c:if test="${itemInfo.itemStatus eq 0 }">selected</c:if>>판매대기</option>
