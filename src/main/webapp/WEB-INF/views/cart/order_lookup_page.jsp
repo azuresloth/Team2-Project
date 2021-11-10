@@ -57,7 +57,7 @@
 						<col width="105px">
 						<col width="120px">
 					</colgroup>
-					<tr>
+					<tr class="fc1b">
 						<th>주문일자<br>[주문코드]</th>
 						<th>이미지</th>
 						<th>상품정보</th>
@@ -65,21 +65,25 @@
 						<th>상품판매금액</th>
 						<th>주문처리상태</th>
 					</tr>
-					<c:if test="${not empty sessionScope.nowBuyInfo}">
-						<tr>
-							<td>
-								<img alt="" src="/resources/images/item/itemImages/${sessionScope.nowBuyInfo.attachedImgName}" width="75px;">
-							</td>
-							<td>${buyItemInfo.itemName}</td>
-							<td><fmt:formatNumber type="number" value="${sessionScope.nowBuyInfo.totalPrice / sessionScope.nowBuyInfo.buyCnt}"></fmt:formatNumber>원</td>
-							<td>
-								${sessionScope.nowBuyInfo.buyCnt}개
-							</td>
-							<td>[무료]</td>
-							<td>
-								<fmt:formatNumber type="number" value="${sessionScope.nowBuyInfo.totalPrice}"></fmt:formatNumber>원
-							</td>
-						</tr>
+					<c:if test="${not empty lookupList}">
+						<c:forEach items="${lookupList}" var="lookupInfo">
+							<tr>
+								<td class="fc66">
+									${lookupInfo.buyDate}
+									<br>
+									<a href="asdf" class="fc66">[${lookupInfo.orderCode}]</a>
+								</td>
+								<td>
+									<img alt="" src="/resources/images/item/itemImages/${lookupInfo.attachedImgName}" width="75px;">
+								</td>
+								<td>${lookupInfo.itemName}</td>
+								<td>
+									${lookupInfo.buyCnt}개
+								</td>
+								<td><fmt:formatNumber type="number" value="${lookupInfo.totalPrice}"></fmt:formatNumber>원</td>
+								<td>${lookupInfo.buyStatus}</td>
+							</tr>
+						</c:forEach>
 					</c:if>
 				</table>
 			</div>

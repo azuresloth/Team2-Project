@@ -20,6 +20,7 @@
 		<result column="ID"						property="id"/>
 		<result column="TOTAL_PRICE"			property="totalPrice"/>
 		<result column="BUY_DATE"				property="buyDate"/>
+		<result column="ITEM_NAME"				property="itemName"/>
 		<result column="BUY_CNT"				property="buyCnt"/>
 		<result column="BUY_STATUS"				property="buyStatus"/>
 		<result column="PAYMENT_PLAN"			property="paymentPlan"/>
@@ -213,15 +214,19 @@
 	</select> -->
 	
 	<select id="selectOrderLookup" resultMap="buyInfo">
-		SELECT BUY_DATE
+		SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
 		    , ORDER_CODE
 		    , ATTACHED_IMG_NAME
 		    , ITEM_CODE
 		    , BUY_CNT
 		    , TOTAL_PRICE
 		    , BUY_STATUS
-		FROM BUY_INFO
+		    , (SELECT ITEM_NAME FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS ITEM_NAME
+		FROM BUY_INFO BI
 		WHERE ID = #{id}
+		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
+		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
+		</if>
 	</select>
 	
 </mapper>

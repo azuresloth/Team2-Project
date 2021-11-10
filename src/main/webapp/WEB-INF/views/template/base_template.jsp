@@ -134,6 +134,12 @@ body {
 .border-ed{
 	border: 1px solid #ededed;
 }
+.fc66{
+	color: #666666;
+}
+.fc1b{
+	color: #1b1b1b;
+}
 </style>
 </head>
 <body>

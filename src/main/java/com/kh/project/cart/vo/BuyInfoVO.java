@@ -29,10 +29,17 @@ public class BuyInfoVO  extends BuyStatusVO{
 	private String orderCode;
 	private int allTotalPrice;
 	private String attachedImgName;
+	private String itemName;
 	
 	
 	
 	
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
 	public String getAttachedImgName() {
 		return attachedImgName;
 	}
@@ -160,26 +167,6 @@ public class BuyInfoVO  extends BuyStatusVO{
 	}
 	public void setDetailAddr(String detailAddr) {
 		this.detailAddr = detailAddr;
-	}
-	@Override
-	public String toString() {
-		return "BuyInfoVO [buyCode=" + buyCode + ", itemCode=" + itemCode + ", id=" + id + ", totalPrice=" + totalPrice
-				+ ", buyDate=" + buyDate + ", buyCnt=" + buyCnt + ", buyStatus=" + buyStatus + ", paymentPlan="
-				+ paymentPlan + ", deliveryName=" + deliveryName + ", deliveryTell=" + deliveryTell + ", deliveryTells="
-				+ Arrays.toString(deliveryTells) + ", deliveryEmail=" + deliveryEmail + ", deliveryEmails="
-				+ Arrays.toString(deliveryEmails) + ", deliveryMsg=" + deliveryMsg + ", postCode=" + postCode
-				+ ", roadAddr=" + roadAddr + ", detailAddr=" + detailAddr + ", insertCnt=" + insertCnt + ", orderCode="
-				+ orderCode + ", allTotalPrice=" + allTotalPrice + ", getAllTotalPrice()=" + getAllTotalPrice()
-				+ ", getOrderCode()=" + getOrderCode() + ", getInsertCnt()=" + getInsertCnt() + ", getDeliveryTells()="
-				+ Arrays.toString(getDeliveryTells()) + ", getDeliveryEmails()=" + Arrays.toString(getDeliveryEmails())
-				+ ", getBuyCode()=" + getBuyCode() + ", getItemCode()=" + getItemCode() + ", getId()=" + getId()
-				+ ", getTotalPrice()=" + getTotalPrice() + ", getBuyDate()=" + getBuyDate() + ", getBuyCnt()="
-				+ getBuyCnt() + ", getBuyStatus()=" + getBuyStatus() + ", getPaymentPlan()=" + getPaymentPlan()
-				+ ", getDeliveryName()=" + getDeliveryName() + ", getDeliveryTell()=" + getDeliveryTell()
-				+ ", getDeliveryEmail()=" + getDeliveryEmail() + ", getDeliveryMsg()=" + getDeliveryMsg()
-				+ ", getPostCode()=" + getPostCode() + ", getRoadAddr()=" + getRoadAddr() + ", getDetailAddr()="
-				+ getDetailAddr() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
 	}
 	
 	
