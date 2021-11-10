@@ -1,0 +1,19 @@
+@charset "UTF-8";
+.inquireTitleDiv{
+	margin-top: 2rem;
+}
+.inquireSubTitleDiv{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.purInfoTable{
+	-bs-gutter-x: 1.5rem;
+	width: 100%;
+	border-top: 1px solid #333333;
+	margin: 0 auto;
+}
+.purInfoTable th, .purInfoTable td{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #efefef;
+}

@@ -13,10 +13,6 @@
 <!-- 제이쿼리 문법을 로딩 -->
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
-<!-- 부트스트랩 사용을 위해 css, js를 로딩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-
 <!-- 아이콘을 위한 링크 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,6 +21,10 @@
 <link  rel="stylesheet"  href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- 부트스트랩 사용을 위해 css, js를 로딩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
 <style type="text/css">
 @font-face {
@@ -127,6 +127,12 @@ body {
 .templateMainPageDiv, .templateFootDiv{
 	margin: 0;
 	padding: 0;
+}
+.botBorder-1b{
+	border-bottom: 2px solid #1b1b1b;
+}
+.border-ed{
+	border: 1px solid #ededed;
 }
 </style>
 </head>

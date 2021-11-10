@@ -16,7 +16,14 @@ public class ItemVO extends PageVO{
 	private int minPrice;
 	private int maxPrice;
 	private String orderBy;
+	private int saleCnt;
 	
+	public int getSaleCnt() {
+		return saleCnt;
+	}
+	public void setSaleCnt(int saleCnt) {
+		this.saleCnt = saleCnt;
+	}
 	public String getItemCode() {
 		return itemCode;
 	}

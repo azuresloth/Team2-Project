@@ -2,6 +2,7 @@ package com.kh.project.item.service;
 
 import java.util.List;
 
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.item.vo.CategoryVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -28,4 +29,7 @@ public interface ItemService {
 	
 	// 상품 상세조회
 	ItemVO selectItemDetail(ItemVO itemVO);
+	
+	// 구매한 상품수량 업데이트
+	int updateItemStock(BuyInfoVO buyInfoVO);
 }

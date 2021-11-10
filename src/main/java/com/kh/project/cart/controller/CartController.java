@@ -97,12 +97,14 @@ public class CartController {
 		return "cart/purchase_page";
 	}
 	  
-	// 구매완료시 주문완료 페이지로 이동
+	// 하나 구매완료시 주문완료 페이지로 이동
 	@PostMapping("/orderComplete")
 	public String orderComplete(Model model, BuyInfoVO buyInfoVO, RedirectAttributes redirectAttributes) {
 		// 필요한거
 		// 구매한 상품 장바구니(item_cart)에서 삭제
 		cartService.deleteCartItem(buyInfoVO.getItemCode(), buyInfoVO.getId());
+		// 구매한 상품수량 아이템에서 빼기
+		itemService.updateItemStock(buyInfoVO);
 		// 받은 정보들 buy_Info테이블에 insert
 		int insertCnt = 0;
 		insertCnt += cartService.insertBuyInfo(buyInfoVO);
@@ -111,7 +113,7 @@ public class CartController {
 		//return "redirect:/cart/goOrderCompletePage?orderCode="+buyInfoVO.getOrderCode()+"&allTotalPrice="+buyInfoVO.getAllTotalPrice();
 		return "redirect:/cart/goOrderCompletePage";
 	}
-	
+	// 구매완료 페이지
 	@RequestMapping("/goOrderCompletePage")
 	public String goOrderCompletePage(Model model, BuyInfoVO buyInfoVO, HttpSession session) {
 		System.out.println(buyInfoVO);
@@ -127,6 +129,7 @@ public class CartController {
 		return "cart/order_complete_page";
 	}
 	
+	// 주문조회
 	@GetMapping("/goOrderLookupPage")
 	public String goOrderLookupPage() {
 		

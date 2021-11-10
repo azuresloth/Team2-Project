@@ -179,6 +179,14 @@
  		FROM CATEGORY
  		WHERE CATE_CODE = #{cateCode}
  	</select>
+ 	
+ 	<!-- 구매한 수량 빼기 -->
+ 	<update id="updateItemStock">
+ 		UPDATE ITEM
+ 		SET
+ 		ITEM_STOCK = ITEM_STOCK - #{buyCnt}
+ 		WHERE ITEM_CODE = #{itemCode}
+ 	</update>
  
 </mapper>
 

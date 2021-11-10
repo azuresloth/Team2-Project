@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.item.vo.CategoryVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -52,5 +53,10 @@ public class ItemServiceImpl implements ItemService{
 	@Override
 	public CategoryVO selectPath(ItemVO itemVO) {
 		return sqlSession.selectOne("itemMapper.selectPath", itemVO);
+	}
+
+	@Override
+	public int updateItemStock(BuyInfoVO buyInfoVO) {
+		return sqlSession.update("itemMapper.updateItemStock", buyInfoVO);
 	}
 }
