@@ -187,7 +187,21 @@
  		ITEM_STOCK = ITEM_STOCK - #{buyCnt}
  		WHERE ITEM_CODE = #{itemCode}
  	</update>
- 
+ 	
+ 	<!-- 수량 조회 -->
+ 	<select id="selectItemStock" resultType="int">
+ 		SELETE ITEM_STOCK
+ 		FROM ITEM
+ 		WHERE ITEM_CODE = #{itemCode}
+ 	</select>
+ 	
+ 	<!-- 수량 0일때 상태 3으로 -->
+ 	<update id="updateItemStatus">
+ 		UPDATE ITEM
+ 		SET
+ 		ITEM_STATUS = 3
+ 		WHERE ITEM_CODE = #{itemCode}
+ 	</update>
 </mapper>
 
 

@@ -32,4 +32,10 @@ public interface ItemService {
 	
 	// 구매한 상품수량 업데이트
 	int updateItemStock(BuyInfoVO buyInfoVO);
+	
+	// 구매한 상품수량 조회
+	int selectItemStock(BuyInfoVO buyInfoVO);
+	
+	// 상품 매진으로
+	void updateItemStatus(BuyInfoVO buyInfoVO);
 }

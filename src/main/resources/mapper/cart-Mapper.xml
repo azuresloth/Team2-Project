@@ -212,7 +212,7 @@
 		FROM BUY_INFO
 		WHERE ID = #{}
 	</select> -->
-	
+	<!-- 주문 조회 -->
 	<select id="selectOrderLookup" resultMap="buyInfo">
 		SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
 		    , ORDER_CODE
@@ -228,6 +228,8 @@
 		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 		</if>
 	</select>
+	
+	<!--  -->
 	
 </mapper>
 
