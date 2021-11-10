@@ -5,6 +5,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 import javax.annotation.Resource;
+import javax.mail.Session;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import com.kh.project.board.service.FeedbackService;
 import com.kh.project.board.vo.BoardVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.board.vo.SearchVO;
+import com.kh.project.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/board")
@@ -105,6 +108,21 @@ public class BoardController {
 	public String delete(String boardNum) {
 		boardService.delete(boardNum);
 		return "redirect:/board/boardList";
+	}
+	
+	// 개인이 쓴 게시판 글을 관리 할수 있게 해준다.
+	@GetMapping("/personalBoard")
+	public String personalBoard(HttpSession session,Model model) {
+		// 로그인 한 아이디를 가지고 오기
+		String loginId = ((MemberVO)session.getAttribute("loginInfo")).getId();
+		System.out.println("personalBoard.id() : ------------------------------------------------------" + loginId);
+		
+		// 로그인 한 아이디로 게시판에 글쓴거만 가지고오기.
+		model.addAttribute("boardListWrittenById", boardService.boardListWrittenById(loginId));
+		
+		
+		
+		return "board/personalBoard";
 	}
 	
 }

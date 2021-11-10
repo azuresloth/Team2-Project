@@ -51,6 +51,11 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.selectList("boardMapper.noticeList");
 	}
 
+	@Override
+	public List<BoardVO> boardListWrittenById(String loginId) {
+		return sqlSession.selectList("boardMapper.boardListWrittenById", loginId);
+	}
+
 
 }
 //

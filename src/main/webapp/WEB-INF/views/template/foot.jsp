@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/template/css/foot.css?ver=1">
+<link rel="stylesheet" href="/resources/template/css/foot.css?ver=2">
 </head>
 <body>
 	<div class="bgi">
