@@ -59,7 +59,13 @@
 				</div>
 			</div>
 		</form>
-		<form action=""></form>
+		<form action="">
+			<div class="row">
+				<div class="col">
+					<span>주문자</span>
+				</div>
+			</div>
+		</form>
 	</div>
 <div>
 	<table class="table text-center mt-3 ">
