@@ -12,7 +12,7 @@
 <script type="text/javascript" src="/resources/admin/month_sales.js?ver=11"></script>
 <style type="text/css">
 .myContainer{
-   	background-color: #A8ECAF;
+   	background-color: #fba062;
    	border-radius: 6px;
    	padding: 16px;
    	a
@@ -40,7 +40,7 @@
 				<input type="date" id="endDate" class="form-select" name="endDate" value="${param.endDate }">
 			</div>
 			<div class="col-1 btn-group">
-				<input type="submit" value="검색" class="form-control btn btn-primary" >
+				<input type="submit" value="검색" class="form-control btn btn-secondary" >
 			</div>
 		</div>
 	</div>
@@ -65,7 +65,7 @@
 								<td>${orderInfo.buyDate}</td>
 								<td>
 									<input type="hidden" value="${orderInfo.totalPrice }" class="totalPrice">
-									<fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###" />
+									<fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###" />원
 								</td>
 							</tr>
 						</c:forEach>
@@ -94,10 +94,10 @@
 			</div>
 		</div> --%>
 		<div class="col-12" style="text-align:right; float: right;">
-				<span>전체 상품의 총 가격 ${allTotalPrice }</span>
-				<span style="margin-right: 3rem; margin-left: 8rem; text-align: right; float: right;">현재 페이지의 상품 총가격
-				<span id="totalPrice" ></span>
-				</span>
+			<span>전체 상품의 총 가격 ${allTotalPrice } 원</span>
+			<span style="margin-right: 3rem; margin-left: 8rem; text-align: right; float: right;">현재 페이지의 상품 총가격
+			<span id="totalPrice" ></span>원
+			</span>
 		</div>
 	</div>
 	<!-- pagination -->

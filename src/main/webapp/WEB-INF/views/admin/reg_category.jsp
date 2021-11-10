@@ -12,7 +12,7 @@
 	margin-left: 250px;
 }
 .cateDiv{
-	background-color: #A8ECAF;
+	background-color: #fba062;
    	border-radius: 6px;
    	padding: 16px;
 }
@@ -29,7 +29,7 @@
 			<label for="formGroupExampleInput" class="form-label justify-content-center">카테고리 등록</label> 
 			<div class="input-group mb-3">
 			  <input type="text" name="cateName" class="form-control" required placeholder="등록할 카테고리의 이름을 입력해주세요" aria-label="등록" aria-describedby="button-addon2">
-			  <input class="btn btn-outline-secondary btn-primary" type="button" id="button-addon2" value="등록" onclick="insertCategory();">
+			  <input class="btn btn-outline-secondary btn-secondary" type="button" id="button-addon2" value="등록" onclick="insertCategory();">
 			</div>
 		</div>
 	</form>
@@ -51,7 +51,7 @@
 							<td>
 								<form action="/admin/deleteCategory" method="post" >
 									<input type="hidden" name="cateCode" value="${categoryListInfo.cateCode }">
-									<input type="submit" class="btn btn-primary" value="삭제" id="delete">
+									<input type="submit" class="btn btn-secondary" value="삭제" id="delete">
 								</form>
 							</td>
 						</tr>

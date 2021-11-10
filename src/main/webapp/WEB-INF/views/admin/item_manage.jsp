@@ -48,11 +48,11 @@
 									<option value="2" <c:if test="${itemInfo.itemStatus eq 2 }">selected</c:if>>매진</option>
 								</select>
 								<input type="hidden" value="${itemInfo.itemCode }">
-								<input type="button" value="변경" class="btn btn-primary btn-sm update"> 
+								<input type="button" value="변경" class="btn btn-secondary btn-sm update"> 
 							</td>
 							<td>
 								<input type="hidden" value="${itemInfo.itemCode }">
-								<input type="button" value="삭제" class="btn btn-primary btn-lg delete">
+								<input type="button" value="삭제" class="btn btn-secondary btn-lg delete">
 							</td>
 						</tr>
 					</c:forEach>

@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 <style type="text/css">
 .myContainer{
-   	background-color: #A8ECAF;
+   	background-color: #fba062;
    	border-radius: 6px;
    	padding: 16px;
 }
 .textAreaDiv{
-	background-color: #A8ECAF;
+	background-color: #fba062;
     border-radius: 6px;
     padding: 16px;
 }
