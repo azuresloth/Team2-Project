@@ -15,6 +15,10 @@
 	width: 100px;
 	display: inline-block;
 }
+.form-control{
+	width: 100px;
+	margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -40,7 +44,7 @@
 							</td>
 							<td>${itemInfo.itemName }</td>
 							<td><fmt:formatNumber value="${itemInfo.itemPrice}" pattern="#,###"/></td>
-							<td>${itemInfo.itemStock }</td>
+							<td> <input type="number" value="${itemInfo.itemStock }" class="form-control text-center"></td>
 							<td>
 								<select class="form-select form-select-sm select">
 									<option value="0" <c:if test="${itemInfo.itemStatus eq 0 }">selected</c:if>>판매대기</option>

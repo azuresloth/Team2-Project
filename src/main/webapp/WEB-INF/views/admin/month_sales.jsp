@@ -94,7 +94,7 @@
 			</div>
 		</div> --%>
 		<div class="col-12" style="text-align:right; float: right;">
-			<span>전체 상품의 총 가격 ${allTotalPrice } 원</span>
+			<span>전체 상품의 총 가격 <fmt:formatNumber value="${allTotalPrice }" pattern="#,###" /> 원</span>
 			<span style="margin-right: 3rem; margin-left: 8rem; text-align: right; float: right;">현재 페이지의 상품 총가격
 			<span id="totalPrice" ></span>원
 			</span>

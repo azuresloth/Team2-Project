@@ -35,7 +35,6 @@ $(document).ready(function(){
             	str += '	</thead>';
             	
             	$(result).each(function(index, element){
-	            	if(!element.equals('') && element != null){
 	            		str += '	<tbody>';
 	            		str += '	<tr>';
 	            		str += '		<td>' + element.itemCode + '</td>';
@@ -45,16 +44,6 @@ $(document).ready(function(){
 	            		str += '		<td>' + element.buyDate + '</td>';
 	            		str += '	</tr>';
 	            		str += '	</tbody>';
-	            	}
-	            	else{
-	            		str =+ '<tr>'
-	            		str =+ '<td>'
-	            		
-	            		str =+ '<td> 데이터가 없습니다.</td>'
-	            		
-	            		str =+ '</td>'
-	            		str =+ '</tr>'
-	            	}
             	
             	});
        

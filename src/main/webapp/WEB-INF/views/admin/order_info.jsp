@@ -31,6 +31,9 @@
 .statusName{
 	width: 110px;
 }
+.form-select{
+	height: 35px;
+}
 </style>
 </head>
 <body>
@@ -41,13 +44,13 @@
 					<span class="align-self-center">날짜검색</span> 
 				</div>
 				<div class="col-3 d-flex justify-content-start">
-					<input type="date" id="startDate" class="form-select" name="startDate" value="${param.startDate }">
+					<input type="date" id="startDate" class="form-select " name="startDate" value="${param.startDate }">
 				</div>
 				<div class="col-3 d-flex justify-content-start">
-					<input type="date" id="endDate" class="form-select" name="endDate" value="${param.endDate }">
+					<input type="date" id="endDate" class="form-select " name="endDate" value="${param.endDate }">
 				</div>
 				<div class="col-2">
-					<select name="serchStatus" class="form-select text-center">
+					<select name="serchStatus" class="form-select  text-center">
 						<option value="전체" selected>전체</option>
 						<c:forEach items="${statusInfo }" var="status">
 						<option value="${status.statusName}" <c:if test="${status.statusName eq orderVO.serchStatus }">selected</c:if>>${status.statusName }</option>
@@ -56,13 +59,6 @@
 				</div>	
 				<div class="col-1 btn-group">
 					<input type="submit" value="검색" class="form-control btn btn-secondary" >
-				</div>
-			</div>
-		</form>
-		<form action="">
-			<div class="row">
-				<div class="col">
-					<span>주문자</span>
 				</div>
 			</div>
 		</form>
