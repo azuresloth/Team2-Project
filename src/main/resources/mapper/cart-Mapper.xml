@@ -227,6 +227,7 @@
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
 		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 		</if>
+		ORDER BY ORDER_CODE
 	</select>
 	
 	<!-- 주문 상세 조회 -->
