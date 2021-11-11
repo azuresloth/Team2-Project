@@ -18,7 +18,6 @@ public class MemberVO {
 	
 	
 	
-	
 	public String getPostCode() {
 		return postCode;
 	}
@@ -43,6 +42,7 @@ public class MemberVO {
 	public void setMailes(String[] mailes) {
 		String email = mailes[0]+"@"+ mailes[1];
 		setEmail(email);
+		this.mailes = mailes;
 	}
 	
 	public String[] getTells() {
@@ -51,6 +51,7 @@ public class MemberVO {
 	public void setTells(String[] tells) {
 		String tell = tells[0]+ "-" + tells[1] + "-" + tells[2];
 		setTell(tell);
+		this.tells = tells;
 	}
 	public String getId() {
 		return id;
