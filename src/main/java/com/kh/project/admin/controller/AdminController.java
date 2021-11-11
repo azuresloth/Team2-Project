@@ -171,10 +171,15 @@ public class AdminController {
 	@RequestMapping("/selectMonthSales")
 	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
 		
-		Calendar mon = Calendar.getInstance();
-	    mon.add(Calendar.MONTH , -1);
-	    String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
-		model.addAttribute("beforMonth", beforeMonth);
+//		Calendar mon = Calendar.getInstance();
+//	    mon.add(Calendar.MONTH , -1);
+//	    String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
+	    
+	    Calendar nowDate = Calendar.getInstance();
+	    String nowMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(nowDate.getTime());
+	    
+	    model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
+	    model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectMonthSales");
 		model.addAttribute("orderInfoVO", orderInfoVO);

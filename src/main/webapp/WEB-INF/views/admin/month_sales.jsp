@@ -34,10 +34,19 @@
 				<span class="align-self-center">날짜검색</span> 
 			</div>
 			<div class="col-3 d-flex justify-content-start">
-				<input type="date" id="startDate" class="form-select" name="startDate" value="${param.startDate }">
+				<input type="date" id="startDate" class="form-select" name="startDate" 
+					<c:choose>
+						<c:when test="${param.startDate ne null and !param.startDate eq ''}">
+							value="${param.startDate }"
+						</c:when>
+						<c:otherwise>
+							value="${beforMonth }"
+						</c:otherwise>
+					</c:choose>
+				>
 			</div>
 			<div class="col-3 d-flex justify-content-start">
-				<input type="date" id="endDate" class="form-select" name="endDate" value="${param.endDate }">
+				<input type="date" id="endDate" class="form-select" name="endDate" value="${nowMonth }">
 			</div>
 			<div class="col-1 btn-group">
 				<input type="submit" value="검색" class="form-control btn btn-secondary" >

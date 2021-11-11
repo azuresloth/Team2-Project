@@ -21,5 +21,19 @@ public class FileUploadUtil {
 		
 		return nowDateTime;
 	}
-	//파일 첨부 사전 준비 기능
+	
+	public static String getBeforMonth() {
+		Calendar mon = Calendar.getInstance();
+	    mon.add(Calendar.MONTH , -1);
+	    String beforMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
+	    
+	    return beforMonth;
+	}
+	
+	public static String getNowMonth() {
+		Calendar nowDate = Calendar.getInstance();
+	    String nowMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(nowDate.getTime());
+		return nowMonth;
+	}
+	
 }
