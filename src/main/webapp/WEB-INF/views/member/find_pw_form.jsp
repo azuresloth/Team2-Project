@@ -40,7 +40,7 @@
 					<input type="text" name="email" id="email" class="form-control" autocomplete="OFF" required>
 				</div>
 			</div>
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
 				<button class="btn btn-primary" type="submit" id="findPwBtn" onclick="findPw();">찾기</button>
 			</div>
 		</div>

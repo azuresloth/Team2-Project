@@ -19,6 +19,10 @@
 	.withdrawalBtn{
 		float: right;
 	}
+	.mailRowDiv{
+		vertical-align: middle;
+		line-height: 37px;
+	}
 </style>
 
 </head>
@@ -60,7 +64,7 @@
 								</div>
 							</div>
 						</div>	
-							<div class="ps-0 pb-1 botBorder-ef">
+							<div class="ps-0 pb-1">
 								<div class="fs-6 mt-2">주소</div>
 								<div class="row">
 									<div class="col-4 ps-0">
@@ -82,23 +86,30 @@
 							</div>
 							<div class="ps-0 pb-1 botBorder-ef">
 								<div class="fs-6 mt-2">연락처</div>
-								<div>
-									<select id="tell1" name="tells">
-										<c:if test="${not empty memberInfo}">
-											<option value="${memberInfo.tells[0]}">${memberInfo.tells[0]}(기존)</option>
-										</c:if>
-										<option value="010" selected >010</option>
-										<option value="016">016</option>
-										<option value="017">017</option>
-										<option value="019">019</option>
-									</select> -
-								  	<input type="text"  id="tell2" name="tells" value="${memberInfo.tells[1]}" required maxlength="4"> -
-								  	<input type="text"  id="tell3" name="tells" value="${memberInfo.tells[2]}" required maxlength="4">
+								<div class="row">
+									<div class="col-4 ps-0 pe-2">
+										<select class="form-select" aria-label="Default select example" id="tell1" name="tells">
+											<c:if test="${not empty memberInfo}">
+												<option value="${memberInfo.tells[0]}">${memberInfo.tells[0]}(기존)</option>
+											</c:if>
+											<option value="010" selected >010</option>
+											<option value="016">016</option>
+											<option value="017">017</option>
+											<option value="019">019</option>
+										</select>
+									</div>
+									 
+									<div class="col-4 ps-0 pe-2">
+								  		<input type="text" class="form-control" value="${memberInfo.tells[1]}" id="tell2" name="tells" required maxlength="4">
+								  	</div>
+								  	<div class="col-4 px-0">
+								  		 <input type="text" class="form-control" value="${memberInfo.tells[2]}" id="tell3" name="tells" required maxlength="4">
+								  	</div>
 								</div>
 							</div>
 							<div class="ps-0 pb-1 botBorder-ef">
 								<div class="fs-6 mt-2">이메일</div>
-								<div class="row">
+								<div class="row mailRowDiv">
 									<div class="col-4 ps-0">
 										<input type="text" id="mail1" name="mailes" class="form-control value="${memberInfo.mailes[0]}">
 									</div>

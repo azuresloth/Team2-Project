@@ -90,7 +90,7 @@
 							<div class="col-4 ps-0">
 								<input type="text" class="form-control mb-1" id="sample4_postcode" placeholder="우편번호" name="postCode" >
 							</div>
-							<div class="col-5">
+							<div class="col-3">
 								<input type="button" class="btn btn-primary py-1 idCheckBtn text-center" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
 							</div>
 						</div>

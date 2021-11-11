@@ -2,7 +2,6 @@
 
 /* 로그인 실패시 경고글 */
 .login_warn{
-    margin-top: 30px;
     text-align: center;
     color : red;
 }

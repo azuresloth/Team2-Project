@@ -49,14 +49,14 @@
 						<input type="text" name="id" id="id" class="form-control"required autofocus>
 					</div>
 				</div>	
-				<div class="ps-0 pb-1 botBorder-ef">			
+				<div class="ps-0 pb-1 botBorder-ef mb-1">			
 					<div class="botBorder-ef">
 						<div class="fs-6 mt-2">비밀번호 </div>
 						<input type="password" name="pw" id="pw" class="form-control" onkeyup="enterkey()"  required>
 					</div>
 				</div>
 					<c:if test="${loginResult == 0}">
-						<div class="login_warn" > 아이디 혹은 비밀번호를 확인해주세요 </div>
+						<div class="login_warn pt-1 pb-2" > 아이디 혹은 비밀번호를 확인해주세요 </div>
 					</c:if>
 				<div class="d-grid gap-2 col-12 ps-0 pb-1 ">
 					<button class="btn btn-primary d-grid gap-2 col-12 " type="button"  id="loginBtn" onclick="login();" >login</button>
