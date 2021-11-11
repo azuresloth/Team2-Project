@@ -10,7 +10,7 @@ $(document).ready(function(){
 	str += '다들 이제부터 고생시작입니다!\n';
 	str += '좋은 결과가 있기를!!!\n';
 	
-	alert(str);*/
+	alert(str);*/ 
 	
 	//이벤트 처리
 	$(document).on('click', '.nameDiv', function() {

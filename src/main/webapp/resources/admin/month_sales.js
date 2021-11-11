@@ -32,7 +32,7 @@ $(document).ready(function(){
 		}
 	});
 
-	
+	 
 });
 
 //함수 선언 영역

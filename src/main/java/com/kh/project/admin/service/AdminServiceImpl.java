@@ -24,7 +24,7 @@ public class AdminServiceImpl implements AdminService{
 	public void insertCategory(CategoryVO categoryVO) {
 		sqlSession.insert("adminMapper.insertCategory", categoryVO);
 	}
-
+ 
 	@Override
 	public List<CategoryVO> selectCategoryList() {
 		return sqlSession.selectList("adminMapper.selectCategoryList");

@@ -23,7 +23,7 @@ input[type="number"]{
 	height: 30px;
 	width: 63px;
 	display: inline-block;
-}
+} 
 </style>
 </head>
 <body>

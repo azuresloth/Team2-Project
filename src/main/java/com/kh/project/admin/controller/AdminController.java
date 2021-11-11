@@ -42,6 +42,7 @@ public class AdminController {
 	private ItemService itemService;
 	
 	
+	
 	@GetMapping("/adminMenu")
 	public String goAdminMenu(Model model, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
