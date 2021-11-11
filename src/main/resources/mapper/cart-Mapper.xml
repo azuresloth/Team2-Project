@@ -229,8 +229,27 @@
 		</if>
 	</select>
 	
-	<!--  -->
-	
+	<!-- 주문 상세 조회 -->
+	<select id="selectOrderDetailList" resultMap="buyInfo">
+		SELECT ORDER_CODE
+		    , BUY_DATE
+		    , BUY_STATUS
+		    , TOTAL_PRICE
+		    , PAYMENT_PLAN
+		    , ATTACHED_IMG_NAME
+		    , ITEM_CODE
+		    , (SELECT ITEM_NAME FROM ITEM I WHERE I.ITEM_CODE = BI.ITEM_CODE) AS ITEM_NAME
+		    , BUY_CNT
+		    , BUY_STATUS
+		    , DELIVERY_NAME
+		    , POST_CODE
+		    , ROAD_ADDR
+		    , DETAIL_ADDR
+		    , DELIVERY_TELL
+		    , DELIVERY_MSG
+		FROM BUY_INFO BI
+		WHERE ORDER_CODE = #{orderCode}
+	</select>
 </mapper>
 
 

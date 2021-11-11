@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/cart/css/order_complete_page.css?ver=1">
+<link rel="stylesheet" href="/resources/cart/css/order_complete_page.css?ver=0">
 </head>
 <body>
 	<div class="row">
@@ -41,8 +41,8 @@
 				<div class="col-12 purchaseInfoTitle">
 					<span class="lpSpan">결제 정보</span>
 				</div>
-				<div class="col-12 purchaseInfoTableDiv">
-					<table class="purchaseInfoTable">
+				<div class="col-12 pageInfoTable2Div">
+					<table class="pageInfoTable2">
 						<colgroup>
 							<col width="150px;">
 							<col width="auto">
@@ -64,7 +64,7 @@
 					<span class="lpSpan">주문 상품 정보</span>
 				</div>
 				<div class="col-12 purInfoTableDiv">
-					<table class="purInfoTable text-center">
+					<table class="pageInfoTable text-center">
 						<colgroup>
 							<col width="110px">
 							<col width="auto">
@@ -102,8 +102,8 @@
 				<div class="col-12 buyTotalPriceTitle">
 					<span>결제 금액</span>
 				</div>
-				<div class="col-12 buyTotalPriceTableDiv">
-					<table class="buyTotalPriceTable text-center">
+				<div class="col-12 buyTableDiv">
+					<table class="buyTable text-center">
 						<colgroup>
 							<col width="50%">
 							<col width="50%">
@@ -130,8 +130,8 @@
 				<div class="col-12 deliveryInfoTitle">
 					<span>배송정보</span><span class="requiredCheckSpan"></span>
 				</div>
-				<div class="col-12 deliveryInfoTableDiv">
-					<table class="deliveryInfoTable">
+				<div class="col-12 pageInfoTable2Div">
+					<table class="pageInfoTable2">
 						<colgroup>
 							<col width="150px;">
 							<col width="auto">

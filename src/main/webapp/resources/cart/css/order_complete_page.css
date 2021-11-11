@@ -69,27 +69,6 @@
 	font-size: 11px;
 	padding-right: 20px;
 }
-.purchaseInfoTableDiv, .deliveryInfoTableDiv, .buyTotalPriceTableDiv{
-	padding: 0;
-}
-.purchaseInfoTable, .deliveryInfoTable, .buyTotalPriceTable{
-	width: 100%;
-	border-bottom: 1px solid #dedede;
-}
-.deliveryInfoTable th, .deliveryInfoTable td,
-.purchaseInfoTableDiv th, .purchaseInfoTableDiv td, .buyTotalPriceTable th, .buyTotalPriceTable td{
-	padding: 10px 0 10px 15px;
-	color: #666666;
-	border-bottom: 1px solid #dedede;
-	vertical-align: middle;
-}
-.buyTotalPriceTable th{
-	height: 70px;
-	background: #fbfafa;
-}
-.buyTotalPriceTable td{
-	font-size: 22px;
-}
 input[type="radio"] {
 	margin-bottom: 1px;
 	width: 12px;

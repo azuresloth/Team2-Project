@@ -77,4 +77,9 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectList("cartMapper.selectOrderLookup", buyInfoVO);
 	}
 
+	@Override
+	public List<BuyInfoVO> selectOrderDetailList(BuyInfoVO buyInfoVO) {
+		return sqlSession.selectList("cartMapper.selectOrderDetailList", buyInfoVO);
+	}
+
 }

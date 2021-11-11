@@ -144,6 +144,13 @@ public class CartController {
 		return "cart/order_lookup_page";
 	}
 	
+	// 주문 상세 조회
+	@GetMapping("/goOrderDetailPage")
+	public String orderDetail(Model model, BuyInfoVO buyInfoVO) {
+		model.addAttribute("orderList", cartService.selectOrderDetailList(buyInfoVO));
+		return "cart/order_detail_page";
+	}
+	
 	
 	//---------------------------------------------------- ajax 
 	

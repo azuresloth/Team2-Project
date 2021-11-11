@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/cart/css/purchase_page.css?ver=1">
+<link rel="stylesheet" href="/resources/cart/css/purchase_page.css?ver=0">
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -103,7 +103,7 @@
 					<span>배송정보</span><span class="requiredCheckSpan"><img src="/resources/images/common/required_check_icon.png"></img> 필수입력사항</span>
 				</div>
 				<div class="col-12 deliveryInfoTableDiv">
-					<table class="deliveryInfoTable">
+					<table class="pageInfoTable2">
 						<colgroup>
 							<col width="150px;">
 							<col width="auto">
@@ -175,7 +175,7 @@
 					<span>결제 예정 금액</span>
 				</div>
 				<div class="col-12 buyTotalPriceTableDiv">
-					<table class="buyTotalPriceTable text-center">
+					<table class="buyTable text-center">
 						<colgroup>
 							<col width="50%">
 							<col width="50%">

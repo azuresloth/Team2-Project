@@ -24,9 +24,7 @@ $(document).ready(function(){
 		//수량이 0보다 작을경우 못사게 막기
 		var cnt = $('#cnt').val();
 		var itemStock = $('#itemStock').val();
-		alert(cnt);
-		alert(itemStock);
-		if(cnt <= 0 || cnt > itemStock) {
+		if(cnt <= 0 || (itemStock - cnt) < 0) {
 			alert('수량을 확인해 주세요.');
 			return false;
 		}

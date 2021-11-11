@@ -131,6 +131,9 @@ body {
 .botBorder-1b{
 	border-bottom: 2px solid #1b1b1b;
 }
+.botBorder-ed{
+	border-bottom: 1px solid #ededed;
+}
 .border-ed{
 	border: 1px solid #ededed;
 }
@@ -139,6 +142,54 @@ body {
 }
 .fc1b{
 	color: #1b1b1b;
+}
+.pageTitleDiv{
+	margin-top: 2rem;
+}
+.pageSubTitleDiv{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.pageInfoTable{
+	-bs-gutter-x: 1.5rem;
+	width: 100%;
+	border-top: 1px solid #333333;
+	margin: 0 auto;
+}
+.pageInfoTable th, .purInfoTable td{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #efefef;
+}
+.pageInfoTable2Div, .buyTableDiv{
+	padding: 0;
+}
+.pageInfoTable2, .buyTable{
+	width: 100%;
+	border-top: 1px solid #dedede;
+	border-bottom: 2px solid #dedede !important;
+}
+.pageInfoTable2 th, .pageInfoTable2 td{
+	padding: 14px 0 14px 18px;
+	color: #666666;
+	border-bottom: 1px solid #efefef;
+	vertical-align: middle;
+}
+.buyTable th{
+	padding: 14px 0 14px 18px;
+	color: #666666;
+	border-top: 1px solid #dedede;
+	border-bottom: 2px solid #dedede !important;
+	vertical-align: middle;
+	height: 70px;
+	background: #fbfafa;
+}
+.buyTable td{
+	padding: 14px 0 14px 18px;
+	color: #666666;
+	border-bottom: 1px solid #efefef;
+	vertical-align: middle;
+	font-size: 22px;
 }
 </style>
 </head>

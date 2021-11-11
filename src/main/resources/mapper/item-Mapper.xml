@@ -190,7 +190,7 @@
  	
  	<!-- 수량 조회 -->
  	<select id="selectItemStock" resultType="int">
- 		SELETE ITEM_STOCK
+ 		SELECT ITEM_STOCK
  		FROM ITEM
  		WHERE ITEM_CODE = #{itemCode}
  	</select>

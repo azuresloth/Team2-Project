@@ -30,11 +30,11 @@
 	<div class="row justify-content-center">
 		<div class="col-10 ">
 			<div class="row mt-2 justify-content-center">
-				<div class="col-12 inquireTitleDiv">
+				<div class="col-12 pageTitleDiv botBorder-1b">
 					<h4>주문조회</h4>
 				</div>
-				<div class="col-12 mt-3 botBorder-1b inquireSubTitleDiv">
-					<div class="ps-5 fs-6">주문내역조회</div>
+				<div class="col-12 mt-3 ps-0 pageSubTitleDiv">
+					<div class="px-5 pb-1 fs-6 botBorder-ed orderListDiv">주문내역조회</div>
 				</div>
 				<div class="mt-5 mb-5 border-ed p-4 bg-light">
 					<div class="ps-5">
@@ -47,8 +47,8 @@
 			<div class="col-12 botBorder-1b">
 				<div class="p-4 pb-1">주문 상품 정보</div>
 			</div>
-			<div class="col-12 purInfoTableDiv">
-				<table class="purInfoTable text-center">
+			<div class="col-12 pageInfoTableDiv">
+				<table class="pageInfoTable text-center">
 					<colgroup>
 						<col width="200px">
 						<col width="120px">
@@ -71,7 +71,7 @@
 								<td class="fc66">
 									${lookupInfo.buyDate}
 									<br>
-									<a href="asdf" class="fc66">[${lookupInfo.orderCode}]</a>
+									<a href="/cart/goOrderDetailPage?orderCode=${lookupInfo.orderCode}" class="fc66">[${lookupInfo.orderCode}]</a>
 								</td>
 								<td>
 									<img alt="" src="/resources/images/item/itemImages/${lookupInfo.attachedImgName}" width="75px;">

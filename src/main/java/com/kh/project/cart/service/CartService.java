@@ -36,7 +36,10 @@ public interface CartService {
 	// 구매 날짜 조회
 	String selectBuyDate(BuyInfoVO buyInfoVO);
 	
-//	// 회원 주문 정보
+	// 회원 주문 정보
 	List<BuyInfoVO> selectOrderLookup(BuyInfoVO buyInfoVO);
+	
+	// 주문 상세 조회
+	List<BuyInfoVO> selectOrderDetailList(BuyInfoVO buyInfoVO);
 	
 }
