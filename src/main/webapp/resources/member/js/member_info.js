@@ -67,6 +67,25 @@ $(document).ready(function(){
 			return;
 			
 		});
+	
+	  // 숫자가 아닌 정규식 (연락처)
+    var replaceNotInt = /[^0-9]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#tell").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceNotInt)) {
+                   x = x.replace(replaceNotInt, "");
+                }
+                $(this).val(x);
+            }
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceNotInt, ""));
+        });
+ 
+    });
 
 });
 

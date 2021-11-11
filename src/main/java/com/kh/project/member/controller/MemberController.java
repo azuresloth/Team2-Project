@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
 
@@ -281,9 +282,25 @@ public class MemberController {
 //			return "redirect:/member/goLogin";
 			if(session.getAttribute("loginInfo") != null) {
 				memberVO.setId(((MemberVO)session.getAttribute("loginInfo")).getId());	
-				model.addAttribute("memberInfo", memberService.selectMemberInfo(memberVO));
+				
+				MemberVO memberInfo = memberService.selectMemberInfo(memberVO);
+				
+				EmailAndTellVO emailAndTell = setTellEmailfun(memberInfo);
+				String[] tells = {"", "", ""};
+				tells[0] = emailAndTell.getTell1();
+				tells[1] = emailAndTell.getTell2();
+				tells[2] = emailAndTell.getTell3();
+				String[] emails = {"", ""};
+				emails[0] = emailAndTell.getEmail1();				
+				emails[1] = emailAndTell.getEmail2();
+				memberInfo.setTells(tells);
+				memberInfo.setMailes(emails);
+				
+				model.addAttribute("memberInfo", memberInfo);
 				return "member/member_info";
 			}
+			
+			
 			return "redirect:/member/goLogin";
 		
 	}
@@ -301,7 +318,51 @@ public class MemberController {
 			session.removeAttribute("loginInfo");
 			return "redirect:/item/mainPage";
 		}
-	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 이메일, 연락처 쪼개는 메소드
+		public EmailAndTellVO setTellEmailfun(MemberVO memberVO) {
+			EmailAndTellVO emailAndTellVO = new EmailAndTellVO();
+			String email = memberVO.getEmail();
+			int idx = email.indexOf("@");
+			String email1 = email.substring(0, idx);
+			String email2 = email.substring(idx+1);
+			emailAndTellVO.setEmail(email);
+			emailAndTellVO.setEmail1(email1);
+			emailAndTellVO.setEmail2(email2);
+			
+			String tell = memberVO.getTell();
+			String tell1 = "0", tell2 = "0", tell3 = "0";
+			String tells[] = tell.split("-");
+			for(int i = 0 ; i < tells.length ; i++) {
+				if(i == 0) {
+					tell1 = tells[i];
+				}
+				else if(i == 1) {
+					tell2 = tells[i];
+				}
+				else if(i == 2) {
+					tell3 = tells[i];
+				}
+			}
+			emailAndTellVO.setTell(tell);
+			emailAndTellVO.setTell1(tell1);
+			emailAndTellVO.setTell2(tell2);
+			emailAndTellVO.setTell3(tell3);
+			return emailAndTellVO;
+		}
+		
+		
+		
 }
 
 

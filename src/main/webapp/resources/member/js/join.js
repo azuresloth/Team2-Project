@@ -74,13 +74,13 @@ $(document).ready(function() {
 		
 				
 		if(inputCode == code){							//일치할경우
-			checkResult.html('인증번호가 일치합니다.' + code);
+			checkResult.html('인증번호가 일치합니다.');
 			checkResult.attr('class' , 'correct');
 			checkResult.addClass('success');
 			/*$('#joinBtn').removeClass('disabled');*/
 		}
 		else{											//일치하지않을경우
-			checkResult.html('인증번호를 다시 확인하세요.' + code);
+			checkResult.html('인증번호를 다시 확인하세요.');
 			checkResult.attr('class' , 'incorrect');
 			checkResult.removeClass('success');
 			/*$('#joinBtn').addClass('disabled');*/
@@ -106,9 +106,6 @@ $(document).ready(function() {
 (function($){
 	
 
-
-	
-
 	//이메일 인증번호발송
 	mail_check_btn = function(){
 		var emailId = $('#email').val();
@@ -126,7 +123,7 @@ $(document).ready(function() {
             	if(emailId != ''){
             		if(emailAddr != ''){
             			$(mail_check_input_box_warn).removeClass('success');
-            			alert('인증번호가 발송되었습니다.'+code);
+            			alert('인증번호가 발송되었습니다.');
                     	$('#verificationCode').attr('disabled',false);
             		}else{
             			alert('인증번호 발송 실패 \n 이메일주소를 확인해주세요.');
@@ -145,46 +142,6 @@ $(document).ready(function() {
             }
       	});
 	};
-	
-
-	//회원가입 버튼 클릭시(비밀번호확인 / 인증번호 아이디중복체크 통과시 가입처리)
-	finalJoin = function(){
-	var pw = $('#pw').val();
-	var pw1 = $('#pw_1').val();
-	var success = $('#joinForm').find('.success').length
-	
-	if(pw != pw1){
-		alert('비밀번호를 확인하세요');
-		$('input[type="pw"]').val('');
-		$('#pw').focus();
-		
-		return;
-	}
-	
-		if(success == 2){
-			$('#joinForm').attr('onsubmit','return true');
-			
-		}else
-			alert('입력하신 정보를 확인하여주십시요');
-			return;
-			
-	};
-	/*if($('#mail_check_input_box_warn').is('succesCode')){
-		if($($'#a').is('succesId')){
-			$('#joinForm').attr('onsubmit','return true');
-			$('#joinForm').submit();
-		}
-		
-	}else
-		alert('입력하신 정보를 확인하여주십시요');
-		return;
-		
-		
-	};*/
-		
-	
-	
-	
 	
 	//아이디 중복체크
 	checkId = function(){
@@ -228,9 +185,88 @@ $(document).ready(function() {
       });
 	};
 	
+
+	//회원가입 버튼 클릭시(비밀번호확인 / 인증번호 아이디중복체크 통과시 가입처리)
+	finalJoin = function(){
+		var dateStr = $('#birthday').val();
+		var year = Number(dateStr.substr(0,4)); // 입력한 값의 0~4자리까지 (연)
+		var month = Number(dateStr.substr(4,2)); // 입력한 값의 4번째 자리부터 2자리 숫자 (월)
+		var day = Number(dateStr.substr(6,2)); // 입력한 값 6번째 자리부터 2자리 숫자 (일) 
+		var today = new Date(); // 날짜 변수 선언 
+		var yearNow = today.getFullYear(); // 올해 연도 가져옴
+		
+		
+		console.log(yearNow)
+		if (dateStr.length == 8) {
+			 // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+			 if (1900 > year || year > yearNow){
+				alert('출생년도를 확인해주세요');
+				return false;
+			} 
+			else if (1900 <= year || year <= yearNow){
+				if (month < 1 || month > 12){
+					alert('출생월을 확인해주세요');
+					return false;
+				}
+				else if (month >= 1 || month <= 12){
+					if (day < 1 || day > 31){
+						alert('출생일을 확인해주세요!');
+						return false;
+					}
+					else if (day >= 1 || day <= 31){
+						if ((month==4 || month==6 || month==9 || month==11) && day == 31){
+							alert('생년월일을 확인해주세요');
+							return false;
+						}
+						else if (!(month==4 || month==6 || month==9 || month==11) && day != 31){
+							if (month == 2) {
+								var isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+								 if (day>29 || (day==29 && !isLeap)){
+									 alert('생년월일을 확인해주세요');
+									 return false;
+								 }
+							}
+						}
+					}
+				}
+			}
+		}	
+		else{
+			alert('올바른 생년월일을 입력해주세요.');
+			$('#birthday').focus();
+			return false;
+		}
+		
+	var pw = $('#pw').val();
+	var pw1 = $('#pw_1').val();
+	var success = $('#joinForm').find('.success').length
+	
+	if(pw != pw1){
+		alert('비밀번호를 확인하세요');
+		$('input[type="pw"]').val('');
+		$('#pw').focus();
+		
+		return;
+	}
+	
+		if(success == 2){
+			$('#joinForm').attr('onsubmit','return true');
+			
+		}else
+			alert('입력하신 정보를 확인하여주십시요');
+			return;
+			
+	};
+	
+		
+	
+	
+	
+	
+
 })(jQuery);
 
-
+/*
 //생년월일 유효성체크
 function birthday1() { 
 	var dateStr = $('#birthday').val();
@@ -243,8 +279,8 @@ function birthday1() {
 	
 	console.log(yearNow)
 	if (dateStr.length <=8) {
-		 // 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
-		 if (1900 > year || year > yearNow){
+		// 연도의 경우 1900 보다 작거나 yearNow 보다 크다면 false를 반환합니다.
+		if (1900 > year || year > yearNow){
 			alert('출생년도를 확인해주세요');
 		} 
 		else if (1900 <= year || year <= yearNow){
@@ -262,18 +298,19 @@ function birthday1() {
 					else if (!(month==4 || month==6 || month==9 || month==11) && day != 31){
 						if (month == 2) {
 							var isLeap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-							 if (day>29 || (day==29 && !isLeap)){
-								 alert('생년월일을 확인해주세요');
-							 }
+							if (day>29 || (day==29 && !isLeap)){
+								alert('생년월일을 확인해주세요');
+							}
 						}
 					}
 				}
 			}
 		}
-		 
-		}
 		
 	}
+	
+}
+*/
 
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

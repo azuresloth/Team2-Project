@@ -82,7 +82,9 @@ $(document).ready(function(){
 
 			<!-- 댓글 등록하기 -->
 			<div class="text-end replyDiv">
-				<button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">댓글등록 창 열기</button>
+				<c:if test="${not empty sessionScope.loginInfo }">
+					<button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">댓글등록 창 열기</button>
+				</c:if>
 					<input type="hidden" value="${param.boardNum }" id="boardNumInput">
 					<div id="demo" class="collapse">
 						<div class="input-group mt-3 input-group-sm">
