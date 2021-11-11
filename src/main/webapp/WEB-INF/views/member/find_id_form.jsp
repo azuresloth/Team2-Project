@@ -9,23 +9,41 @@
 
 </head>
 <body>
-	<div class="row justify-content-center" >
-		<div class="col-5">
-			<form action="/member/findId" method="post" id="findIdForm">
-			
-				<div style="margin-top: 20px;"></div>
-				<div>
-					<span style="font-size: 20px;">ID찾기</span>
+	<div class="row">
+		<div class="col">
+			<div class="row">
+				<div class="col path">
+					<ol type="i">
+						<li>
+							<a href="/item/mainPage">home</a>
+						</li>
+						<li>
+							> <a href="/member/goLogin">로그인</a>
+						</li>
+						<li>
+							> <a href="/member/findIdForm">ID찾기</a>
+						</li>
+					</ol>
 				</div>
-				<div style="margin-top: 20px;"></div>
-					<div >
-						<div>
-							이름   <input type="text" name="name" id="name" class="form-control" autocomplete="OFF" required autofocus>
-						</div>
-						<div>
-							이메일  <input type="text" name="email" id="email" class="form-control" autocomplete="OFF" required>
-						</div>
+			</div>
+		</div>
+	</div>
+	<div class="row px-2 mt-5 justify-content-center" >
+		<div class="col-5 justify-content-center text-start">
+			<form action="/member/findId" method="post" id="findIdForm">
+				<div id="title">
+					<h4 class="botBorder-1b pb-2 pe-5 mb-3">ID찾기</h4>
+				</div>
+				<div id="body" >
+					<div class="ps-0 pb-1 botBorder-ef">
+						<div class="fs-6 mt-2">이름 </div>
+						<input type="text" name="name" id="name" class="form-control" autocomplete="OFF" required autofocus>
 					</div>
+					<div class="ps-0 pb-1 botBorder-ef">
+						<div class="fs-6 mt-2">이메일</div>
+						<input type="text" name="email" id="email" class="form-control" autocomplete="OFF" required>
+					</div>	
+				</div>
 				
 				<div style="margin-top: 20px;"></div>
 				<div class="d-grid gap-2 d-md-flex justify-content-md-end">

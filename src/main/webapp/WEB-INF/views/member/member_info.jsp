@@ -41,7 +41,7 @@
 	</div>
 	<form action="/member/updateInfo" method="post">
 		<div class="row px-2 mt-5 justify-content-center">
-			<div class="col-10 justify-content-center text-start memberInfoDiv">
+			<div class="col-5 justify-content-center text-start memberInfoDiv">
 				<div id="title">
 					<h4 class="memberInfoTitleDiv botBorder-1b pb-2 pe-5 mb-3">회원정보 관리</h4>
 				</div>
@@ -54,20 +54,31 @@
 						</div>
 						<div class="row">
 							<div class="ps-0 pb-1 botBorder-ef">
-								<div class="col-2 fs-6 mt-2">아이디</div>
-								<div class="col-10 "><input type="text" name="id" value="${memberInfo.id }" readonly></div>
+								<div class="fs-6 mt-2">아이디</div>
+								<div>
+									<input type="text" name="id" value="${memberInfo.id }" class="form-control me-md-0" readonly>
+								</div>
 							</div>
+						</div>	
 							<div class="ps-0 pb-1 botBorder-ef">
 								<div class="fs-6 mt-2">주소</div>
+								<div class="row">
+									<div class="col-4 ps-0">
+										<input type="text" class="form-control mb-1" id="sample4_postcode"  name="postCode" value="${memberInfo.postCode }">
+									</div>
+									<div class="col-5">
+										<input type="button" class="btn btn-primary py-1 idCheckBtn text-center" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
+									</div>
+								</div>	
+								<div class="ps-0 pb-1 botBorder-ef mb-1">
 									<div>
-										<input type="text" id="sample4_postcode"  name="postCode" value="${memberInfo.postCode }">
-										<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기 " ><br>
-										<input type="text" id="sample4_roadAddress" value="${memberInfo.roadAddr }" name="roadAddr" >
+										<input type="text" class="form-control mb-1" id="sample4_roadAddress" value="${memberInfo.roadAddr }" name="roadAddr" >
 										<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"  > 
 										<span id="guide" style="color:#999;display:none"></span>
-										<input type="text" id="sample4_detailAddress" value="${memberInfo.detailAddr }" name="detailAddr">
+										<input type="text" class="form-control" id="sample4_detailAddress" value="${memberInfo.detailAddr }" name="detailAddr">
 									    <input type="hidden" id="sample4_extraAddress" placeholder="참고항목"  >
 									</div>
+								</div>
 							</div>
 							<div class="ps-0 pb-1 botBorder-ef">
 								<div class="fs-6 mt-2">연락처</div>
@@ -87,10 +98,17 @@
 							</div>
 							<div class="ps-0 pb-1 botBorder-ef">
 								<div class="fs-6 mt-2">이메일</div>
-								<input type="text" id="mail1" name="mailes" class="form-control value="${memberInfo.mailes[0]}"> @
-								<input type="text" id="mail2" name="mailes" class="form-control value="${memberInfo.mailes[1]}">
+								<div class="row">
+									<div class="col-4 ps-0">
+										<input type="text" id="mail1" name="mailes" class="form-control value="${memberInfo.mailes[0]}">
+									</div>
+									 @
+									<div class="col-5 pb-1">
+										<input type="text" id="mail2" name="mailes" class="form-control value="${memberInfo.mailes[1]}">
+									</div>
+								</div>	
 							</div>
-						</div>	
+							
 					</c:when>
 				</c:choose>
 					<button type="submit" class="btn btn-primary fs-6 mt-2" >수정하기</button>	
