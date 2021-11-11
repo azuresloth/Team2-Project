@@ -15,7 +15,7 @@
 	display: table;
 	margin: 0 auto;
 	text-align: center;
-} 
+}
 .pagination{
 	margin: 0 auto;
 	text-align: center;

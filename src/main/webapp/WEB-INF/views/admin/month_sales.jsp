@@ -16,7 +16,7 @@
    	border-radius: 6px;
    	padding: 16px;
    	a
-} 
+}
 .pagination{
 	margin: 0 auto;
 	text-align: center;

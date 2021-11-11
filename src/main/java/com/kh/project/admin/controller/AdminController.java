@@ -42,7 +42,6 @@ public class AdminController {
 	private ItemService itemService;
 	
 	
-	
 	@GetMapping("/adminMenu")
 	public String goAdminMenu(Model model, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
@@ -73,6 +72,17 @@ public class AdminController {
 		model.addAttribute("salesManageVO", salesManageVO);
 		return "admin/sales_manage";
 	}
+	
+	@GetMapping("/salesManageByCate")
+	public String salesManageByCate(Model model, SalesManageVO salesManageVO, SideMenuVO sideMenuVO) {
+		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+		model.addAttribute("sidePage", "salesManage");
+		model.addAttribute("salesList", adminService.selectSalesByCate(salesManageVO));
+		model.addAttribute("categoryList", adminService.selectCategoryList());
+		model.addAttribute("salesManageVO", salesManageVO);
+		return "admin/sales_manage";
+	}
+	
 	
 	@GetMapping("/insertItemForm")
 	public String goInsertItem(Model model, SideMenuVO sideMenuVO) {
@@ -163,6 +173,7 @@ public class AdminController {
 		
 		return "redirect:/admin/insertItemForm";
 	}
+
 	@ResponseBody
 	@PostMapping("/selectSalesByCateAjax")
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO){
@@ -171,27 +182,23 @@ public class AdminController {
 	
 	@RequestMapping("/selectMonthSales")
 	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
-		
-//		Calendar mon = Calendar.getInstance();
-//	    mon.add(Calendar.MONTH , -1);
-//	    String beforeMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(mon.getTime());
 	    
-	    Calendar nowDate = Calendar.getInstance();
-	    String nowMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(nowDate.getTime());
-	    
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		model.addAttribute("allTotalPrice", adminService.selectAllTotalPrice(orderInfoVO));
 	    model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
 	    model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectMonthSales");
 		model.addAttribute("orderInfoVO", orderInfoVO);
-		model.addAttribute("allTotalPrice", adminService.selectAllTotalPrice(orderInfoVO));
-		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		return "admin/month_sales";
 	}
+	
 	@GetMapping("/selectOrderInfo")
 	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "selectOrderInfo");
+		model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
+		model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
 		model.addAttribute("status", adminService.selectStatus());
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
