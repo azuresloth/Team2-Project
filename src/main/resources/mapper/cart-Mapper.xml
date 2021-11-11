@@ -206,12 +206,12 @@
 		WHERE ORDER_CODE = #{orderCode}
 	</select>
 	
-<!--
-	<select id="selectOrderCode" resultMap="buyInfo">
+	<!-- 주문 코드 조회 -->
+	<select id="selectOrderCode" resultType="String">
 		SELECT ORDER_CODE
 		FROM BUY_INFO
-		WHERE ID = #{}
-	</select> -->
+		WHERE ID = #{id}
+	</select>
 	<!-- 주문 조회 -->
 	<select id="selectOrderLookup" resultMap="buyInfo">
 		SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE

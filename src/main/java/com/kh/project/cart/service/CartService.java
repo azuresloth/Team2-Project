@@ -42,4 +42,7 @@ public interface CartService {
 	// 주문 상세 조회
 	List<BuyInfoVO> selectOrderDetailList(BuyInfoVO buyInfoVO);
 	
+	// 주문 코드 조회
+	List<String> selectOrderCode(BuyInfoVO buyInfoVO);
+	
 }

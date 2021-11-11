@@ -2,7 +2,9 @@ package com.kh.project.cart.controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -140,7 +142,37 @@ public class CartController {
 	@GetMapping("/goOrderLookupPage")
 	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model) {
 		buyInfoVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
-		model.addAttribute("lookupList", cartService.selectOrderLookup(buyInfoVO));
+//		model.addAttribute("lookupList", cartService.selectOrderLookup(buyInfoVO));
+		
+		// 맵 만들어서 key값 : orderCode  value값 : orederCode로 검색한 List<buyInfoVO> 넣기
+		// 빈통 만들기
+		Map<String, List<BuyInfoVO>> map = new HashMap<>();
+		
+		// orderCode selectList (key에 넣을거)
+		List<String> re1 = cartService.selectOrderCode(buyInfoVO);
+		// 조건 orderCode로 buyInfoVO 리스트 조회 (Value에 넣을거)
+		List<BuyInfoVO> result = cartService.selectOrderLookup(buyInfoVO);
+		
+		// 해당 코드와 동일한 리스트 조회 후 Map에 삽입
+		for(String orderCode : re1) { // key list for문으로 받아옴
+			// Value로 들어갈 빈통만듬
+			List<BuyInfoVO> list = new ArrayList<>();
+			// orderList 하나씩 조회
+			for(BuyInfoVO e : result) {
+				// 먼저 받아온 orderCode와 일치하는 리스트 추가
+				if(orderCode.equals(e.getOrderCode())) { 
+					list.add(e);						 
+				}
+			}
+			// map 변수에 key, value 삽입
+			map.put(orderCode, list); 
+		}
+		
+		// 전달
+		model.addAttribute("orderMap", map);
+		
+		
+		
 		return "cart/order_lookup_page";
 	}
 	
@@ -148,6 +180,8 @@ public class CartController {
 	@GetMapping("/goOrderDetailPage")
 	public String orderDetail(Model model, BuyInfoVO buyInfoVO) {
 		model.addAttribute("orderList", cartService.selectOrderDetailList(buyInfoVO));
+		
+		
 		return "cart/order_detail_page";
 	}
 	
