@@ -14,6 +14,9 @@
 .nameDiv{
 	cursor: pointer;
 }
+.pagination{
+	margin: 0 auto;
+}
 </style>
 </head>
 <body>
@@ -46,21 +49,30 @@
 					<th scope="col">상품의 총 구매수량</th>
 					<th scope="col">상품 구매일 </th>
 				</tr>
-				<c:forEach items="${salesList }" var="salesListInfo">
-					<tr>
-						<td>${salesListInfo.itemCode }</td>
-						<td>${salesListInfo.itemName }</td>
-						<td><fmt:formatNumber value="${salesListInfo.totalPrice}" pattern="#,###"/></td>
-						<td>${salesListInfo.buyCnt }</td>
-						<td>${salesListInfo.buyDate }</td>
-					</tr>
-				</c:forEach>
+				<c:choose>
+					<c:when test="${empty salesList }">
+						<tr>
+							<td colspan="5">데이터가 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${salesList }" var="salesListInfo">
+							<tr>
+								<td>${salesListInfo.itemCode }</td>
+								<td>${salesListInfo.itemName }</td>
+								<td><fmt:formatNumber value="${salesListInfo.totalPrice}" pattern="#,###"/></td>
+								<td>${salesListInfo.buyCnt }</td>
+								<td>${salesListInfo.buyDate }</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</thead>
 		</table>
 	<!-- pagination -->
 	<% request.setAttribute("url", "/admin/salesManage"); %>
 	<% request.setAttribute("noLinkColor", "#999"); %>
-	<div class="container mt-3 pagination d-flex justify-content-center">
+	<div class="container mt-3 pagination">
 		<ul class="pagination">
 			<!-- << 버튼(처음으로 이동) -->
 			<li class="page-item">
@@ -98,12 +110,11 @@
 							${cnt }
 						</a>
 					</c:if>
-					<c:if test="${salesManageVO.page != cnt }">
-							<%--  <c:if test="${!empty salesManageVO.cateCode}">
-								href = "/admin/selectSalesByCateAjax?page=${cnt }&perPageRowNum=${salesManageVO.perPageRowNum }&cateCode=${salesManageVO.cateCode }"
-							</c:if> --%>
+				<c:if test="${salesManageVO.page != cnt }">
 						<a class="page-link"
-							
+							<c:if test="${salesManageVO.cateCode eq null and !salesManageVO.cateCode eq ''}">
+								href = "/admin/salesManageByCate?cateCode=${salesManageVO.cateCOde }"
+							</c:if>
 							href="${url }?page=${cnt}&perPageRowNum=${salesManageVO.perPageRowNum}">
 							${cnt }
 						</a>

@@ -10,32 +10,36 @@ $(document).ready(function(){
 	});	
 	var total = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	$('#totalPrice').text(total);
+	var startDate1 = $('#startDate').val(); 
+	var endDate1 = '';
 	//이벤트 처리
-	//$(document).on('click', '#id', function() {
-    //});
-   
-	//ajax 사용
-//	$.ajax({
-//        url: '', //요청경로
-//        type: 'post',
-//        data:{}, //필요한 데이터
-//        success: function(result) {
-//        	//ajax 실행 성공 시 실행되는 구간
-//        	alert('성공');
-//        },
-//        error: function(){
-//        	//ajax 실행 실패 시 실행되는 구간
-//        	alert('실패');
-//        }
-//  });
-	
+	$(document).on('change', '#startDate', function() {
+		alert('야발');
+		var startDate2 = $('#startDate').val();
+		var endDate2 = $('#endDate').val();
+		if(startDate2 > endDate2){
+			$('#startDate').val(startDate1);
+			alert('됫니?');
+		}
+	});
+	$(document).on('change', '#endDate', function() {
+		alert('야발');
+		var startDate2 = $('#startDate').val();
+		var endDate2 = $('#endDate').val();
+		if(endDate2 < startDate2){
+			$('#endtDate').val(endDate2);
+			alert('됫다?');
+		}
+	});
+
 	
 });
 
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	//};
+	/*checkDate = function(startDate, endDate){
+		
+	};*/
    
 })(jQuery);
 

@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/order_info.js?ver=8"></script>
+<script type="text/javascript" src="/resources/admin/order_info.js?ver=22"></script>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <style type="text/css">
@@ -44,10 +44,21 @@
 					<span class="align-self-center">날짜검색</span> 
 				</div>
 				<div class="col-3 d-flex justify-content-start">
-					<input type="date" id="startDate" class="form-select " name="startDate" value="beforMonth">
+					<input type="hidden" id="beforMonth" value="${beforMonth }" >
+					<input type="date" id="startDate" class="form-select " name="startDate" 
+						<c:if test="${param.startDate eq null }">
+						value="${beforMonth }"
+						</c:if>
+						value="${param.startDate }"
+						>
 				</div>
 				<div class="col-3 d-flex justify-content-start">
-					<input type="date" id="endDate" class="form-select " name="endDate" value="${param.endDate }">
+					<input type="date" id="endDate" class="form-select " name="endDate" 
+						<c:if test="${param.endDate eq null }">
+						value="${nowMonth }"
+						</c:if>
+						value="${param.endDate }"
+					>
 				</div>
 				<div class="col-2">
 					<select name="serchStatus" class="form-select  text-center">
@@ -78,14 +89,14 @@
 			</tr>
 		</thead>
 		<tbody id="orderListDiv">
-			<c:forEach items="${orderList }" var="orderInfo">
-				<c:choose>
-					<c:when test="${empty orderList }">
-						<tr>
-							<td>데이터가 없습니다.</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
+			<c:choose>
+				<c:when test="${empty orderList }">
+					<tr>
+						<td colspan="8">데이터가 없습니다.</td>
+					</tr>						
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${orderList }" var="orderInfo">
 						<tr>
 							<td>${orderInfo.id}</td>
 							<td>${orderInfo.itemName}</td>
@@ -105,9 +116,9 @@
 								<input type="button" value="변경" class="update btn btn-secondary">
 							</td>
 						</tr>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
+				</c:forEach>
+				</c:otherwise>
+			</c:choose>
 		</tbody>
 	</table>
 	<!-- pagination -->

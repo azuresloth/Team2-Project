@@ -37,8 +37,8 @@ input[type="number"]{
 					        <th>ITEM IMG</th>
 					        <th>ITEM NAME</th>
 					        <th>ITEM PRICE</th>
-					        <th>ITEM STOCK</th>
 					        <th>ITEM STATUS</th>
+					        <th>ITEM STOCK</th>
 					        <th>DELETE BUTTON</th>
 						</tr>
 					</thead>
@@ -51,9 +51,9 @@ input[type="number"]{
 							<td><fmt:formatNumber value="${itemInfo.itemPrice}" pattern="#,###"/></td>
 							<td>
 								<select class="form-select form-select-sm select">
-									<option value="0"<c:if test="${itemInfo.itemStatus eq 0 }">selected</c:if>>판매대기</option>
-									<option value="1"<c:if test="${itemInfo.itemStatus eq 1 }">selected</c:if>>판매중</option>
-									<option value="2"<c:if test="${itemInfo.itemStatus eq 2 }">selected</c:if>>매진</option>
+									<option value="1"<c:if test="${itemInfo.itemStatus eq 1 }">selected</c:if>>판매대기</option>
+									<option value="2"<c:if test="${itemInfo.itemStatus eq 2 }">selected</c:if>>판매중</option>
+									<option value="3"<c:if test="${itemInfo.itemStatus eq 3 }">selected</c:if>>매진</option>
 								</select>
 							</td>
 							<td class="itemStock">

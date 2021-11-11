@@ -99,7 +99,7 @@
 		WHERE CATE_CODE = #{cateCode}
 	</delete>
 	
-	<!-- 매출관리를 위한 상품정보 목록 -->
+	<!-- 카테고리당 매출관리를 위한 상품정보 목록 -->
 	<select id="selectSalesList" resultMap="view">
 		SELECT RNUM, ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
 		FROM(
@@ -112,6 +112,9 @@
 					, BUY_CNT
 					, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
 				FROM SALES
+				<if test="cateCode != null and !cateCode.equals('')">
+				WHERE CATE_CODE = #{cateCode}
+				</if>
 				ORDER BY BUY_DATE
 			)
 		)
@@ -167,24 +170,6 @@
 			, #{cateCode}
 		)
 	</insert>
-	<!-- 해당카테고리의 상품의 매출조회 -->
-	<select id="selectSalesByCate" resultMap="view">
-		SELECT RNUM, ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
-		FROM(
-			SELECT ROWNUM RNUM , ITEM_CODE, CATE_CODE, ITEM_NAME, TOTAL_PRICE, BUY_CNT, BUY_DATE
-			FROM(
-				SELECT ITEM_CODE
-					, ITEM_NAME
-					, CATE_CODE
-					, TOTAL_PRICE
-					, BUY_CNT
-					, TO_CHAR(BUY_DATE, 'YYYY.MM.DD') AS BUY_DATE
-				FROM SALES
-				WHERE CATE_CODE = #{cateCode}
-			)
-		)
-		WHERE RNUM BETWEEN #{startRow} and #{endRow}
-	</select>
 	
 	<!-- 주문정보조회 -->
 	<select id="selectOrderList" resultMap="order">
@@ -243,7 +228,13 @@
 	<select id="getTotalRowBySales" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SALES
 	</select>
-
+	
+	<select id="getTotalRowBycateSales" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM SALES
+		WHERE CATE_CODE = #{cateCode}
+	</select>
+	
 	<select id="getTotalRowByItem" resultType="int">
 		SELECT COUNT(I.ITEM_CODE)
 		FROM ITEM I , ITEM_IMG IMG
@@ -316,7 +307,7 @@
 	
 	<!-- 한달의 총 가격 -->
 	<select id="allTotalPrice" resultType="int">
-		SELECT SUM(TOTAL_PRICE)
+		SELECT NVL(SUM(TOTAL_PRICE), 0)
 		FROM ORDER_INFO
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
 		WHERE TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}  

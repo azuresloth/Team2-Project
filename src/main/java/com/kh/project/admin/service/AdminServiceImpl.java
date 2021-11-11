@@ -40,7 +40,7 @@ public class AdminServiceImpl implements AdminService{
 		salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBySales", salesManageVO));
 		return sqlSession.selectList("adminMapper.selectSalesList", salesManageVO);
 	}
-
+	
 	
 
 	@Override
@@ -67,8 +67,13 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO) {
-		salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBySales", salesManageVO));
-		return sqlSession.selectList("adminMapper.selectSalesByCate", salesManageVO);
+		if(salesManageVO.getCateCode().equals(null)) {
+			salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBySales", salesManageVO));
+		}
+		else {
+			salesManageVO.setTotalRow(sqlSession.selectOne("adminMapper.getTotalRowBycateSales", salesManageVO));
+		}
+		return sqlSession.selectList("adminMapper.selectSalesList", salesManageVO);
 	}
 
 	@Override

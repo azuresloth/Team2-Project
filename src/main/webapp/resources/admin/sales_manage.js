@@ -15,46 +15,50 @@ $(document).ready(function(){
 	//이벤트 처리
 	$(document).on('click', '.nameDiv', function() {
     	//클릭한 카테고리의 CATE_CODE\
-		var cateCode = $(this).parent().parent().children(':first').text();
-		$.ajax({
-            url: '/admin/selectSalesByCateAjax', //요청경로
-            type: 'post',
-            data:{'cateCode':cateCode}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
-            success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
-            	$('#salesDiv').empty();
-            	
-            	var str = '';
-            	str += '	<thead>';
-            	str += '		<tr>';
-            	str += '			<th scope="col">상품코드</th>';
-            	str += '			<th scope="col">상품이름</th>';
-            	str += '			<th scope="col">상품의 총 구매가격</th>';
-            	str += '			<th scope="col">상품의 총 구매수량</th>';
-            	str += '			<th scope="col">상품 구매일</th>';
-            	str += '		</tr>';
-            	str += '	</thead>';
-            	
-            	$(result).each(function(index, element){
-	            		str += '	<tbody>';
-	            		str += '	<tr>';
-	            		str += '		<td>' + element.itemCode + '</td>';
-	            		str += '		<td>' + element.itemName + '</td>';
-	            		str += '		<td>' + element.totalPrice + '</td>';
-	            		str += '		<td>' + element.buyCnt + '</td>';
-	            		str += '		<td>' + element.buyDate + '</td>';
-	            		str += '	</tr>';
-	            		str += '	</tbody>';
-            	
-            	});
-       
-            	$('#salesDiv').append(str);
-            	
-            },
-            error: function(){
-             //ajax 실행 실패 시 실행되는 구간
-               alert('실패');
-            }
-      });
+		var cateCode = $(this).parent().prev().text();
+		
+		location.href = '/admin/salesManageByCate?cateCode=' + cateCode;
+
+		
+		//		$.ajax({
+//            url: '/admin/selectSalesByCateAjax', //요청경로
+//            type: 'post',
+//            data:{'cateCode':cateCode}, //필요한 데이터 '넘어가는 데이터의 이름': 실제 데이터 2개 이상일경우 ,로 나열
+//            success: function(result) { //위의 세줄을 해석하고 컨트롤로 간다, 오류가 없다면 success가 실행이 된다.
+//            	$('#salesDiv').empty();
+//            	
+//            	var str = '';
+//            	str += '	<thead>';
+//            	str += '		<tr>';
+//            	str += '			<th scope="col">상품코드</th>';
+//            	str += '			<th scope="col">상품이름</th>';
+//            	str += '			<th scope="col">상품의 총 구매가격</th>';
+//            	str += '			<th scope="col">상품의 총 구매수량</th>';
+//            	str += '			<th scope="col">상품 구매일</th>';
+//            	str += '		</tr>';
+//            	str += '	</thead>';
+//            	
+//            	$(result).each(function(index, element){
+//	            		str += '	<tbody>';
+//	            		str += '	<tr>';
+//	            		str += '		<td>' + element.itemCode + '</td>';
+//	            		str += '		<td>' + element.itemName + '</td>';
+//	            		str += '		<td>' + element.totalPrice + '</td>';
+//	            		str += '		<td>' + element.buyCnt + '</td>';
+//	            		str += '		<td>' + element.buyDate + '</td>';
+//	            		str += '	</tr>';
+//	            		str += '	</tbody>';
+//            	
+//            	});
+//       
+//            	$('#salesDiv').append(str);
+//            	
+//            },
+//            error: function(){
+//             //ajax 실행 실패 시 실행되는 구간
+//               alert('실패');
+//            }
+//      });
 		
 		
 		

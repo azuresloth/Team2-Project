@@ -35,18 +35,19 @@
 			</div>
 			<div class="col-3 d-flex justify-content-start">
 				<input type="date" id="startDate" class="form-select" name="startDate" 
-					<c:choose>
-						<c:when test="${param.startDate ne null and !param.startDate eq ''}">
-							value="${param.startDate }"
-						</c:when>
-						<c:otherwise>
-							value="${beforMonth }"
-						</c:otherwise>
-					</c:choose>
-				>
+					<c:if test="${param.startDate eq null }">
+						value="${beforMonth }"
+					</c:if>
+					value="${param.startDate }"
+					>
 			</div>
 			<div class="col-3 d-flex justify-content-start">
-				<input type="date" id="endDate" class="form-select" name="endDate" value="${nowMonth }">
+				<input type="date" id="endDate" class="form-select" name="endDate" 
+					<c:if test="${param.endDate eq null }">
+						value="${nowMonth }"
+					</c:if>
+					value="${param.endDate }"
+				>
 			</div>
 			<div class="col-1 btn-group">
 				<input type="submit" value="검색" class="form-control btn btn-secondary" >
@@ -61,6 +62,8 @@
 			  <th scope="col">주문상품</th>
 			  <th scope="col">결재방식</th>
 			  <th scope="col">주문일자</th>
+			  <th scope="col">상품 1개의 가격</th>
+			  <th scope="col">구매 개수</th>
 			  <th scope="col">결재금액</th>
 			</tr>
 		</thead>
@@ -72,6 +75,8 @@
 								<td>${orderInfo.itemName}</td>
 								<td>${orderInfo.paymentPlan}</td>
 								<td>${orderInfo.buyDate}</td>
+								<td><fmt:formatNumber value="${orderInfo.totalPrice / orderInfo.buyCnt}" pattern="#,###" />원</td>
+								<td>${orderInfo.buyCnt}</td>
 								<td>
 									<input type="hidden" value="${orderInfo.totalPrice }" class="totalPrice">
 									<fmt:formatNumber value="${orderInfo.totalPrice}" pattern="#,###" />원
