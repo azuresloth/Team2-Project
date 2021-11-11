@@ -4,8 +4,11 @@ package com.kh.project.board.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kh.project.board.service.ReplyService;
 import com.kh.project.board.vo.ReplyVO;
 import com.kh.project.member.service.MemberService;
+import com.kh.project.member.vo.MemberVO;
 
 
 @Controller
@@ -73,6 +77,23 @@ public class ReplyController {
 		return replyService.deleteReply(replyCode);
 	}
 	
+	// 개인이 쓴 댓글 글을 관리 할수 있게 해준다.
+	@GetMapping("/personalReplyList")
+	public String personalBoard(HttpSession session,Model model) {
+		// 로그인 한 아이디를 가지고 오기
+		String loginId = ((MemberVO)session.getAttribute("loginInfo")).getId();
+		System.out.println("personalBoard.id() : ------------------------------------------------------" + loginId);
+		
+		// 로그인 한 아이디로 게시판에 글쓴거만 가지고오기.
+		List<ReplyVO> userReplyList = replyService.userReplyList(loginId);
+		System.out.println("personalBoard().List<ReplyVO>" + userReplyList);
+		// jsp에 사용자가 작성한 댓글 모두 보여주기
+		model.addAttribute("userReplyList", userReplyList);
+		// 이동할 jsp 주소 전달해준다.
+		model.addAttribute("pathList", "personalReplyList");
+		
+		return "board/personalBoard";
+	}
 	
 	
 

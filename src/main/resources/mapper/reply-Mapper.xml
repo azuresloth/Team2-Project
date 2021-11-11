@@ -8,6 +8,7 @@
 		<result column="CONTENT"				 property="content"/>
 		<result column="CREATE_DATE"			 property="createDate"/>
 		<result column="BOARD_NUM" 				 property="boardNum"/>
+		<collection property="boardList" resultMap="boardMapper.board" />
 	</resultMap>
 	
 	<!-- 댓글 리스트 -->
@@ -49,6 +50,13 @@
 		DELETE BOARD_REPLY
 		WHERE REPLY_CODE= #{replyCode}
 	</delete>
+	
+	<!-- 사용자가 쓴 댓글 리스트만 전달해준다. -->
+	<select id="userReplyList" resultMap="reply">
+		SELECT REPLY_CODE, CONTENT, CREATE_DATE, BOARD_NUM, WRITER, TITLE 
+		FROM USER_REPLY WHERE REPLY_WRITER = #{loginId}
+		ORDER BY CREATE_DATE DESC
+	</select>
 	
 	
 </mapper>

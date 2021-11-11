@@ -118,6 +118,7 @@ public class BoardController {
 		System.out.println("personalBoard.id() : ------------------------------------------------------" + loginId);
 		
 		// 로그인 한 아이디로 게시판에 글쓴거만 가지고오기.
+		model.addAttribute("pathList", "personalBoardList");
 		model.addAttribute("boardListWrittenById", boardService.boardListWrittenById(loginId));
 		
 		return "board/personalBoard";

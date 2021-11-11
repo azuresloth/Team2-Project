@@ -42,6 +42,11 @@ public class ReplyServiceImpl implements ReplyService{
 		return sqlSession.delete("replyMapper.deleteReply", replyCode);
 	}
 
+	@Override
+	public List<ReplyVO> userReplyList(String loginId) {
+		return sqlSession.selectList("replyMapper.userReplyList", loginId);
+	}
+
 
 
 	

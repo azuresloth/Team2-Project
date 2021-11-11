@@ -1,6 +1,7 @@
 package com.kh.project.board.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class ReplyVO {
 
@@ -9,7 +10,15 @@ public class ReplyVO {
 	private String content;
 	private Date createDate;
 	private String boardNum;
+	private List<BoardVO> boardList;
 	
+	
+	public List<BoardVO> getBoardList() {
+		return boardList;
+	}
+	public void setBoardList(List<BoardVO> boardList) {
+		this.boardList = boardList;
+	}
 	public String getReplyCode() {
 		return replyCode;
 	}
@@ -43,7 +52,6 @@ public class ReplyVO {
 	@Override
 	public String toString() {
 		return "ReplyVO [replyCode=" + replyCode + ", writer=" + writer + ", content=" + content + ", createDate="
-				+ createDate + ", boardNum=" + boardNum + "]";
+				+ createDate + ", boardNum=" + boardNum + ", boardList=" + boardList + "]";
 	}
-	
 }

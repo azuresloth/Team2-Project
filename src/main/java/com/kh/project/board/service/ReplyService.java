@@ -20,4 +20,7 @@ public interface ReplyService {
 	
 	// 댓글 삭제 
 	int deleteReply(String replyCode);
+	
+	// 사용자가 작성한 댓글 리스트
+	List<ReplyVO> userReplyList(String loginId);
 }
