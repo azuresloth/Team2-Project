@@ -134,7 +134,7 @@ body {
 .botBorder-ed{
 	border-bottom: 1px solid #ededed;
 }
-.botBorder-eㄹ{
+.botBorder-ef{
 	border-bottom: 1px solid #efefef;
 }
 .border-ed{
