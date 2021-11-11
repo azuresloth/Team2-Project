@@ -73,7 +73,7 @@ public class AdminController {
 		return "admin/sales_manage";
 	}
 	
-	@GetMapping("/sal	@GetMapping("/insertItemForm")
+	@GetMapping("/insertItemForm")
 	public String goInsertItem(Model model, SideMenuVO sideMenuVO) {
 		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("sidePage", "insertItemForm");
