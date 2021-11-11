@@ -124,6 +124,61 @@ public class BoardController {
 		return "board/personalBoard";
 	}
 	
+	// 개인이 쓴 게시판 글 보러가기
+	@GetMapping("/viewPersonalboard")
+	public String viewPersonalboard(Model model,String boardNum) {
+		System.out.println("viewPersonalboard().boardNum" + boardNum);
+		
+		// 이동하는 jsp 에서 열리는 jsp이다.
+		model.addAttribute("pathList", "viewPersonalboard");
+		// 게시판 글 내용들 다들고 오기. 만들어 놓은 쿼리를 쓰면 된다.
+		// 게시판 글 하나만 전달
+		BoardVO boardVO = boardService.viewPersonalboard(boardNum);
+		System.out.println("viewPersonalboard().boardVO" + boardVO);
+		model.addAttribute("boardVO", boardVO);
+		// 이동하는 jsp
+		return "board/personalBoard";
+	}
+	
+	// 개인 게시판 글 수정 
+	@GetMapping("/updatePersonalFormBoard")
+	public String updatePersonalFormBoard(Model model,String boardNum) {
+		System.out.println("updatePersonalFormBoard().boardNum" + boardNum);
+		
+		// 이동하는 jsp 에서 열리는 jsp이다.
+		model.addAttribute("pathList", "updatePersonalFormBoard");
+	
+		// 게시판 글 내용들 다들고 오기. 만들어 놓은 쿼리를 쓰면 된다.
+		// 게시판 글 하나만 전달
+		BoardVO boardVO = boardService.viewPersonalboard(boardNum);
+		System.out.println("viewPersonalboard().boardVO" + boardVO);
+		model.addAttribute("boardVO", boardVO);
+		
+		// 이동하는 jsp
+		return "board/personalBoard";
+	}
+	
+	
+	// 개인 게시판 수정 처리
+	@PostMapping("/updatePersonalBoard")
+	public String updatePersonalBoard(Model model,BoardVO boardVO) {
+		System.out.println("updatePersonalBoard().boardVO" + boardVO);
+		
+		// 업데이트 처리 실행
+		boardService.updatePersonalBoard(boardVO);
+		// 개인 게시판 글보러가는 콘트롤러로 이동하기
+		return "redirect:/board/viewPersonalboard?boardNum=" + boardVO.getBoardNum();
+	}
+	
+	// 개인 게시판 삭제 처리
+	@GetMapping("/deletePersonalBoard")
+	public String deletePersonalBoard(String boardNum) {
+		System.out.println("deletePersonalBoard().boardNum" + boardNum);
+		// 삭제 처리
+		boardService.deletePersonalBoard(boardNum);
+		return "redirect:/board/personalBoard";
+	}
+	
 }
 
 

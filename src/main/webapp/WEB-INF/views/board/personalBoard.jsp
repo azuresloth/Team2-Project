@@ -36,7 +36,7 @@
 				<!-- ${boardListWrittenById} 여기에는 개인이 쓴 게시판 글 리스트를 가지고 간다. -->
 				<a class="px-5 pb-1 fs-6 orderListDiv" href="/reply/personalReplyList">댓글</a>
 			</div>
-			
+			<!-- 여기에 서 화면을 바꾸어준다. -->
 			<jsp:include page="${pathList }.jsp" />
 			
 		

@@ -24,9 +24,9 @@
 	<table>
 		<tr>
 			<td>게시글 제목</td>
-			<td>게시글 내용</td>
 			<td>게시글 조회수</td>
 			<td>게시일</td>
+			<td></td>
 		</tr>
 		<!-- 댓글 할줄씩 뿌려주기 -->
 		<c:if test="${empty boardListWrittenById }">
@@ -37,11 +37,16 @@
 		<c:if test="${not empty boardListWrittenById }">
 			<c:forEach items="${boardListWrittenById }" var="board">
 				<tr>
-					<td>${board.title }</td>
-					<td>${board.content }</td>
+					<td>
+						<a href="viewPersonalboard?boardNum=${board.boardNum }">${board.title }</a>
+					</td>
 					<td>${board.readCnt }</td>
 					<td>
 						<fmt:formatDate value="${board.createDate }" pattern="yyyy.MM.dd(hh:mm)"/>
+					</td>
+					<td>
+						<input class="btn btn-secondary" type="button" value="삭제" 
+						onclick="location.href='/board/deletePersonalBoard?boardNum=${board.boardNum }';">
 					</td>
 				</tr>
 			</c:forEach>

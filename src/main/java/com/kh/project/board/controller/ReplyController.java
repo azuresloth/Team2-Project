@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.project.board.service.ReplyService;
 import com.kh.project.board.vo.ReplyVO;
-import com.kh.project.member.service.MemberService;
 import com.kh.project.member.vo.MemberVO;
 
 
@@ -89,12 +88,22 @@ public class ReplyController {
 		System.out.println("personalBoard().List<ReplyVO>" + userReplyList);
 		// jsp에 사용자가 작성한 댓글 모두 보여주기
 		model.addAttribute("userReplyList", userReplyList);
+		
 		// 이동할 jsp 주소 전달해준다.
 		model.addAttribute("pathList", "personalReplyList");
-		
 		return "board/personalBoard";
+		// 이동하는 곳 잘이해 하고 있기
+		//여기에 jsp를 뿌려준다는걸 이해하고 있어야 한다.
 	}
 	
+	//댓글 삭제 하기
+	@GetMapping("/deletePersonalReply")
+	public String deletePersonalReply(String replyCode) {
+		//댓글 삭제 후
+		replyService.deleteReply(replyCode);
+		// 댓글 뿌려주는 콘트롤러로 이동
+		return "redirect:/reply/personalReplyList";
+	}
 	
 
 }

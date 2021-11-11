@@ -28,4 +28,13 @@ public interface BoardService {
 	// 아이디로 작성한 글 목록 리스트 전달
 	List<BoardVO> boardListWrittenById(String loginId);
 	
+	// 아이디로 작성한 글 보기
+	BoardVO viewPersonalboard(String boardNum);
+	
+	// 아이디로 작성한 글 수정 처리
+	void updatePersonalBoard(BoardVO boardVO);
+	
+	// 아이디로 쓴글 삭제 처리
+	void deletePersonalBoard(String boardNum);
+	
 }

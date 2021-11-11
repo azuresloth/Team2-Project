@@ -20,12 +20,13 @@
 </style>
 </head>
 <body>
-<%-- 이안에 데이터가 다넣어 온다.	${userReplyList } --%>
+<%-- 	${userReplyList } --%>
 	<table>
 		<tr>
 			<td>댓글을 작성한곳</td>
 			<td>댓글 내용</td>
 			<td>댓글 작성일</td>
+			<td></td>
 		</tr>
 		<!-- 댓글 할줄씩 뿌려주기 -->
 		<c:if test="${empty userReplyList }">
@@ -37,11 +38,15 @@
 			<c:forEach items="${userReplyList }" var="reply">
 				<tr>
 					<td>
-						${reply.boardList[0].writer } 님이 작성한 &lt; ${reply.boardList[0].title } &gt; 댓글을 작성 하였습니다.
+						${reply.boardList[0].writer } 님이 작성한 &lt; ${reply.boardList[0].title } &gt;에 댓글을 작성 하였습니다.
 					</td>
 					<td>${reply.content }</td>
 					<td>
 						<fmt:formatDate value="${reply.createDate }" pattern="yyyy.MM.dd(hh:mm)"/>
+					</td>
+					<td>
+						<input class="btn btn-secondary" type="button" value="삭제"
+						onclick="location.href='/reply/deletePersonalReply?replyCode=${reply.replyCode}'">
 					</td>
 				</tr>
 			</c:forEach>

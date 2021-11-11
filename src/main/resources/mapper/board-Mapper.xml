@@ -103,13 +103,34 @@
 		WHERE BOARD_NUM = #{boardNum}
 	</delete>
 		
-	<!-- 아이디가 쓴 글 목록만 전달해주기 -->
+	<!-- 아이디로 쓴 글 목록만 전달해주기 -->
 	<select id="boardListWrittenById" resultMap="board">
 		SELECT BOARD_NUM, WRITER, CREATE_DATE, CONTENT, READ_CNT, TITLE, IS_ADMIN
 		FROM SHOP_BOARD
 		WHERE WRITER = #{loginId}
 		ORDER BY CREATE_DATE DESC
 	</select>
+	
+	<!-- 아이디로 쓴 글 데이터 전달 -->
+	<select id="viewPersonalboard" resultMap="board">
+		SELECT BOARD_NUM, WRITER, CREATE_DATE, CONTENT, READ_CNT, TITLE
+		FROM SHOP_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</select>
+	
+	<!-- 아이디로 쓴 글 수정처리 -->
+	<update id="updatePersonalBoard">
+		UPDATE SHOP_BOARD
+		SET TITLE = #{title}, CONTENT = #{content}
+		WHERE BOARD_NUM = #{boardNum}
+	</update>
+	
+	<!-- 아이디로 쓴글 삭제 -->
+	<delete id="deletePersonalBoard">
+		DELETE SHOP_BOARD
+		WHERE BOARD_NUM = #{boardNum}
+	</delete>
+	
 </mapper>
 
 

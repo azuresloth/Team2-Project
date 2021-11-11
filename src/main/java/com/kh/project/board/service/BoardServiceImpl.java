@@ -56,6 +56,22 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.selectList("boardMapper.boardListWrittenById", loginId);
 	}
 
+	@Override
+	public BoardVO viewPersonalboard(String boardNum) {
+		return sqlSession.selectOne("boardMapper.viewPersonalboard", boardNum);
+	}
+
+	@Override
+	public void updatePersonalBoard(BoardVO boardVO) {
+		sqlSession.update("boardMapper.updatePersonalBoard", boardVO);
+		
+	}
+
+	@Override
+	public void deletePersonalBoard(String boardNum) {
+		sqlSession.delete("boardMapper.deletePersonalBoard", boardNum);
+	}
+
 
 }
 //
