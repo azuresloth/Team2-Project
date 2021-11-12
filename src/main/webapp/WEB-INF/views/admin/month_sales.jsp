@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-<script type="text/javascript" src="/resources/admin/month_sales.js?ver=11"></script>
+<script type="text/javascript" src="/resources/admin/month_sales.js?ver=12"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #fba062;
@@ -69,7 +69,14 @@
 		</thead>
 		<tbody id="orderListDiv">
 				<c:choose>
-					<c:when test="${!empty orderInfoVO.totalRow}">
+					<c:when test="${empty orderList}">
+						<tr>
+							<td colspan="7">
+								데이터가 없습니다
+							</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
 						<c:forEach items="${orderList }" var="orderInfo">
 							<tr>
 								<td>${orderInfo.itemName}</td>
@@ -83,13 +90,6 @@
 								</td>
 							</tr>
 						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="7">
-								데이터가 없습니다
-							</td>
-						</tr>
 					</c:otherwise>
 				</c:choose>
 		</tbody>

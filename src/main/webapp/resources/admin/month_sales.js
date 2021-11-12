@@ -10,25 +10,27 @@ $(document).ready(function(){
 	});	
 	var total = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	$('#totalPrice').text(total);
+	
+	
 	var startDate1 = $('#startDate').val(); 
-	var endDate1 = '';
+	var endDate1 = $('#endDate').val();
+	
 	//이벤트 처리
 	$(document).on('change', '#startDate', function() {
-		alert('야발');
 		var startDate2 = $('#startDate').val();
 		var endDate2 = $('#endDate').val();
 		if(startDate2 > endDate2){
 			$('#startDate').val(startDate1);
-			alert('됫니?');
+			alert('날짜를 확인해 주세요.');
 		}
 	});
+	
 	$(document).on('change', '#endDate', function() {
-		alert('야발');
 		var startDate2 = $('#startDate').val();
 		var endDate2 = $('#endDate').val();
 		if(endDate2 < startDate2){
-			$('#endtDate').val(endDate2);
-			alert('됫다?');
+			$('#endDate').val(endDate1);
+			alert('날짜를 확인해 주세요.');
 		}
 	});
 
