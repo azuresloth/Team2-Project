@@ -63,7 +63,7 @@
 					      	<select class="searchSelectBox" name="orderBy">
 					      		<option value="">:: 기준선택 ::</option>
 					      		<option value="ITEM_NAME"<c:if test="${itemVO.orderBy eq 'ITEM_NAME'}">selected</c:if>>상품명 순</option>
-					      		<option value="REG_DATE DESC"<c:if test="${itemVO.orderBy eq 'REG_DATE DESC'}">selected</c:if>>신상품 순</option>
+					      		<%-- <option value="REG_DATE DESC"<c:if test="${itemVO.orderBy eq 'REG_DATE DESC'}">selected</c:if>>신상품 순</option> --%>
 					      		<option value="ITEM_PRICE"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE'}">selected</c:if>>낮은 가격 순</option>
 					      		<option value="ITEM_PRICE DESC"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE DESC'}">selected</c:if>>높은 가격 순</option>
 					      	</select>
@@ -84,114 +84,47 @@
 			
 			
 			<div class="row justify-content-center">
-					<c:choose>
-						<c:when test="${itemVO.totalCnt eq 0}">
-							<div class="col text-center">
-							<strong class="warning">검색결과가 없습니다.</strong>
-							<br>
-							<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+				<c:choose>
+					<c:when test="${itemVO.totalCnt eq 0}">
+						<div class="col text-center">
+						<strong class="warning">검색결과가 없습니다.</strong>
+						<br>
+						<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${itemList}" var="itemInfo">
+							<div class="col-3">
+								<!-- 사진 -->
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+								<!-- 이름, 가격 -->
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}">${itemInfo.itemName}</a>
+								<div>${itemInfo.itemPrice}원</div>
 							</div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${itemList}" var="itemInfo">
-								<div class="col-3">
-									<!-- 사진 -->
-									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
-									<!-- 이름, 가격 -->
-									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}">${itemInfo.itemName}</a>
-									<div>${itemInfo.itemPrice}원</div>
-								</div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
-			</div>
-			<div class="col-12">
-				<!-- pagination -->
-				<% request.setAttribute("url", "/admin/salesManage"); %>
-				<% request.setAttribute("noLinkColor", "#999"); %>
-				<div class="container mt-3 pagination">
-					<ul class="pagination">
-						<!-- << 버튼(처음으로 이동) -->
-						<li class="page-item">
-							<!-- page 1보다 크면은 -->
-							<c:if test="${itemVO.page > 1 }">
-								<a class="page-link" href="${url}?page=1&perPageRowNum=${itemVO.perPageRowNum}">
-									<i class="fa fa-angle-double-left"></i>
-								</a>
-							</c:if>
-							<!-- page 1 이면 -->
-							<c:if test="${itemVO.page == 1 }">
-								<a class="page-link" style="pointer-events: none; cursor: default;">
-									<i class="fa fa-angle-double-left" style="color: ${noLinkColor};"></i>
-								</a>
-							</c:if>
-						</li>
-						<!-- < 버튼(다음 그룹 페이지로이동)-->
-						<li class="page-item">
-							<c:if test="${itemVO.startPage > 1}">
-								<a class="page-link" href="${url }?${itemVO.startPage -1}&perPageRow=${itemVO.perPageRowNum}">
-									<i class="fa fa-angle-left"></i>
-								</a>
-							</c:if>
-							<c:if test="${itemVO.startPage == 1 }">
-								<a class="page-link" style="pointer-events: none; cursor: default;">
-									<i class="fa fa-angle-left" style="color: ${noLinkColor};"></i>
-								</a>
-							</c:if>
-						</li>
-						<!-- 숫자를 눌려서 페이지 이동 -->
-						<c:forEach begin="${itemVO.startPage }" end="${itemVO.endPage }" var="cnt">
-							<li class="page-item <c:if test="${itemVO.page == cnt }">active</c:if>">
-								<c:if test="${itemVO.page == cnt }">
-									<a class="page-link" style="pointer-events: none; cursor: default;">
-										${cnt }
-									</a>
-								</c:if>
-							<c:if test="${itemVO.page != cnt }">
-									<a class="page-link"
-										<c:if test="${itemVO.cateCode eq null and !itemVO.cateCode eq ''}">
-											href = "/item/mainSearchResult?searchValue=${itemVO.searchValue}"
-										</c:if>
-										href="${url }?page=${cnt}&perPageRowNum=${itemVO.perPageRowNum}">
-										${cnt }
-									</a>
-								</c:if>
-							</li>
 						</c:forEach>
-						<!-- > 버튼(다음 그룹 페이지로 이동) -->
-						<c:if test="${itemVO.endPage < itemVO.totalPage }">
-							<li class="page-item">
-								<a class="page-link" href="${url }?page=${itemVO.endPage +1}&perPageRowNum=${itemVO.perPageRowNum}">
-									<i class="fa fa-angle-right"></i>
-								</a>
-							</li>
-						</c:if>
-						<c:if test="${itemVO.endPage == itemVO.totalPage }">
-							<li class="page-item">
-								<a class="page-link" style="pointer-events: none; cursor: default;">
-									<i class="fa fa-angle-right" style="color: ${noLinkColor};"></i>
-								</a>
-							</li>
-						</c:if>
-						<!-- > 버튼(마지막 페이지로 이동) -->
-						<c:if test="${itemVO.page < itemVO.totalPage }">
-							<li class="page-item">
-							<a class="page-link" href="${url }?page=${itemVO.totalPage}&perPageRowNum=${itemVO.perPageRowNum}">
-								<i class="fa fa-angle-double-right"></i>
-							</a>
-						</li>
-						</c:if>
-						<c:if test="${itemVO.page == itemVO.totalPage }">
-							<li class="page-item">
-								<a class="page-link" style="pointer-events: none; cursor: default;">
-									<i class="fa fa-angle-double-right" style="color: ${noLinkColor};"></i>
-								</a>
-							</li>
-						</c:if>
-					</ul>
-				</div>
-				<!-- container mt-3 의 끝 -->
+					</c:otherwise>
+				</c:choose>
 			</div>
+			
+			<c:if test="${itemVO.totalCnt ne 0}">
+				<div class="col text-center">
+					<nav aria-label="...">
+					  <ul class="pagination justify-content-center">
+					    <li class="page-item <c:if test="${!itemVO.prev }">disabled</c:if>">
+					      <a class="page-link" href="/item/mainSearchResult2?nowPage=${param.beginPage - 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&lt;</a>
+					    </li>
+					    <c:forEach begin="${itemVO.beginPage}" end="${itemVO.endPage}" var="pageNumber">
+						    <li class="page-item <c:if test="${itemVO.nowPage eq pageNumber}">active</c:if>">
+						    	<a class="page-link" href="/item/mainSearchResult2?nowPage=${pageNumber}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${itemVO.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">${pageNumber}</a>
+						    </li>
+						</c:forEach>
+					    <li class="page-item <c:if test="${!itemVO.next }">disabled</c:if>">
+					      <a class="page-link" href="/item/mainSearchResult2?nowPage=${param.endPage + 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&gt;</a>
+					    </li>
+					  </ul>
+					</nav>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </body>

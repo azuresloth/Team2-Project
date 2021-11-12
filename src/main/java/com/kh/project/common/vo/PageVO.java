@@ -2,7 +2,7 @@ package com.kh.project.common.vo;
 
 public class PageVO extends BaseSearchVO{
 	private int nowPage; 		// 현재 선택된 페이지 번호
-	private int totalCnt; 		// 전체 데이터 수
+	private int pTotalCnt; 		// 전체 데이터 수
 	private int beginPage; 		// 화면에 보이는 첫 페이지
 	private int endPage; 		// 화면에 보이는 마지막 페이지
 	private int displayCnt; 	// 한 화면에 보여지는 게시글 수 
@@ -11,11 +11,24 @@ public class PageVO extends BaseSearchVO{
 	private boolean next; 		// 다음 버튼의 유무
 	private int startNum; 		// 시작 row_num
 	private int endNum; 		// 마지막 row_num
-	
+
+	@Override
+	public String toString() {
+		return "PageVO [nowPage=" + nowPage + ", pTotalCnt=" + pTotalCnt + ", beginPage=" + beginPage + ", endPage="
+				+ endPage + ", displayCnt=" + displayCnt + ", displayPageCnt=" + displayPageCnt + ", prev=" + prev
+				+ ", next=" + next + ", startNum=" + startNum + ", endNum=" + endNum + "]";
+	}
+
+
 	public PageVO() {
 		nowPage = 1;
-		displayCnt = 5;
+		displayCnt = 12;
 		displayPageCnt = 5;
+	}
+	
+	
+	public int getDisplayPageCnt() {
+		return displayPageCnt;
 	}
 
 	public int getNowPage() {
@@ -26,12 +39,12 @@ public class PageVO extends BaseSearchVO{
 		this.nowPage = nowPage;
 	}
 
-	public int getTotalCnt() {
-		return totalCnt;
+	public int getPTotalCnt() {
+		return pTotalCnt;
 	}
 
-	public void setTotalCnt(int totalCnt) {
-		this.totalCnt = totalCnt;
+	public void setPTotalCnt(int pTotalCnt) {
+		this.pTotalCnt = pTotalCnt;
 	}
 
 	public boolean getPrev() {
@@ -83,8 +96,8 @@ public class PageVO extends BaseSearchVO{
 		beginPage = endPage - displayPageCnt + 1;
 		
 		// 전체 페이지 수
-		//int totalPage = (int)(Math.ceil(totalCnt / (double)displayPageCnt));
-		int totalPage = (int)(Math.ceil(totalCnt / (double)displayCnt));
+		//int totalPage = (int)(Math.ceil(pTotalCnt / (double)displayPageCnt));
+		int totalPage = (int)(Math.ceil(pTotalCnt / (double)displayCnt));
 		
 		// next 버튼 유무
 		if(endPage < totalPage) {

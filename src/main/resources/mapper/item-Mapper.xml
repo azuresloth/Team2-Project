@@ -27,22 +27,74 @@
 		<result column="IS_MAIN"			property="isMain"/>
 	</resultMap>
  	
+ 	<!-- 카테고리 페이징처리 상품 전체 갯수 조회 -->
+	<select id="selectItemListCnt" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM ITEM
+		<if test="cateCode != null and !cateCode.equals('')">
+		WHERE CATE_CODE = #{cateCode}
+		</if>
+	</select>
+	<!-- 메인 검색 페이지 페이징처리 상품 전체 갯수 조회 -->
+	<select id="selectSearchListCnt" resultType="int">
+		SELECT COUNT(ITEM.ITEM_CODE)
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND IS_MAIN = 'Y'
+ 		<if test="!searchValue.equals('all')">
+ 		AND ITEM_NAME LIKE '%'||#{searchValue}||'%'
+ 		</if>
+ 		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
+ 		AND CATE_CODE = #{searchKeyword}
+ 		</if>
+ 		<if test="minPrice != 0 and maxPrice != 0">
+ 		AND ITEM_PRICE &gt;= #{minPrice}
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		</if>
+ 		<if test="minPrice != 0 and maxPrice == 0">
+ 		AND ITEM_PRICE &gt;= #{minPrice}
+ 		</if>
+ 		<if test="minPrice == 0 and maxPrice != 0">
+ 		AND ITEM_PRICE &lt;= #{maxPrice}
+ 		</if>
+ 		<if test="orderBy != null and !orderBy.equals('')">
+ 		ORDER BY ${orderBy}
+ 		</if>
+	</select>
+ 	
  	<!-- 카테고리 상품조회 -->
  	<select id="selectItemList" resultMap="item">
- 		SELECT ITEM.ITEM_CODE
+ 		SELECT ITEM_CODE
  			, ITEM_NAME
  			, ITEM_PRICE
  			, ITEM_INTRO
  			, ATTACHED_IMG_NAME
  			, CATE_CODE
- 			, ROWNUM
- 		FROM ITEM ITEM, ITEM_IMG IMG
- 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
- 		<if test="cateCode != null and !cateCode.equals('')">
- 		AND CATE_CODE = #{cateCode}
- 		</if>
- 		AND IS_MAIN = 'Y'
- 		ORDER BY ITEM_CODE DESC
+            , ROW_NUM
+ 		FROM(SELECT ITEM_CODE
+	 			, ITEM_NAME
+	 			, ITEM_PRICE
+	 			, ITEM_INTRO
+	 			, ATTACHED_IMG_NAME
+	 			, CATE_CODE
+	            , ROWNUM AS ROW_NUM
+	 		FROM(SELECT ITEM.ITEM_CODE
+		 			, ITEM_NAME
+		 			, ITEM_PRICE
+		 			, ITEM_INTRO
+		 			, ATTACHED_IMG_NAME
+		 			, CATE_CODE
+		 			, ROWNUM
+		 		FROM ITEM ITEM, ITEM_IMG IMG
+		 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+		 		<if test="cateCode != null and !cateCode.equals('')">
+		 		AND CATE_CODE = #{cateCode}
+		 		</if>
+		 		AND IS_MAIN = 'Y'
+		 		ORDER BY ITEM_CODE DESC)
+		 	)
+		 	WHERE ROW_NUM >= #{startNum} AND ROW_NUM &lt;= #{endNum}
  	</select>
  	
  	<!-- 최근 등록 아이템 -->
@@ -58,7 +110,7 @@
  		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
  		AND IS_MAIN = 'Y'
  		AND ITEM_STATUS = 2
- 		AND ROWNUM &lt; 21
+ 		AND ROWNUM &lt; 10
  		ORDER BY ITEM_CODE DESC
  	</select>
  	
@@ -78,6 +130,7 @@
  		</if>
  		AND IS_MAIN = 'Y'
  		AND ITEM_STATUS = 2
+ 		AND ROWNUM &lt; 10
  		AND ITEM_STOCK &lt; 50
  	</select>
  	
@@ -92,21 +145,21 @@
  	
  	<!-- 메인페이지에서 상품검색 -->
  	<select id="mainPageSearchList" resultMap="item">
- 	SELECT ITEM.ITEM_CODE
+ 	SELECT ITEM_CODE
 		, ITEM_NAME
 		, ITEM_INTRO
 		, ITEM_PRICE
 		, CATE_CODE
 		, ATTACHED_IMG_NAME
-		, RNUM
+		, ROW_NUM
 		FROM 
-			(SELECT ITEM.ITEM_CODE
+			(SELECT ITEM_CODE
 				, ITEM_NAME
 				, ITEM_INTRO
 				, ITEM_PRICE
 				, CATE_CODE
 				, ATTACHED_IMG_NAME
-				, ROWNUM RNUM
+				, ROWNUM AS ROW_NUM
  			FROM(SELECT ITEM.ITEM_CODE
 	 			, ITEM_NAME
 	 			, ITEM_INTRO
@@ -138,12 +191,12 @@
 	 		</if>
 	 		)
 	 	)
-	 	WHERE RNUM BETWEEN #{startRow} and #{endRow}
+	 	WHERE ROW_NUM BETWEEN #{startNum} and #{endNum}
  	</select>
  	
  	<!-- 검색한 상품 갯수 -->
  	<select id="mainPageSearchCnt" resultType="int">
- 		SELECT COUNT(ITEM_NAME)
+ 		SELECT COUNT(ITEM_CODE)
  		FROM ITEM
  		<if test="!searchValue.equals('all')">
  		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%' 

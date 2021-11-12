@@ -38,4 +38,12 @@ public interface ItemService {
 	
 	// 상품 매진으로
 	void updateItemStatus(BuyInfoVO buyInfoVO);
+	
+	
+	
+	
+	// 카테고리 페이지 페이징 전체 갯수 조회
+	int selectItemListCnt(ItemVO itemVO);
+	// 메인 검색 페이지 페이징 전체 갯수 조회
+	int selectSearchListCnt(ItemVO itemVO);
 }

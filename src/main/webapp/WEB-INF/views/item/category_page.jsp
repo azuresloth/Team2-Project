@@ -66,6 +66,24 @@
 					</div>
 				</div>
 			</div>
+			
+			<div class="col text-center">
+				<nav aria-label="...">
+				  <ul class="pagination justify-content-center">
+				    <li class="page-item <c:if test="${!itemVO.prev }">disabled</c:if>">
+				      <a class="page-link" href="/item/categoryPage?nowPage=${itemVO.beginPage - 1}&cateCode=${itemVO.cateCode}">&lt;</a>
+				    </li>
+				    <c:forEach begin="${itemVO.beginPage}" end="${itemVO.endPage}" var="pageNumber">
+					    <li class="page-item <c:if test="${itemVO.nowPage eq pageNumber}">active</c:if>">
+					    	<a class="page-link" href="/item/categoryPage?nowPage=${pageNumber}&cateCode=${itemVO.cateCode}">${pageNumber}</a>
+					    </li>
+					</c:forEach>
+				    <li class="page-item <c:if test="${!itemVO.next }">disabled</c:if>">
+				      <a class="page-link" href="/item/categoryPage?nowPage=${itemVO.endPage + 1}&cateCode=${itemVO.cateCode}">&gt;</a>
+				    </li>
+				  </ul>
+				</nav>
+			</div>
 		</div>
 	</div>
 </body>

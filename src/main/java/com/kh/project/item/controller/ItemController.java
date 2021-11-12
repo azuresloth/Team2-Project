@@ -51,6 +51,23 @@ public class ItemController {
 	// 메인페이지에서 상품 검색
 	@PostMapping("/mainSearchResult")
 	public String mainSearchResult(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectSearchListCnt(itemVO));
+		itemVO.setPageInfo();
+		// 검색 결과
+		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
+		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
+		
+		// 세부 검색을 위한 정보
+		model.addAttribute("itemVO", itemVO);
+		
+		return "item/main_search_result";
+	}
+	@GetMapping("/mainSearchResult2")
+	public String mainSearchResult2(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectSearchListCnt(itemVO));
+		itemVO.setPageInfo();
 		// 검색 결과
 		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
 		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
@@ -64,6 +81,10 @@ public class ItemController {
 	// 메뉴 카테고리 페이지
 	@GetMapping("/categoryPage")
 	public String categoryPage(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectItemListCnt(itemVO));
+		itemVO.setPageInfo();
+		
 		// 베스트 상품
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		// 상품 리스트
@@ -82,6 +103,9 @@ public class ItemController {
 	// 메뉴 카테고리 페이지
 	@GetMapping("/bestItemList")
 	public String bestItemList(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectItemListCnt(itemVO));
+		itemVO.setPageInfo();
 		// 베스트 상품
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		// 상품 리스트
