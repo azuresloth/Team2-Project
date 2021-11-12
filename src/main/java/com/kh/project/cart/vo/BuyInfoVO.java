@@ -10,6 +10,7 @@ import com.kh.project.admin.vo.BuyStatusVO;
 public class BuyInfoVO  extends BuyStatusVO{
 	private String buyCode;
 	private String itemCode;
+	private String cateCode;
 	private String id;
 	private int totalPrice;
 	private String buyDate;
@@ -34,6 +35,12 @@ public class BuyInfoVO  extends BuyStatusVO{
 	
 	
 	
+	public String getCateCode() {
+		return cateCode;
+	}
+	public void setCateCode(String cateCode) {
+		this.cateCode = cateCode;
+	}
 	public String getItemName() {
 		return itemName;
 	}

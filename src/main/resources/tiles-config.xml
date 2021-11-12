@@ -5,7 +5,7 @@
 	
  	<!--일반 회원 페이지 설정 -->
 	<definition name="baseLayout" template="/WEB-INF/views/template/base_template.jsp">
-		<put-attribute name="title" value="Project"/>
+		<put-attribute name="title" value="T2 SHOP"/>
 		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
 		<put-attribute name="mainPage" value=""/>
 		<put-attribute name="body" value=""/>
@@ -14,7 +14,7 @@
 	
 	<!-- 관리자의 페이지 설정 -->
 	<definition name="adminLayout" template="/WEB-INF/views/template/admin_template.jsp">
-		<put-attribute name="title" value="Project"/>
+		<put-attribute name="title" value="T2 SHOP"/>
 		<put-attribute name="menu" value="/WEB-INF/views/template/menu.jsp"/>
 		<put-attribute name="side" value="/WEB-INF/views/template/admin_side.jsp"/>
 		<put-attribute name="body" value=""/>

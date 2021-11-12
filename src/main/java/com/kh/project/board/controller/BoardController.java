@@ -26,6 +26,7 @@ import com.kh.project.member.vo.MemberVO;
 @RequestMapping("/board")
 public class BoardController {
 	
+	// 게시판 서비스
 	@Resource(name = "boardService")
 	private BoardService boardService;
 	
@@ -177,6 +178,12 @@ public class BoardController {
 		// 삭제 처리
 		boardService.deletePersonalBoard(boardNum);
 		return "redirect:/board/personalBoard";
+	}
+	
+	// 로그인 체크
+	@GetMapping("/loginCheckForPersonalBoard")
+	public String loginCheckForPersonalBoard() {
+		return "board/loginCheckForPersonalBoard";
 	}
 	
 }

@@ -1,5 +1,7 @@
 package com.kh.project.item.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.project.board.service.BoardService;
 import com.kh.project.board.vo.BoardVO;
 import com.kh.project.common.service.CommonService;
 import com.kh.project.item.service.ItemService;
@@ -21,6 +24,11 @@ public class ItemController {
 	private ItemService itemService;
 	@Resource(name = "commonService")
 	private CommonService commonService;
+
+	//게시판 서비스 때문에 추가함
+	@Resource(name = "boardService")
+	private BoardService boardService;
+	
 	
 	// 상품 목록 페이지로 이동
 	@GetMapping("/mainPage")
@@ -28,6 +36,11 @@ public class ItemController {
 		model.addAttribute("itemList", itemService.selectItemList(itemVO));
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		
+		// 공지 사항 메인페이지에 제목과 작성일을 보여주기
+		// List<BoardVO> noticeList = boardService.noticeList();
+		// System.out.println("selectItemList().noticeList" + noticeList);
+		model.addAttribute("noticeList", boardService.noticeList());
 		
 		return "item/main_page";
 	}

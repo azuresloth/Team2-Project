@@ -90,6 +90,9 @@ a {
 .fixedDiv{
 	position: fixed;
 }
+#searchIcon{
+	border: none;
+}
 /* 타이틀 css */
 .titleButton {
   background-color: #c47135;

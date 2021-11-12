@@ -159,10 +159,11 @@ body {
 	border-top: 1px solid #333333;
 	margin: 0 auto;
 }
-.pageInfoTable th, .purInfoTable td{
+.pageInfoTable th, .pageInfoTable td{
 	padding-top: 15px;
 	padding-bottom: 15px;
 	border-bottom: 1px solid #efefef;
+	vertical-align: middle;
 }
 .pageInfoTable2Div, .buyTableDiv{
 	padding: 0;
@@ -193,6 +194,9 @@ body {
 	border-bottom: 1px solid #efefef;
 	vertical-align: middle;
 	font-size: 22px;
+}
+.onclickImg:hover{
+	cursor: pointer;
 }
 </style>
 </head>

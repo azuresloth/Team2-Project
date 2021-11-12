@@ -21,6 +21,7 @@
 		<result column="TOTAL_PRICE"			property="totalPrice"/>
 		<result column="BUY_DATE"				property="buyDate"/>
 		<result column="ITEM_NAME"				property="itemName"/>
+		<result column="CATE_CODE"				property="cateCode"/>
 		<result column="BUY_CNT"				property="buyCnt"/>
 		<result column="BUY_STATUS"				property="buyStatus"/>
 		<result column="PAYMENT_PLAN"			property="paymentPlan"/>
@@ -222,6 +223,7 @@
 		    , TOTAL_PRICE
 		    , BUY_STATUS
 		    , (SELECT ITEM_NAME FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS ITEM_NAME
+		    , (SELECT CATE_CODE FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS CATE_CODE
 		FROM BUY_INFO BI
 		WHERE ID = #{id}
 		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">

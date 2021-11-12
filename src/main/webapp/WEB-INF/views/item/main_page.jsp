@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,11 +57,29 @@
 				</div>
 				<div class="col-3">
 					<div class="p-1 border bg-light" style="height: 100%;">
-						공지사항 불러올 장소
+						<div>&lt; 공지사항 &gt;</div>
 						<div class="mt-2"></div>
-						<div>공지 1</div>
-						<div>공지 2</div>
-						<div>공지 3</div>
+						<!-- ${noticeList } 여기에 공지사항이 들어가 있음 최신 순 3개만 띄워 줌-->
+						<c:if test="${empty noticeList }">
+							<div>공지사항이 없습니다.</div>
+						</c:if>
+						<c:if test="${not empty noticeList }">
+							<c:forEach items="${noticeList}" var="vo"  begin="0" end="2" step="1" varStatus="status">
+								<div>
+									<span>공지 ${status.count }.</span>
+									<!-- 공지사항 상세보기로 보내주기 -->
+									<a href="/board/view?boardNum=${vo.boardNum }&numForReadCnt=1" style="color: blue;">${vo.title }</a> 
+									<span>
+										(<fmt:formatDate value="${vo.createDate }" pattern="yyyy.MM.dd"/>)
+									</span>
+								</div>
+							</c:forEach>
+						</c:if>
+						<!-- 공지 사항 띄워주는 코드 끝 -->
+						
+<!-- 						<div>공지 1</div> -->
+<!-- 						<div>공지 2</div> -->
+<!-- 						<div>공지 3</div> -->
 						<a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
 						<a href="/sample/asdf">???</a>
 					</div>

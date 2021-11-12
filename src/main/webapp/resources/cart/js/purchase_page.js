@@ -196,8 +196,8 @@ $(document).ready(function(){
 	      	});
 		}
 		if($(this).val() == '1'){
-			$('.deliveryInfoTable').find('input').not('input[type="radio"]').val('');
-			$('.deliveryInfoTable').find('input').not('input[type="radio"]').prop('readonly', false);
+			$('.pageInfoTable2').find('input').not('input[type="radio"]').val('');
+			$('.pageInfoTable2').find('input').not('input[type="radio"]').prop('readonly', false);
 			$("#tell1 option").not(":selected").prop("disabled", false);
 			$("#emailSelectBox option").not(":selected").prop("disabled", false);
 			$("#SearchAddr").prop("disabled", false);
@@ -215,10 +215,12 @@ $(document).ready(function(){
 		var random = Math.random();
 		var ranNum = Math.floor(random*10000+1);
 		var orderCode = 'merchant_'+ ranNum;
-		alert('임시결제합니다. \n' + orderCode);
-		$('#orderCode').val(orderCode);
-		$('#orderForm').attr('onsubmit', 'return true');
-    	$('#orderForm').submit();
+		var result = confirm('임시결제할까요?');
+		if(result) {
+			$('#orderCode').val(orderCode);
+			$('#orderForm').attr('onsubmit', 'return true');
+			$('#orderForm').submit();
+		}
 	}
 	
 	// 체크된 상품 삭제하기
