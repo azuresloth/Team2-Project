@@ -196,8 +196,8 @@ $(document).ready(function(){
 	      	});
 		}
 		if($(this).val() == '1'){
-			$('.deliveryInfoTable').find('input').not('input[type="radio"]').val('');
-			$('.deliveryInfoTable').find('input').not('input[type="radio"]').prop('readonly', false);
+			$('.pageInfoTable2').find('input').not('input[type="radio"]').val('');
+			$('.pageInfoTable2').find('input').not('input[type="radio"]').prop('readonly', false);
 			$("#tell1 option").not(":selected").prop("disabled", false);
 			$("#emailSelectBox option").not(":selected").prop("disabled", false);
 			$("#SearchAddr").prop("disabled", false);

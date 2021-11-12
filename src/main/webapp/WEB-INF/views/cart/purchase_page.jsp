@@ -13,7 +13,7 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=1"></script>
+<script type="text/javascript" src="/resources/cart/js/purchase_page.js?ver=2"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <meta http-equiv="Expires" content="Mon, 06 Jan 1990 00:00:01 GMT"> 
 /*위의 명시된 날짜 이후가 되면 페이지가 캐싱되지 않는다.(1990년 이후 쭉 )*/ 

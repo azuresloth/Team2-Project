@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/main_search_result.css?ver=8">
-<script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=0"></script>
+<script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=3"></script>
 </head>
 <body>
 	<div class="row justify-content-center">
@@ -54,7 +54,7 @@
 					    <tr>
 					      <th scope="row">가격대</th>
 					      <td colspan="3">
-					      	<input type="number" name="minPrice" <c:choose><c:when test="${not empty itemVO.minPrice}">value="${itemVO.minPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> ~ <input type="number" name="maxPrice" <c:choose><c:when test="${not empty itemVO.maxPrice}">value="${itemVO.maxPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> &nbsp;원
+					      	<input type="number" id="minPrice" name="minPrice" <c:choose><c:when test="${not empty itemVO.minPrice}">value="${itemVO.minPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> ~ <input type="number" id="maxPrice" name="maxPrice" <c:choose><c:when test="${not empty itemVO.maxPrice}">value="${itemVO.maxPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> &nbsp;원
 					      </td>
 					    </tr>
 					    <tr>
