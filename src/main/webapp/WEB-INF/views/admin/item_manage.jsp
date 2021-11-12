@@ -24,13 +24,14 @@ input[type="number"]{
 	width: 63px;
 	display: inline-block;
 }
+.container{padding: 0;}
 </style>
 </head>
 <body>
-	<div class="container mt-3">
-		<h2>상품 관리</h2>
+<h2 class="mb-0">상품 관리</h2>
+	<div class="container mt-1">
 		<div class="row">
-			<div class="col">
+			<div class="col ps-0">
 				<table class="table table-striped text-center">
 					<thead>
 						<tr>
