@@ -65,7 +65,7 @@
 			    <div class="collapse navbar-collapse mainMenuNavbar bg-light" id="navbarScroll" style="z-index: 1000; padding-left: 1rem;">
 			      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 			        <c:choose>
-			        	<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
+			        	<c:when test="${empty sessionScope.loginInfo or empty menuList }">
 			        	<!-- 관리자가 아닐때 -->
 			        		<c:if test="${not empty categoryList}">
 			        			<c:forEach items="${categoryList}" var="categoryInfo">

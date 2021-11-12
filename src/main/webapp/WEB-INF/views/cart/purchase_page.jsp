@@ -45,11 +45,11 @@
 		<div class="col-10 ">
 			<form id="orderForm" action="/cart/orderComplete" method="post" onsubmit="return false">
 			<div class="row mt-2 justify-content-center">
-				<div class="col-12 purTitleDiv">
+				<div class="col-12 botBorder-1b pageTitleDiv">
 					<h4>주문서작성</h4>
 				</div>
-				<div class="col-12 purInfoTableDiv">
-					<table class="purInfoTable text-center">
+				<div class="col-12 pageInfoTableDiv">
+					<table class="pageInfoTable text-center" style="border-top: none;">
 						<colgroup>
 							<col width="50px">
 							<col width="110px">

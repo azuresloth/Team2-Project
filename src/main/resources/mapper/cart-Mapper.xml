@@ -34,6 +34,7 @@
 		<result column="DETAIL_ADDR"			property="detailAddr"/>
 		<result column="ORDER_CODE"				property="orderCode"/>
 		<result column="ATTACHED_IMG_NAME"		property="attachedImgName"/>
+		<result column="ALL_TOTAL_PRICE"		property="allTotalPrice"/>
 	</resultMap>
 	<resultMap type="com.kh.project.cart.vo.DeliveryInfoVO" id="deliveryInfo">
 		<result column="DELIVERY_NAME"			property="deliveryName"/>
@@ -250,6 +251,7 @@
 		    , DETAIL_ADDR
 		    , DELIVERY_TELL
 		    , DELIVERY_MSG
+		    , (SELECT SUM(TOTAL_PRICE) FROM BUY_INFO WHERE ORDER_CODE = #{orderCode} ) AS ALL_TOTAL_PRICE
 		FROM BUY_INFO BI
 		WHERE ORDER_CODE = #{orderCode}
 	</select>
