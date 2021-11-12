@@ -1,6 +1,8 @@
 package com.kh.project.board.vo;
 
-public class SearchVO {
+import com.kh.project.common.vo.BaseSearchVO;
+
+public class SearchVO extends BaseSearchVO{
 	private String searchColunm;
 	private String searchWord;
 	

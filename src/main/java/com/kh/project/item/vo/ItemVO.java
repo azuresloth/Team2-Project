@@ -2,9 +2,9 @@ package com.kh.project.item.vo;
 
 import java.util.List;
 
-import com.kh.project.common.vo.PageVO;
+import com.kh.project.admin.vo.BuyStatusVO;
 
-public class ItemVO extends PageVO{
+public class ItemVO extends BuyStatusVO{
 	private String itemCode;
 	private String itemName;
 	private int itemPrice;
@@ -17,7 +17,15 @@ public class ItemVO extends PageVO{
 	private int maxPrice;
 	private String orderBy;
 	private int saleCnt;
+	private int totalCnt;
 	
+	
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
+	}
 	public int getSaleCnt() {
 		return saleCnt;
 	}
