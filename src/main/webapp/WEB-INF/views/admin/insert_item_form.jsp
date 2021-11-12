@@ -22,6 +22,7 @@
 </style>
 </head>
 <body>
+<h2>상품 관리</h2>
 <form action="/admin/insertItem" method="post" enctype="multipart/form-data" class="row g-3">
 <div class="row">
 	<div class="col myContainer">

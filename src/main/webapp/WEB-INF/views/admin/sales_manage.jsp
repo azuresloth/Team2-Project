@@ -20,6 +20,7 @@
 </style>
 </head>
 <body>
+<h2>카테고리당 매출정보</h2>
 <div class="row">
 	<div class="col-4">
 		<table class="table text-center">

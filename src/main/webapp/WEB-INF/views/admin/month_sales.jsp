@@ -27,6 +27,7 @@
 </style>
 </head>
 <body>
+<h2>한달 매출 정보</h2>
 <form action="/admin/selectMonthSales" method="post">
 	<div class="container myContainer">
 		<div class="row">

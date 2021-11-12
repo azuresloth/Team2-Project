@@ -9,7 +9,6 @@
 <script type="text/javascript" src="/resources/category/js/reg_category.js?ver=5"></script>
 <style type="text/css">
 .container{
-	margin-left: 250px;
 }
 .cateDiv{
 	background-color: #fba062;
@@ -22,10 +21,11 @@
 </style>
 </head>
 <body>
+<h2>카테고리 관리</h2>
 <div class="container ">
 	<div class="row">
 	<form action="/admin/regCategory" method="post" id="insert">
-		<div class="mb-3 mt-2 col-6 category cateDiv">
+		<div class="mb-3 mt-2 col-12category cateDiv">
 			<label for="formGroupExampleInput" class="form-label justify-content-center">카테고리 등록</label> 
 			<div class="input-group mb-3">
 			  <input type="text" name="cateName" class="form-control" required placeholder="등록할 카테고리의 이름을 입력해주세요" aria-label="등록" aria-describedby="button-addon2">
@@ -34,13 +34,13 @@
 		</div>
 	</form>
 	<div class="row cateListDiv">
-		<div class="col-6">
+		<div class="col-12">
 			<table class="table text-center">
 				<thead>
 					<tr>
 						<th scope="col">CATE_CODE</th>
 						<th scope="col">CATE_NAME</th>
-						<th></th>
+						<th scope="col">DELETE</th>
 					</tr>
 				</thead>
 				<tbody>

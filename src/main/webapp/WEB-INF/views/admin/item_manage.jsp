@@ -68,7 +68,7 @@ input[type="number"]{
 							</td>
 							<td>
 								<input type="hidden" value="${itemInfo.itemCode }">
-								<input type="button" value="삭제" class="btn btn-secondary btn-lg delete">
+								<input type="button" value="삭제" class="btn btn-primary btn-lg delete">
 							</td>
 						</tr>
 					</c:forEach>
