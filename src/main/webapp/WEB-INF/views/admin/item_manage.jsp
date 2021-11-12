@@ -63,7 +63,7 @@ input[type="number"]{
 								<c:if test="${itemInfo.itemStock > 0}">
 									<input type="number" value="${itemInfo.itemStock }" class="form-control text-start" min="0">
 								</c:if>
-								<input type="hidden" value="${itemInfo.itemCode }">
+								<input type="hidden" value="${itemInfo.itemCode }" class="itemStock">
 								<input type="button" value="변경" class="btn btn-secondary btn-sm update"> 
 							</td>
 							<td>

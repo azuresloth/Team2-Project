@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/admin/insert_item_form.js"></script>
+<script type="text/javascript" src="/resources/admin/insert_item_form.js?ver=1"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #fba062;
@@ -40,7 +40,7 @@
 			</div>
 			<div class="col-3">
 				<label for="inputItemPrice" class="form-label">상품가격</label>
-    			<input type="text" class="form-control" id="inputItemPrice" name="itemPrice" onkeyup="inputNumberFormat(this);">
+    			<input type="text" class="form-control" id="inputItemPrice" name="itemPrice">
 			</div>
 			<div class="col-2">
 				<label for="inputItemStock" class="form-label">상품수량</label>

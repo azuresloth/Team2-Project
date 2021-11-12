@@ -52,14 +52,27 @@ $(document).ready(function(){
 		
 	});
 	
+	$(document).on('keyup ', '.itemStock', function() {
+		inputFormat(this);
+	});
 	
 });
 
 //함수 선언 영역
 (function($){
-	//aaa = function(){
-	
-	//};
+	inputFormat = function(obj){
+		
+		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+        var deleteComma = obj.value.replace(/\,/g, "");
+       
+        // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+        if(isFinite(deleteComma) == false) {
+            alert("문자는 입력하실 수 없습니다.");
+            obj.value = "";
+            return false;
+        }
+        
+	};
    
 })(jQuery);
 
