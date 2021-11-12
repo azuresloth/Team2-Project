@@ -26,7 +26,8 @@
 		<result column="ITEM_CODE"			property="itemCode"/>
 		<result column="IS_MAIN"			property="isMain"/>
 	</resultMap>
- 
+ 	
+ 	<!-- 카테고리 상품조회 -->
  	<select id="selectItemList" resultMap="item">
  		SELECT ITEM.ITEM_CODE
  			, ITEM_NAME
@@ -202,6 +203,7 @@
  		ITEM_STATUS = 3
  		WHERE ITEM_CODE = #{itemCode}
  	</update>
+ 	
 </mapper>
 
 

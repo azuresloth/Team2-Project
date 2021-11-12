@@ -85,27 +85,6 @@
 					</li>
 				</ul>
 			</div>
-
-
-			<!-- 구식 디자인 후기 등록!!! 나중에 지워 져야함 -->
-<!-- 	<div> -->
-<!-- 		<input type="button" value="후기등록 열기/닫기" class="btn btn-primary" id="feedBackButton"> -->
-<!-- 	</div> -->
-
-
-<!-- 	<div id="feedBackInsertform" style="display: none;"> -->
-<!-- 		<form  method="post" enctype="multipart/form-data" id="fileUploadForm"> -->
-<%-- 			<input type="hidden" value="${param.itemCode }" name="itemCode"> <!-- 추후에 아이탬으로변경됨 --> --%>
-<!-- 			<div>제목(상품후기) : <input type="text" name="title"></div> -->
-<!-- 			<div>작성자(상품후기) : <input type="text" name="id"></div> -->
-<!-- 			<div>내용 (상품후기) : </div> -->
-<!-- 			<div><textarea rows="10" cols="50" name="content"></textarea></div> -->
-<!-- 			<div>사진 첨부(상품후기) : <input type="file" name="file" required="required"></div>	 -->
-<!-- 			<input type="submit" value="후기등록" onclick="feedBackInsertformClose();" id="btninsertfeedback"> -->
-<!-- 		</form> -->
-<!-- 	</div> -->
-
-
 		</div>
 	</div>
 

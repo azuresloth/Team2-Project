@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.cart.vo.DeliveryInfoVO;
 import com.kh.project.cart.vo.OrderListVO;
 import com.kh.project.common.service.CommonService;
+import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ItemVO;
@@ -140,7 +142,7 @@ public class CartController {
 	
 	// 주문조회
 	@GetMapping("/goOrderLookupPage")
-	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model) {
+	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model, PageVO pageVO) {
 		buyInfoVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
 //		model.addAttribute("lookupList", cartService.selectOrderLookup(buyInfoVO));
 		
@@ -170,8 +172,11 @@ public class CartController {
 		
 		// 전달
 		model.addAttribute("orderMap", map);
+		model.addAttribute("pageVO", pageVO);
 		
-		
+		// 날짜 정보 전달
+		model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
+	    model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
 		
 		return "cart/order_lookup_page";
 	}

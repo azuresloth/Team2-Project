@@ -42,17 +42,17 @@
 			<div class="row gy-1 sideBannerGrid">
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage"><img src="/resources/images/item/banner/2banner_6(bestItem).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage?cateCode=CATE_005"><img src="/resources/images/item/banner/2banner_4(hair).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage?cateCode=CATE_004"><img src="/resources/images/item/banner/2banner_5(watchStrap).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">

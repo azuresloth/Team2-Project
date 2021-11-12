@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/cart/css/order_lookup_page.css?ver=1">
+<script type="text/javascript" src="/resources/cart/js/order_lookup_page.js?ver=1"></script>
 </head>
 <body>
 	<div class="row">
@@ -37,10 +38,24 @@
 					<div class="px-5 pb-1 fs-6 botBorder-ed orderListDiv">주문내역조회</div>
 				</div>
 				<div class="mt-5 mb-5 border-ed p-4 bg-light">
-					<div class="ps-5">
-						기간별 조회 :&nbsp;<input class="p-1" type="date" name="startDate">&nbsp;~&nbsp;<input class="p-1" type="date" name="endDate">
-						<button class="smallBtn blackButton pt-1 pb-1 ms-1">검 색</button>
-					</div>
+					<form action="/cart/goOrderLookupPage">
+						<div class="ps-5">
+							기간별 조회 :&nbsp;<input class="p-1" type="date" id="startDate" name="startDate"
+								<c:if test="${param.startDate eq null }">
+									value="${beforMonth }"
+								</c:if>
+								value="${param.startDate }"
+							>
+							&nbsp;~&nbsp;
+							<input class="p-1" type="date" id="endDate" name="endDate"
+								<c:if test="${param.endDate eq null }">
+									value="${nowMonth }"
+								</c:if>
+								value="${param.endDate }"
+							>
+							<button type="submit" class="smallBtn blackButton pt-1 pb-1 ms-1">검 색</button>
+						</div>
+					</form>
 				</div>
 				<div class="text-secondary ps-0 mb-4">주문번호를 클릭하시면 해당 주문에 대한 상세내역을 확인하실 수 있습니다.</div>
 			</div>

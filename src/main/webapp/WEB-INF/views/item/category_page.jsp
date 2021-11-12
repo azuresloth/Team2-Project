@@ -18,7 +18,12 @@
 							<a href="/item/mainPage">home</a>
 						</li>
 						<li>
-							> <a href="/item/categoryPage?cateCode=${pathInfo.cateCode}">${pathInfo.cateName }</a>
+							<c:if test="${empty pathInfo.cateCode}">
+								> <a href="/item/categoryPage">BEST_ITEM</a>
+							</c:if>
+							<c:if test="${not empty pathInfo.cateCode}">
+								> <a href="/item/categoryPage?cateCode=${pathInfo.cateCode}">${pathInfo.cateName }</a>
+							</c:if>
 						</li>
 					</ol>
 				</div>

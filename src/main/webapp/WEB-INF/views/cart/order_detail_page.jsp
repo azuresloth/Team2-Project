@@ -94,10 +94,9 @@
 								${orderInfo.paymentPlan}
 							</td>
 						</tr>
-						</c:forEach>
-						<c:forEach items="${orderList}" var="orderInfo" begin="0" end="0">
 						
 						</c:forEach>
+						
 					</table>
 				</div>
 				
@@ -105,7 +104,7 @@
 					<div class="px-2 pb-1 fs-6 fc1b">주문 상품 정보</div>
 				</div>
 				<div class="col-12 pageInfoTableDiv">
-					<table class="pageInfoTable text-center" style="border-top: none;">
+					<table class="pageInfoTable text-center">
 						<colgroup>
 							<col width="110px">
 							<col width="auto">
@@ -138,19 +137,68 @@
 								</td>
 							</tr>
 						</c:forEach>
+						<c:forEach items="${orderList}" var="orderInfo" begin="0" end="0">
+							<tr>
+								<td colspan="6" style="text-align: right;">
+									합계 : <h4 style="display: inline-block; vertical-align: middle; line-height: 30px;"><fmt:formatNumber type="number" value="${orderInfo.allTotalPrice}"></fmt:formatNumber>원</h4>
+								</td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
-			</div>
-			
-			
-			<div class="f-right mt-2">
-						<button class="button whiteButton smallBtn" onclick="location.href='/item/mainPage'">쇼핑 계속하기</button>
-						<button class="button blackButton smallBtn" onclick="location.href='/cart/goOrderLookupPage'">주문 확인하기</button>
+				
+				<div class="col-12 mt-4 px-0 pageSubTitleDiv">
+					<div class="px-2 pb-1 fs-6 fc1b">배송 정보</div>
+				</div>
+				<div class="col-12 pageInfoTable2Div">
+					<table class="pageInfoTable2">
+						<colgroup>
+							<col width="150px;">
+							<col width="auto">
+						</colgroup>
+						<tr>
+							<th>받으시는 분</th>
+							<td>
+								${orderList.get(0).deliveryName}
+							</td>
+						</tr>
+						<tr>
+							<th>우편번호</th>
+							<td>
+								${orderList.get(0).postCode}
+							</td>
+						</tr>
+						<tr>
+							<th>주소</th>
+							<td>
+								${orderList.get(0).roadAddr} ${orderList.get(0).detailAddr}
+							</td>
+						</tr>
+						<tr>
+							<th>휴대전화</th>
+							<td>
+								${orderList.get(0).deliveryTell}
+							</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>
+								${orderList.get(0).deliveryEmail}
+							</td>
+						</tr>
+						<tr>
+							<th>배송메세지</th>
+							<td>
+								${orderList.get(0).deliveryMsg}
+							</td>
+						</tr>
+					</table>
+					<div class="f-right mt-2">
+						<button class="button blackButton smallBtn" onclick="location.href='/cart/goOrderLookupPage'">주문 목록 보기</button>
 					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<c:forEach items="${orderList}" var="orderInfo" begin="0" end="0">
-						<div>${orderInfo.itemName}안녕${orderInfo.itemCode}</div>
-					</c:forEach>
 </body>
 </html>

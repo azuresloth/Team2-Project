@@ -216,7 +216,7 @@
 	</select>
 	<!-- 주문 조회 -->
 	<select id="selectOrderLookup" resultMap="buyInfo">
-		SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
+		<!-- SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
 		    , ORDER_CODE
 		    , ATTACHED_IMG_NAME
 		    , ITEM_CODE
@@ -225,12 +225,36 @@
 		    , BUY_STATUS
 		    , (SELECT ITEM_NAME FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS ITEM_NAME
 		    , (SELECT CATE_CODE FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS CATE_CODE
-		FROM BUY_INFO BI
-		WHERE ID = #{id}
-		<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
-		AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
-		</if>
-		ORDER BY ORDER_CODE
+		    , RNUM
+		FROM(
+			SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
+			    , ORDER_CODE
+			    , ATTACHED_IMG_NAME
+			    , ITEM_CODE
+			    , BUY_CNT
+			    , TOTAL_PRICE
+			    , BUY_STATUS
+			    , (SELECT ITEM_NAME FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS ITEM_NAME
+			    , (SELECT CATE_CODE FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS CATE_CODE
+			    , ROWNUM RNUM
+			FROM( -->
+				SELECT TO_CHAR(BUY_DATE, 'YYYY-MM-DD') AS BUY_DATE
+				    , ORDER_CODE
+				    , ATTACHED_IMG_NAME
+				    , ITEM_CODE
+				    , BUY_CNT
+				    , TOTAL_PRICE
+				    , BUY_STATUS
+				    , (SELECT ITEM_NAME FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS ITEM_NAME
+				    , (SELECT CATE_CODE FROM ITEM I WHERE BI.ITEM_CODE = I.ITEM_CODE) AS CATE_CODE
+				FROM BUY_INFO BI
+				WHERE ID = #{id}
+				<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
+				AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
+				</if><!-- ) -->
+			ORDER BY ORDER_CODE
+			<!-- )
+		WHERE RNUM BETWEEN #{startRow} and #{endRow} -->
 	</select>
 	
 	<!-- 주문 상세 조회 -->
@@ -251,6 +275,7 @@
 		    , DETAIL_ADDR
 		    , DELIVERY_TELL
 		    , DELIVERY_MSG
+		    , DELIVERY_EMAIL
 		    , (SELECT SUM(TOTAL_PRICE) FROM BUY_INFO WHERE ORDER_CODE = #{orderCode} ) AS ALL_TOTAL_PRICE
 		FROM BUY_INFO BI
 		WHERE ORDER_CODE = #{orderCode}

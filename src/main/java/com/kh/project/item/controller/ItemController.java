@@ -30,12 +30,15 @@ public class ItemController {
 	private BoardService boardService;
 	
 	
-	// 상품 목록 페이지로 이동
+	// 메인 페이지로 이동
 	@GetMapping("/mainPage")
 	public String selectItemList(Model model, ItemVO itemVO) {
 		model.addAttribute("itemList", itemService.selectItemList(itemVO));
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		model.addAttribute("bestCode", itemService.selectBestItemList(itemVO));
+		model.addAttribute("hairCode", itemService.selectBestItemList(itemVO));
+		model.addAttribute("watchCode", itemService.selectBestItemList(itemVO));
 		
 		// 공지 사항 메인페이지에 제목과 작성일을 보여주기
 		// List<BoardVO> noticeList = boardService.noticeList();
@@ -76,5 +79,14 @@ public class ItemController {
 		return "item/item_detail";
 	}
 	
+	// 메뉴 카테고리 페이지
+	@GetMapping("/bestItemList")
+	public String bestItemList(Model model, ItemVO itemVO) {
+		// 베스트 상품
+		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		// 상품 리스트
+		model.addAttribute("itemList", itemService.selectItemList(itemVO));
+		return "item/category_page";
+	}
 	
 }

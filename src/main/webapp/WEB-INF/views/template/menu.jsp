@@ -24,7 +24,7 @@
 			            <!-- <li><a class="dropdown-item" href="/board/personalBoard">게시물 관리</a></li> -->
 			            <li><a class="dropdown-item" href="/board/loginCheckForPersonalBoard">게시물 관리</a></li>
 			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">그외 추가 자리</a></li>
+			            <li><a class="dropdown-item" href="#">추가 예정</a></li>
 			          </ul>
 			    </li>
 				<li><a href="/cart/goOrderLookupPage">주문조회</a></li>
@@ -57,7 +57,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light bg-light menuNavbar">
 			  <div class="container-fluid bg-light">
 			  	<c:if test="${empty sessionScope.loginInfo or empty menuList }">
-				    <a class="navbar" href="/item/newItemList">NEW ITEM</a>
+				    <a class="navbar" href="/item/bestItemList">BEST ITEM</a>
 			  	</c:if>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>

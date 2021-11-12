@@ -106,7 +106,7 @@ body {
 	padding: 0;
 }
 .botBorder-1b{
-	border-bottom: 2px solid #1b1b1b;
+	border-bottom: 1px solid #1b1b1b;
 }
 .botBorder-ed{
 	border-bottom: 1px solid #ededed;
@@ -134,6 +134,7 @@ body {
 	-bs-gutter-x: 1.5rem;
 	width: 100%;
 	border-top: 1px solid #333333;
+	border-bottom: 1px solid #333333;
 	margin: 0 auto;
 }
 .pageInfoTable th, .pageInfoTable td{
@@ -147,7 +148,7 @@ body {
 }
 .pageInfoTable2, .buyTable{
 	width: 100%;
-	border-top: 1px solid #dedede;
+	border-top: 2px solid #dedede;
 	border-bottom: 2px solid #dedede !important;
 }
 .pageInfoTable2 th, .pageInfoTable2 td{
