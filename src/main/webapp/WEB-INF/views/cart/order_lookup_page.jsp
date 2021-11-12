@@ -65,27 +65,6 @@
 						<th>상품판매금액</th>
 						<th>주문처리상태</th>
 					</tr>
-					<%-- <c:if test="${not empty lookupList}"> --%>
-						<%-- <c:forEach items="${lookupList}" var="lookupInfo">
-							<tr>
-								<td class="fc66">
-									${lookupInfo.buyDate}
-									<br>
-									<a href="/cart/goOrderDetailPage?orderCode=${lookupInfo.orderCode}" class="fc66">[${lookupInfo.orderCode}]</a>
-								</td>
-								<td>
-									<img alt="" src="/resources/images/item/itemImages/${lookupInfo.attachedImgName}" width="75px;">
-								</td>
-								<td>${lookupInfo.itemName}</td>
-								<td>
-									${lookupInfo.buyCnt}개
-								</td>
-								<td><fmt:formatNumber type="number" value="${lookupInfo.totalPrice}"></fmt:formatNumber>원</td>
-								<td>${lookupInfo.buyStatus}</td>
-							</tr>
-						</c:forEach> --%>
-						
-						
 						<c:forEach items="${orderMap}" var="orderList">
 							<%-- ${orderList.value.size() } --%>
 							<c:forEach items="${orderList.value }" var="orderInfo" varStatus="status">
@@ -98,9 +77,9 @@
 										</td>
 									</c:if>
 									<td>
-										<img alt="" src="/resources/images/item/itemImages/${orderInfo.attachedImgName}" width="75px;">
+										<img class="onclickImg" alt="" src="/resources/images/item/itemImages/${orderInfo.attachedImgName}" onclick="location.href='/item/itemDetail?itemCode=${orderInfo.itemCode}&cateCode=${orderInfo.cateCode}'" width="75px;">
 									</td>
-									<td>${orderInfo.itemName}</td>
+									<td><a href="">${orderInfo.itemName}</a></td>
 									<td>
 										${orderInfo.buyCnt}개
 									</td>
@@ -108,28 +87,7 @@
 									<td>${orderInfo.buyStatus}</td>
 								</tr>
 							</c:forEach>
-						
-							<%-- <tr>
-								<td class="fc66" colspan="${orderList.size() }">
-									${lookupInfo.buyDate}
-									<br>
-									<a href="/cart/goOrderDetailPage?orderCode=${lookupInfo.orderCode}" class="fc66">[${lookupInfo.orderCode}]</a>
-								</td>
-								<td>
-									<img alt="" src="/resources/images/item/itemImages/${lookupInfo.attachedImgName}" width="75px;">
-								</td>
-								<td>${lookupInfo.itemName}</td>
-								<td>
-									${lookupInfo.buyCnt}개
-								</td>
-								<td><fmt:formatNumber type="number" value="${lookupInfo.totalPrice}"></fmt:formatNumber>원</td>
-								<td>${lookupInfo.buyStatus}</td>
-							</tr> --%>
 						</c:forEach>
-						
-						
-						
-					<%-- </c:if> --%>
 				</table>
 			</div>
 		</div>

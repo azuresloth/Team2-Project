@@ -215,10 +215,12 @@ $(document).ready(function(){
 		var random = Math.random();
 		var ranNum = Math.floor(random*10000+1);
 		var orderCode = 'merchant_'+ ranNum;
-		alert('임시결제합니다. \n' + orderCode);
-		$('#orderCode').val(orderCode);
-		$('#orderForm').attr('onsubmit', 'return true');
-    	$('#orderForm').submit();
+		var result = confirm('임시결제할까요?');
+		if(result) {
+			$('#orderCode').val(orderCode);
+			$('#orderForm').attr('onsubmit', 'return true');
+			$('#orderForm').submit();
+		}
 	}
 	
 	// 체크된 상품 삭제하기

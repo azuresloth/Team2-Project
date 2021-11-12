@@ -14,7 +14,6 @@ $(document).ready(function(){
 		var mainSearchValue = $('#detailSearchBar').val();
 		var minPrice = $('#minPrice').val();
 		var maxPrice = $('#maxPrice').val();
-		alert(minPrice + '!!!' + maxPrice)
 		if(minPrice == '' || minPrice == null){
 			$('#minPrice').val(0);
 		}

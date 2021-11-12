@@ -194,6 +194,9 @@ body {
 	vertical-align: middle;
 	font-size: 22px;
 }
+.onclickImg:hover{
+	cursor: pointer;
+}
 </style>
 </head>
 <body>

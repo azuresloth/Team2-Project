@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/main_search_result.css?ver=8">
-<script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=3"></script>
+<script type="text/javascript" src="/resources/item/js/main_search_result.js?ver=1"></script>
 </head>
 <body>
 	<div class="row justify-content-center">
