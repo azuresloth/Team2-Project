@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/member/js/join.js?var=46"></script>
+<script type="text/javascript" src="/resources/member/js/join.js?var=56"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js" ></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <link rel="stylesheet" href="/resources/member/css/join.css?ver=1">
@@ -144,6 +144,7 @@
 				</div>
 		</div>
 	</div>
+</div>
 </form>
 </body>
 </html>

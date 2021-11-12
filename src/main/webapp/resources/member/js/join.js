@@ -2,13 +2,78 @@ var code;  //이메일전송 인증번호 저장을 위한 코드
 //화면 로딩 후 바로 실행
 $(document).ready(function() {
 	
-	
-	// 숫자가 아닌 정규식 (인증코드)
+	 // 특수문자 정규식 변수(공백 포함)
+    var replaceChar = /[~!@\#$%^&*\()\s+\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}]/gi;
+	// 특수문자 정규식 변수(공백 포함 , 숫자제외)
+    var replaceChar1 = /[~!@\#$%^&*\()\s+\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi;
+    
+    
+    //아이디 확인
+    var replaceNotFullEng =/^[a-z]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#id").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceChar1) || x.match(replaceNotFullEng)) {
+                    x = x.replace(replaceChar1, "").replace(replaceNotFullEng, "");
+                }
+                $(this).val(x);
+            }
+            }).on("keyup", function() {
+                $(this).val($(this).val().replace(replaceChar1, ""));
+
+       });
+
+    });  
+   
+    
+    // 이름을 완성형 한글로 만드는 정규식
+    var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#name").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
+                    x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+                }
+                $(this).val(x);
+            }
+            }).on("keyup", function() {
+                $(this).val($(this).val().replace(replaceChar, ""));
+
+       });
+
+    });
+   
+    // 연락처
+    // 숫자가 아닌 정규식 (전화번호2)
     var replaceNotInt = /[^0-9]/gi;
     
     $(document).ready(function(){
         
-        $("#verificationCode").on("focusout", function() {
+        $("#tell2").on("focusout", function() {
+            var x = $(this).val();
+            if (x.length > 0) {
+                if (x.match(replaceNotInt)) {
+                   x = x.replace(replaceNotInt, "");
+                }
+                $(this).val(x);
+            }
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceNotInt, ""));
+        });
+ 
+    });
+    // 숫자가 아닌 정규식 (전화번호3)
+    var replaceNotInt = /[^0-9]/gi;
+    
+    $(document).ready(function(){
+        
+        $("#tell3").on("focusout", function() {
             var x = $(this).val();
             if (x.length > 0) {
                 if (x.match(replaceNotInt)) {
@@ -40,30 +105,29 @@ $(document).ready(function() {
         });
  
     });
-    
-    // 특수문자 정규식 변수(공백 미포함)
-    var replaceChar = /[~!@\#$%^&*\()\-=+_'\;<>0-9\/.\`:\"\\,\[\]?|{}]/gi;
- 
-    // 완성형 아닌 한글 정규식
-    var replaceNotFullKorean = /[ㄱ-ㅎㅏ-ㅣ]/gi;
+	
+	// 숫자가 아닌 정규식 (인증코드)
+    var replaceNotInt = /[^0-9]/gi;
     
     $(document).ready(function(){
         
-        $("#name").on("focusout", function() {
+        $("#verificationCode").on("focusout", function() {
             var x = $(this).val();
             if (x.length > 0) {
-                if (x.match(replaceChar) || x.match(replaceNotFullKorean)) {
-                    x = x.replace(replaceChar, "").replace(replaceNotFullKorean, "");
+                if (x.match(replaceNotInt)) {
+                   x = x.replace(replaceNotInt, "");
                 }
                 $(this).val(x);
             }
-            }).on("keyup", function() {
-                $(this).val($(this).val().replace(replaceChar, ""));
-
-       });
-
-    });       
+        }).on("keyup", function() {
+            $(this).val($(this).val().replace(replaceNotInt, ""));
+        });
+ 
+    });
     
+    
+   
+ 
 	
 	
 	//인증번호비교
