@@ -49,6 +49,8 @@
 					<th scope="col">상품의 총 구매수량</th>
 					<th scope="col">상품 구매일 </th>
 				</tr>
+			</thead>
+			<tbody>
 				<c:choose>
 					<c:when test="${empty salesList }">
 						<tr>
@@ -67,7 +69,7 @@
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
-			</thead>
+			</tbody>
 		</table>
 	<!-- pagination -->
 	<% request.setAttribute("url", "/admin/salesManage"); %>

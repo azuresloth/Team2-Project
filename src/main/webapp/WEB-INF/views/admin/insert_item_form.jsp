@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="/resources/admin/insert_item_form.js"></script>
 <style type="text/css">
 .myContainer{
    	background-color: #fba062;
@@ -38,7 +40,7 @@
 			</div>
 			<div class="col-3">
 				<label for="inputItemPrice" class="form-label">상품가격</label>
-    			<input type="text" class="form-control" id="inputItemPrice" name="itemPrice">
+    			<input type="text" class="form-control" id="inputItemPrice" name="itemPrice" onkeyup="inputNumberFormat(this);">
 			</div>
 			<div class="col-2">
 				<label for="inputItemStock" class="form-label">상품수량</label>
