@@ -37,12 +37,12 @@ body {
 }
 </style>
 </head>
+<body>
 	<div class="row">
 		<div class="col-12 templateMenuDiv">
 			<tiles:insertAttribute name="menu"/>
 		</div>
 	</div>
-<body>
 <div class="container-fluid">
 	<div style="height: 20px;"></div>
 	<div class="row">
