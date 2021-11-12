@@ -1,11 +1,17 @@
 //화면 로딩 후 바로 실행
 $(document).ready(function(){
 
-	
+
 	//이벤트 처리
-	//$(document).on('click', '#id', function() {
-    //});
+	$(document).on('keyup ', '#inputItemPrice', function() {
+		inputFormat(this);
+	});
+	$(document).on('keyup ', '#inputItemStock', function() {
+		inputFormat(this);
+	});
    
+	
+	
 	//ajax 사용
 //	$.ajax({
 //        url: '', //요청경로
@@ -28,24 +34,19 @@ $(document).ready(function(){
 (function($){
 	//aaa = function(){
 	//};
-	inputNumberFormat = function(obj){
+	inputFormat = function(obj){
+		
 		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
         var deleteComma = obj.value.replace(/\,/g, "");
-
+       
         // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
         if(isFinite(deleteComma) == false) {
             alert("문자는 입력하실 수 없습니다.");
             obj.value = "";
             return false;
         }
-        iptNumWithComma(obj);
+        
 	};
-	
-	iptNumWithComma = function(str){
-		str = String(str);
-        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-	}
-	
    
 })(jQuery);
 
