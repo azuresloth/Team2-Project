@@ -20,7 +20,9 @@
 			          </a>
 			          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown" style="z-index: 1001;">
 			            <li><a class="dropdown-item" href="/member/goMemberInfo?id=${sessionScope.loginInfo.id }">회원정보수정</a></li>
-			            <li><a class="dropdown-item" href="/board/personalBoard">게시물 관리</a></li>
+			            <!-- 로그인한거를 체크하기 위해 기존꺼를 수정 함 -->
+			            <!-- <li><a class="dropdown-item" href="/board/personalBoard">게시물 관리</a></li> -->
+			            <li><a class="dropdown-item" href="/board/loginCheckForPersonalBoard">게시물 관리</a></li>
 			            <li><hr class="dropdown-divider"></li>
 			            <li><a class="dropdown-item" href="#">그외 추가 자리</a></li>
 			          </ul>

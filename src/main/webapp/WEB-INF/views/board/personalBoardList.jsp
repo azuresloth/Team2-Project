@@ -8,15 +8,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-  table {
-    width: 100%;
+table {
+	width: 100%;
     border-top: 1px solid #444444;
     border-collapse: collapse;
-  }
-  tr, td {
-    border-bottom: 1px solid #444444;
+}
+tr, td {
+	border-bottom: 1px solid #444444;
     padding: 10px;
-  }
+}
+table tr td a {
+	color: blue;
+}
 </style>
 </head>
 <body>
