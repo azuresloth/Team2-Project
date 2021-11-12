@@ -111,11 +111,11 @@
 								<div class="fs-6 mt-2">이메일</div>
 								<div class="row mailRowDiv">
 									<div class="col-4 ps-0">
-										<input type="text" id="mail1" name="mailes" class="form-control value="${memberInfo.mailes[0]}">
+										<input type="text" id="mail1" name="mailes" class="form-control" value="${memberInfo.mailes[0]}">
 									</div>
 									 @
 									<div class="col-5 pb-1">
-										<input type="text" id="mail2" name="mailes" class="form-control value="${memberInfo.mailes[1]}">
+										<input type="text" id="mail2" name="mailes" class="form-control" value="${memberInfo.mailes[1]}">
 									</div>
 								</div>	
 							</div>
