@@ -22,7 +22,7 @@
 </style>
 </head>
 <body>
-<form action="/admin/insertItem" method="post">
+<form action="/admin/insertItem" method="post" enctype="multipart/form-data">
 <div class="container px-0">
 	<h2>상품 관리</h2>
 	<div class="row inputByItemInfo">
