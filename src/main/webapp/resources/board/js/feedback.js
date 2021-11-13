@@ -249,38 +249,38 @@ $(document).ready(function(){
 				var str = "";
 				// 결과는 리스트(배열로 들어온다.)
 				if(result == ''){
-					str += "<li class='list-group-item'>아직등록된 상품후기가 없습니다.</li>";
+					str += "<li class='list-group-item'>등록된 상품후기가 없습니다.</li>";
 				}else{
 					// <li>안의 데이터가 하나의 후기 태그를 만들어준다.
 					
 					$(result).each(function(index,element){
-						str += "<li class='list-group-item'> ";
+						str += "<li class='list-group-item xBorder-ed' style='border-left: none; border-right: none;'> ";
 						str += "<form method='post' enctype='multipart/form-data' class='updateFileUploadForm'>";
 						str += "<div class='row'>";
-						str += "<div class='col-2'>";
+						str += "<div class='col-2' style='max-width: 180px;'>";
 						if(element.attachedFileName == null){
 						str += "<img src='http://placehold.it/150x150' />";
 						}else{
 						str += "<img src='/resources/feedback/images/" + element.attachedFileName + "' height='150px' width='150px' />";
 						}
 						str += "</div>";
-						str += "<div class='col-10'>";
+						str += "<div class='col ps-0' style='font-size: 12px;'>";
 						str += "<div class='row mt-2'>";
-						str += "<div class='col-8'>";
-						str += "제목 : <span>" + element.title + "</span>";
+						str += "<div class='col-8 ps-0'>";
+						str += "<span class='fs-6 fc66'>" + element.id + "</span>";
 						str += "</div>";
 						str += "<div class='col-4 text-end'>";
 						str += "작성일 : <span>" + dateFormet(element.createDate) + "</span>";
 						str += "</div>";
 						str += "</div>";
 						str += "<div class='row'>";
-						str += "<div class='col-12'>";
-						str += "작성자 : <span>" + element.id + "</span>";
+						str += "<div class='col-8 ps-0 mt-1'>";
+						str += "<span>" + element.title + "</span>";
 						str += "</div>";
 						str += "</div>";
 						str += "<div class='row' style='height: 50px;'>";
-						str += "<div class='col-12'>";
-						str += "내용 : <span>" + element.content + "</span>";
+						str += "<div class='col-12 ps-0 mt-2'>";
+						str += "<span class='ps-3'>" + element.content + "</span>";
 						str += "</div>";
 						str += "</div>";
 						str += "<div style='float: right;'>";

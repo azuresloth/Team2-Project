@@ -109,7 +109,9 @@
 			      </ul>
 			      <form class="d-flex searchArea" id="mainPageSearchForm" action="/item/mainSearchResult" method="post" onsubmit="return false">
 			        <input  type="search" placeholder="상품검색" aria-label="" id="mainSearchBar" name="searchValue">
-			        <input type="hidden" value="x">
+			        <input type="hidden" value="all" name="searchKeyword">
+			        <input type="hidden" name="minPrice" value="0">
+			        <input type="hidden" name="maxPrice" value="0">
 			        <input type="image" src="/resources/images/layout/btn_search.png" id="searchIcon" alt="검색" onclick="mainSearchFun();" >
 			      </form>
 			    </div>

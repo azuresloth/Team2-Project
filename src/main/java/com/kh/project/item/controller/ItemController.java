@@ -49,11 +49,14 @@ public class ItemController {
 	}
 	
 	// 메인페이지에서 상품 검색
-	@PostMapping("/mainSearchResult")
+	//@PostMapping("/mainSearchResult")
+	@RequestMapping("/mainSearchResult")
 	public String mainSearchResult(Model model, ItemVO itemVO) {
+		System.out.println(itemVO);
 		// 페이징 처리
 		itemVO.setPTotalCnt(itemService.selectSearchListCnt(itemVO));
 		itemVO.setPageInfo();
+		System.out.println(itemVO);
 		// 검색 결과
 		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
 		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
@@ -61,6 +64,7 @@ public class ItemController {
 		// 세부 검색을 위한 정보
 		model.addAttribute("itemVO", itemVO);
 		
+		System.out.println(itemVO);
 		return "item/main_search_result";
 	}
 	@GetMapping("/mainSearchResult2")
@@ -75,6 +79,7 @@ public class ItemController {
 		// 세부 검색을 위한 정보
 		model.addAttribute("itemVO", itemVO);
 		
+		System.out.println(itemVO);
 		return "item/main_search_result";
 	}
 	

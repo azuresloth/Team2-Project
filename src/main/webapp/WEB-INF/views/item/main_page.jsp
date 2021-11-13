@@ -17,7 +17,7 @@
 			<div class="swiper mainBannerSwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_1.jpg" width="100%;"></img></a></div>
-			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_2.jpg" width="100%;"></img></a></div>
+			        <!-- <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_2.jpg" width="100%;"></img></a></div> -->
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_3.jpg" width="100%;"></img></a></div>
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_4.jpg" width="100%;"></img></a></div>
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_5.jpg" width="100%;"></img></a></div>

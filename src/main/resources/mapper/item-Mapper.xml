@@ -196,13 +196,11 @@
  	
  	<!-- 검색한 상품 갯수 -->
  	<select id="mainPageSearchCnt" resultType="int">
- 		SELECT COUNT(ITEM_CODE)
- 		FROM ITEM
+ 		SELECT COUNT(ITEM.ITEM_CODE)
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
  		<if test="!searchValue.equals('all')">
- 		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%' 
- 		</if>
- 		<if test="searchValue.equals('all')">
- 		WHERE 1 = 1
+ 		AND ITEM_NAME LIKE '%'||#{searchValue}||'%' 
  		</if>
  		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
  		AND CATE_CODE = #{searchKeyword}

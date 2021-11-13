@@ -144,7 +144,7 @@
 									<option value="016">016</option>
 									<option value="019">019</option>
 								</select> - 
-								<input type="text" class="tellInput" name="deliveryTells" id="tell2" required <c:if test="${not empty emailandTellInfo}">value="${emailandTellInfo.tell2}"</c:if>>- <input type="text" class="tellInput" name="deliveryTells" id="tell3" required <c:if test="${not empty emailandTellInfo}">value="${emailandTellInfo.tell3}"</c:if>>
+								<input type="text" class="tellInput" name="deliveryTells" id="tell2" required <c:if test="${not empty emailandTellInfo}">value="${emailandTellInfo.tell2}"</c:if> required maxlength="4">- <input type="text" class="tellInput" name="deliveryTells" id="tell3" required <c:if test="${not empty emailandTellInfo}">value="${emailandTellInfo.tell3}"</c:if> required maxlength="4">
 							</td>
 						</tr>
 						<tr>

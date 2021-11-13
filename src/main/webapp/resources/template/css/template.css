@@ -114,6 +114,27 @@ body {
 .botBorder-ef{
 	border-bottom: 1px solid #efefef;
 }
+.topBorder-1b{
+	border-top: 1px solid #1b1b1b;
+}
+.topBorder-ed{
+	border-top: 1px solid #ededed;
+}
+.topBorder-ef{
+	border-top: 1px solid #efefef;
+}
+.xBorder-1b{
+	border-top: 1px solid #1b1b1b;
+	border-bottom: 1px solid #1b1b1b;
+}
+.xBorder-ed{
+	border-top: 1px solid #ededed;
+	border-bottom: 1px solid #ededed;
+}
+.xBorder-ef{
+	border-top: 1px solid #efefef;
+	border-bottom: 1px solid #efefef;
+}
 .border-ed{
 	border: 1px solid #ededed;
 }
@@ -194,4 +215,8 @@ body {
 .page-link:hover {
 	color: #555555;
 	background-color: transparent;
+}
+.list-group-item{
+	border-left: none;
+	border-right: none;
 }

@@ -111,15 +111,15 @@
 					<nav aria-label="...">
 					  <ul class="pagination justify-content-center">
 					    <li class="page-item <c:if test="${!itemVO.prev }">disabled</c:if>">
-					      <a class="page-link" href="/item/mainSearchResult2?nowPage=${param.beginPage - 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&lt;</a>
+					      <a class="page-link" href="/item/mainSearchResult?nowPage=${param.beginPage - 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&lt;</a>
 					    </li>
 					    <c:forEach begin="${itemVO.beginPage}" end="${itemVO.endPage}" var="pageNumber">
 						    <li class="page-item <c:if test="${itemVO.nowPage eq pageNumber}">active</c:if>">
-						    	<a class="page-link" href="/item/mainSearchResult2?nowPage=${pageNumber}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${itemVO.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">${pageNumber}</a>
+						    	<a class="page-link" href="/item/mainSearchResult?nowPage=${pageNumber}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${itemVO.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">${pageNumber}</a>
 						    </li>
 						</c:forEach>
 					    <li class="page-item <c:if test="${!itemVO.next }">disabled</c:if>">
-					      <a class="page-link" href="/item/mainSearchResult2?nowPage=${param.endPage + 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&gt;</a>
+					      <a class="page-link" href="/item/mainSearchResult?nowPage=${param.endPage + 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&gt;</a>
 					    </li>
 					  </ul>
 					</nav>

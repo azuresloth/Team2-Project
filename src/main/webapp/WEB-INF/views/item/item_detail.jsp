@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
 <script type="text/javascript" src="/resources/item/js/item_detail.js?ver=3"></script>
-<script type="text/javascript" src="/resources/board/js/feedback.js?ver=1"></script>
+<script type="text/javascript" src="/resources/board/js/feedback.js?ver=0"></script>
 </head>
 <body>
 	<div class="row">
@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="row mt-2 justify-content-center">
-		<div class="col-5">
+		<div class="col-5 ps-0">
 			<!-- Swiper -->
 		    <div class="swiper itemImg">
 		      <div class="swiper-wrapper">
@@ -118,14 +118,14 @@
 			</div>
 			</form>
 		</div>
-	</div>
-	
-	<!-- 후기 -->
-	<div class="row justify-content-center formDiv">
-		<div class="col-9">
+		<div class="col-10 botBorder-1b bg-light">
+			<div class="p-4 pb-1 fs-3">상품 후기</div>
+		</div>
+		
+		<div class="col-10 mt-2 px-0">
 		<!-- 컨트롤러에서 상품구매한적 있는지 조회한후 인트로 받아서 0이아닐경우 IF 로 보여줌 -->
 			<c:if test="${not empty sessionScope.loginInfo }">
-				<button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#demo">후기등록 열기/닫기</button>
+				<button type="button" class="btn btn-primary ms-4" data-bs-toggle="collapse" data-bs-target="#demo">후기등록 열기/닫기</button>
 			</c:if>
 			
 			<div id="demo" class="collapse">
@@ -134,21 +134,21 @@
 				<form method="post" enctype="multipart/form-data" id="fileUploadForm">
 					<input type="hidden" value="${itemInfo.itemCode}" name="itemCode" id="itemCodeInput"> <!-- 추후에 아이탬으로변경됨 -->
 					<div class="input-group mt-2 mb-2">
-						<span class="input-group-text">제목 : </span> 
+						<span class="input-group-text bg-light">제목</span> 
 						<input type="text" class="form-control" name="title">
 					</div>
 					<div class="input-group mt-2 mb-2">
-						<span class="input-group-text">작성자 : </span> 
-						<input type="text" class="form-control" value="${sessionScope.loginInfo.id }"  readonly name="id" id="loginId">
+						<span class="input-group-text bg-light">작성자</span> 
+						<input type="text" class="form-control bg-light" value="${sessionScope.loginInfo.id }"  readonly name="id" id="loginId">
 						<input type="hidden" value="${sessionScope.loginInfo.isAdmin }" id="loginIsAdmin">
 					</div>
 					<div class="input-group mb-2">
-						<span class="input-group-text">내용 : </span>
+						<span class="input-group-text bg-light">내용</span>
 						<textarea rows="5" class="form-control" style="resize: none;" name="content"></textarea>
 					</div>
 					<div class="input-group mb-2">
-						<span class="input-group-text">사진 첨부 : </span> 
-						<input type="file" class="form-control" required name="file">
+						<span class="input-group-text bg-light">사진 첨부</span> 
+						<input type="file" class="form-control bg-light" required name="file">
 					</div>
 					<div class="text-center">
 						<input type="submit" class="btn btn-primary mt-2" value="후기등록" id="insertFeedbackBtn">
@@ -198,6 +198,10 @@
 				</ul>
 			</div>
 		</div>
+	</div>
+	
+	<!-- 후기 -->
+	<div class="row justify-content-center formDiv">
 	</div>
 	<!-- 후기 끝 -->
 	
