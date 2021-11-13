@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=3"></script>
-<script type="text/javascript" src="/resources/board/js/feedback.js?ver=0"></script>
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
+<script type="text/javascript" src="/resources/board/js/feedback.js?ver=3"></script>
 </head>
 <body>
 	<div class="row">

@@ -46,6 +46,11 @@ public class CartController {
 	private MemberService memberService;
 	
 	// 장바구니에 추가 메소드(추가후 장바구니페이지로 이동할지 물어봄)
+	//@PostMapping("/goCartList")
+	@RequestMapping("/addCartList")
+	public String addCartList() {
+		return "redirect: ";
+	}
 	//(상세페이지 에서 1.에이작스로? or 2.페이지이동으로?)
 	
 	// 장바구니 페이지로 이동

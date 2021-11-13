@@ -144,6 +144,18 @@ body {
 .fc1b{
 	color: #1b1b1b;
 }
+.fs12{
+	font-size: 12px;
+}
+.fs13{
+	font-size: 13px;
+}
+.fs14{
+	font-size: 14px;
+}
+.fs15{
+	font-size: 15px;
+}
 .pageTitleDiv{
 	margin-top: 2rem;
 }

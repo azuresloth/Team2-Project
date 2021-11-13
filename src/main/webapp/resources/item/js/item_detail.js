@@ -76,7 +76,7 @@ $(document).ready(function(){
 (function($){
 	goCartBtn = function(){
 		$('#itemForm').attr('onsubmit', 'return true');
-		$('#itemForm').attr('action', '/cart/goCartList');
+		$('#itemForm').attr('action', '/cart/addCartList');
 		$('#itemForm').submit()
 	};
 	goDirectBtn = function(){
