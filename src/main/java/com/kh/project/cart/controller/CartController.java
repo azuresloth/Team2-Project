@@ -56,8 +56,10 @@ public class CartController {
 	// 장바구니 페이지로 이동
 	//@PostMapping("/goCartList")
 	@RequestMapping("/goCartList")
-	public String goCartList(Model model, ItemVO itemVO) {
-         
+	public String goCartList(Model model, ItemVO itemVO, CartViewVO cartViewVO, HttpSession session) {
+        cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+        model.addAttribute("cartList", cartService.selectCartViewList(cartViewVO));
+        
 		return "cart/cart_list";
 	}
 	
