@@ -22,8 +22,9 @@
 </style>
 </head>
 <body>
+<form action="/admin/insertItem" method="post">
 <div class="container px-0">
-				<h2>상품 관리</h2>
+	<h2>상품 관리</h2>
 	<div class="row inputByItemInfo">
 		<div class="row">
 			<div class="col">
@@ -78,15 +79,16 @@
 		</div>
 	</div>
 	</div>
-	<div class="row bDiv">
-		<div class="row mt-3 text-center">
-		<div class="col-12">
-			<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-				<button type="submit" class="btn btn-primary">상 품 등 록</button>
+		<div class="row bDiv">
+			<div class="row mt-3 text-center">
+			<div class="col-12">
+				<div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+					<button type="submit" class="btn btn-primary">상 품 등 록</button>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
 </div>
+</form>
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.kh.project.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +12,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,10 +26,8 @@ import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.admin.vo.CategoryVO;
 import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
-import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
 import com.kh.project.common.util.FileUploadUtil;
-import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ImgVO;
 import com.kh.project.item.vo.ItemVO;
 
@@ -38,15 +37,9 @@ public class AdminController {
 	@Resource(name = "adminService")
 	private AdminService adminService;
 	
-	@Resource(name = "itemService")
-	private ItemService itemService;
-	
-	
 	@GetMapping("/adminMenu")
-	public String goAdminMenu(Model model, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		System.out.println(sideMenuVO.getMenuCode()+"!!!!!!!!!!");
-		model.addAttribute("sidePage", "adminMenu");
+	public String goAdminMenu(Model model) {
+		model.addAttribute("sidePage", "categoryManage");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/reg_category";
 	}
@@ -64,8 +57,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/salesManage")
-	public String gosalesManage(Model model, SalesManageVO salesManageVO, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+	public String gosalesManage(Model model, SalesManageVO salesManageVO) {
 		model.addAttribute("sidePage", "salesManage");
 		model.addAttribute("salesList", adminService.selectSales(salesManageVO));
 		model.addAttribute("categoryList", adminService.selectCategoryList());
@@ -73,21 +65,9 @@ public class AdminController {
 		return "admin/sales_manage";
 	}
 	
-	@GetMapping("/salesManageByCate")
-	public String salesManageByCate(Model model, SalesManageVO salesManageVO, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		model.addAttribute("sidePage", "salesManage");
-		model.addAttribute("salesList", adminService.selectSalesByCate(salesManageVO));
-		model.addAttribute("categoryList", adminService.selectCategoryList());
-		model.addAttribute("salesManageVO", salesManageVO);
-		return "admin/sales_manage";
-	}
-	
-	
 	@GetMapping("/insertItemForm")
-	public String goInsertItem(Model model, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		model.addAttribute("sidePage", "insertItemForm");
+	public String goInsertItem(Model model) {
+		model.addAttribute("sidePage", "insertItem");
 		model.addAttribute("categoryList", adminService.selectCategoryList());
 		return "admin/insert_item_form";
 	}
@@ -98,10 +78,9 @@ public class AdminController {
 		
 		//첨부될 폴더 지정 
 		// 호연씨 수업 컴
-		//String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
-		// 병준씨 수업 컴, 집컴
+		String uploadPath = "C:\\Users\\kh202-03\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
+		// 병준씨 수업 컴
 		//String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
-		String uploadPath = "C:\\Users\\qudwn\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 준호햄 노트북
 		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\images\\item\\itemImages\\";
 		// 영빈햄 노트북
@@ -173,7 +152,6 @@ public class AdminController {
 		
 		return "redirect:/admin/insertItemForm";
 	}
-
 	@ResponseBody
 	@PostMapping("/selectSalesByCateAjax")
 	public List<SalesManageVO> selectSalesByCate(SalesManageVO salesManageVO){
@@ -181,25 +159,17 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/selectMonthSales")
-	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
-	    
-		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
-		model.addAttribute("allTotalPrice", adminService.selectAllTotalPrice(orderInfoVO));
-	    model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
-	    model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SalesManageVO salesManageVO) {
 		model.addAttribute("sidePage", "selectMonthSales");
+		model.addAttribute("statusInfo", adminService.selectStatus());
+		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
+		model.addAttribute("salesManageVO", salesManageVO);
 		model.addAttribute("orderInfoVO", orderInfoVO);
 		return "admin/month_sales";
 	}
-	
 	@GetMapping("/selectOrderInfo")
-	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
+	public String selectOrderInfo(Model model, OrderInfoVO orderInfoVO) {
 		model.addAttribute("sidePage", "selectOrderInfo");
-		model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
-		model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
-		model.addAttribute("status", adminService.selectStatus());
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		model.addAttribute("orderVO", orderInfoVO);
@@ -222,66 +192,13 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/serchDate")
-	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
+	public String selectSearchOrderInfo(Model model, OrderInfoVO orderInfoVO) {
 		model.addAttribute("sidePage", "selectOrderInfo");
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
 		model.addAttribute("statusInfo", adminService.selectStatus());
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		model.addAttribute("orderVO", orderInfoVO);
 		return "admin/order_info";
 	}
-	//상품목록 조회
-	@GetMapping("/itemManage")
-	public String selectItem(Model model, PageVO pageVO, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		model.addAttribute("sidePage", "itemManage");
-		model.addAttribute("pageVO", pageVO);
-		model.addAttribute("itemList",adminService.selectItem(pageVO));
-		return "admin/item_manage";
-	}
-	
-	@GetMapping("/deleteItem")
-	public String deleteItem(String itemCode) {
-		adminService.deleteItem(itemCode);
-		return "redirect:/admin/itemManage";
-	}
-	
-	@GetMapping("/memberList")
-	public String memberManage(Model model, SideMenuVO sideMenuVO) {
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		model.addAttribute("memberList", adminService.selectMember());
-		model.addAttribute("sidePage", "memberList");
-		return "admin/member_manage";
-	}
-	
-	@GetMapping("/selectMemberDetail")
-	public String selectMemberDetail(Model model, String id, SideMenuVO sideMenuVO) {
-		sideMenuVO.setMenuCode("MENU_002");
-		model.addAttribute("sideMenuList", sideMenu(sideMenuVO));
-		model.addAttribute("memberInfo", adminService.selectMemberDetail(id));
-		return "admin/member_detail";
-	}
-	
-	@GetMapping("/itemUpdate")
-	public String itemUpdate(ItemVO itemVO) {
-		adminService.updateItemStatus(itemVO);
-		return "redirect:/admin/itemManage";
-	}
-	
-	@ResponseBody
-	@PostMapping("/changeStatusAjax")
-	public int selectStock(String itemCode){
-		return adminService.sisk(itemCode);
-	}
-	
-	
-	
-	
-	public List<SideMenuVO> sideMenu( SideMenuVO sideMenuVO){
-		return adminService.selectSideMenu(sideMenuVO);
-	}
-	
-	
 	
 }
 
