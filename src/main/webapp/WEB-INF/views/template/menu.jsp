@@ -28,7 +28,7 @@
 			          </ul>
 			    </li>
 				<li><a href="/cart/goOrderLookupPage">주문조회</a></li>
-				<li>장바구니</li>
+				<li><a href="/cart/goCartList">장바구니</a></li>
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginInfo}">
 						<li><a href="/member/logout">로그아웃</a></li>
