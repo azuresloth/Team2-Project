@@ -51,4 +51,7 @@ public interface CartService {
 	// 주문 코드 조회
 	List<String> selectOrderCode(BuyInfoVO buyInfoVO);
 	
+	// 방금한 상품 리스트 조회
+	List<BuyInfoVO> selectRecentBoughtList(String orderCode);
+	
 }

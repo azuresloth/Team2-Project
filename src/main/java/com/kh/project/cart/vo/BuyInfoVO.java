@@ -31,10 +31,17 @@ public class BuyInfoVO  extends BuyStatusVO{
 	private int allTotalPrice;
 	private String attachedImgName;
 	private String itemName;
+	private String itemPrice;
 	
 	
 	
 	
+	public String getItemPrice() {
+		return itemPrice;
+	}
+	public void setItemPrice(String itemPrice) {
+		this.itemPrice = itemPrice;
+	}
 	public String getCateCode() {
 		return cateCode;
 	}

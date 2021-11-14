@@ -92,6 +92,7 @@
 		 		AND CATE_CODE = #{cateCode}
 		 		</if>
 		 		AND IS_MAIN = 'Y'
+		 		AND ITEM_STATUS = 2
 		 		ORDER BY ITEM_CODE DESC)
 		 	)
 		 	WHERE ROW_NUM >= #{startNum} AND ROW_NUM &lt;= #{endNum}

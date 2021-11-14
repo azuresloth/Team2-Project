@@ -19,6 +19,7 @@
 		<result column="ITEM_CODE"				property="itemCode"/>
 		<result column="ID"						property="id"/>
 		<result column="TOTAL_PRICE"			property="totalPrice"/>
+		<result column="ITEM_PRICE"				property="itemPrice"/>
 		<result column="BUY_DATE"				property="buyDate"/>
 		<result column="ITEM_NAME"				property="itemName"/>
 		<result column="CATE_CODE"				property="cateCode"/>
@@ -211,6 +212,30 @@
 		ORDER BY ROWNUM
 	</select>
 	
+	<!-- 방금 주문한 상품 리스트 조회 -->
+	<select id="selectRecentBoughtList" resultMap="buyInfo">
+	SELECT BUY_CODE
+		, ATTACHED_IMG_NAME
+		, ITEM_CODE
+		, ITEM_NAME
+		, TOTAL_PRICE
+		, TO_CHAR(BUY_DATE, 'YY-MM-DD HH24-MI') AS BUY_DATE
+		, (TOTAL_PRICE / BUY_CNT) AS ITEM_PRICE
+           , BUY_CNT
+		, BUY_STATUS
+		, PAYMENT_PLAN
+		, DELIVERY_NAME
+		, DELIVERY_TELL
+		, DELIVERY_EMAIL
+		, DELIVERY_MSG
+		, POST_CODE
+		, ROAD_ADDR
+		, DETAIL_ADDR
+	FROM BUY_INFO
+	WHERE ORDER_CODE = #{orderCode}
+	ORDER BY ROWNUM
+	</select>
+	
 	<!-- 구매 날짜 조회 -->
 	<select id="selectBuyDate" resultType="String">
 		SELECT BUY_DATE
@@ -262,7 +287,7 @@
 				<if test="startDate != null and !startDate.equals('') and endDate != null and !endDate.equals('')">
 				AND TO_CHAR(BUY_DATE, 'YYYY-MM-DD') BETWEEN #{startDate} AND #{endDate}
 				</if><!-- ) -->
-			ORDER BY ORDER_CODE
+			ORDER BY ORDER_CODE DESC
 			<!-- )
 		WHERE RNUM BETWEEN #{startRow} and #{endRow} -->
 	</select>

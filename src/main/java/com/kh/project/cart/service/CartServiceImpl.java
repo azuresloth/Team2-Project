@@ -103,4 +103,9 @@ public class CartServiceImpl implements CartService{
 		sqlSession.delete("cartMapper.deleteCart", id);
 	}
 
+	@Override
+	public List<BuyInfoVO> selectRecentBoughtList(String orderCode) {
+		return sqlSession.selectList("cartMapper.selectRecentBoughtList", orderCode);
+	}
+
 }

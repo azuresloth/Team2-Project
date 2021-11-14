@@ -208,16 +208,27 @@ public class CartController {
 			}
 		}
 		// 구매목록 일괄삭제
-		cartService.deleteCart(cartViewVO.getId());
 		
-		// 사는 회원의 배송주소 전달
-		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
 		// 이메일, 전화번호 쪼개서 던지기
 		MemberVO splitTellEmail = memberService.selectBuyMemberInfo(cartViewVO);
 		setTellEmailfun(splitTellEmail);
 		// 조회한 장바구니의 총 가격 넘겨주기
-        model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
-		return "redirect:/cart/goOrderLookupPage";
+        int cartAllTotalPrice = cartService.selectCartAllTotalPrice(cartViewVO);
+        String orderCode = buyInfoVO.getOrderCode();
+        cartService.deleteCart(cartViewVO.getId());
+		return "redirect:/cart/goOrderCompletePage2?cartAllTotalPrice=" +cartAllTotalPrice + "&orderCode=" + orderCode;
+	}
+	
+	// 구매완료 페이지
+	@RequestMapping("/goOrderCompletePage2")
+	public String goOrderCompletePage(Model model, String orderCode, String cartAllTotalPrice) {
+		// 방금산거 조회  
+		System.out.println(orderCode);
+		System.out.println(cartAllTotalPrice);
+		model.addAttribute("boughtList", cartService.selectRecentBoughtList(orderCode));
+		model.addAttribute("allTotalPrice", cartAllTotalPrice);
+		model.addAttribute("orderCode", orderCode);
+		return "cart/order_complete_page2";
 	}
 	
 	// 주문조회
