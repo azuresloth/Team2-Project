@@ -95,6 +95,10 @@
 		FROM CART_VIEW
 		WHERE ID = #{id}
 	</select>
+	<!-- 장바구니 총 가격 조회 -->
+	<select id="selectCartAllTotalPrice" resultType="int">
+		SELECT SUM(TOTAL_PRICE) AS ALL_TOTAL_PRICE FROM CART_VIEW WHERE ID = #{id}
+	</select>
 	
 	<!-- 바로구매 눌럿을 경우 조회 -->
 	<!-- 바로구매 눌렀을때 장바구니에 같은제품 들어있는지 확인 -->

@@ -45,10 +45,34 @@ $(document).ready(function(){
 		};
 	});
 	
+	// 상품 삭제
+	$(document).on('click', '.deleteBtn', function() {
+		
+		var sure = confirm('장바구니에서 삭제 하시겠습니까?');
+		if(sure){
+			var itemCode = $(this).parent().parent().children().eq(0).children().eq(0).val();
+			var itemCnt = $(this).parent().parent().children().eq(4).children().eq(0).val();
+			var id = $('#id').val();
+			$.ajax({
+				url: '/cart/cartDeleteAjax',
+				type: 'post',
+				data: {'itemCode' : itemCode, 'id' : id},
+				success: function() {
+						history.go(0);
+				},
+				error: function() {
+					alert('실패');
+				}
+			});
+		}
+	});
+	
+	
 });
 
 /* 함수선언 영역*/
 (function($){
+	
 	
 	// 체크된 상품 삭제하기
 	checkedDelete = function() {

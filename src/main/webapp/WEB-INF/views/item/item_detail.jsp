@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
 <script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
-<script type="text/javascript" src="/resources/board/js/feedback.js?ver=3"></script>
+<script type="text/javascript" src="/resources/board/js/feedback.js?ver=2"></script>
 </head>
 <body>
 	<div class="row">
@@ -113,7 +113,7 @@
 				<input type="hidden" name="insOrUpd" id="insOrUpd" value="0">
 				<!-- requestURI -->
 				<input type="hidden" name="requestURI" value="${requestURI}">
-				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" onclick="goCartBtn();">장바구니 추가</button>
+				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" id="insertCartBtn">장바구니 추가</button>
 				<button type="button" class="btn btn-outline-secondary btn-lg directBtn" id="purchaseBtn">바로구매</button>
 			</div>
 			</form>

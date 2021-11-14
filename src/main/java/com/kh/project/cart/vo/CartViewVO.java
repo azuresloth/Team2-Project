@@ -13,7 +13,14 @@ public class CartViewVO {
 	private int itemCnt;
 	private String id;
 	private String cartDate;
+	private int allTotalPrice;
 	
+	public int getAllTotalPrice() {
+		return allTotalPrice;
+	}
+	public void setAllTotalPrice(int allTotalPrice) {
+		this.allTotalPrice = allTotalPrice;
+	}
 	public String getCartCode() {
 		return cartCode;
 	}
