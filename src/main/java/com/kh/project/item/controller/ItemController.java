@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.project.board.service.BoardService;
 import com.kh.project.board.vo.BoardVO;
+import com.kh.project.cart.service.CartService;
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.common.service.CommonService;
 import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ItemVO;
+import com.kh.project.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/item")
@@ -24,6 +28,8 @@ public class ItemController {
 	private ItemService itemService;
 	@Resource(name = "commonService")
 	private CommonService commonService;
+	@Resource(name = "cartService")
+	private CartService cartService;
 
 	//게시판 서비스 때문에 추가함
 	@Resource(name = "boardService")
@@ -99,7 +105,13 @@ public class ItemController {
 	
 	// 상품 상세 페이지
 	@GetMapping("/itemDetail")
-	public String itemDetail(Model model, ItemVO itemVO, HttpServletRequest request) {
+	public String itemDetail(Model model, ItemVO itemVO, HttpServletRequest request, HttpSession session, BuyInfoVO buyInfoVO) {
+		if(session.getAttribute("loginInfo") != null) {
+			String id = ((MemberVO) session.getAttribute("loginInfo")).getId();
+			buyInfoVO.setId(id);
+			buyInfoVO.setItemName(itemVO.getItemCode());
+			model.addAttribute("reviewCode", cartService.selectItemCodeByReview(buyInfoVO));
+		}
 		model.addAttribute("requestURI", request.getRequestURI());
 		model.addAttribute("itemInfo", itemService.selectItemDetail(itemVO));
 		return "item/item_detail";

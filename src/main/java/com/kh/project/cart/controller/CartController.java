@@ -71,9 +71,20 @@ public class CartController {
 		// best아이템 넘겨주기
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		// 세션에 로그인된 아이디 들고와서 넣기
-        cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+		String id = ((MemberVO) session.getAttribute("loginInfo")).getId();
+        cartViewVO.setId(id);
+        // 남은수량을 위한 장바구니 코드 조회 후 장바구니 통에 담기
+        List<CartViewVO> cartList = new ArrayList<CartViewVO>();
+        List<CartViewVO> codeList = cartService.selectCartItemCode(cartViewVO.getId());
+        for(CartViewVO e : codeList) {
+        	CartViewVO c = new CartViewVO();
+        	c.setItemCode(e.getItemCode());
+        	c.setId(id);
+        	c = cartService.selectCartViewWithStockList(c);
+        	cartList.add(c);
+        }
         // 아이디로 조회한 장바구니 목록 넘겨주기
-        model.addAttribute("cartList", cartService.selectCartViewList(cartViewVO));
+        model.addAttribute("cartList", cartList);
         // 조회한 장바구니의 총 가격 넘겨주기
         model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
         // 경로 넘겨주기

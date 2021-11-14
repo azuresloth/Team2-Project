@@ -54,4 +54,13 @@ public interface CartService {
 	// 방금한 상품 리스트 조회
 	List<BuyInfoVO> selectRecentBoughtList(String orderCode);
 	
+	// 리뷰 등록 버튼 오프너
+	List<BuyInfoVO> selectItemCodeByReview(BuyInfoVO buyInfoVO);
+	
+	// 장바구니를 위한 아이템코드 조회
+	List<CartViewVO> selectCartItemCode(String id);
+	
+	// 남은수량까지 장바구니 조회
+	CartViewVO selectCartViewWithStockList(CartViewVO cartViewVO);
+	
 }

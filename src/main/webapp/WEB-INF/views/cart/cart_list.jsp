@@ -45,7 +45,7 @@
 							<col width="110px">
 							<col width="auto">
 							<col width="120px">
-							<col width="95px">
+							<col width="150px">
 							<col width="105px">
 							<col width="120px">
 							<col width="120px">
@@ -75,9 +75,9 @@
 								</td>
 								<td>${cartInfo.itemName}</td>
 								<td><fmt:formatNumber type="number" value="${cartInfo.itemPrice}"></fmt:formatNumber>원</td>
-								<td>
-									${cartInfo.itemCnt}개
-									<input type="hidden" name="buyCnt" value="${cartInfo.itemCnt}">
+								<td style="vertical-align: middle">
+									<input type="number" name="buyCnt" value="${cartInfo.itemCnt}" min="0" max="${cartInfo.itemStock}" style="widows: 40px;'">개
+									<button class="button blackButton smallBtn mb-0" style="height: 30px; width: 50px;">변경</button>
 								</td>
 								<td>[무료]</td>
 								<td>

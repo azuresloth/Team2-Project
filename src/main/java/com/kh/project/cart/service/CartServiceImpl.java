@@ -108,4 +108,19 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectList("cartMapper.selectRecentBoughtList", orderCode);
 	}
 
+	@Override
+	public List<BuyInfoVO> selectItemCodeByReview(BuyInfoVO buyInfoVO) {
+		return sqlSession.selectList("cartMapper.selectItemCodeByReview", buyInfoVO);
+	}
+
+	@Override
+	public CartViewVO selectCartViewWithStockList(CartViewVO cartViewVO) {
+		return sqlSession.selectOne("cartMapper.selectCartViewWithStockList", cartViewVO);
+	}
+
+	@Override
+	public List<CartViewVO> selectCartItemCode(String id) {
+		return sqlSession.selectList("cartMapper.selectCartItemCode", id);
+	}
+
 }

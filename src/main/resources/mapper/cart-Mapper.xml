@@ -13,6 +13,7 @@
 		<result column="ITEM_CNT" 				property="itemCnt"/>
 		<result column="ID" 					property="id"/>
 		<result column="CART_DATE" 				property="cartDate"/>
+		<result column="ITEM_STOCK" 			property="itemStock"/>
 	</resultMap>
 	<resultMap type="com.kh.project.cart.vo.BuyInfoVO" id="buyInfo">
 		<id column="BUY_CODE"					property="buyCode"/>
@@ -95,6 +96,23 @@
 			, ITEM_CNT
 		FROM CART_VIEW
 		WHERE ID = #{id}
+	</select>
+	
+	<!-- 남은수량포함 장바구니 -->
+	<select id="selectCartViewWithStockList" resultMap="cartView">
+		SELECT C.ITEM_CODE
+			, ID
+			, C.ITEM_NAME
+			, C.ITEM_PRICE
+			, TOTAL_PRICE
+			, ATTACHED_IMG_NAME
+			, CART_DATE
+			, CART_CODE
+			, C.ITEM_CNT
+            , (SELECT ITEM_STOCK FROM ITEM I WHERE I.ITEM_CODE = #{itemCode}) AS ITEM_STOCK
+		FROM CART_VIEW C
+		WHERE ID = #{id}
+        AND C.ITEM_CODE = #{itemCode}
 	</select>
 	<!-- 장바구니 총 가격 조회 -->
 	<select id="selectCartAllTotalPrice" resultType="int">
@@ -315,6 +333,24 @@
 		FROM BUY_INFO BI
 		WHERE ORDER_CODE = #{orderCode}
 	</select>
+	
+	<!-- 리뷰 등록버튼 열기위한 조회 -->
+	<select id="selectItemCodeByReview" resultType="String">
+		SELECT ITEM_CODE 
+		FROM BUY_INFO 
+		WHERE ID = #{id}
+		AND ITEM_CODE = #{itemCode}
+		AND ROWNUM = 1
+	</select>
+	
+	<!-- 장바구니 조회를 위한 아이 -->
+	<select id="selectCartItemCode" resultMap="cartView">
+		SELECT ITEM_CODE
+		FROM CART_VIEW
+		WHERE ID = #{id}
+	</select>
+	
+	
 </mapper>
 
 

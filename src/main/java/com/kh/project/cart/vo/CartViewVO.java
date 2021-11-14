@@ -14,7 +14,14 @@ public class CartViewVO {
 	private String id;
 	private String cartDate;
 	private int allTotalPrice;
+	private String itemStock;
 	
+	public String getItemStock() {
+		return itemStock;
+	}
+	public void setItemStock(String itemStock) {
+		this.itemStock = itemStock;
+	}
 	public int getAllTotalPrice() {
 		return allTotalPrice;
 	}

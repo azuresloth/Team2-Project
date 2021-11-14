@@ -124,7 +124,7 @@
 		
 		<div class="col-10 mt-2 px-0">
 		<!-- 컨트롤러에서 상품구매한적 있는지 조회한후 인트로 받아서 0이아닐경우 IF 로 보여줌 -->
-			<c:if test="${not empty sessionScope.loginInfo }">
+			<c:if test="${not empty sessionScope.loginInfo && not empty reviewCode}">
 				<button type="button" class="btn btn-primary ms-4" data-bs-toggle="collapse" data-bs-target="#demo">후기등록 열기/닫기</button>
 			</c:if>
 			
