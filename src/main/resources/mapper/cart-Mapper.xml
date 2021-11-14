@@ -179,6 +179,7 @@
 			BUY_CODE
 			, ITEM_CODE
 			, ID
+			, ITEM_NAME
 			, TOTAL_PRICE
 			, BUY_CNT
 			, DELIVERY_NAME
@@ -194,6 +195,7 @@
 			(SELECT 'BUY_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BUY_CODE, 6, 3))), 0) + 1, 4, '0') FROM BUY_INFO)
 			, #{itemCode}
 			, #{id}
+			, #{itemName}
 			, #{totalPrice}
 			, #{buyCnt}
 			, #{deliveryName}
@@ -213,6 +215,7 @@
 		SELECT BUY_CODE
 			, ITEM_CODE
 			, ID
+			, ITEM_NAME
 			, TOTAL_PRICE
 			, TO_CHAR(BUY_DATE, 'YY-MM-DD HH24-MI') AS BUY_DATE
 			, BUY_CNT

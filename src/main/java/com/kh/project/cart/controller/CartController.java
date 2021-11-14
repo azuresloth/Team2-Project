@@ -198,6 +198,7 @@ public class CartController {
 		for(CartViewVO e : list) {
 			// 주문목록에 삽입
 			BuyInfoVO b = new BuyInfoVO();
+			b.setItemName(e.getItemName());
 			b.setItemCode(e.getItemCode());
 			b.setId(e.getId());
 			b.setTotalPrice(e.getTotalPrice());

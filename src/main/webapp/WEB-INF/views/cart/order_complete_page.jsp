@@ -86,7 +86,7 @@
 								<td>
 									<img alt="" src="/resources/images/item/itemImages/${sessionScope.nowBuyInfo.attachedImgName}" width="75px;">
 								</td>
-								<td>${buyItemInfo.itemName}</td>
+								<td>${nowBuyList[0].itemName}</td>
 								<td><fmt:formatNumber type="number" value="${sessionScope.nowBuyInfo.totalPrice / sessionScope.nowBuyInfo.buyCnt}"></fmt:formatNumber>원</td>
 								<td>
 									${sessionScope.nowBuyInfo.buyCnt}개

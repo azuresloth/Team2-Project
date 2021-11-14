@@ -78,7 +78,7 @@
 									<img alt="" src="/resources/images/item/itemImages/${buyItemInfo.attachedImgName}" width="75px;">
 									<input type="hidden" name="attachedImgName" value="${buyItemInfo.attachedImgName}">
 								</td>
-								<td>${buyItemInfo.itemName}</td>
+								<td>${buyItemInfo.itemName}<input type="hidden" name="itemName" value="${buyItemInfo.itemName}"></inout></td>
 								<td><fmt:formatNumber type="number" value="${buyItemInfo.itemPrice}"></fmt:formatNumber>원</td>
 								<td>
 									${buyItemInfo.itemCnt}개
@@ -410,7 +410,6 @@ $(".btn_payment").click(function() {
 					}
 			});
 	  	}
-	  	alert(1);
 	  	
 	  	if(${cartList != null}){
 	  		var name = $('#deliveryName').val();
@@ -424,7 +423,7 @@ $(".btn_payment").click(function() {
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
 			    name : '${cartList[0].itemName} 외 ${cartList.size()}건)'/*상품명*/,
-			    amount : parseInt(${cartAllTotalPrice} / 10000)    /*상품 가격*/, 
+			    amount : parseInt(${cartAllTotalPrice})    /*상품 가격*/, 
 			    buyer_email : email/*구매자 이메일*/,
 			    buyer_name : name,
 			    buyer_tel : tell/*구매자 연락처*/,
