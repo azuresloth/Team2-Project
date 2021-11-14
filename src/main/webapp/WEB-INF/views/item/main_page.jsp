@@ -17,7 +17,7 @@
 			<div class="swiper mainBannerSwiper">
 				<div class="swiper-wrapper">
 					<div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_1.jpg" width="100%;"></img></a></div>
-			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_2.jpg" width="100%;"></img></a></div>
+			        <!-- <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_2.jpg" width="100%;"></img></a></div> -->
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_3.jpg" width="100%;"></img></a></div>
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_4.jpg" width="100%;"></img></a></div>
 			        <div class="swiper-slide"><a><img src="/resources/images/item/banner/banner_5.jpg" width="100%;"></img></a></div>
@@ -42,34 +42,34 @@
 			<div class="row gy-1 sideBannerGrid">
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_1.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage"><img src="/resources/images/item/banner/2banner_6(bestItem).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_2.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage?cateCode=CATE_005"><img src="/resources/images/item/banner/2banner_4(hair).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">
 					<div class="p-1 border">
-						<a><img src="/resources/images/item/banner/2banner_3.jpg" style="width: 100%;"></img></a>
+						<a href="/item/categoryPage?cateCode=CATE_004"><img src="/resources/images/item/banner/2banner_5(watchStrap).jpg" style="width: 100%;"></img></a>
 					</div>
 				</div>
 				<div class="col-3">
 					<div class="p-1 border bg-light" style="height: 100%;">
-						<div>&lt; 공지사항 &gt;</div>
+						<strong class="ps-2 pt-2 fs15">&lt; 공지사항 &gt;</strong>
 						<div class="mt-2"></div>
 						<!-- ${noticeList } 여기에 공지사항이 들어가 있음 최신 순 3개만 띄워 줌-->
 						<c:if test="${empty noticeList }">
 							<div>공지사항이 없습니다.</div>
 						</c:if>
 						<c:if test="${not empty noticeList }">
-							<c:forEach items="${noticeList}" var="vo"  begin="0" end="2" step="1" varStatus="status">
-								<div>
-									<span>공지 ${status.count }.</span>
+							<c:forEach items="${noticeList}" var="vo"  begin="0" end="4" step="1" varStatus="status">
+								<div class="botBorder-ed px-2 py-1 fs14">
+									<%-- <span>공지 ${status.count }.</span> --%>
 									<!-- 공지사항 상세보기로 보내주기 -->
-									<a href="/board/view?boardNum=${vo.boardNum }&numForReadCnt=1" style="color: blue;">${vo.title }</a> 
-									<span>
+									<a href="/board/view?boardNum=${vo.boardNum }&numForReadCnt=1" style="" class="botBorder-ed">${vo.title }</a> 
+									<span style="color: #c5c6c7;">
 										(<fmt:formatDate value="${vo.createDate }" pattern="yyyy.MM.dd"/>)
 									</span>
 								</div>
@@ -80,8 +80,8 @@
 <!-- 						<div>공지 1</div> -->
 <!-- 						<div>공지 2</div> -->
 <!-- 						<div>공지 3</div> -->
-						<a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
-						<a href="/sample/asdf">???</a>
+						<!-- <a href="/feedback/reviewBoard?itemCode=itemCode_001">임시 후기 게시판 링크</a>
+						<a href="/sample/asdf">???</a> -->
 					</div>
 				</div>
 			</div>

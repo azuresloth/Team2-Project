@@ -38,13 +38,13 @@ body {
 </style>
 </head>
 <body>
-<div class="container-fluid">
-	<div style="height: 20px;"></div>
-	<div class="row" style="margin-bottom: 20px;">
-		<div class="col">
+	<div class="row">
+		<div class="col-12 templateMenuDiv">
 			<tiles:insertAttribute name="menu"/>
 		</div>
 	</div>
+<div class="container-fluid">
+	<div style="height: 20px;"></div>
 	<div class="row">
 		<div class="col-3">
 			<tiles:insertAttribute name="side"/>
@@ -54,6 +54,11 @@ body {
 		</div>
 	</div>
 </div>
+	<div class="row">
+		<div class="col-12 templateFootDiv">
+			<tiles:insertAttribute name="foot"/>
+		</div>
+	</div>
 </body>
 </html>
 

@@ -24,13 +24,14 @@ input[type="number"]{
 	width: 63px;
 	display: inline-block;
 }
+.container{padding: 0;}
 </style>
 </head>
 <body>
-	<div class="container mt-3">
-		<h2>상품 관리</h2>
+<h2 class="mb-0">상품 관리</h2>
+	<div class="container mt-1">
 		<div class="row">
-			<div class="col">
+			<div class="col ps-0">
 				<table class="table table-striped text-center">
 					<thead>
 						<tr>
@@ -63,12 +64,12 @@ input[type="number"]{
 								<c:if test="${itemInfo.itemStock > 0}">
 									<input type="number" value="${itemInfo.itemStock }" class="form-control text-start" min="0">
 								</c:if>
-								<input type="hidden" value="${itemInfo.itemCode }">
+								<input type="hidden" value="${itemInfo.itemCode }" class="itemStock">
 								<input type="button" value="변경" class="btn btn-secondary btn-sm update"> 
 							</td>
 							<td>
 								<input type="hidden" value="${itemInfo.itemCode }">
-								<input type="button" value="삭제" class="btn btn-secondary btn-lg delete">
+								<input type="button" value="삭제" class="btn btn-primary btn-lg delete">
 							</td>
 						</tr>
 					</c:forEach>

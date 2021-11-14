@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.kh.project.board.vo.PageVO;
 import com.kh.project.cart.service.CartService;
 import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.cart.vo.CartViewVO;
 import com.kh.project.cart.vo.DeliveryInfoVO;
 import com.kh.project.cart.vo.OrderListVO;
 import com.kh.project.common.service.CommonService;
+import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.common.vo.EmailAndTellVO;
 import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ItemVO;
@@ -44,25 +46,62 @@ public class CartController {
 	private MemberService memberService;
 	
 	// 장바구니에 추가 메소드(추가후 장바구니페이지로 이동할지 물어봄)
+	//@PostMapping("/goCartList")
+	@RequestMapping("/addCartList")
+	public String addCartList(String insOrUpd, CartViewVO cartViewVO) {
+		if(insOrUpd.equals("0")) {
+			// 추가쿼리
+			System.out.println("추가쿼리탐");
+			cartService.insertCart(cartViewVO);
+		}
+		else if(insOrUpd.equals("1")) {
+			// cnt 수정쿼리
+			System.out.println("수정쿼리탐");
+			cartService.updateCartCnt(cartViewVO);
+			
+		}
+		return "/cart/add_cart_result";
+	}
 	//(상세페이지 에서 1.에이작스로? or 2.페이지이동으로?)
 	
 	// 장바구니 페이지로 이동
 	//@PostMapping("/goCartList")
 	@RequestMapping("/goCartList")
-	public String goCartList(Model model, ItemVO itemVO) {
-         
+	public String goCartList(Model model, ItemVO itemVO, CartViewVO cartViewVO, HttpSession session, HttpServletRequest request) {
+		// best아이템 넘겨주기
+		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		// 세션에 로그인된 아이디 들고와서 넣기
+        cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+        // 아이디로 조회한 장바구니 목록 넘겨주기
+        model.addAttribute("cartList", cartService.selectCartViewList(cartViewVO));
+        // 조회한 장바구니의 총 가격 넘겨주기
+        model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
+        // 경로 넘겨주기
+        model.addAttribute("requestURI", request.getRequestURI());
 		return "cart/cart_list";
 	}
+	// 
 	
 	// 구매 페이지로 이동
 	//@PostMapping("/goPurchasePage")
 	@RequestMapping("/goPurchasePage")
-	public String goPurchasePage(Model model, CartViewVO cartViewVO, String requestURI, String insOrUpd) {
+	public String goPurchasePage(Model model, CartViewVO cartViewVO, String requestURI, String insOrUpd, HttpSession session) {
 		System.out.println(requestURI);
 		if(requestURI.equals("/cart/goCartList")) {
 			System.out.println(1);
+			cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+			// 장바구니 목록 전달
 			model.addAttribute("cartList", cartService.selectCartViewList(cartViewVO));
+			
 			model.addAttribute("requestURI", requestURI);
+			// 사는 회원의 배송주소 전달
+			model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
+			// 이메일, 전화번호 쪼개서 던지기
+			MemberVO splitTellEmail = memberService.selectBuyMemberInfo(cartViewVO);
+			setTellEmailfun(splitTellEmail);
+			// 조회한 장바구니의 총 가격 넘겨주기
+	        model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
+			model.addAttribute("emailandTellInfo", setTellEmailfun(splitTellEmail));
 		}
 		else if(requestURI.equals("/item/itemDetail")){
 			if(insOrUpd.equals("0")) {
@@ -138,9 +177,31 @@ public class CartController {
 		return "cart/order_complete_page";
 	}
 	
+	// 장바구니 전체 구매처리
+	@PostMapping("/cartOrderComplete")
+	public String cartOrderComplete(Model model, BuyInfoVO buyInfoVO, RedirectAttributes redirectAttributes, CartViewVO cartViewVO, HttpSession session) {
+		System.out.println(buyInfoVO);
+		cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
+		// 장바구니 목록 전달
+		List<CartViewVO> list = cartService.selectCartViewList(cartViewVO);
+		for() {
+			//나중에 이걸 본다면 나좀 도와주시게
+			
+		}
+		
+		// 사는 회원의 배송주소 전달
+		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
+		// 이메일, 전화번호 쪼개서 던지기
+		MemberVO splitTellEmail = memberService.selectBuyMemberInfo(cartViewVO);
+		setTellEmailfun(splitTellEmail);
+		// 조회한 장바구니의 총 가격 넘겨주기
+        model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
+		return "item/main_page";
+	}
+	
 	// 주문조회
 	@GetMapping("/goOrderLookupPage")
-	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model) {
+	public String goOrderLookupPage(BuyInfoVO buyInfoVO, HttpSession session, Model model, PageVO pageVO) {
 		buyInfoVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
 //		model.addAttribute("lookupList", cartService.selectOrderLookup(buyInfoVO));
 		
@@ -170,8 +231,11 @@ public class CartController {
 		
 		// 전달
 		model.addAttribute("orderMap", map);
+		model.addAttribute("pageVO", pageVO);
 		
-		
+		// 날짜 정보 전달
+		model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
+	    model.addAttribute("nowMonth", FileUploadUtil.getNowMonth() );
 		
 		return "cart/order_lookup_page";
 	}
@@ -226,7 +290,7 @@ public class CartController {
 		return deliveryInfoVO;
 	}
 	
-	// 체크된 상품 삭제하기
+	// 카트의 체크된 상품 삭제하기
 	@ResponseBody
 	@PostMapping("/checkedDeleteAjax")
 	public void checkedDeleteAjax(@RequestParam(value = "itemCodes[]") List<String> itemCodes, String cnt, String id) {
@@ -239,7 +303,12 @@ public class CartController {
 			cartService.deleteCartItem(e, id); 
 		}
 	}
-	
+	// 카트 상품 삭제
+	@ResponseBody
+	@PostMapping("/cartDeleteAjax")
+	public void cartDeleteAjax(String itemCode, String id) {
+		cartService.deleteCartItem(itemCode, id); 
+	}
 	
 	// 구매목록 삭제해서 없는데 뒤로왔을때 조회
 	@ResponseBody

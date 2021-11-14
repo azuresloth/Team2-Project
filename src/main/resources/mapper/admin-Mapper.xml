@@ -256,6 +256,7 @@
 			        FROM ITEM I , ITEM_IMG IMG
 			        WHERE I.ITEM_CODE = IMG.ITEM_CODE
 			        AND IS_MAIN = 'Y')
+			        ORDER BY ITEM_CODE DESC
 			)
 		WHERE RNUM BETWEEN #{startRow} and #{endRow}
 	</select>

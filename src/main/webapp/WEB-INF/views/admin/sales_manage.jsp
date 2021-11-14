@@ -20,8 +20,9 @@
 </style>
 </head>
 <body>
+<h2>카테고리당 매출정보</h2>
 <div class="row">
-	<div class="col-4">
+	<div class="col-4 ps-0">
 		<table class="table text-center">
 			<thead>
 				<tr>
@@ -39,7 +40,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="col-8" >
+	<div class="col-8 pe-0" >
 		<table class="table text-center" id="salesDiv">
 			<thead>
 				<tr>

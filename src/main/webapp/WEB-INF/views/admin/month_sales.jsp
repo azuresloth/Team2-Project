@@ -11,11 +11,11 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script type="text/javascript" src="/resources/admin/month_sales.js?ver=12"></script>
 <style type="text/css">
-.myContainer{
+.contentDiv{
    	background-color: #fba062;
    	border-radius: 6px;
    	padding: 16px;
-   	a
+   	
 }
 .pagination{
 	margin: 0 auto;
@@ -24,12 +24,14 @@
 .totalPriceDiv{
 	margin: 0 auto;
 }
+.container{padding: 0;}
 </style>
 </head>
 <body>
 <form action="/admin/selectMonthSales" method="post">
-	<div class="container myContainer">
-		<div class="row">
+	<div class="container">
+	<h2>한달 매출 정보</h2>
+		<div class="row contentDiv">
 			<div class="col-2 text-center d-flex justify-content-center">
 				<span class="align-self-center">날짜검색</span> 
 			</div>

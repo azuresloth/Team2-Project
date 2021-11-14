@@ -90,7 +90,6 @@ $(document).ready(function(){
 							location.href='/item/mainPage';
 						}
 						else{
-							alert(result);
 						}
 					},
 					error: function(request,status,error) {
@@ -101,7 +100,12 @@ $(document).ready(function(){
 				});
 			
 		} 
-		else { 
+		else {
+			var checkCnt = $('.childBox').length;
+			if(checkCnt == 0 ){
+				alert('구매목록에 상품이 없습니다. \n 장바구니로 돌아갑니다.');
+				location.href='/cart/goCartList';
+			}
 		} 
 	});
 	
@@ -222,6 +226,18 @@ $(document).ready(function(){
 			$('#orderForm').submit();
 		}
 	}
+	// 임시 결제
+	testPay2 = function() {
+		var random = Math.random();
+		var ranNum = Math.floor(random*10000+1);
+		var orderCode = 'merchant_'+ ranNum;
+		var result = confirm('임시결제할까요?');
+		if(result) {
+			$('#orderCode').val(orderCode);
+			$('#orderForm2').attr('onsubmit', 'return true');
+			$('#orderForm2').submit();
+		}
+	}
 	
 	// 체크된 상품 삭제하기
 	checkedDelete = function() {
@@ -241,13 +257,7 @@ $(document).ready(function(){
 					type: 'post',
 					data: {'itemCodes' : arr, 'cnt' : cnt, 'id' : id},
 					success: function() {
-						if($('.childBox').length){
-							alert('구매목록에 상품이 없습니다. \n 장바구니로 돌아갑니다.');
-							location.href='/cart/goCartList';
-						}
-						else{
 							history.go(0);
-						}
 					},
 					error: function() {
 						alert('실패');

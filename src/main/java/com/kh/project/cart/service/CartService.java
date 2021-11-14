@@ -12,6 +12,9 @@ public interface CartService {
 	// 장바구니 조회
 	List<CartViewVO> selectCartViewList(CartViewVO cartViewVO);
 	
+	// 장바구니 총 가격 조회
+	int selectCartAllTotalPrice(CartViewVO cartViewVO);
+	
 	// 바로구매 눌렀을 경우
 	CartViewVO directSelectCartViewList(CartViewVO cartViewVO);
 	

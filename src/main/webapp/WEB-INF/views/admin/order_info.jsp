@@ -37,6 +37,7 @@
 </style>
 </head>
 <body>
+<h2>주문관리</h2>
 	<div class="container myContainer">
 		<form action="/admin/serchDate" method="post">
 			<div class="row">

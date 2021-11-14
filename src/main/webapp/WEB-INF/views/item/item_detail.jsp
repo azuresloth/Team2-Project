@@ -8,7 +8,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/resources/item/css/item_detail.css?ver=3">
-<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=3"></script>
+<script type="text/javascript" src="/resources/item/js/item_detail.js?ver=1"></script>
+<script type="text/javascript" src="/resources/board/js/feedback.js?ver=2"></script>
 </head>
 <body>
 	<div class="row">
@@ -28,7 +29,7 @@
 		</div>
 	</div>
 	<div class="row mt-2 justify-content-center">
-		<div class="col-5">
+		<div class="col-5 ps-0">
 			<!-- Swiper -->
 		    <div class="swiper itemImg">
 		      <div class="swiper-wrapper">
@@ -112,12 +113,99 @@
 				<input type="hidden" name="insOrUpd" id="insOrUpd" value="0">
 				<!-- requestURI -->
 				<input type="hidden" name="requestURI" value="${requestURI}">
-				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" onclick="goCartBtn();">장바구니 추가</button>
+				<button type="button" class="btn btn-outline-warning btn-lg cartBtn" id="insertCartBtn">장바구니 추가</button>
 				<button type="button" class="btn btn-outline-secondary btn-lg directBtn" id="purchaseBtn">바로구매</button>
 			</div>
 			</form>
 		</div>
+		<div class="col-10 botBorder-1b bg-light">
+			<div class="p-4 pb-1 fs-3">상품 후기</div>
+		</div>
+		
+		<div class="col-10 mt-2 px-0">
+		<!-- 컨트롤러에서 상품구매한적 있는지 조회한후 인트로 받아서 0이아닐경우 IF 로 보여줌 -->
+			<c:if test="${not empty sessionScope.loginInfo }">
+				<button type="button" class="btn btn-primary ms-4" data-bs-toggle="collapse" data-bs-target="#demo">후기등록 열기/닫기</button>
+			</c:if>
+			
+			<div id="demo" class="collapse">
+			<!-- 세로운 디자인의 폼태그 -->
+			<div>
+				<form method="post" enctype="multipart/form-data" id="fileUploadForm">
+					<input type="hidden" value="${itemInfo.itemCode}" name="itemCode" id="itemCodeInput"> <!-- 추후에 아이탬으로변경됨 -->
+					<div class="input-group mt-2 mb-2">
+						<span class="input-group-text bg-light">제목</span> 
+						<input type="text" class="form-control" name="title">
+					</div>
+					<div class="input-group mt-2 mb-2">
+						<span class="input-group-text bg-light">작성자</span> 
+						<input type="text" class="form-control bg-light" value="${sessionScope.loginInfo.id }"  readonly name="id" id="loginId">
+						<input type="hidden" value="${sessionScope.loginInfo.isAdmin }" id="loginIsAdmin">
+					</div>
+					<div class="input-group mb-2">
+						<span class="input-group-text bg-light">내용</span>
+						<textarea rows="5" class="form-control" style="resize: none;" name="content"></textarea>
+					</div>
+					<div class="input-group mb-2">
+						<span class="input-group-text bg-light">사진 첨부</span> 
+						<input type="file" class="form-control bg-light" required name="file">
+					</div>
+					<div class="text-center">
+						<input type="submit" class="btn btn-primary mt-2" value="후기등록" id="insertFeedbackBtn">
+						<input type="button" class="btn btn-primary mt-2" value="취소" id="cancelFeedbackFormBtn">
+					</div>
+				</form>
+			</div>
+	<!-- 세로운 디자인의 폼태그 끝!!!!!!!!!!!!-->
 	</div>
+	<!-- 여기를 비워주면서 후기 리스트를 넣어준다. -->
+			<div>
+				<ul class="list-group" style="font-size: 18px; margin-top: 20px;" id="feedbackListUl" > <!-- 여기에 후기 목록을 뿌려준다. -->
+					<li class="list-group-item"> 
+						<form method="post" enctype="multipart/form-data" class="updateFileUploadForm">
+							<div class="row">
+								<div class="col-2">
+									<img src="http://placehold.it/150x150"/>
+								</div>
+								<div class="col-10">
+									<div class="row mt-2">
+										<div class="col-8">
+											제목 : <span>제목자리입니다.</span>
+										</div>
+										<div class="col-4 text-end">
+											작성일 : <span>2021.11.6(14:28)</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-12">
+											작성자 : <span>작성자 자리</span>
+										</div>
+									</div>
+									<div class="row" style="height: 50px;">
+										<div class="col-12">
+											내용 : <span>내용자리입니다</span>
+										</div>
+									</div>
+									<div style="float: right;">
+										<input type="hidden" value="fbCode" name="fbCode"> 
+										<input type="button" value="수정" class="btn btn-secondary updateFormFeedbackBtn"> 
+										<input type="button" value="삭제" class="btn btn-secondary deleteFeedbackBtn">
+									</div>
+								</div>
+							</div>
+						</form>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 후기 -->
+	<div class="row justify-content-center formDiv">
+	</div>
+	<!-- 후기 끝 -->
+	
+	
 </body>
  <script>
       var swiper = new Swiper(".itemImg", {

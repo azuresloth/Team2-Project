@@ -69,4 +69,14 @@ public class ItemServiceImpl implements ItemService{
 	public void updateItemStatus(BuyInfoVO buyInfoVO) {
 		sqlSession.update("itemMapper.updateItemStatus", buyInfoVO);
 	}
+
+	@Override
+	public int selectItemListCnt(ItemVO itemVO) {
+		return sqlSession.selectOne("itemMapper.selectItemListCnt", itemVO);
+	}
+
+	@Override
+	public int selectSearchListCnt(ItemVO itemVO) {
+		return sqlSession.selectOne("itemMapper.selectSearchListCnt", itemVO);
+	}
 }

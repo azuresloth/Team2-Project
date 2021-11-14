@@ -87,4 +87,15 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectList("cartMapper.selectOrderCode", buyInfoVO);
 	}
 
+	@Override
+	public int selectCartAllTotalPrice(CartViewVO cartViewVO) {
+		if(sqlSession.selectOne("cartMapper.selectCartAllTotalPrice", cartViewVO) != null) {
+			int allTotalPrice = sqlSession.selectOne("cartMapper.selectCartAllTotalPrice", cartViewVO);
+			return allTotalPrice;
+		}
+		else {
+			return 0;
+		}
+	}
+
 }

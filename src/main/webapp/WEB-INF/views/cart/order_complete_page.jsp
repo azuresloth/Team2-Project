@@ -29,7 +29,7 @@
 	<div class="row justify-content-center">
 		<div class="col-10 ">
 			<div class="row mt-2 justify-content-center">
-				<div class="col-12 purTitleDiv">
+				<div class="col-12 botBorder-1b pageTitleDiv">
 					<h4>주문완료</h4>
 				</div>
 				<div class="col-12 text-center justify-content-center orderCompleteDiv">

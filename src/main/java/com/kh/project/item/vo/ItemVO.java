@@ -2,6 +2,7 @@ package com.kh.project.item.vo;
 
 import java.util.List;
 
+import com.kh.project.admin.vo.BuyStatusVO;
 import com.kh.project.common.vo.PageVO;
 
 public class ItemVO extends PageVO{
@@ -17,7 +18,15 @@ public class ItemVO extends PageVO{
 	private int maxPrice;
 	private String orderBy;
 	private int saleCnt;
+	private int totalCnt;
 	
+	
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
+	}
 	public int getSaleCnt() {
 		return saleCnt;
 	}
@@ -90,5 +99,24 @@ public class ItemVO extends PageVO{
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
+	@Override
+	public String toString() {
+		return "ItemVO [itemCode=" + itemCode + ", itemName=" + itemName + ", itemPrice=" + itemPrice + ", itemIntro="
+				+ itemIntro + ", itemStock=" + itemStock + ", itemStatus=" + itemStatus + ", cateCode=" + cateCode
+				+ ", imgList=" + imgList + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", orderBy=" + orderBy
+				+ ", saleCnt=" + saleCnt + ", totalCnt=" + totalCnt + ", getTotalCnt()=" + getTotalCnt()
+				+ ", getSaleCnt()=" + getSaleCnt() + ", getItemCode()=" + getItemCode() + ", getItemName()="
+				+ getItemName() + ", getItemPrice()=" + getItemPrice() + ", getItemIntro()=" + getItemIntro()
+				+ ", getItemStock()=" + getItemStock() + ", getItemStatus()=" + getItemStatus() + ", getCateCode()="
+				+ getCateCode() + ", getImgList()=" + getImgList() + ", getMinPrice()=" + getMinPrice()
+				+ ", getMaxPrice()=" + getMaxPrice() + ", getOrderBy()=" + getOrderBy() + ", toString()="
+				+ super.toString() + ", getDisplayPageCnt()=" + getDisplayPageCnt() + ", getNowPage()=" + getNowPage()
+				+ ", getPTotalCnt()=" + getPTotalCnt() + ", getPrev()=" + getPrev() + ", getNext()=" + getNext()
+				+ ", getBeginPage()=" + getBeginPage() + ", getEndPage()=" + getEndPage() + ", getStartNum()="
+				+ getStartNum() + ", getEndNum()=" + getEndNum() + ", getSearchKeyword()=" + getSearchKeyword()
+				+ ", getSearchValue()=" + getSearchValue() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ "]";
+	}
+	
 	
 }

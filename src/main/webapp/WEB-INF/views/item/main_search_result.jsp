@@ -63,7 +63,7 @@
 					      	<select class="searchSelectBox" name="orderBy">
 					      		<option value="">:: 기준선택 ::</option>
 					      		<option value="ITEM_NAME"<c:if test="${itemVO.orderBy eq 'ITEM_NAME'}">selected</c:if>>상품명 순</option>
-					      		<option value="REG_DATE DESC"<c:if test="${itemVO.orderBy eq 'REG_DATE DESC'}">selected</c:if>>신상품 순</option>
+					      		<%-- <option value="REG_DATE DESC"<c:if test="${itemVO.orderBy eq 'REG_DATE DESC'}">selected</c:if>>신상품 순</option> --%>
 					      		<option value="ITEM_PRICE"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE'}">selected</c:if>>낮은 가격 순</option>
 					      		<option value="ITEM_PRICE DESC"<c:if test="${itemVO.orderBy eq 'ITEM_PRICE DESC'}">selected</c:if>>높은 가격 순</option>
 					      	</select>
@@ -84,26 +84,47 @@
 			
 			
 			<div class="row justify-content-center">
-					<c:choose>
-						<c:when test="${itemVO.totalCnt eq 0}">
-							<div class="col text-center">
-							<strong class="warning">검색결과가 없습니다.</strong>
-							<br>
-							<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+				<c:choose>
+					<c:when test="${itemVO.totalCnt eq 0}">
+						<div class="col text-center">
+						<strong class="warning">검색결과가 없습니다.</strong>
+						<br>
+						<strong>정확한 검색어 인지 확인하시고 다시 검색해 주세요.</strong>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${itemList}" var="itemInfo">
+							<div class="col-3">
+								<!-- 사진 -->
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
+								<!-- 이름, 가격 -->
+								<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}">${itemInfo.itemName}</a>
+								<div>${itemInfo.itemPrice}원</div>
 							</div>
-						</c:when>
-						<c:otherwise>
-							<c:forEach items="${itemList}" var="itemInfo">
-								<div class="col-3">
-									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}"><img src="/resources/images/item/itemImages/${itemInfo.imgList[0].attachedImgName}" width="100%"></img></a>
-									<a href="/item/itemDetail?itemCode=${itemInfo.itemCode}&cateCode=${itemInfo.cateCode}">${itemInfo.itemName}</a>
-									<div>${itemInfo.itemPrice}원</div>
-								</div>
-							</c:forEach>
-						</c:otherwise>
-					</c:choose>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			
+			<c:if test="${itemVO.totalCnt ne 0}">
+				<div class="col text-center">
+					<nav aria-label="...">
+					  <ul class="pagination justify-content-center">
+					    <li class="page-item <c:if test="${!itemVO.prev }">disabled</c:if>">
+					      <a class="page-link" href="/item/mainSearchResult?nowPage=${param.beginPage - 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&lt;</a>
+					    </li>
+					    <c:forEach begin="${itemVO.beginPage}" end="${itemVO.endPage}" var="pageNumber">
+						    <li class="page-item <c:if test="${itemVO.nowPage eq pageNumber}">active</c:if>">
+						    	<a class="page-link" href="/item/mainSearchResult?nowPage=${pageNumber}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${itemVO.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">${pageNumber}</a>
+						    </li>
+						</c:forEach>
+					    <li class="page-item <c:if test="${!itemVO.next }">disabled</c:if>">
+					      <a class="page-link" href="/item/mainSearchResult?nowPage=${param.endPage + 1}&cateCode=${param.cateCode}&searchValue=${param.searchValue}&searchKeyword=${param.searchKeyword}&minPrice=${param.minPrice}&maxPrice=${param.maxPrice}&orderBy=${param.orderBy}">&gt;</a>
+					    </li>
+					  </ul>
+					</nav>
+				</div>
+			</c:if>
 		</div>
 	</div>
 </body>

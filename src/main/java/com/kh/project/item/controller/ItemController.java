@@ -30,12 +30,15 @@ public class ItemController {
 	private BoardService boardService;
 	
 	
-	// 상품 목록 페이지로 이동
+	// 메인 페이지로 이동
 	@GetMapping("/mainPage")
 	public String selectItemList(Model model, ItemVO itemVO) {
 		model.addAttribute("itemList", itemService.selectItemList(itemVO));
 		model.addAttribute("recentItemList", itemService.selectRecentItemList());
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		model.addAttribute("bestCode", itemService.selectBestItemList(itemVO));
+		model.addAttribute("hairCode", itemService.selectBestItemList(itemVO));
+		model.addAttribute("watchCode", itemService.selectBestItemList(itemVO));
 		
 		// 공지 사항 메인페이지에 제목과 작성일을 보여주기
 		// List<BoardVO> noticeList = boardService.noticeList();
@@ -46,8 +49,14 @@ public class ItemController {
 	}
 	
 	// 메인페이지에서 상품 검색
-	@PostMapping("/mainSearchResult")
+	//@PostMapping("/mainSearchResult")
+	@RequestMapping("/mainSearchResult")
 	public String mainSearchResult(Model model, ItemVO itemVO) {
+		System.out.println(itemVO);
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectSearchListCnt(itemVO));
+		itemVO.setPageInfo();
+		System.out.println(itemVO);
 		// 검색 결과
 		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
 		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
@@ -55,12 +64,32 @@ public class ItemController {
 		// 세부 검색을 위한 정보
 		model.addAttribute("itemVO", itemVO);
 		
+		System.out.println(itemVO);
+		return "item/main_search_result";
+	}
+	@GetMapping("/mainSearchResult2")
+	public String mainSearchResult2(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectSearchListCnt(itemVO));
+		itemVO.setPageInfo();
+		// 검색 결과
+		itemVO.setTotalCnt(itemService.mainPageSearchCnt(itemVO));
+		model.addAttribute("itemList", itemService.mainPageSearchList(itemVO));
+		
+		// 세부 검색을 위한 정보
+		model.addAttribute("itemVO", itemVO);
+		
+		System.out.println(itemVO);
 		return "item/main_search_result";
 	}
 	
 	// 메뉴 카테고리 페이지
 	@GetMapping("/categoryPage")
 	public String categoryPage(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectItemListCnt(itemVO));
+		itemVO.setPageInfo();
+		
 		// 베스트 상품
 		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
 		// 상품 리스트
@@ -76,5 +105,17 @@ public class ItemController {
 		return "item/item_detail";
 	}
 	
+	// 메뉴 카테고리 페이지
+	@GetMapping("/bestItemList")
+	public String bestItemList(Model model, ItemVO itemVO) {
+		// 페이징 처리
+		itemVO.setPTotalCnt(itemService.selectItemListCnt(itemVO));
+		itemVO.setPageInfo();
+		// 베스트 상품
+		model.addAttribute("bestItemList", itemService.selectBestItemList(itemVO));
+		// 상품 리스트
+		model.addAttribute("itemList", itemService.selectItemList(itemVO));
+		return "item/category_page";
+	}
 	
 }

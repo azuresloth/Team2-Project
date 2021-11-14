@@ -24,11 +24,11 @@
 			            <!-- <li><a class="dropdown-item" href="/board/personalBoard">게시물 관리</a></li> -->
 			            <li><a class="dropdown-item" href="/board/loginCheckForPersonalBoard">게시물 관리</a></li>
 			            <li><hr class="dropdown-divider"></li>
-			            <li><a class="dropdown-item" href="#">그외 추가 자리</a></li>
+			            <li><a class="dropdown-item" href="#">추가 예정</a></li>
 			          </ul>
 			    </li>
 				<li><a href="/cart/goOrderLookupPage">주문조회</a></li>
-				<li>장바구니</li>
+				<li><a href="/cart/goCartList">장바구니</a></li>
 				<c:choose>
 					<c:when test="${not empty sessionScope.loginInfo}">
 						<li><a href="/member/logout">로그아웃</a></li>
@@ -56,8 +56,8 @@
 		<div class="col secondMenuDiv">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light menuNavbar">
 			  <div class="container-fluid bg-light">
-			  	<c:if test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
-				    <a class="navbar" href="/item/newItemList">NEW ITEM</a>
+			  	<c:if test="${empty sessionScope.loginInfo or empty menuList }">
+				    <a class="navbar" href="/item/bestItemList">BEST ITEM</a>
 			  	</c:if>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
@@ -65,7 +65,7 @@
 			    <div class="collapse navbar-collapse mainMenuNavbar bg-light" id="navbarScroll" style="z-index: 1000; padding-left: 1rem;">
 			      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
 			        <c:choose>
-			        	<c:when test="${empty sessionScope.loginInfo or sessionScope.loginInfo.isAdmin eq 'N' }">
+			        	<c:when test="${empty sessionScope.loginInfo or empty menuList }">
 			        	<!-- 관리자가 아닐때 -->
 			        		<c:if test="${not empty categoryList}">
 			        			<c:forEach items="${categoryList}" var="categoryInfo">
@@ -109,7 +109,9 @@
 			      </ul>
 			      <form class="d-flex searchArea" id="mainPageSearchForm" action="/item/mainSearchResult" method="post" onsubmit="return false">
 			        <input  type="search" placeholder="상품검색" aria-label="" id="mainSearchBar" name="searchValue">
-			        <input type="hidden" value="x">
+			        <input type="hidden" value="all" name="searchKeyword">
+			        <input type="hidden" name="minPrice" value="0">
+			        <input type="hidden" name="maxPrice" value="0">
 			        <input type="image" src="/resources/images/layout/btn_search.png" id="searchIcon" alt="검색" onclick="mainSearchFun();" >
 			      </form>
 			    </div>

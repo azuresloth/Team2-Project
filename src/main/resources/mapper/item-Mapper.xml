@@ -26,78 +26,18 @@
 		<result column="ITEM_CODE"			property="itemCode"/>
 		<result column="IS_MAIN"			property="isMain"/>
 	</resultMap>
- 
- 	<select id="selectItemList" resultMap="item">
- 		SELECT ITEM.ITEM_CODE
- 			, ITEM_NAME
- 			, ITEM_PRICE
- 			, ITEM_INTRO
- 			, ATTACHED_IMG_NAME
- 			, CATE_CODE
- 			, ROWNUM
- 		FROM ITEM ITEM, ITEM_IMG IMG
- 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
- 		<if test="cateCode != null and !cateCode.equals('')">
- 		AND CATE_CODE = #{cateCode}
- 		</if>
- 		AND IS_MAIN = 'Y'
- 		ORDER BY ITEM_CODE DESC
- 	</select>
  	
- 	<!-- 최근 등록 아이템 -->
- 	<select id="selectRecentItemList" resultMap="item">
- 		SELECT ITEM.ITEM_CODE
- 			, ITEM_NAME
- 			, ITEM_PRICE
- 			, ITEM_INTRO
- 			, ATTACHED_IMG_NAME
- 			, CATE_CODE
- 			, ROWNUM
- 		FROM ITEM ITEM, ITEM_IMG IMG
- 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
- 		AND IS_MAIN = 'Y'
- 		AND ITEM_STATUS = 2
- 		AND ROWNUM &lt; 21
- 		ORDER BY ITEM_CODE DESC
- 	</select>
- 	
- 	<!-- 베스트 아이템 -->
- 	<select id="selectBestItemList" resultMap="item">
- 		SELECT ITEM.ITEM_CODE
- 			, ITEM_NAME
- 			, ITEM_PRICE
- 			, ITEM_INTRO
- 			, ATTACHED_IMG_NAME
- 			, CATE_CODE
- 			, ROWNUM
- 		FROM ITEM ITEM, ITEM_IMG IMG
- 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
- 		<if test="cateCode != null and !cateCode.equals('')">
- 		AND CATE_CODE = #{cateCode}
- 		</if>
- 		AND IS_MAIN = 'Y'
- 		AND ITEM_STATUS = 2
- 		AND ITEM_STOCK &lt; 50
- 	</select>
- 	
- 	<!-- 카테고리 목록조회 -->
- 	<select id="selectCategoryList" resultMap="category">
- 		SELECT CATE_CODE
- 			, CATE_NAME
- 			, CATE_PASS
- 		FROM CATEGORY
- 		ORDER BY CATE_CODE
- 	</select>
- 	
- 	<!-- 메인페이지에서 상품검색 -->
- 	<select id="mainPageSearchList" resultMap="item">
- 		SELECT ITEM.ITEM_CODE
- 			, ITEM_NAME
- 			, ITEM_INTRO
- 			, ITEM_PRICE
- 			, CATE_CODE
- 			, ATTACHED_IMG_NAME
- 			, ROWNUM
+ 	<!-- 카테고리 페이징처리 상품 전체 갯수 조회 -->
+	<select id="selectItemListCnt" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM ITEM
+		<if test="cateCode != null and !cateCode.equals('')">
+		WHERE CATE_CODE = #{cateCode}
+		</if>
+	</select>
+	<!-- 메인 검색 페이지 페이징처리 상품 전체 갯수 조회 -->
+	<select id="selectSearchListCnt" resultType="int">
+		SELECT COUNT(ITEM.ITEM_CODE)
  		FROM ITEM ITEM, ITEM_IMG IMG
  		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
  		AND IS_MAIN = 'Y'
@@ -121,17 +61,146 @@
  		<if test="orderBy != null and !orderBy.equals('')">
  		ORDER BY ${orderBy}
  		</if>
+	</select>
+ 	
+ 	<!-- 카테고리 상품조회 -->
+ 	<select id="selectItemList" resultMap="item">
+ 		SELECT ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ATTACHED_IMG_NAME
+ 			, CATE_CODE
+            , ROW_NUM
+ 		FROM(SELECT ITEM_CODE
+	 			, ITEM_NAME
+	 			, ITEM_PRICE
+	 			, ITEM_INTRO
+	 			, ATTACHED_IMG_NAME
+	 			, CATE_CODE
+	            , ROWNUM AS ROW_NUM
+	 		FROM(SELECT ITEM.ITEM_CODE
+		 			, ITEM_NAME
+		 			, ITEM_PRICE
+		 			, ITEM_INTRO
+		 			, ATTACHED_IMG_NAME
+		 			, CATE_CODE
+		 			, ROWNUM
+		 		FROM ITEM ITEM, ITEM_IMG IMG
+		 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+		 		<if test="cateCode != null and !cateCode.equals('')">
+		 		AND CATE_CODE = #{cateCode}
+		 		</if>
+		 		AND IS_MAIN = 'Y'
+		 		ORDER BY ITEM_CODE DESC)
+		 	)
+		 	WHERE ROW_NUM >= #{startNum} AND ROW_NUM &lt;= #{endNum}
+ 	</select>
+ 	
+ 	<!-- 최근 등록 아이템 -->
+ 	<select id="selectRecentItemList" resultMap="item">
+ 		SELECT ITEM.ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ATTACHED_IMG_NAME
+ 			, CATE_CODE
+ 			, ROWNUM
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		AND IS_MAIN = 'Y'
+ 		AND ITEM_STATUS = 2
+ 		AND ROWNUM &lt; 10
+ 		ORDER BY ITEM_CODE DESC
+ 	</select>
+ 	
+ 	<!-- 베스트 아이템 -->
+ 	<select id="selectBestItemList" resultMap="item">
+ 		SELECT ITEM.ITEM_CODE
+ 			, ITEM_NAME
+ 			, ITEM_PRICE
+ 			, ITEM_INTRO
+ 			, ATTACHED_IMG_NAME
+ 			, CATE_CODE
+ 			, ROWNUM
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+ 		<if test="cateCode != null and !cateCode.equals('')">
+ 		AND CATE_CODE = #{cateCode}
+ 		</if>
+ 		AND IS_MAIN = 'Y'
+ 		AND ITEM_STATUS = 2
+ 		AND ROWNUM &lt; 10
+ 		AND ITEM_STOCK &lt; 50
+ 	</select>
+ 	
+ 	<!-- 카테고리 목록조회 -->
+ 	<select id="selectCategoryList" resultMap="category">
+ 		SELECT CATE_CODE
+ 			, CATE_NAME
+ 			, CATE_PASS
+ 		FROM CATEGORY
+ 		ORDER BY CATE_CODE
+ 	</select>
+ 	
+ 	<!-- 메인페이지에서 상품검색 -->
+ 	<select id="mainPageSearchList" resultMap="item">
+ 	SELECT ITEM_CODE
+		, ITEM_NAME
+		, ITEM_INTRO
+		, ITEM_PRICE
+		, CATE_CODE
+		, ATTACHED_IMG_NAME
+		, ROW_NUM
+		FROM 
+			(SELECT ITEM_CODE
+				, ITEM_NAME
+				, ITEM_INTRO
+				, ITEM_PRICE
+				, CATE_CODE
+				, ATTACHED_IMG_NAME
+				, ROWNUM AS ROW_NUM
+ 			FROM(SELECT ITEM.ITEM_CODE
+	 			, ITEM_NAME
+	 			, ITEM_INTRO
+	 			, ITEM_PRICE
+	 			, CATE_CODE
+	 			, ATTACHED_IMG_NAME
+	 		FROM ITEM ITEM, ITEM_IMG IMG
+	 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
+	 		AND IS_MAIN = 'Y'
+	 		<if test="!searchValue.equals('all')">
+	 		AND ITEM_NAME LIKE '%'||#{searchValue}||'%'
+	 		</if>
+	 		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
+	 		AND CATE_CODE = #{searchKeyword}
+	 		</if>
+	 		<if test="minPrice != 0 and maxPrice != 0">
+	 		AND ITEM_PRICE &gt;= #{minPrice}
+	 		AND ITEM_PRICE &lt;= #{maxPrice}
+	 		AND ITEM_PRICE &lt;= #{maxPrice}
+	 		</if>
+	 		<if test="minPrice != 0 and maxPrice == 0">
+	 		AND ITEM_PRICE &gt;= #{minPrice}
+	 		</if>
+	 		<if test="minPrice == 0 and maxPrice != 0">
+	 		AND ITEM_PRICE &lt;= #{maxPrice}
+	 		</if>
+	 		<if test="orderBy != null and !orderBy.equals('')">
+	 		ORDER BY ${orderBy}
+	 		</if>
+	 		)
+	 	)
+	 	WHERE ROW_NUM BETWEEN #{startNum} and #{endNum}
  	</select>
  	
  	<!-- 검색한 상품 갯수 -->
  	<select id="mainPageSearchCnt" resultType="int">
- 		SELECT COUNT(ITEM_NAME)
- 		FROM ITEM
+ 		SELECT COUNT(ITEM.ITEM_CODE)
+ 		FROM ITEM ITEM, ITEM_IMG IMG
+ 		WHERE ITEM.ITEM_CODE = IMG.ITEM_CODE
  		<if test="!searchValue.equals('all')">
- 		WHERE ITEM_NAME LIKE '%'||#{searchValue}||'%' 
- 		</if>
- 		<if test="searchValue.equals('all')">
- 		WHERE 1 = 1
+ 		AND ITEM_NAME LIKE '%'||#{searchValue}||'%' 
  		</if>
  		<if test="searchKeyword != null and !searchKeyword.equals('') and !searchKeyword.equals('all')">
  		AND CATE_CODE = #{searchKeyword}
@@ -202,6 +271,7 @@
  		ITEM_STATUS = 3
  		WHERE ITEM_CODE = #{itemCode}
  	</update>
+ 	
 </mapper>
 
 

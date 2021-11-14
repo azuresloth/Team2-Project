@@ -44,8 +44,11 @@ public class FeedbackController {
 		Iterator<String> inputName = multi.getFileNames();
 
 		// 첨부될 폴더지정(현제는 집 컴퓨터 폴더)
-		String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
-
+		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		// 병준씨 수업 컴, 집컴
+		String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		//String uploadPath = "C:\\workspaceSTS\\Team2 Shop Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		
 		while (inputName.hasNext()) {
 			// 한개만 넘기니까 하나만 나온다.
 			String fileName = inputName.next();
@@ -78,8 +81,11 @@ public class FeedbackController {
 
 		// 첨부될 폴더지정(현제는 내 컴퓨터 폴더)
 		//String uploadPath = "C:\\Users\\82105\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
-		String uploadPath = "D:\\workspaceSTS\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Team2 Shop Project\\resources\\feedback\\images\\";
-
+		//String uploadPath = "D:\\workspaceSTS\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\Team2 Shop Project\\resources\\feedback\\images\\";
+		// 병준씨 수업 컴, 집컴
+		String uploadPath = "C:\\Users\\kh202-15\\git\\Team2-Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		//String uploadPath = "C:\\workspaceSTS\\Team2 Shop Project\\src\\main\\webapp\\resources\\feedback\\images\\";
+		
 		while (inputName.hasNext()) {
 			// 한개만 넘기니까 하나만 나온다.
 			String fileName = inputName.next();
@@ -107,8 +113,6 @@ public class FeedbackController {
 	@ResponseBody
 	@PostMapping("/feedbackListAjax")
 	public List<FeedbackVO> feedbackListAjax(String itemCode) {
-
-		System.out.println("feedbackListAjax()");
 		return feedbackService.feedbackList(itemCode);
 	}
 

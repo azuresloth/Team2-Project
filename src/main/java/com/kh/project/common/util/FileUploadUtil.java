@@ -22,6 +22,7 @@ public class FileUploadUtil {
 		return nowDateTime;
 	}
 	
+	// 한달전 날짜 구하기
 	public static String getBeforMonth() {
 		Calendar mon = Calendar.getInstance();
 	    mon.add(Calendar.MONTH , -1);
@@ -30,6 +31,7 @@ public class FileUploadUtil {
 	    return beforMonth;
 	}
 	
+	// 오늘 날짜 구하기
 	public static String getNowMonth() {
 		Calendar nowDate = Calendar.getInstance();
 	    String nowMonth = new java.text.SimpleDateFormat("yyyy-MM-dd").format(nowDate.getTime());
