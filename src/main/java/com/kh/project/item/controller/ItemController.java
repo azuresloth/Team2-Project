@@ -35,6 +35,11 @@ public class ItemController {
 	@Resource(name = "boardService")
 	private BoardService boardService;
 	
+	// 첫 화면
+	@GetMapping("/firstPage")
+	public String firstPage() {
+		return "item/first_page";
+	}
 	
 	// 메인 페이지로 이동
 	@GetMapping("/mainPage")

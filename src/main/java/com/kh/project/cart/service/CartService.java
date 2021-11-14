@@ -63,4 +63,7 @@ public interface CartService {
 	// 남은수량까지 장바구니 조회
 	CartViewVO selectCartViewWithStockList(CartViewVO cartViewVO);
 	
+	// 장바구니 수량 변경
+	void updateCartItemCnt(CartViewVO cartViewVO);
+	
 }

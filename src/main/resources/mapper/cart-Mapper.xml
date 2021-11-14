@@ -101,6 +101,7 @@
 	<!-- 남은수량포함 장바구니 -->
 	<select id="selectCartViewWithStockList" resultMap="cartView">
 		SELECT C.ITEM_CODE
+			, CART_CODE
 			, ID
 			, C.ITEM_NAME
 			, C.ITEM_PRICE
@@ -350,7 +351,13 @@
 		WHERE ID = #{id}
 	</select>
 	
-	
+	<!-- 장바구니 아이템 수량 갯수 변경 -->
+	<update id="updateCartItemCnt">
+		UPDATE ITEM_CART
+		SET
+		ITEM_CNT = #{itemCnt}
+		WHERE CART_CODE = #{cartCode}
+	</update>
 </mapper>
 
 

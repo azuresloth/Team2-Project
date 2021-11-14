@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/cart/js/cart_list.js?ver=1"></script>
+<script type="text/javascript" src="/resources/cart/js/cart_list.js?ver=2"></script>
 <link rel="stylesheet" href="/resources/cart/css/cart_list.css?ver=1">
 </head>
 <body>
@@ -66,6 +66,7 @@
 							
 							<tr>
 								<td>
+									<input type="hidden" name="cartCode" value="${cartInfo.cartCode}">
 									<input type="checkbox" class="childBox" value="${cartInfo.itemCode}">
 									<input type="hidden" name="itemCode" value="${cartInfo.itemCode}">
 								</td>
@@ -76,8 +77,9 @@
 								<td>${cartInfo.itemName}</td>
 								<td><fmt:formatNumber type="number" value="${cartInfo.itemPrice}"></fmt:formatNumber>원</td>
 								<td style="vertical-align: middle">
-									<input type="number" name="buyCnt" value="${cartInfo.itemCnt}" min="0" max="${cartInfo.itemStock}" style="widows: 40px;'">개
-									<button class="button blackButton smallBtn mb-0" style="height: 30px; width: 50px;">변경</button>
+									<input type="hidden" id="itemStock" name="itemStock" value="${cartInfo.itemStock}">
+									<input type="number" name="buyCnt" value="${cartInfo.itemCnt}" min="0" max="${cartInfo.itemStock}" style="width: 45px;'">개
+									<button value="0" class="button blackButton smallBtn my-0 updateBtn" style="height: 30px; width: 60px; line-height: 8px; vertical-align: middle;">변경</button>
 								</td>
 								<td>[무료]</td>
 								<td>

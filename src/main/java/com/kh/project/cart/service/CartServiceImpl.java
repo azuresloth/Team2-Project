@@ -123,4 +123,9 @@ public class CartServiceImpl implements CartService{
 		return sqlSession.selectList("cartMapper.selectCartItemCode", id);
 	}
 
+	@Override
+	public void updateCartItemCnt(CartViewVO cartViewVO) {
+		sqlSession.update("cartMapper.updateCartItemCnt", cartViewVO);
+	}
+
 }

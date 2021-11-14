@@ -10,7 +10,28 @@
 /* 페이지 로딩 후 실행 */
 $(document).ready(function(){
 	
-	
+	// 수량 변경
+	$(document).on('click', '.updateBtn', function() {
+		var itemCnt = $(this).parent().children().eq(1).val();
+		var itemStock = $(this).parent().children().eq(0).val();
+		var cartCode = $(this).parent().parent().children().eq(0).children().eq(0).val();
+		if(itemCnt < 1 || (itemCnt - itemStock) > 0){
+			alert('상품의 남은 수량보다 많이 설정할 수 없습니다.');
+		}
+		else{
+			$.ajax({
+				url: '/cart/updateCartCntAjax',
+				type: 'post',
+				data: {'cartCode' : cartCode, 'itemCnt' : itemCnt},
+				success: function() {
+					history.go(0);
+				},
+				error: function() {
+					alert('실패');
+				}
+			});
+		};
+	});
 	// 체크박스
 	$(document).on('click', '#motherBox', function() {
 		// 마더박스의 체크여부
@@ -104,6 +125,7 @@ $(document).ready(function(){
 			alert('선택한 상품이 없습니다.');
 		}
 	};
+	
 
 	
 })(jQuery);

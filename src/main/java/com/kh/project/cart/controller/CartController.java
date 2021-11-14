@@ -369,6 +369,16 @@ public class CartController {
 		return result;
 	}
 	
+	// 장바구니 수량변경
+	@ResponseBody
+	@PostMapping("/updateCartCntAjax")
+	public void updateCartCntAjax(String cartCode, int itemCnt) {
+		CartViewVO cartViewVO = new CartViewVO();
+		cartViewVO.setCartCode(cartCode);
+		cartViewVO.setItemCnt(itemCnt);
+		cartService.updateCartItemCnt(cartViewVO);
+	}
+	
 	
 	// 이메일, 연락처 쪼개는 메소드
 	public EmailAndTellVO setTellEmailfun(MemberVO memberVO) {
