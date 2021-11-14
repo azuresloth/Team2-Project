@@ -98,4 +98,9 @@ public class CartServiceImpl implements CartService{
 		}
 	}
 
+	@Override
+	public void deleteCart(String id) {
+		sqlSession.delete("cartMapper.deleteCart", id);
+	}
+
 }

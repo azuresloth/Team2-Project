@@ -9,20 +9,22 @@ $(document).ready(function() {
     
     
     //아이디 확인
-    var replaceNotFullEng =/^[a-z]/gi;
+    var replaceNotFullEng =/^[a-zA-Z]/gi;
     
     $(document).ready(function(){
         
         $("#id").on("focusout", function() {
             var x = $(this).val();
             if (x.length > 0) {
-                if (x.match(replaceChar1) || x.match(replaceNotFullEng)) {
-                    x = x.replace(replaceChar1, "").replace(replaceNotFullEng, "");
+//                if (x.match(replaceChar1) || x.match(replaceNotFullEng)) {
+//                    x = x.replace(replaceChar1, "").replace(replaceNotFullEng, "");
+            	$(this).val($(this).val().replace(/[^a-z0-9A-Z]/g,""));
                 }
-                $(this).val(x);
-            }
+//                $(this).val(x);
+//            }
             }).on("keyup", function() {
-                $(this).val($(this).val().replace(replaceChar1, ""));
+            	$(this).val($(this).val().replace(/[^a-z0-9A-Z]/g,""));
+//                $(this).val($(this).val().replace(replaceChar1, ""));
 
        });
 

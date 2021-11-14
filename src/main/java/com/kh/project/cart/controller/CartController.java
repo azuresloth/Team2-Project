@@ -184,10 +184,31 @@ public class CartController {
 		cartViewVO.setId(((MemberVO) session.getAttribute("loginInfo")).getId());
 		// 장바구니 목록 전달
 		List<CartViewVO> list = cartService.selectCartViewList(cartViewVO);
-		for() {
-			//나중에 이걸 본다면 나좀 도와주시게
-			
+		for(CartViewVO e : list) {
+			// 주문목록에 삽입
+			BuyInfoVO b = new BuyInfoVO();
+			b.setItemCode(e.getItemCode());
+			b.setId(e.getId());
+			b.setTotalPrice(e.getTotalPrice());
+			b.setBuyCnt(e.getItemCnt());
+			b.setAttachedImgName(e.getAttachedImgName());
+			b.setOrderCode(buyInfoVO.getOrderCode());
+			b.setDeliveryName(buyInfoVO.getDeliveryName());
+			b.setDeliveryTell(buyInfoVO.getDeliveryTell());
+			b.setDeliveryEmail(buyInfoVO.getDeliveryEmail());
+			b.setDeliveryMsg(buyInfoVO.getDeliveryMsg());
+			b.setPostCode(buyInfoVO.getPostCode());
+			b.setRoadAddr(buyInfoVO.getRoadAddr());
+			b.setDetailAddr(buyInfoVO.getDetailAddr());
+			cartService.insertBuyInfo(b);
+			// 상태, 수량 업데이트
+			int remainStockCnt = itemService.selectItemStock(b);
+			if(remainStockCnt == 0) {
+				itemService.updateItemStatus(b);
+			}
 		}
+		// 구매목록 일괄삭제
+		cartService.deleteCart(cartViewVO.getId());
 		
 		// 사는 회원의 배송주소 전달
 		model.addAttribute("basicDeliveryInfo", memberService.selectBuyMemberInfo(cartViewVO));
@@ -196,7 +217,7 @@ public class CartController {
 		setTellEmailfun(splitTellEmail);
 		// 조회한 장바구니의 총 가격 넘겨주기
         model.addAttribute("cartAllTotalPrice", cartService.selectCartAllTotalPrice(cartViewVO));
-		return "item/main_page";
+		return "redirect:/cart/goOrderLookupPage";
 	}
 	
 	// 주문조회

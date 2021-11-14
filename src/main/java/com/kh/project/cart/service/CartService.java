@@ -27,6 +27,9 @@ public interface CartService {
 	// 구매 목록 삭제
 	void deleteCartItem(String itemCode, String id);
 	
+	// 일괄 구매 카트 삭제
+	void deleteCart(String id);
+	
 	// 구매 목록 지웟는데 뒤로가기로 왔을때 확인
 	int selectCheckPurchaseData(String itemCode, String id);
 	

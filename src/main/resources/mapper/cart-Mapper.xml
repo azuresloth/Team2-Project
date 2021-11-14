@@ -139,6 +139,12 @@
 		AND ID = #{id}
 	</delete>
 	
+	<!-- 일괄구매 카트삭제 -->
+	<delete id="deleteCart">
+		DELETE ITEM_CART
+		WHERE ID = #{id}
+	</delete>
+	
 	<!-- 구매 목록 지웟는데 뒤로가기로 왔을때 확인 -->
 	<select id="selectCheckPurchaseData" resultType="int">
 		SELECT COUNT(ITEM_CODE)
