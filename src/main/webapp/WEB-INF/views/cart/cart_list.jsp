@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="/resources/cart/js/cart_list.js?ver=2"></script>
+<script type="text/javascript" src="/resources/cart/js/cart_list.js?ver=1"></script>
 <link rel="stylesheet" href="/resources/cart/css/cart_list.css?ver=1">
 </head>
 <body>

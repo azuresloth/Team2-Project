@@ -16,7 +16,7 @@ $(document).ready(function(){
 		var itemStock = $(this).parent().children().eq(0).val();
 		var cartCode = $(this).parent().parent().children().eq(0).children().eq(0).val();
 		if(itemCnt < 1 || (itemCnt - itemStock) > 0){
-			alert('상품의 남은 수량보다 많이 설정할 수 없습니다.');
+			alert('상품의 남은 수량보다 많거나 적게 설정할 수 없습니다.');
 		}
 		else{
 			$.ajax({
@@ -71,7 +71,7 @@ $(document).ready(function(){
 		
 		var sure = confirm('장바구니에서 삭제 하시겠습니까?');
 		if(sure){
-			var itemCode = $(this).parent().parent().children().eq(0).children().eq(0).val();
+			var itemCode = $(this).parent().parent().children().eq(0).children().eq(1).val();
 			var itemCnt = $(this).parent().parent().children().eq(4).children().eq(0).val();
 			var id = $('#id').val();
 			$.ajax({
