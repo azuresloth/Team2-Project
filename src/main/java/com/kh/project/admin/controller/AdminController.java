@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,7 @@ import com.kh.project.admin.vo.OrderInfoVO;
 import com.kh.project.admin.vo.SalesManageVO;
 import com.kh.project.admin.vo.SideMenuVO;
 import com.kh.project.board.vo.PageVO;
+import com.kh.project.cart.vo.BuyInfoVO;
 import com.kh.project.common.util.FileUploadUtil;
 import com.kh.project.item.service.ItemService;
 import com.kh.project.item.vo.ImgVO;
@@ -183,7 +185,11 @@ public class AdminController {
 	
 	@RequestMapping("/selectMonthSales")
 	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
+	    Map<String, List<OrderInfoVO>> map = new HashMap<>();
+		
+	    List<String> re1 = adminService.;
 	    
+		
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
 		model.addAttribute("allTotalPrice", adminService.selectAllTotalPrice(orderInfoVO));
 	    model.addAttribute("beforMonth", FileUploadUtil.getBeforMonth());
@@ -274,9 +280,6 @@ public class AdminController {
 	public int selectStock(String itemCode){
 		return adminService.sisk(itemCode);
 	}
-	
-	
-	
 	
 	public List<SideMenuVO> sideMenu( SideMenuVO sideMenuVO){
 		return adminService.selectSideMenu(sideMenuVO);

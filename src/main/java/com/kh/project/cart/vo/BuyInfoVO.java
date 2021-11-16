@@ -33,9 +33,6 @@ public class BuyInfoVO  extends BuyStatusVO{
 	private String itemName;
 	private String itemPrice;
 	
-	
-	
-	
 	public String getItemPrice() {
 		return itemPrice;
 	}

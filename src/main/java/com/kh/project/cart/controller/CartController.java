@@ -182,9 +182,9 @@ public class CartController {
 		if(buyInfoVO.getItemCode() != null) {
 			session.setAttribute("nowBuyInfo", buyInfoVO);
 		}
+		// 방금산거 조회
 		BuyInfoVO nowBuyInfo = (BuyInfoVO) session.getAttribute("nowBuyInfo");
 		model.addAttribute("nowBuyList", cartService.selectRecentBoughtInfo(nowBuyInfo));
-		// 방금산거 조회  
 		return "cart/order_complete_page";
 	}
 	

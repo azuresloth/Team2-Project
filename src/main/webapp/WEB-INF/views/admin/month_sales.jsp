@@ -8,6 +8,35 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<script type="text/javascript" src="http://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+	google.charts.load('current', {'packages':['corechart']});
+	google.charts.setOnLoadCallback(drawVisualization);
+	
+	function drawVisualization(){
+		var date = google.visualization.arrayToDataTable([
+			['month', 'Bolivia', 'Ecuador', 'madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+			['2004/05', 165,         938,         522,        988,                450,      614.6],
+			['2005/06', 135, 1120, 599, 1268, 288, 682],
+			['2006/07', 157, 1167, 587, 807, 397, 623],
+			['2007/08', 139, 1110, 615, 968, 215, 609.4],
+			['2008/09', 136, 691, 629, 1026, 366, 569.6],
+		]);
+		
+		var options = {
+				title : 'Monthly, Coffee Production By Contry',
+				vAxis : {title: 'cups'},
+				hAxis : {title: 'month'}, 
+				seriesType: 'bars',
+				series: {5: {type: 'line'}}
+		};
+		
+		var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+		chart.draw(date, options);
+		
+	}
+	
+</script>
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <script type="text/javascript" src="/resources/admin/month_sales.js?ver=12"></script>
 <style type="text/css">
@@ -201,6 +230,8 @@
 		</ul>
 	</div>
 	<!-- container mt-3 의 끝 -->
+	
+	<div id="chart_div" style="width: 900px; height: 500px;"></div>
 </div>
 </body>
 </html>
