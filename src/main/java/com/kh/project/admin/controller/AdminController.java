@@ -187,7 +187,6 @@ public class AdminController {
 	public String selectMonthSales(Model model, OrderInfoVO orderInfoVO, SideMenuVO sideMenuVO) {
 	    Map<String, List<OrderInfoVO>> map = new HashMap<>();
 		
-	    List<String> re1 = adminService.;
 	    
 		
 		model.addAttribute("orderList", adminService.selectOderInfoList(orderInfoVO));
