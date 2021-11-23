@@ -71,7 +71,7 @@ $(document).ready(function(){
       	});
 	});
 	$(document).on('click', '#insertCartBtn', function() {
-		//수량이 0보다 작을경우 못사게 막기
+		//수량이 0보다 작거나 남은 수량보다 많을경우 막기
 		var cnt = $('#cnt').val();
 		var itemStock = $('#itemStock').val();
 		if(cnt <= 0 || (itemStock - cnt) < 0) {

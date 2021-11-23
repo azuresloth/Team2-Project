@@ -37,6 +37,12 @@
 				
 				<div class="col-6" style="border: 1px solid black;">
 					<table class="table mr-0" style="height: 200px;">
+						<colgroup>
+							<col width="20%">
+							<col width="60%">
+							<col width="10%">
+							<col width="10%">
+						</colgroup>
 					  <tbody>
 					    <tr>
 					      <th scope="row">상품 분류</th>
@@ -53,9 +59,11 @@
 					    </tr>
 					    <tr>
 					      <th scope="row">가격대</th>
-					      <td colspan="3">
+					      <td>
 					      	<input type="number" id="minPrice" name="minPrice" <c:choose><c:when test="${not empty itemVO.minPrice}">value="${itemVO.minPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> ~ <input type="number" id="maxPrice" name="maxPrice" <c:choose><c:when test="${not empty itemVO.maxPrice}">value="${itemVO.maxPrice}"</c:when><c:otherwise>value="0"</c:otherwise></c:choose>> &nbsp;원
 					      </td>
+					      <td></td>
+					      <td></td>
 					    </tr>
 					    <tr>
 					      <th scope="row">정렬 기준</th>
